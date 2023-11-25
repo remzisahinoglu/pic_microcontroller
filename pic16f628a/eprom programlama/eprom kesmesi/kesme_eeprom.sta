@@ -1,0 +1,51 @@
+
+ROM used: 144 (7%)
+          144 (7%) including unused fragments
+
+          1 Average locations per line
+          10 Average locations per statement
+
+RAM used: 19 (8%) at main() level
+          19 (8%) worst case
+
+Stack used: 2 worst case (out of 7 total available)
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+   47    15 100  kesme_eeprom.c
+  205     0   0  F:\Program Files\PICC\devices\16F628A.h
+----- -----
+  252    15 Total
+
+Page ROM  %  RAM   Vol Diff  Functions:
+---- --- --- ---   --- ----  ----------
+0     21  15   1             @delay_ms1
+0      5   3   0    27  1.5  eprom_yaz
+0     65  45   1   351  4.7  MAIN
+
+Program metrics:
+    Functions               2
+    Statements              15
+    Comments                78
+    Volume (V)              420
+    Difficilty (D)          6.5
+    Effort to implement (E) 2711
+    Time to implement (T)   3 minutes
+    Est Delivered Bugs (B)  0
+    Cyclomatic Complexity   3
+    Maintainability (MI)    98
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00003     4  0  
+00004-00034    49  0  
+00035-007FF    91  1904  
+
+
+
+THE FOLLOWING IS TEMPORARY FOR DIAGNOSTIC USE ONLY:
+
+    n1    n2    N1    N2   v(G)
+     0     1     0     0     0    @delay_ms1
+     5     5     5     3     0    eprom_yaz
+    10    30    38    28     3    MAIN

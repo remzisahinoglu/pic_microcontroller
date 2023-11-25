@@ -1,0 +1,43 @@
+[PROJECT]
+Target=zamnalayici-1.HEX
+Development_Mode=2
+Processor=0x628A
+ToolSuite=CCS
+Processor_Text=PIC16F628A
+
+[Directories]
+Include=
+Library=
+LinkerScript=
+
+[Target Data]
+FileList=D:\pic\zamanlayicilar\timer1\zamnalayici-1.c
+BuildTool=C-COMPILER
+OptionString=+FM
+AdditionalOptionString=
+BuildRequired=1
+
+[zamnalayici-1.c]
+Type=4
+Path=
+FileList=
+BuildTool=
+OptionString=
+AdditionalOptionString=
+
+[mru-list]
+1=ZAMNAL~1.C
+
+[Windows]
+0=0000 ZAMNAL~1.C 0 0 796 451 3 0
+
+[Opened Files]
+1=D:\pic\zamanlayicilar\timer2\zamnalayici-2.c
+2=C:\Program Files\PICC\Devices\16F628A.h
+3=
+4=D:\pic\zamanlayicilar\timer1\zamnalayici-1.lst
+5=
+[Units]
+Count=1
+1=zamnalayici-1.c (main)
+Link=0

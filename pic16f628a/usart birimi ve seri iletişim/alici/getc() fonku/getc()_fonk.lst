@@ -1,0 +1,127 @@
+CCS PCM C Compiler, Version 4.018, 44048               11-Eki-07 12:17
+
+               Filename: F:\ramsi\private\picmicro\PIC C\pic uygulama\pic16f628a\usart birimi ve seri iletiþim\alici\getc() fonku\getc()_fonk.lst
+
+               ROM used: 75 words (4%)
+                         Largest free fragment is 1973
+               RAM used: 7 (3%) at main() level
+                         8 (4%) worst case
+               Stack:    1 locations
+
+*
+0000:  MOVLW  00
+0001:  MOVWF  0A
+0002:  GOTO   019
+0003:  NOP
+.................... //rs232 alýcý uygulamsý 
+.................... //01.03.2007 
+.................... //yazan = Remzi ÞAHÝNOÐLU 
+.................... #if defined (__PCM__) 
+.................... #include <16F628A.h> 
+.................... //////// Standard Header file for the PIC16F628A device //////////////// 
+.................... #device PIC16F628A 
+.................... #list 
+....................  
+.................... #use delay(clock=4000000) 
+0004:  MOVLW  22
+0005:  MOVWF  04
+0006:  BCF    03.7
+0007:  MOVF   00,W
+0008:  BTFSC  03.2
+0009:  GOTO   018
+000A:  MOVLW  01
+000B:  MOVWF  78
+000C:  CLRF   77
+000D:  DECFSZ 77,F
+000E:  GOTO   00D
+000F:  DECFSZ 78,F
+0010:  GOTO   00C
+0011:  MOVLW  4A
+0012:  MOVWF  77
+0013:  DECFSZ 77,F
+0014:  GOTO   013
+0015:  GOTO   016
+0016:  DECFSZ 00,F
+0017:  GOTO   00A
+0018:  GOTO   02F (RETURN)
+.................... #fuses NOWDT,PUT,NOLVP,NOBROWNOUT,MCLR,INTRC_IO,NOPROTECT 
+.................... #use  RS232(BAUD=1200, xmit=PIN_B2, rcv=PIN_B1)   // saniyede 1200 bit max al 
+.................... #endif 
+....................  
+.................... #byte veri = 0x30 
+....................  
+.................... void main() 
+.................... { 
+0019:  CLRF   04
+001A:  BCF    03.7
+001B:  MOVLW  1F
+001C:  ANDWF  03,F
+001D:  MOVLW  33
+001E:  BSF    03.5
+001F:  MOVWF  19
+0020:  MOVLW  A2
+0021:  MOVWF  18
+0022:  MOVLW  90
+0023:  BCF    03.5
+0024:  MOVWF  18
+0025:  MOVLW  07
+0026:  MOVWF  1F
+....................    set_tris_a(0b00100000);    // mclr giriþ (reset var) ilk 4 bit çýkýs 
+0027:  MOVLW  20
+0028:  TRIS   5
+....................    set_tris_b(0b00000010);    // rcv giriþ  
+0029:  MOVLW  02
+002A:  TRIS   6
+....................    delay_ms(500); 
+002B:  MOVWF  21
+002C:  MOVLW  FA
+002D:  MOVWF  22
+002E:  GOTO   004
+002F:  DECFSZ 21,F
+0030:  GOTO   02C
+....................     
+....................    output_a(0);      
+0031:  BSF    03.5
+0032:  CLRF   05
+0033:  BCF    03.5
+0034:  CLRF   05
+....................    output_b(0);    
+0035:  BSF    03.5
+0036:  CLRF   06
+0037:  BCF    03.5
+0038:  CLRF   06
+....................    veri=0; 
+0039:  CLRF   30
+....................     
+....................    while(TRUE)                // sonsuz döngü 
+....................    { 
+....................       if(kbhit()==1)          // usart alýcý tampon kesme bayraðý biti 
+003A:  MOVLW  00
+003B:  BTFSC  0C.5
+003C:  MOVLW  01
+003D:  SUBLW  01
+003E:  BTFSS  03.2
+003F:  GOTO   044
+....................       {                       // bit 1 ise alýcý tampon dolu 
+....................          veri=getc();         // RCREG saklayýcýsýný oku veriye yaz       
+0040:  BTFSS  0C.5
+0041:  GOTO   040
+0042:  MOVF   1A,W
+0043:  MOVWF  30
+....................       } 
+....................        
+....................       output_a(veri);         // A portundan direk çýkart       
+0044:  BSF    03.5
+0045:  CLRF   05
+0046:  BCF    03.5
+0047:  MOVF   30,W
+0048:  MOVWF  05
+....................    } 
+0049:  GOTO   03A
+.................... } 
+....................  
+....................  
+004A:  SLEEP
+
+Configuration Fuses:
+   Word  1: 3F30   NOWDT PUT NOPROTECT NOBROWNOUT MCLR NOLVP INTRC_IO NOCPD

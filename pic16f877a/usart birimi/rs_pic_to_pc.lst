@@ -1,0 +1,135 @@
+CCS PCM C Compiler, Version 4.074, 13730               30-May-09 22:33
+
+               Filename: C:\Documents and Settings\raj x\Desktop\atmproj\pic prog\rs_pic_to_pc.lst
+
+               ROM used: 83 words (1%)
+                         Largest free fragment is 2048
+               RAM used: 7 (2%) at main() level
+                         8 (2%) worst case
+               Stack:    1 locations
+
+*
+0000:  MOVLW  00
+0001:  MOVWF  0A
+0002:  GOTO   019
+0003:  NOP
+.................... //rs232 verici uygulamsý pic16f877 - atmproj 
+.................... //30.06.2009 
+.................... //yazan = Remzi ÞAHÝNOÐLU 
+.................... #if defined (__PCM__) 
+.................... #include <16F877.h> 
+.................... //////// Standard Header file for the PIC16F877 device //////////////// 
+.................... #device PIC16F877 
+.................... #list 
+....................  
+.................... #fuses XT,NOWDT,NOPROTECT,NOLVP,NOBROWNOUT,NOPUT,NOWRT,NODEBUG,NOCPD 
+.................... #use delay(clock=4000000) 
+0004:  MOVLW  22
+0005:  MOVWF  04
+0006:  BCF    03.7
+0007:  MOVF   00,W
+0008:  BTFSC  03.2
+0009:  GOTO   018
+000A:  MOVLW  01
+000B:  MOVWF  78
+000C:  CLRF   77
+000D:  DECFSZ 77,F
+000E:  GOTO   00D
+000F:  DECFSZ 78,F
+0010:  GOTO   00C
+0011:  MOVLW  4A
+0012:  MOVWF  77
+0013:  DECFSZ 77,F
+0014:  GOTO   013
+0015:  GOTO   016
+0016:  DECFSZ 00,F
+0017:  GOTO   00A
+0018:  RETLW  00
+....................  
+.................... #use rs232(baud=1200, xmit=pin_C6, rcv=pin_C7, parity=N, stop=1) 
+.................... #endif 
+....................  
+.................... #byte porta = 0x05 
+....................  
+.................... void main() 
+.................... { 
+0019:  CLRF   04
+001A:  BCF    03.7
+001B:  MOVLW  1F
+001C:  ANDWF  03,F
+001D:  MOVLW  33
+001E:  BSF    03.5
+001F:  MOVWF  19
+0020:  MOVLW  A2
+0021:  MOVWF  18
+0022:  MOVLW  90
+0023:  BCF    03.5
+0024:  MOVWF  18
+0025:  BSF    03.5
+0026:  BSF    1F.0
+0027:  BSF    1F.1
+0028:  BSF    1F.2
+0029:  BCF    1F.3
+....................     
+....................    set_tris_a(0b00000001); 
+002A:  MOVLW  01
+002B:  MOVWF  05
+....................    delay_ms(500); 
+002C:  MOVLW  02
+002D:  BCF    03.5
+002E:  MOVWF  21
+002F:  MOVLW  FA
+0030:  MOVWF  22
+0031:  CALL   004
+0032:  DECFSZ 21,F
+0033:  GOTO   02F
+....................    output_d(0); 
+0034:  BSF    03.5
+0035:  CLRF   08
+0036:  BCF    03.5
+0037:  CLRF   08
+....................     
+....................    while(TRUE) 
+....................    { 
+....................       if(bit_test(porta,0)==0) 
+0038:  BTFSC  05.0
+0039:  GOTO   04E
+....................       { 
+....................          putc('R'); 
+003A:  MOVLW  52
+003B:  BTFSS  0C.4
+003C:  GOTO   03B
+003D:  MOVWF  19
+....................          putc('E'); 
+003E:  MOVLW  45
+003F:  BTFSS  0C.4
+0040:  GOTO   03F
+0041:  MOVWF  19
+....................          putc('M'); 
+0042:  MOVLW  4D
+0043:  BTFSS  0C.4
+0044:  GOTO   043
+0045:  MOVWF  19
+....................          putc('Z'); 
+0046:  MOVLW  5A
+0047:  BTFSS  0C.4
+0048:  GOTO   047
+0049:  MOVWF  19
+....................          putc('I');         
+004A:  MOVLW  49
+004B:  BTFSS  0C.4
+004C:  GOTO   04B
+004D:  MOVWF  19
+....................       } 
+....................       delay_ms(100); 
+004E:  MOVLW  64
+004F:  MOVWF  22
+0050:  CALL   004
+....................    } 
+0051:  GOTO   038
+.................... } 
+....................  
+0052:  SLEEP
+
+Configuration Fuses:
+   Word  1: 3F39   XT NOWDT NOPUT NOPROTECT NOBROWNOUT NOLVP NOCPD NOWRT NODEBUG

@@ -1,0 +1,150 @@
+[Header]
+MagicCookie={0b13fe8c-dfe0-40eb-8900-6712719559a7}
+Version=1.0
+[File000]
+Location=D:\C18 PROJECT\PIC USB Firmware\Output\mem_alloc.o
+Folder=Intermediary
+DeviceName=PIC18F4550
+LanguageToolSuiteID={5B7D72DD-9861-47BD-9F60-2BE967BF8416}
+LanguageToolID={E56A1C86-9D32-4DF6-8C34-FE0388B1B644}
+LanguageToolLocation=C:\mcc18\bin\mcc18.exe
+PPAD=$(BINDIR)|D:\C18 PROJECT\PIC USB Firmware\Output||$(TMPDIR)|D:\C18 PROJECT\PIC USB Firmware\Output||$(AINDIR)||$(INCDIR)|D:\C18 PROJECT\PIC USB Firmware\NameSpace||$(LIBDIR)|C:\mcc18\lib||$(LKRDIR)||
+SOLK=<src>|NameSpace\mem_alloc.c|NameSpace\dsc.c|NameSpace\usbevents.c|NameSpace\usbcontrol.c|NameSpace\stdRequest.c|NameSpace\usbhid.c|NameSpace\main.c|NameSpace\devProc.c|NameSpace\interrupt.c||<obj>||<lib>||<lkr>|C:\mcc18\lkr\18f4550.lkr||
+SuiteArgsString=
+ToolArgsString=-Ou- -Ot- -Ob- -Op- -Or- -Od- -Opa-
+TraceCmdString=
+[File001]
+Location=D:\C18 PROJECT\PIC USB Firmware\Output\dsc.o
+Folder=Intermediary
+DeviceName=PIC18F4550
+LanguageToolSuiteID={5B7D72DD-9861-47BD-9F60-2BE967BF8416}
+LanguageToolID={E56A1C86-9D32-4DF6-8C34-FE0388B1B644}
+LanguageToolLocation=C:\mcc18\bin\mcc18.exe
+PPAD=$(BINDIR)|D:\C18 PROJECT\PIC USB Firmware\Output||$(TMPDIR)|D:\C18 PROJECT\PIC USB Firmware\Output||$(AINDIR)||$(INCDIR)|D:\C18 PROJECT\PIC USB Firmware\NameSpace||$(LIBDIR)|C:\mcc18\lib||$(LKRDIR)||
+SOLK=<src>|NameSpace\mem_alloc.c|NameSpace\dsc.c|NameSpace\usbevents.c|NameSpace\usbcontrol.c|NameSpace\stdRequest.c|NameSpace\usbhid.c|NameSpace\main.c|NameSpace\devProc.c|NameSpace\interrupt.c||<obj>||<lib>||<lkr>|C:\mcc18\lkr\18f4550.lkr||
+SuiteArgsString=
+ToolArgsString=-Ou- -Ot- -Ob- -Op- -Or- -Od- -Opa-
+TraceCmdString=
+[File002]
+Location=D:\C18 PROJECT\PIC USB Firmware\Output\usbevents.o
+Folder=Intermediary
+DeviceName=PIC18F4550
+LanguageToolSuiteID={5B7D72DD-9861-47BD-9F60-2BE967BF8416}
+LanguageToolID={E56A1C86-9D32-4DF6-8C34-FE0388B1B644}
+LanguageToolLocation=C:\mcc18\bin\mcc18.exe
+PPAD=$(BINDIR)|D:\C18 PROJECT\PIC USB Firmware\Output||$(TMPDIR)|D:\C18 PROJECT\PIC USB Firmware\Output||$(AINDIR)||$(INCDIR)|D:\C18 PROJECT\PIC USB Firmware\NameSpace||$(LIBDIR)|C:\mcc18\lib||$(LKRDIR)||
+SOLK=<src>|NameSpace\mem_alloc.c|NameSpace\dsc.c|NameSpace\usbevents.c|NameSpace\usbcontrol.c|NameSpace\stdRequest.c|NameSpace\usbhid.c|NameSpace\main.c|NameSpace\devProc.c|NameSpace\interrupt.c||<obj>||<lib>||<lkr>|C:\mcc18\lkr\18f4550.lkr||
+SuiteArgsString=
+ToolArgsString=-Ou- -Ot- -Ob- -Op- -Or- -Od- -Opa-
+TraceCmdString=
+[File003]
+Location=D:\C18 PROJECT\PIC USB Firmware\Output\usbcontrol.o
+Folder=Intermediary
+DeviceName=PIC18F4550
+LanguageToolSuiteID={5B7D72DD-9861-47BD-9F60-2BE967BF8416}
+LanguageToolID={E56A1C86-9D32-4DF6-8C34-FE0388B1B644}
+LanguageToolLocation=C:\mcc18\bin\mcc18.exe
+PPAD=$(BINDIR)|D:\C18 PROJECT\PIC USB Firmware\Output||$(TMPDIR)|D:\C18 PROJECT\PIC USB Firmware\Output||$(AINDIR)||$(INCDIR)|D:\C18 PROJECT\PIC USB Firmware\NameSpace||$(LIBDIR)|C:\mcc18\lib||$(LKRDIR)||
+SOLK=<src>|NameSpace\mem_alloc.c|NameSpace\dsc.c|NameSpace\usbevents.c|NameSpace\usbcontrol.c|NameSpace\stdRequest.c|NameSpace\usbhid.c|NameSpace\main.c|NameSpace\devProc.c|NameSpace\interrupt.c||<obj>||<lib>||<lkr>|C:\mcc18\lkr\18f4550.lkr||
+SuiteArgsString=
+ToolArgsString=-Ou- -Ot- -Ob- -Op- -Or- -Od- -Opa-
+TraceCmdString=
+[File004]
+Location=D:\C18 PROJECT\PIC USB Firmware\Output\stdRequest.o
+Folder=Intermediary
+DeviceName=PIC18F4550
+LanguageToolSuiteID={5B7D72DD-9861-47BD-9F60-2BE967BF8416}
+LanguageToolID={E56A1C86-9D32-4DF6-8C34-FE0388B1B644}
+LanguageToolLocation=C:\mcc18\bin\mcc18.exe
+PPAD=$(BINDIR)|D:\C18 PROJECT\PIC USB Firmware\Output||$(TMPDIR)|D:\C18 PROJECT\PIC USB Firmware\Output||$(AINDIR)||$(INCDIR)|D:\C18 PROJECT\PIC USB Firmware\NameSpace||$(LIBDIR)|C:\mcc18\lib||$(LKRDIR)||
+SOLK=<src>|NameSpace\mem_alloc.c|NameSpace\dsc.c|NameSpace\usbevents.c|NameSpace\usbcontrol.c|NameSpace\stdRequest.c|NameSpace\usbhid.c|NameSpace\main.c|NameSpace\devProc.c|NameSpace\interrupt.c||<obj>||<lib>||<lkr>|C:\mcc18\lkr\18f4550.lkr||
+SuiteArgsString=
+ToolArgsString=-Ou- -Ot- -Ob- -Op- -Or- -Od- -Opa-
+TraceCmdString=
+[File005]
+Location=D:\C18 PROJECT\PIC USB Firmware\Output\usbhid.o
+Folder=Intermediary
+DeviceName=PIC18F4550
+LanguageToolSuiteID={5B7D72DD-9861-47BD-9F60-2BE967BF8416}
+LanguageToolID={E56A1C86-9D32-4DF6-8C34-FE0388B1B644}
+LanguageToolLocation=C:\mcc18\bin\mcc18.exe
+PPAD=$(BINDIR)|D:\C18 PROJECT\PIC USB Firmware\Output||$(TMPDIR)|D:\C18 PROJECT\PIC USB Firmware\Output||$(AINDIR)||$(INCDIR)|D:\C18 PROJECT\PIC USB Firmware\NameSpace||$(LIBDIR)|C:\mcc18\lib||$(LKRDIR)||
+SOLK=<src>|NameSpace\mem_alloc.c|NameSpace\dsc.c|NameSpace\usbevents.c|NameSpace\usbcontrol.c|NameSpace\stdRequest.c|NameSpace\usbhid.c|NameSpace\main.c|NameSpace\devProc.c|NameSpace\interrupt.c||<obj>||<lib>||<lkr>|C:\mcc18\lkr\18f4550.lkr||
+SuiteArgsString=
+ToolArgsString=-Ou- -Ot- -Ob- -Op- -Or- -Od- -Opa-
+TraceCmdString=
+[File006]
+Location=D:\C18 PROJECT\PIC USB Firmware\Output\main.o
+Folder=Intermediary
+DeviceName=PIC18F4550
+LanguageToolSuiteID={5B7D72DD-9861-47BD-9F60-2BE967BF8416}
+LanguageToolID={E56A1C86-9D32-4DF6-8C34-FE0388B1B644}
+LanguageToolLocation=C:\mcc18\bin\mcc18.exe
+PPAD=$(BINDIR)|D:\C18 PROJECT\PIC USB Firmware\Output||$(TMPDIR)|D:\C18 PROJECT\PIC USB Firmware\Output||$(AINDIR)||$(INCDIR)|D:\C18 PROJECT\PIC USB Firmware\NameSpace||$(LIBDIR)|C:\mcc18\lib||$(LKRDIR)||
+SOLK=<src>|NameSpace\mem_alloc.c|NameSpace\dsc.c|NameSpace\usbevents.c|NameSpace\usbcontrol.c|NameSpace\stdRequest.c|NameSpace\usbhid.c|NameSpace\main.c|NameSpace\devProc.c|NameSpace\interrupt.c||<obj>||<lib>||<lkr>|C:\mcc18\lkr\18f4550.lkr||
+SuiteArgsString=
+ToolArgsString=-Ou- -Ot- -Ob- -Op- -Or- -Od- -Opa-
+TraceCmdString=
+[File007]
+Location=D:\C18 PROJECT\PIC USB Firmware\Output\devProc.o
+Folder=Intermediary
+DeviceName=PIC18F4550
+LanguageToolSuiteID={5B7D72DD-9861-47BD-9F60-2BE967BF8416}
+LanguageToolID={E56A1C86-9D32-4DF6-8C34-FE0388B1B644}
+LanguageToolLocation=C:\mcc18\bin\mcc18.exe
+PPAD=$(BINDIR)|D:\C18 PROJECT\PIC USB Firmware\Output||$(TMPDIR)|D:\C18 PROJECT\PIC USB Firmware\Output||$(AINDIR)||$(INCDIR)|D:\C18 PROJECT\PIC USB Firmware\NameSpace||$(LIBDIR)|C:\mcc18\lib||$(LKRDIR)||
+SOLK=<src>|NameSpace\mem_alloc.c|NameSpace\dsc.c|NameSpace\usbevents.c|NameSpace\usbcontrol.c|NameSpace\stdRequest.c|NameSpace\usbhid.c|NameSpace\main.c|NameSpace\devProc.c|NameSpace\interrupt.c||<obj>||<lib>||<lkr>|C:\mcc18\lkr\18f4550.lkr||
+SuiteArgsString=
+ToolArgsString=-Ou- -Ot- -Ob- -Op- -Or- -Od- -Opa-
+TraceCmdString=
+[File008]
+Location=D:\C18 PROJECT\PIC USB Firmware\Output\interrupt.o
+Folder=Intermediary
+DeviceName=PIC18F4550
+LanguageToolSuiteID={5B7D72DD-9861-47BD-9F60-2BE967BF8416}
+LanguageToolID={E56A1C86-9D32-4DF6-8C34-FE0388B1B644}
+LanguageToolLocation=C:\mcc18\bin\mcc18.exe
+PPAD=$(BINDIR)|D:\C18 PROJECT\PIC USB Firmware\Output||$(TMPDIR)|D:\C18 PROJECT\PIC USB Firmware\Output||$(AINDIR)||$(INCDIR)|D:\C18 PROJECT\PIC USB Firmware\NameSpace||$(LIBDIR)|C:\mcc18\lib||$(LKRDIR)||
+SOLK=<src>|NameSpace\mem_alloc.c|NameSpace\dsc.c|NameSpace\usbevents.c|NameSpace\usbcontrol.c|NameSpace\stdRequest.c|NameSpace\usbhid.c|NameSpace\main.c|NameSpace\devProc.c|NameSpace\interrupt.c||<obj>||<lib>||<lkr>|C:\mcc18\lkr\18f4550.lkr||
+SuiteArgsString=
+ToolArgsString=-Ou- -Ot- -Ob- -Op- -Or- -Od- -Opa-
+TraceCmdString=
+[File009]
+Location=D:\C18 PROJECT\PIC USB Firmware\Output\HidUSB.cof
+Folder=Output
+DeviceName=PIC18F4550
+LanguageToolSuiteID={5B7D72DD-9861-47BD-9F60-2BE967BF8416}
+LanguageToolID={96C98149-AA1B-4CF9-B967-FAE79CAB663C}
+LanguageToolLocation=C:\mcc18\bin\mplink.exe
+PPAD=$(BINDIR)|D:\C18 PROJECT\PIC USB Firmware\Output||$(TMPDIR)|D:\C18 PROJECT\PIC USB Firmware\Output||$(AINDIR)||$(INCDIR)|D:\C18 PROJECT\PIC USB Firmware\NameSpace||$(LIBDIR)|C:\mcc18\lib||$(LKRDIR)||
+SOLK=<src>|NameSpace\mem_alloc.c|NameSpace\dsc.c|NameSpace\usbevents.c|NameSpace\usbcontrol.c|NameSpace\stdRequest.c|NameSpace\usbhid.c|NameSpace\main.c|NameSpace\devProc.c|NameSpace\interrupt.c||<obj>||<lib>||<lkr>|C:\mcc18\lkr\18f4550.lkr||
+SuiteArgsString=
+ToolArgsString=/o"$(TARGETBASE).cof" /M"$(BINDIR_)$(TARGETBASE).map" /W
+TraceCmdString=
+[File010]
+Location=D:\C18 PROJECT\PIC USB Firmware\Output\HidUSB.lst
+Folder=Output
+DeviceName=PIC18F4550
+LanguageToolSuiteID={5B7D72DD-9861-47BD-9F60-2BE967BF8416}
+LanguageToolID={96C98149-AA1B-4CF9-B967-FAE79CAB663C}
+LanguageToolLocation=C:\mcc18\bin\mplink.exe
+PPAD=$(BINDIR)|D:\C18 PROJECT\PIC USB Firmware\Output||$(TMPDIR)|D:\C18 PROJECT\PIC USB Firmware\Output||$(AINDIR)||$(INCDIR)|D:\C18 PROJECT\PIC USB Firmware\NameSpace||$(LIBDIR)|C:\mcc18\lib||$(LKRDIR)||
+SOLK=<src>|NameSpace\mem_alloc.c|NameSpace\dsc.c|NameSpace\usbevents.c|NameSpace\usbcontrol.c|NameSpace\stdRequest.c|NameSpace\usbhid.c|NameSpace\main.c|NameSpace\devProc.c|NameSpace\interrupt.c||<obj>||<lib>||<lkr>|C:\mcc18\lkr\18f4550.lkr||
+SuiteArgsString=
+ToolArgsString=/o"$(TARGETBASE).cof" /M"$(BINDIR_)$(TARGETBASE).map" /W
+TraceCmdString=
+[File011]
+Location=D:\C18 PROJECT\PIC USB Firmware\Output\HidUSB.hex
+Folder=Output
+DeviceName=PIC18F4550
+LanguageToolSuiteID={5B7D72DD-9861-47BD-9F60-2BE967BF8416}
+LanguageToolID={96C98149-AA1B-4CF9-B967-FAE79CAB663C}
+LanguageToolLocation=C:\mcc18\bin\mplink.exe
+PPAD=$(BINDIR)|D:\C18 PROJECT\PIC USB Firmware\Output||$(TMPDIR)|D:\C18 PROJECT\PIC USB Firmware\Output||$(AINDIR)||$(INCDIR)|D:\C18 PROJECT\PIC USB Firmware\NameSpace||$(LIBDIR)|C:\mcc18\lib||$(LKRDIR)||
+SOLK=<src>|NameSpace\mem_alloc.c|NameSpace\dsc.c|NameSpace\usbevents.c|NameSpace\usbcontrol.c|NameSpace\stdRequest.c|NameSpace\usbhid.c|NameSpace\main.c|NameSpace\devProc.c|NameSpace\interrupt.c||<obj>||<lib>||<lkr>|C:\mcc18\lkr\18f4550.lkr||
+SuiteArgsString=
+ToolArgsString=/o"$(TARGETBASE).cof" /M"$(BINDIR_)$(TARGETBASE).map" /W
+TraceCmdString=
+[TOOL_LOC_STAMPS]
+tool_loc{96C98149-AA1B-4CF9-B967-FAE79CAB663C}=C:\mcc18\bin\mplink.exe
+tool_loc{E56A1C86-9D32-4DF6-8C34-FE0388B1B644}=C:\mcc18\bin\mcc18.exe

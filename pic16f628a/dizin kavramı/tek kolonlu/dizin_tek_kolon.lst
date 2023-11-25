@@ -1,0 +1,120 @@
+CCS PCM C Compiler, Version 4.018, 12203               12-Þub-07 19:24
+
+               Filename: D:\pic\dizin kavramý\tek kolonlu\dizin_tek_kolon.lst
+
+               ROM used: 65 words (3%)
+                         Largest free fragment is 1983
+               RAM used: 12 (5%) at main() level
+                         13 (6%) worst case
+               Stack:    1 locations
+
+*
+0000:  MOVLW  00
+0001:  MOVWF  0A
+0002:  GOTO   019
+0003:  NOP
+.................... //dizi kavramý uygulamasý 
+.................... //12.02.2007 
+.................... //yazan = Remzi ÞAHÝNOÐLU 
+.................... #if defined (__PCM__) 
+.................... #include <16F628A.h> 
+.................... //////// Standard Header file for the PIC16F628A device //////////////// 
+.................... #device PIC16F628A 
+.................... #list 
+....................  
+.................... #use delay(clock=4000000) 
+0004:  MOVLW  26
+0005:  MOVWF  04
+0006:  BCF    03.7
+0007:  MOVF   00,W
+0008:  BTFSC  03.2
+0009:  GOTO   018
+000A:  MOVLW  01
+000B:  MOVWF  78
+000C:  CLRF   77
+000D:  DECFSZ 77,F
+000E:  GOTO   00D
+000F:  DECFSZ 78,F
+0010:  GOTO   00C
+0011:  MOVLW  4A
+0012:  MOVWF  77
+0013:  DECFSZ 77,F
+0014:  GOTO   013
+0015:  GOTO   016
+0016:  DECFSZ 00,F
+0017:  GOTO   00A
+0018:  GOTO   03C (RETURN)
+.................... #fuses NOWDT,PUT,NOLVP,NOBROWNOUT,MCLR,INTRC_IO,NOPROTECT 
+.................... #endif 
+....................  
+.................... int a[]={1,2,4,8};         // dizin olusturuldu 
+*
+001F:  MOVLW  01
+0020:  MOVWF  20
+0021:  MOVLW  02
+0022:  MOVWF  21
+0023:  MOVLW  04
+0024:  MOVWF  22
+0025:  MOVLW  08
+0026:  MOVWF  23
+....................  
+.................... // a için verilen elemanlarýn bellekteki görünümü aþaðýdaki gibi olacaktýr 
+.................... //     x  
+.................... //   a[0]=1 
+.................... //   a[1]=2       
+.................... //   a[2]=4  
+.................... //   a[3]=8  
+.................... // 
+....................  
+.................... void main() 
+.................... { 
+*
+0019:  CLRF   04
+001A:  BCF    03.7
+001B:  MOVLW  1F
+001C:  ANDWF  03,F
+001D:  MOVLW  07
+001E:  MOVWF  1F
+.................... int dizi; 
+.................... int x=0; 
+*
+0027:  CLRF   25
+....................  
+.................... tekrar: 
+.................... x=0; 
+0028:  CLRF   25
+....................    for (x=0; x<3; x=x+1) 
+0029:  CLRF   25
+002A:  MOVF   25,W
+002B:  SUBLW  02
+002C:  BTFSS  03.0
+002D:  GOTO   03F
+....................    {                         // x nin degeri a dizinindeki degere karsýlýk gelip  
+....................       dizi = a[x];           // deger dizin saklayýcýsýna atandý 
+002E:  MOVLW  20
+002F:  ADDWF  25,W
+0030:  MOVWF  04
+0031:  BCF    03.7
+0032:  MOVF   00,W
+0033:  MOVWF  24
+....................       output_b (dizi);       // dizin saklayýcýsýndaki deðer portb ye gönderildi 
+0034:  BSF    03.5
+0035:  CLRF   06
+0036:  BCF    03.5
+0037:  MOVF   24,W
+0038:  MOVWF  06
+....................       delay_ms(200);    
+0039:  MOVLW  C8
+003A:  MOVWF  26
+003B:  GOTO   004
+....................    } 
+003C:  MOVLW  01
+003D:  ADDWF  25,F
+003E:  GOTO   02A
+....................    goto tekrar; 
+003F:  GOTO   028
+.................... }    
+0040:  SLEEP
+
+Configuration Fuses:
+   Word  1: 3F30   NOWDT PUT NOPROTECT NOBROWNOUT MCLR NOLVP INTRC_IO NOCPD

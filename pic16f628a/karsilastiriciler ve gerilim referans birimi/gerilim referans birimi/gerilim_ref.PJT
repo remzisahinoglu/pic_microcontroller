@@ -1,0 +1,46 @@
+[PROJECT]
+Target=gerilim_ref.HEX
+Development_Mode=2
+Processor=0x628A
+ToolSuite=CCS
+Processor_Text=PIC16F628A
+
+[Directories]
+Include=
+Library=
+LinkerScript=
+
+[Target Data]
+FileList=D:\pic\karsilastiriciler ve gerilim referans birimi\gerilim referans birimi\gerilim_ref.c
+BuildTool=C-COMPILER
+OptionString=+FM
+AdditionalOptionString=
+BuildRequired=1
+
+[gerilim_ref.c]
+Type=4
+Path=
+FileList=
+BuildTool=
+OptionString=
+AdditionalOptionString=
+
+[mru-list]
+1=GERILI~1.C
+
+[Windows]
+0=0000 GERILI~1.C 0 0 796 451 3 0
+
+[Opened Files]
+1=D:\pic\karsilastiriciler ve gerilim referans birimi\gerilim referans birimi\gerilim_ref.c
+2=
+3=C:\Program Files\PICC\Devices\16F628A.h
+4=C:\Program Files\PICC\Examples\EX_COMP.C
+5=D:\pic\karsilastiriciler ve gerilim referans birimi\tek karsilastirma\karsilastirici-1.c
+6=D:\pic\interrupt (kesmeler)\RB0 harici kesmesi\kesme_RB0.c
+7=D:\pic\karsilastiriciler ve gerilim referans birimi\gerilim referans birimi\gerilim_ref.lst
+8=
+[Units]
+Count=1
+1=gerilim_ref.c (main)
+Link=0

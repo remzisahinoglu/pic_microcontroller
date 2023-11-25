@@ -1,0 +1,40 @@
+[PROJECT]
+Target=getc()_fonk.HEX
+Development_Mode=2
+Processor=0x628A
+ToolSuite=CCS
+Processor_Text=PIC16F628A
+
+[Directories]
+Include=
+Library=
+LinkerScript=
+
+[Target Data]
+FileList=F:\ramsi\private\picmicro\PIC C\pic uygulama\pic16f628a\usart birimi ve seri iletiþim\alici\getc() fonku\getc()_fonk.c
+BuildTool=C-COMPILER
+OptionString=+FM
+AdditionalOptionString=
+BuildRequired=1
+
+[getc()_fonk.c]
+Type=4
+Path=
+FileList=
+BuildTool=
+OptionString=
+AdditionalOptionString=
+
+[mru-list]
+1=GETC()~1.C
+
+[Windows]
+0=0000 GETC()~1.C 0 0 796 451 3 0
+
+[Opened Files]
+1=F:\ramsi\private\picmicro\PIC C\pic uygulama\pic16f628a\usart birimi ve seri iletiþim\alici\getc() fonku\getc()_fonk.c
+2=
+[Units]
+Count=1
+1=getc()_fonk.c (main)
+Link=0

@@ -1,0 +1,101 @@
+CCS PCM C Compiler, Version 4.038, 16177               23-May-07 21:51
+
+               Filename: D:\pic\pic16f877a\a_d birimi\adc_birimi.lst
+
+               ROM used: 54 words (1%)
+                         Largest free fragment is 2048
+               RAM used: 7 (2%) at main() level
+                         7 (2%) worst case
+               Stack:    0 locations
+
+*
+0000:  MOVLW  00
+0001:  MOVWF  0A
+0002:  GOTO   004
+0003:  NOP
+.................... // analog dijital dönüþtürücü ile step motoru ileri geri kontrol uygulamasý 
+.................... // 22.04.2007 
+.................... // yazan = Remzi ÞAHÝNOÐLU 
+.................... #if defined (__PCM__) 
+.................... #include <16F877A.h> 
+.................... //////// Standard Header file for the PIC16F877A device //////////////// 
+.................... #device PIC16F877A 
+.................... #list 
+....................  
+.................... #use delay(clock=4000000) 
+.................... #fuses XT,NOWDT,NOPROTECT,NOLVP,NOBROWNOUT 
+.................... #endif 
+....................  
+.................... #byte PORTC = 0x07                
+....................                         
+.................... char veri = 0; 
+*
+000F:  BCF    03.5
+0010:  CLRF   20
+....................                                                   
+.................... void main()               
+.................... {                     
+*
+0004:  CLRF   04
+0005:  BCF    03.7
+0006:  MOVLW  1F
+0007:  ANDWF  03,F
+0008:  BSF    03.5
+0009:  BSF    1F.0
+000A:  BSF    1F.1
+000B:  BSF    1F.2
+000C:  BCF    1F.3
+000D:  MOVLW  07
+000E:  MOVWF  1C
+....................    setup_adc(ADC_CLOCK_INTERNAL);   // adc modunu belirle 
+*
+0011:  BSF    03.5
+0012:  BCF    1F.6
+0013:  BCF    03.5
+0014:  BSF    1F.6
+0015:  BSF    1F.7
+0016:  BSF    03.5
+0017:  BCF    1F.7
+0018:  BCF    03.5
+0019:  BSF    1F.0
+....................    setup_adc_ports(AN0);            // adc portunu seç 
+001A:  BSF    03.5
+001B:  BCF    1F.0
+001C:  BSF    1F.1
+001D:  BSF    1F.2
+001E:  BSF    1F.3
+....................    set_adc_channel(0);              // adc kanalýný seç 
+001F:  MOVLW  00
+0020:  MOVWF  78
+0021:  BCF    03.5
+0022:  MOVF   1F,W
+0023:  ANDLW  C7
+0024:  IORWF  78,W
+0025:  MOVWF  1F
+....................    delay_us(10);                    // kanal seçtikten sonra biraz beklenir  
+0026:  MOVLW  03
+0027:  MOVWF  77
+0028:  DECFSZ 77,F
+0029:  GOTO   028
+....................                                      
+....................    while(TRUE) 
+....................    {                                                          
+....................       veri = read_adc();            // analog bilgiyi veri ye yaz                                                          // deger i sýfýrla 
+002A:  BSF    1F.2
+002B:  BTFSC  1F.2
+002C:  GOTO   02B
+002D:  MOVF   1E,W
+002E:  MOVWF  20
+....................       output_b(veri);               // veriyi portb den göster   
+002F:  BSF    03.5
+0030:  CLRF   06
+0031:  BCF    03.5
+0032:  MOVF   20,W
+0033:  MOVWF  06
+....................    }                            
+0034:  GOTO   02A
+.................... }                           
+0035:  SLEEP
+
+Configuration Fuses:
+   Word  1: 3F31   XT NOWDT PUT NODEBUG NOPROTECT NOBROWNOUT NOLVP NOCPD NOWRT

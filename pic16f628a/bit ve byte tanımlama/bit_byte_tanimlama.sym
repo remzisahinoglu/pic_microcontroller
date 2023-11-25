@@ -1,0 +1,52 @@
+001     TMR0
+004-005 @READ_PROGRAM_MEMORY.P1
+005     PORTA
+015-016 CCP_1
+015     CCP_1_LOW
+016     CCP_1_HIGH
+01F.6   C1OUT
+01F.7   C2OUT
+025.0   b_0
+025     veri
+025.1   b_1
+025.2   b_2
+025.3   b_3
+025.4   b_4
+025.5   b_5
+025.6   b_6
+025.7   b_7
+077     @SCRATCH
+078     @SCRATCH
+078     _RETURN_
+079     @SCRATCH
+07A     @SCRATCH
+07B     @SCRATCH
+081     OPTION
+10D     @READ_PROGRAM_MEMORY.P1
+10F     @READ_PROGRAM_MEMORY.P1
+
+0004  main
+0004  @cinit
+
+Project Files:
+    bit_byte_tanimlama.c
+    F:\Program Files\PICC\devices\16F628A.h
+
+Units:
+    C:\pic\pic16f628a\bit ve byte tanýmlama\bit_byte_tanimlama.c (main)
+
+Compiler Settings:
+    Processor:      PIC16F628A
+    Pointer Size:   16
+    Opt Level:      0
+    Short,Int,Long: 1,8,16
+
+Output Files:
+    Errors:      C:\pic\pic16f628a\bit ve byte tanýmlama\bit_byte_tanimlama.err
+    Ext Symbols: C:\pic\pic16f628a\bit ve byte tanýmlama\bit_byte_tanimlama.esym
+    INHX8:       C:\pic\pic16f628a\bit ve byte tanýmlama\bit_byte_tanimlama.hex
+    Symbols:     C:\pic\pic16f628a\bit ve byte tanýmlama\bit_byte_tanimlama.sym
+    List:        C:\pic\pic16f628a\bit ve byte tanýmlama\bit_byte_tanimlama.lst
+    Debug/COFF:  C:\pic\pic16f628a\bit ve byte tanýmlama\bit_byte_tanimlama.cof
+    Call Tree:   bit_byte_tanimlama.tre
+    Statistics:  bit_byte_tanimlama.sta

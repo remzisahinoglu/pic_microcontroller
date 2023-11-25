@@ -1,0 +1,48 @@
+004-005 @READ_PROGRAM_MEMORY8.P1
+015     CCP_1_LOW
+015-016 CCP_1
+016     CCP_1_HIGH
+01F.6   C1OUT
+01F.7   C2OUT
+021     @delay_ms1.P1
+077     @SCRATCH
+078     @SCRATCH
+078     _RETURN_
+079     @SCRATCH
+07A     @SCRATCH
+07B     @SCRATCH
+10D-10E @READ_PROGRAM_MEMORY8.P1
+
+ROM Allocation:
+0004  @delay_ms1
+0019  main
+0019  @cinit
+001F  tekrar
+
+Project Directory:
+    E:\priv\picmicro\PIC C\pic uygulama\pic16f628a\KOMUTLAR\output (port yazma)\
+
+Project Files:
+    port_yazma.c
+    C:\Program Files\PICC\devices\16F628A.h
+
+Units:
+    E:\priv\picmicro\PIC C\pic uygulama\pic16f628a\KOMUTLAR\output (port yazma)\port_yazma.c (main)
+
+Compiler Settings:
+    Processor:      PIC16F628A
+    Pointer Size:   16
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    Errors:      port_yazma.err
+    Ext Symbols: port_yazma.esym
+    INHX8:       port_yazma.hex
+    Symbols:     port_yazma.sym
+    List:        port_yazma.lst
+    Debug/COFF:  port_yazma.cof
+    Project:     port_yazma.PJT
+    Call Tree:   port_yazma.tre
+    Statistics:  port_yazma.sta

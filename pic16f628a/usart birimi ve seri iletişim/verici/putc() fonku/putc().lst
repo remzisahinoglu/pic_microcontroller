@@ -1,0 +1,118 @@
+CCS PCM C Compiler, Version 4.018, 44048               11-Eki-07 12:23
+
+               Filename: F:\ramsi\private\picmicro\PIC C\pic uygulama\pic16f628a\usart birimi ve seri iletiþim\verici\putc() fonku\putc().lst
+
+               ROM used: 67 words (3%)
+                         Largest free fragment is 1981
+               RAM used: 7 (3%) at main() level
+                         8 (4%) worst case
+               Stack:    1 locations
+
+*
+0000:  MOVLW  00
+0001:  MOVWF  0A
+0002:  GOTO   019
+0003:  NOP
+.................... //rs232 verici uygulamasý 
+.................... //01.03.2007 
+.................... //yazan = Remzi ÞAHÝNOÐLU 
+.................... #if defined (__PCM__) 
+.................... #include <16F628A.h> 
+.................... //////// Standard Header file for the PIC16F628A device //////////////// 
+.................... #device PIC16F628A 
+.................... #list 
+....................  
+.................... #use delay(clock=4000000) 
+0004:  MOVLW  22
+0005:  MOVWF  04
+0006:  BCF    03.7
+0007:  MOVF   00,W
+0008:  BTFSC  03.2
+0009:  GOTO   018
+000A:  MOVLW  01
+000B:  MOVWF  78
+000C:  CLRF   77
+000D:  DECFSZ 77,F
+000E:  GOTO   00D
+000F:  DECFSZ 78,F
+0010:  GOTO   00C
+0011:  MOVLW  4A
+0012:  MOVWF  77
+0013:  DECFSZ 77,F
+0014:  GOTO   013
+0015:  GOTO   016
+0016:  DECFSZ 00,F
+0017:  GOTO   00A
+0018:  RETLW  00
+.................... #fuses NOWDT,PUT,NOLVP,NOBROWNOUT,MCLR,INTRC_IO,NOPROTECT 
+.................... #use RS232(BAUD=1200, xmit=PIN_B2, rcv=PIN_B1)   // saniyede 1200 bit max gönder 
+.................... #endif 
+....................  
+.................... #byte PORTA = 0x05 
+.................... #byte data = 0x30 
+.................... #bit data1 = 0x30.0 
+.................... #bit data2 = 0x30.1 
+....................  
+.................... void main() 
+.................... { 
+0019:  CLRF   04
+001A:  BCF    03.7
+001B:  MOVLW  1F
+001C:  ANDWF  03,F
+001D:  MOVLW  33
+001E:  BSF    03.5
+001F:  MOVWF  19
+0020:  MOVLW  A2
+0021:  MOVWF  18
+0022:  MOVLW  90
+0023:  BCF    03.5
+0024:  MOVWF  18
+0025:  MOVLW  07
+0026:  MOVWF  1F
+....................     
+....................    set_tris_a(0b00000011); 
+0027:  MOVLW  03
+0028:  TRIS   5
+....................    delay_ms(500); 
+0029:  MOVLW  02
+002A:  MOVWF  21
+002B:  MOVLW  FA
+002C:  MOVWF  22
+002D:  CALL   004
+002E:  DECFSZ 21,F
+002F:  GOTO   02B
+....................    output_b(0); 
+0030:  BSF    03.5
+0031:  CLRF   06
+0032:  BCF    03.5
+0033:  CLRF   06
+....................    data=0; 
+0034:  CLRF   30
+....................     
+....................    while(TRUE) 
+....................    {                  
+....................       if(bit_test(PORTA,0)==0){data1=1;} 
+0035:  BTFSS  05.0
+0036:  BSF    30.0
+....................       if(bit_test(PORTA,1)==0){data2=1;}     
+0037:  BTFSS  05.1
+0038:  BSF    30.1
+....................        
+....................       putc(data); 
+0039:  MOVF   30,W
+003A:  BTFSS  0C.4
+003B:  GOTO   03A
+003C:  MOVWF  19
+....................       delay_ms(16); 
+003D:  MOVLW  10
+003E:  MOVWF  22
+003F:  CALL   004
+....................       data=0; 
+0040:  CLRF   30
+....................    } 
+0041:  GOTO   035
+.................... } 
+0042:  SLEEP
+
+Configuration Fuses:
+   Word  1: 3F30   NOWDT PUT NOPROTECT NOBROWNOUT MCLR NOLVP INTRC_IO NOCPD

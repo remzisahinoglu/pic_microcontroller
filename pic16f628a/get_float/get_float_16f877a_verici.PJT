@@ -1,0 +1,39 @@
+[PROJECT]
+Target=get_float_16f877a_verici.HEX
+Development_Mode=2
+Processor=0x877F
+Processor_Text=PIC16F877
+ToolSuite=CCS
+
+[Directories]
+Include=
+Library=
+LinkerScript=
+
+[Target Data]
+FileList=D:\ram\projeler\parellel robot - lisans bitirme tezi\elektronik\test\get_float\get_float_16f877a_verici.c
+BuildTool=C-COMPILER
+OptionString=+FM
+AdditionalOptionString=
+BuildRequired=1
+
+[get_float_16f877a_verici.c]
+Type=4
+Path=
+FileList=
+BuildTool=
+OptionString=
+AdditionalOptionString=
+
+[mru-list]
+1=GET_FL~2.C
+
+[Windows]
+0=0000 GET_FL~2.C 0 0 796 451 3 0
+
+[Opened Files]
+1=get_float_16f877a_verici.c
+2=
+[Units]
+Count=1
+1=get_float_16f877a_verici (main)

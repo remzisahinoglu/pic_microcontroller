@@ -1,0 +1,212 @@
+CCS PCM C Compiler, Version 4.018, 44854               05-May-07 13:17
+
+               Filename: D:\pic\pic16f628a\klavyeden veri okuma\klavye_test.lst
+
+               ROM used: 136 words (7%)
+                         Largest free fragment is 1912
+               RAM used: 9 (4%) at main() level
+                         9 (4%) worst case
+               Stack:    1 locations
+
+*
+0000:  MOVLW  00
+0001:  MOVWF  0A
+0002:  GOTO   019
+0003:  NOP
+.................... //Pic kalavye iletiþim uygulamasý 
+.................... //28.04.2007 
+.................... //yazan = Remzi ÞAHÝNOÐLU 
+.................... // 
+.................... // sadece vastýðýn zaman veriyi ekrana yazar boþ durumlarda 11110000 bilgisi ekrana yazýlýr 
+.................... // klavye uygulamalarýnda test amaclý kullanýlan yazýlýmdýr 
+....................  
+.................... // RB6 = clk,  RB7 veri hattý 
+....................  
+.................... #if defined (__PCM__) 
+.................... #include <16F628A.h> 
+.................... //////// Standard Header file for the PIC16F628A device //////////////// 
+.................... #device PIC16F628A 
+.................... #list 
+....................  
+.................... #use delay(clock=4000000) 
+*
+0004:  MOVLW  22
+0005:  MOVWF  04
+0006:  BCF    03.7
+0007:  MOVF   00,W
+0008:  BTFSC  03.2
+0009:  GOTO   018
+000A:  MOVLW  01
+000B:  MOVWF  78
+000C:  CLRF   77
+000D:  DECFSZ 77,F
+000E:  GOTO   00D
+000F:  DECFSZ 78,F
+0010:  GOTO   00C
+0011:  MOVLW  4A
+0012:  MOVWF  77
+0013:  DECFSZ 77,F
+0014:  GOTO   013
+0015:  GOTO   016
+0016:  DECFSZ 00,F
+0017:  GOTO   00A
+0018:  GOTO   071 (RETURN)
+.................... #fuses NOWDT,PUT,NOLVP,NOBROWNOUT,MCLR,INTRC_IO,NOPROTECT 
+.................... #endif 
+....................  
+.................... #byte PORTA = 0x05 
+.................... #byte PORTA = 0x06 
+....................  
+.................... #byte veri = 0x25 
+.................... #bit b_0 = 0x25.0 
+.................... #bit b_1 = 0x25.1 
+.................... #bit b_2 = 0x25.2 
+.................... #bit b_3 = 0x25.3 
+.................... #bit b_4 = 0x25.4 
+.................... #bit b_5 = 0x25.5 
+.................... #bit b_6 = 0x25.6 
+.................... #bit b_7 = 0x25.7 
+....................  
+.................... char clk=0, mev_veri=0; 
+*
+001F:  CLRF   20
+0020:  CLRF   21
+....................  
+.................... void main() 
+.................... { 
+*
+0019:  CLRF   04
+001A:  BCF    03.7
+001B:  MOVLW  1F
+001C:  ANDWF  03,F
+001D:  MOVLW  07
+001E:  MOVWF  1F
+....................    set_tris_a(0b11000000);    
+*
+0021:  MOVLW  C0
+0022:  TRIS   5
+....................    veri=0;                      
+0023:  CLRF   25
+....................    output_b(0); 
+0024:  BSF    03.5
+0025:  CLRF   06
+0026:  BCF    03.5
+0027:  CLRF   06
+....................        
+....................    while(TRUE) 
+....................    {             
+....................       tekrar: 
+....................       if(bit_test(PORTA,6)==0)   // clock palsi -start biti- 
+0028:  BTFSC  06.6
+0029:  GOTO   073
+....................       {      
+....................          bekle:                          
+....................          if(bit_test(PORTA,6)==0){goto bekle;} 
+002A:  BTFSS  06.6
+002B:  GOTO   02A
+....................                             
+....................          clk=clk+1; 
+002C:  MOVLW  01
+002D:  ADDWF  20,F
+....................          bekle1: 
+....................          switch (clk) 
+....................          {             
+002E:  MOVLW  01
+002F:  SUBWF  20,W
+0030:  ADDLW  F8
+0031:  BTFSC  03.0
+0032:  GOTO   065
+0033:  ADDLW  08
+0034:  GOTO   07C
+....................             case 1:   if(bit_test(PORTA,7)==1){b_0=1;} else{b_0=0;}   break; 
+0035:  BTFSS  06.7
+0036:  GOTO   039
+0037:  BSF    25.0
+0038:  GOTO   03A
+0039:  BCF    25.0
+003A:  GOTO   065
+....................             case 2:   if(bit_test(PORTA,7)==1){b_1=1;} else{b_1=0;}   break; 
+003B:  BTFSS  06.7
+003C:  GOTO   03F
+003D:  BSF    25.1
+003E:  GOTO   040
+003F:  BCF    25.1
+0040:  GOTO   065
+....................             case 3:   if(bit_test(PORTA,7)==1){b_2=1;} else{b_2=0;}   break; 
+0041:  BTFSS  06.7
+0042:  GOTO   045
+0043:  BSF    25.2
+0044:  GOTO   046
+0045:  BCF    25.2
+0046:  GOTO   065
+....................             case 4:   if(bit_test(PORTA,7)==1){b_3=1;} else{b_3=0;}   break; 
+0047:  BTFSS  06.7
+0048:  GOTO   04B
+0049:  BSF    25.3
+004A:  GOTO   04C
+004B:  BCF    25.3
+004C:  GOTO   065
+....................             case 5:   if(bit_test(PORTA,7)==1){b_4=1;} else{b_4=0;}   break; 
+004D:  BTFSS  06.7
+004E:  GOTO   051
+004F:  BSF    25.4
+0050:  GOTO   052
+0051:  BCF    25.4
+0052:  GOTO   065
+....................             case 6:   if(bit_test(PORTA,7)==1){b_5=1;} else{b_5=0;}   break; 
+0053:  BTFSS  06.7
+0054:  GOTO   057
+0055:  BSF    25.5
+0056:  GOTO   058
+0057:  BCF    25.5
+0058:  GOTO   065
+....................             case 7:   if(bit_test(PORTA,7)==1){b_6=1;} else{b_6=0;}   break; 
+0059:  BTFSS  06.7
+005A:  GOTO   05D
+005B:  BSF    25.6
+005C:  GOTO   05E
+005D:  BCF    25.6
+005E:  GOTO   065
+....................             case 8:   if(bit_test(PORTA,7)==1){b_7=1;} else{b_7=0;}   break;             
+005F:  BTFSS  06.7
+0060:  GOTO   063
+0061:  BSF    25.7
+0062:  GOTO   064
+0063:  BCF    25.7
+0064:  GOTO   065
+....................          }                                        
+....................          mev_veri = veri;                  
+0065:  MOVF   25,W
+0066:  MOVWF  21
+....................          if(bit_test(PORTA,6)==1){goto bekle1;}          
+0067:  BTFSC  06.6
+0068:  GOTO   02E
+....................          if(clk == 11){clk=0; delay_ms(30);} else{goto tekrar;}                   
+0069:  MOVF   20,W
+006A:  SUBLW  0B
+006B:  BTFSS  03.2
+006C:  GOTO   072
+006D:  CLRF   20
+006E:  MOVLW  1E
+006F:  MOVWF  22
+0070:  GOTO   004
+0071:  GOTO   073
+0072:  GOTO   028
+....................       }       
+....................       veri = 0; 
+0073:  CLRF   25
+....................       clk=0; 
+0074:  CLRF   20
+....................       output_b(mev_veri);            
+0075:  BSF    03.5
+0076:  CLRF   06
+0077:  BCF    03.5
+0078:  MOVF   21,W
+0079:  MOVWF  06
+....................    } 
+007A:  GOTO   028
+.................... } 
+007B:  SLEEP
+
+Configuration Fuses:
+   Word  1: 3F30   NOWDT PUT NOPROTECT NOBROWNOUT MCLR NOLVP INTRC_IO NOCPD

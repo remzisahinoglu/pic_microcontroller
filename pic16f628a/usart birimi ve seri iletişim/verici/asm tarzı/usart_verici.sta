@@ -1,0 +1,48 @@
+
+ROM used: 82 (4%)
+          82 (4%) including unused fragments
+
+          0 Average locations per line
+          3 Average locations per statement
+
+RAM used: 7 (3%) at main() level
+          7 (3%) worst case
+
+Stack used: 1 worst case (out of 8 total available)
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+   62    29 100  usart_verici.c
+  205     0   0  C:\Program Files\PICC\devices\16F628A.h
+----- -----
+  267    29 Total
+
+Page ROM  %  RAM   Vol Diff  Functions:
+---- --- --- ---   --- ----  ----------
+0     21  26   1             @delay_ms1
+0     57  70   1   726  4.3  main
+
+Program metrics:
+    Functions               1
+    Statements              29
+    Comments                96
+    Volume (V)              729
+    Difficilty (D)          4.3
+    Effort to implement (E) 3104
+    Time to implement (T)   3 minutes
+    Est Delivered Bugs (B)  0
+    Cyclomatic Complexity   5
+    Maintainability (MI)    106
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00003     4  0  
+00004-007FF    78  1966  
+
+
+
+THE FOLLOWING IS TEMPORARY FOR DIAGNOSTIC USE ONLY:
+
+    n1    n2    N1    N2   v(G)
+     0     1     0     0     0    @delay_ms1
+     9    55    68    53     5    main

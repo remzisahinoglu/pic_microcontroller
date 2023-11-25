@@ -1,0 +1,202 @@
+CCS PCM C Compiler, Version 4.018, 12203               12-Þub-07 16:00
+
+               Filename: D:\pic\interrupt (kesmeler)\RB4-7 kesmesi\kesme_RB4_7.lst
+
+               ROM used: 144 words (7%)
+                         Largest free fragment is 1904
+               RAM used: 16 (7%) at main() level
+                         17 (8%) worst case
+               Stack:    2 worst case (1 in main + 1 for interrupts)
+
+*
+0000:  MOVLW  00
+0001:  MOVWF  0A
+0002:  GOTO   050
+0003:  NOP
+0004:  MOVWF  7F
+0005:  SWAPF  03,W
+0006:  CLRF   03
+0007:  MOVWF  21
+0008:  MOVF   7F,W
+0009:  MOVWF  20
+000A:  MOVF   0A,W
+000B:  MOVWF  28
+000C:  CLRF   0A
+000D:  SWAPF  20,F
+000E:  MOVF   04,W
+000F:  MOVWF  22
+0010:  MOVF   77,W
+0011:  MOVWF  23
+0012:  MOVF   78,W
+0013:  MOVWF  24
+0014:  MOVF   79,W
+0015:  MOVWF  25
+0016:  MOVF   7A,W
+0017:  MOVWF  26
+0018:  MOVF   7B,W
+0019:  MOVWF  27
+001A:  BCF    03.7
+001B:  BCF    03.5
+001C:  BTFSS  0B.3
+001D:  GOTO   020
+001E:  BTFSC  0B.0
+001F:  GOTO   033
+0020:  MOVF   22,W
+0021:  MOVWF  04
+0022:  MOVF   23,W
+0023:  MOVWF  77
+0024:  MOVF   24,W
+0025:  MOVWF  78
+0026:  MOVF   25,W
+0027:  MOVWF  79
+0028:  MOVF   26,W
+0029:  MOVWF  7A
+002A:  MOVF   27,W
+002B:  MOVWF  7B
+002C:  MOVF   28,W
+002D:  MOVWF  0A
+002E:  SWAPF  21,W
+002F:  MOVWF  03
+0030:  SWAPF  7F,F
+0031:  SWAPF  7F,W
+0032:  RETFIE
+.................... //kesme uygulamasý 
+.................... //RB4-7 harici kesme 
+.................... //12.02.2007 
+.................... #if defined (__PCM__) 
+.................... #include <16F628A.h> 
+.................... //////// Standard Header file for the PIC16F628A device //////////////// 
+.................... #device PIC16F628A 
+.................... #list 
+....................  
+.................... #use delay(clock=4000000) 
+*
+003B:  MOVLW  2A
+003C:  MOVWF  04
+003D:  BCF    03.7
+003E:  MOVF   00,W
+003F:  BTFSC  03.2
+0040:  GOTO   04F
+0041:  MOVLW  01
+0042:  MOVWF  78
+0043:  CLRF   77
+0044:  DECFSZ 77,F
+0045:  GOTO   044
+0046:  DECFSZ 78,F
+0047:  GOTO   043
+0048:  MOVLW  4A
+0049:  MOVWF  77
+004A:  DECFSZ 77,F
+004B:  GOTO   04A
+004C:  GOTO   04D
+004D:  DECFSZ 00,F
+004E:  GOTO   041
+004F:  RETLW  00
+.................... #fuses NOWDT,PUT,NOLVP,NOBROWNOUT,MCLR,INTRC_IO,NOPROTECT 
+.................... #endif 
+....................  
+.................... #byte STATUS = 0x03 
+.................... #byte OPTION = 0x81 
+.................... #byte INTCON = 0x0B 
+....................  
+.................... #INT_RB 
+.................... void RB_isr() 
+.................... {      
+....................    output_a(1);                    // 1 degeri a portuna gönderilir.                                                                                         
+*
+0033:  BSF    03.5
+0034:  CLRF   05
+0035:  MOVLW  01
+0036:  BCF    03.5
+0037:  MOVWF  05
+.................... } 
+....................  
+0038:  BCF    0B.0
+0039:  BCF    0A.3
+003A:  GOTO   020
+.................... void main() 
+.................... {   
+*
+0050:  CLRF   04
+0051:  BCF    03.7
+0052:  MOVLW  1F
+0053:  ANDWF  03,F
+0054:  MOVLW  07
+0055:  MOVWF  1F
+....................    set_tris_b(16);                // RB4-7 uclarý giriþ yapýlýr 
+0056:  MOVLW  10
+0057:  TRIS   6
+....................    enable_interrupts(INT_RB);      // RB4-7 harici kesmesi aktif yapýlýr 
+0058:  BSF    03.6
+0059:  BSF    0B.3
+....................    enable_interrupts(GLOBAL);      // kesmelere izin verilir 
+005A:  MOVLW  C0
+005B:  BCF    03.6
+005C:  IORWF  0B,F
+....................    bit_clear(OPTION,6);            // kesme düþen kenarda oluþsun 
+005D:  BSF    03.5
+005E:  BCF    01.6
+....................                  
+.................... tekrar:                            // pice ilk enerji verildiðinde  
+....................    output_a(1);                    // 1-2-4-8 olarak 1 sn aralýkla       
+005F:  CLRF   05
+0060:  MOVLW  01
+0061:  BCF    03.5
+0062:  MOVWF  05
+....................    delay_ms(1000);                 // saymaya baslar     
+0063:  MOVLW  04
+0064:  MOVWF  29
+0065:  MOVLW  FA
+0066:  MOVWF  2A
+0067:  CALL   03B
+0068:  DECFSZ 29,F
+0069:  GOTO   065
+....................    output_a(2);                    // bu deðerler portaya çýkýþ olarak verilir 
+006A:  BSF    03.5
+006B:  CLRF   05
+006C:  MOVLW  02
+006D:  BCF    03.5
+006E:  MOVWF  05
+....................    delay_ms(1000); 
+006F:  MOVLW  04
+0070:  MOVWF  29
+0071:  MOVLW  FA
+0072:  MOVWF  2A
+0073:  CALL   03B
+0074:  DECFSZ 29,F
+0075:  GOTO   071
+....................    output_a(4); 
+0076:  BSF    03.5
+0077:  CLRF   05
+0078:  MOVLW  04
+0079:  BCF    03.5
+007A:  MOVWF  05
+....................    delay_ms(1000); 
+007B:  MOVWF  29
+007C:  MOVLW  FA
+007D:  MOVWF  2A
+007E:  CALL   03B
+007F:  DECFSZ 29,F
+0080:  GOTO   07C
+....................    output_a(8); 
+0081:  BSF    03.5
+0082:  CLRF   05
+0083:  MOVLW  08
+0084:  BCF    03.5
+0085:  MOVWF  05
+....................    delay_ms(1000); 
+0086:  MOVLW  04
+0087:  MOVWF  29
+0088:  MOVLW  FA
+0089:  MOVWF  2A
+008A:  CALL   03B
+008B:  DECFSZ 29,F
+008C:  GOTO   088
+....................    goto tekrar;    
+008D:  BSF    03.5
+008E:  GOTO   05F
+.................... } 
+008F:  SLEEP
+
+Configuration Fuses:
+   Word  1: 3F30   NOWDT PUT NOPROTECT NOBROWNOUT MCLR NOLVP INTRC_IO NOCPD

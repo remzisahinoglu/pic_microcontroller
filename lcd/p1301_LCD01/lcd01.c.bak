@@ -1,0 +1,235 @@
+/******************************************************************************
+ * File     :  lcd01.c
+ * Purpose  :  Drive LCD 4-bit Mode Using B to digital output port
+ * Author   :  Prajin Palangsantikul
+ * E-mail   :  prajin@appsofttech.com
+ * Release  :  PCW Compiler 3.180
+ * Copyright (c) 2004 APPSOFTTECH CO.,LTD.
+ *****************************************************************************/
+
+#define _PIC16F877_           // Use PIC16F877
+
+#ifdef _PIC16F877_
+#include <16F877.h>           // Microchip 14 bit (14 bit opcodes)
+// Device Specification
+#fuses HS                     // Oscillator
+#fuses NOLVP, NOWDT           // No Low Voltage Program, No Watchdog timer
+#fuses NOPROTECT              // Code protection
+// Built-in Libraries
+#use delay (clock=20000000)   // use built-in function: delay_ms() & delay_us()
+#use rs232(baud=9600, xmit=PIN_C6,rcv=PIN_C7) // use serial I/O port (RS232)
+
+#else
+#include <16F628.h>           // Microchip 14 bit (14 bit opcodes)
+// Device Specification
+#fuses HS                     // Oscillator
+#fuses NOLVP, NOWDT           // No Low Voltage Program, No Watchdog timer
+#fuses NOPROTECT              // Code protection
+// Built-in Libraries
+#use delay (clock=20000000)   // use built-in function: delay_ms() & delay_us()
+#use rs232(baud=9600, xmit=PIN_A2,rcv=PIN_A3) // use serial I/O port (RS232)
+#endif
+
+#define use_portb_lcd         // define for use portb lcd
+#include "lcd.c"              // use module function
+
+/***********************************************************************
+ *	Internal Constants
+ ***********************************************************************/
+#define STRING_SIZE 17
+#define msg0   "LCD Module Show "
+#define msg1   " 16x2 character "
+#define msg2   "Test Running ..."
+#define msg3   " Left & Right   "
+#define msg4   "Write Character "
+#define msg5   "  on sequence   "
+#define msg6   "Hello World AST."
+
+//** LCD.C : Driver for common LCD modules *******************************
+// As defined in the following structure the pin connection is as follows:
+//   B0 = E(enable), B1 = RS, B2 = R/W
+//   B4 = D4, B5 = D5, B6 = D6
+//   B7 = D7
+//   LCD pins D0-D3 are not used and PIC B3 is not used.
+
+/***********************************************************************
+ *	Internal Functions
+ ***********************************************************************/
+void LCD_Command(int cm);
+void LCD_ShiftLeft(void);
+void LCD_ShiftRight(void);
+void LCD_MoveRight(char p);
+void LCD_MoveLeft(char p);
+void strcpy(char *s1, char *s2);
+void LCD_String(char *s, int dly);
+void LCD_Show(void);
+
+/***********************************************************************
+ * FUNCTION:     LCD_Command
+ * DESCRIPTION:  LCD Command
+ * PARAMETERS:   cm
+ * RETURNED:     nothing
+ ***********************************************************************/
+void LCD_Command(int cm) {
+
+   lcd_send_byte(0,cm);
+}
+
+/***********************************************************************
+ * FUNCTION:     LCD_ShiftLeft
+ * DESCRIPTION:  LCD ShiftLeft
+ * PARAMETERS:   nothing
+ * RETURNED:     nothing
+ ***********************************************************************/
+void LCD_ShiftLeft(void) {
+
+   lcd_send_byte(0,0x18);
+}
+
+/***********************************************************************
+ * FUNCTION:     LCD_ShiftRight
+ * DESCRIPTION:  LCD ShiftRight
+ * PARAMETERS:   nothing
+ * RETURNED:     nothing
+ ***********************************************************************/
+void LCD_ShiftRight(void) {
+
+   lcd_send_byte(0,0x1C);
+}
+
+/***********************************************************************
+ * FUNCTION:     LCD_MoveRight
+ * DESCRIPTION:  LCD MoveRight
+ * PARAMETERS:   p
+ * RETURNED:     nothing
+ ***********************************************************************/
+void LCD_MoveRight(char p) {
+
+   char i;
+
+   for(i=0; i<p; i++) {
+      LCD_ShiftRight();
+      delay_ms(100);
+   }
+}
+
+/***********************************************************************
+ * FUNCTION:     LCD_MoveLeft
+ * DESCRIPTION:  LCD MoveLeft
+ * PARAMETERS:   p
+ * RETURNED:     nothing
+ ***********************************************************************/
+void LCD_MoveLeft(char p) {
+
+   char i;
+
+   for(i=0; i<p; i++) {
+      LCD_ShiftLeft();
+      delay_ms(100);
+   }
+}
+
+/***********************************************************************
+ * FUNCTION:     strcpy
+ * DESCRIPTION:  string copy
+ * PARAMETERS:   *s1, *s2
+ * RETURNED:     nothing
+ ***********************************************************************/
+void strcpy(char *s1, char *s2) {
+
+   while(*s1++ = *s2++)
+   ;
+}
+
+/***********************************************************************
+ * FUNCTION:     LCD_String
+ * DESCRIPTION:  LCD String
+ * PARAMETERS:   *s, dly
+ * RETURNED:     nothing
+ ***********************************************************************/
+void LCD_String(char *s, int dly) {
+
+   while(*s!=0) {
+		lcd_putc(*s++);
+      delay_ms(dly);
+   }
+}
+
+/***********************************************************************
+ * FUNCTION:     LCD_Show
+ * DESCRIPTION:  LCD Show
+ * PARAMETERS:   nothing
+ * RETURNED:     nothing
+ ***********************************************************************/
+void LCD_Show(void) {
+
+   int i;
+   char str[17];
+
+	LCD_Command(0x80);		// start 1st line
+   strcpy(str, msg0);
+   LCD_String(str,0);
+   strcpy(str, msg1);
+   LCD_String(str,0);
+	LCD_Command(0xC0);		// start 2nd line
+   strcpy(str, msg2);
+   LCD_String(str,0);
+   strcpy(str, msg3);
+   LCD_String(str,0);
+
+	delay_ms(1000);
+
+	for(i=0; i<16; i++) {
+		LCD_ShiftLeft();	// LCD Shift Left
+ 	    delay_ms(400);
+	}
+
+	delay_ms(500);
+
+	LCD_Command(0x80);		// start 1st line
+   strcpy(str, msg4);
+   LCD_String(str,0);
+	LCD_Command(0xC0);		// start 2nd line
+   strcpy(str, msg5);
+   LCD_String(str,0);
+
+	for(i=0; i<16; i++) {
+		LCD_ShiftRight();	   // LCD Shift Right
+ 	    delay_ms(400);
+	}
+
+	delay_ms(500);
+	LCD_Command(0x01);		// Clear LCD
+	delay_ms(100);
+	LCD_Command(0x02);		// cursor to home
+	LCD_Command(0x0F);		// LCD On, & cursor	blink
+	delay_ms(200);
+   strcpy(str, msg6);
+   LCD_String(str,1000);
+
+	for(i=0; i<2; i++) {
+		delay_ms(1000);
+		LCD_Command(0x08);		// LCD Off & cursor off
+		delay_ms(1000);
+		LCD_Command(0x0E);		// LCD On, & cursor	on
+	}
+
+	delay_ms(500);
+	LCD_Command(0x01);		// Clear LCD
+
+}
+
+/***********************************************************************
+ * FUNCTION:    Main
+ * DESCRIPTION: This is the main entry point for the application.
+ * PARAMETERS:  nothing
+ * RETURNED:    nothing
+ ***********************************************************************/
+void main(void) {
+
+   lcd_init();       // LCD initialize
+
+	while(TRUE){
+      LCD_Show();
+   };
+}

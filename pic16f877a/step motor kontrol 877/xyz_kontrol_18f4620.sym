@@ -1,0 +1,343 @@
+000     @SCRATCH
+001     @SCRATCH
+001     _RETURN_
+002     @SCRATCH
+003     @SCRATCH
+004-005 strtok.save
+006-009 _Randseed
+00A     lcdline
+00B     degisim
+00C     degisim_motor
+00D     lcd_ekran
+00E     i
+00F-012 mA_step
+013-016 mB_step
+017-01A mC_step
+01B-01E mA_step_old
+01F-022 mB_step_old
+023-026 mC_step_old
+027-02A ma
+02B-02E mb
+02F-032 mc
+033-036 ta
+037-03A tb
+03B-03E tc
+03F-042 e
+043-046 f
+047-04A re
+04B-04E rf
+04F-052 x0
+053-056 y0
+057-05A z0
+05B-05E x02
+05F-062 x03
+063-066 y1
+067-06A y01
+06B-06E y02
+06F-072 y03
+073-076 z02
+077-07A z03
+07B-07E theta1
+07F-082 theta2
+083-086 theta3
+087-08A a
+08B-08E b
+08F-092 d
+093-096 yj
+097-09A zj
+09B-09E hassasiyet
+09F-0A2 tahvil_orani
+0A3     ee_read_float.addr
+0A3-0A6 @PRINTF_L32D_9600_31766_31767.P1
+0A3-0A6 @PRINTF_L32D_509.P2
+0A3     lcd_init.i
+0A3     ee_write_float.addr
+0A3     @PSTRINGCN_9600_31766_31767.P1
+0A3-0A6 @PRINTF_L32D_509FPFPF.P2
+0A3     @PSTRINGCN_509.P3
+0A3     no_point.@SCRATCH1
+0A3     @PSTRINGC_509.@SCRATCH1
+0A3     hesapla_aci.@SCRATCH1
+0A3     motor_hareket.@SCRATCH1
+0A3     MAIN.@SCRATCH1
+0A4-0A5 ee_read_float.floatptr
+0A4-0A5 ee_write_float.floatptr
+0A4     lcd_init.@SCRATCH1
+0A4     @PSTRINGC_509.@SCRATCH2
+0A4     hesapla_aci.@SCRATCH2
+0A4     motor_hareket.@SCRATCH2
+0A4     @PSTRINGCN_9600_31766_31767.@SCRATCH1
+0A4     @PSTRINGCN_509.@SCRATCH1
+0A5     hesapla_aci.@SCRATCH3
+0A5     motor_hareket.@SCRATCH3
+0A5     @PSTRINGCN_9600_31766_31767.@SCRATCH2
+0A5     @PSTRINGCN_509.@SCRATCH2
+0A6     ee_read_float.edata
+0A6     ee_write_float.edata
+0A6     hesapla_aci.@SCRATCH4
+0A6     motor_hareket.@SCRATCH4
+0A7     ee_read_float.i
+0A7-0AA atan.x
+0A7     ee_write_float.i
+0A7-0AA sqrt.x
+0A7-0AA sin.x
+0A7     @PRINTF_L32D_509FPFPF.P1
+0A7-0AA @MUL3232.P2
+0A7     hesapla_aci.@SCRATCH5
+0A7     motor_hareket.@SCRATCH5
+0A7     @PRINTF_L32D_9600_31766_31767.@SCRATCH1
+0A7     @PRINTF_L32D_509.@SCRATCH1
+0A8     ee_write_float.@SCRATCH1
+0A8     ee_read_float.@SCRATCH1
+0A8     hesapla_aci.@SCRATCH6
+0A8     motor_hareket.@SCRATCH6
+0A8     @PRINTF_L32D_9600_31766_31767.@SCRATCH2
+0A8     @PRINTF_L32D_509FPFPF.@SCRATCH1
+0A8     @PRINTF_L32D_509.@SCRATCH2
+0A9     ee_read_float.@SCRATCH2
+0A9     hesapla_aci.@SCRATCH7
+0A9     motor_hareket.@SCRATCH7
+0A9     @PRINTF_L32D_9600_31766_31767.@SCRATCH3
+0A9     @PRINTF_L32D_509FPFPF.@SCRATCH2
+0A9     @PRINTF_L32D_509.@SCRATCH3
+0AA     hesapla_aci.@SCRATCH8
+0AA     motor_hareket.@SCRATCH8
+0AA     @PRINTF_L32D_9600_31766_31767.@SCRATCH4
+0AA     @PRINTF_L32D_509FPFPF.@SCRATCH3
+0AA     @PRINTF_L32D_509.@SCRATCH4
+0AB-0AE @MUL3232.P1
+0AB-0AE @DIVS3232.P2
+0AB-0AE atan.y
+0AB-0AE sqrt.y
+0AB     sin.@SCRATCH1
+0AB     hesapla_aci.@SCRATCH9
+0AB     @PRINTF_L32D_9600_31766_31767.@SCRATCH5
+0AB     @PRINTF_L32D_509FPFPF.@SCRATCH4
+0AB     @PRINTF_L32D_509.@SCRATCH5
+0AC     sin.@SCRATCH2
+0AC     hesapla_aci.@SCRATCH10
+0AC     @PRINTF_L32D_9600_31766_31767.@SCRATCH6
+0AC     @PRINTF_L32D_509FPFPF.@SCRATCH5
+0AC     @PRINTF_L32D_509.@SCRATCH6
+0AD     sin.@SCRATCH3
+0AD     hesapla_aci.@SCRATCH11
+0AD     @PRINTF_L32D_9600_31766_31767.@SCRATCH7
+0AD     @PRINTF_L32D_509FPFPF.@SCRATCH6
+0AD     @PRINTF_L32D_509.@SCRATCH7
+0AE     sin.@SCRATCH4
+0AE     hesapla_aci.@SCRATCH12
+0AE     @PRINTF_L32D_9600_31766_31767.@SCRATCH8
+0AE     @PRINTF_L32D_509FPFPF.@SCRATCH7
+0AE     @PRINTF_L32D_509.@SCRATCH8
+0AF-0B2 cos.x
+0AF-0B2 sqrt.res
+0AF-0B2 atan.res
+0AF-0B2 @DIVS3232.P1
+0AF     @MUL3232.@SCRATCH1
+0AF     @PRINTF_L32D_509FPFPF.@SCRATCH8
+0B0-0B3 @DIV3232.P1
+0B0-0B3 @FTOSD.P2
+0B0     lcd_putc.c
+0B0     @MUL3232.@SCRATCH2
+0B1     @delay_ms1.P1
+0B1     lcd_gotoxy.x
+0B1     @MUL3232.@SCRATCH3
+0B2     lcd_gotoxy.y
+0B2     @MUL3232.@SCRATCH4
+0B3     lcd_gotoxy.address
+0B3-0B6 atan.r
+0B3-0B4 sqrt.p
+0B3-0B6 cos.y
+0B3     @MUL3232.@SCRATCH5
+0B3     @DIVS3232.@SCRATCH1
+0B4     lcd_send_byte.address
+0B4-0B7 @DIV3232.P1
+0B4     @MUL3232.@SCRATCH6
+0B4     @DIVS3232.@SCRATCH2
+0B4     @FTOSD.@SCRATCH1
+0B5     lcd_send_byte.n
+0B5     sqrt.@SCRATCH1
+0B5     @DIVS3232.@SCRATCH3
+0B6     lcd_read_byte.low
+0B6     sqrt.@SCRATCH2
+0B6     @DIVS3232.@SCRATCH4
+0B6     lcd_send_byte.@SCRATCH1
+0B7.0   atan.s
+0B7     lcd_send_nibble.n
+0B7     lcd_read_byte.high
+0B7-0BA cos.t
+0B7.1   atan.flag
+0B7     sqrt.@SCRATCH3
+0B7     @DIVS3232.@SCRATCH5
+0B8     sqrt.@SCRATCH4
+0B8     atan.@SCRATCH1
+0B8     @DIVS3232.@SCRATCH6
+0B8     lcd_read_byte.@SCRATCH1
+0B8     @DIV3232.@SCRATCH1
+0B9     atan.@SCRATCH2
+0B9     @DIV3232.@SCRATCH2
+0BA     atan.@SCRATCH3
+0BA     @DIV3232.@SCRATCH3
+0BB-0BE cos.t2
+0BB     atan.@SCRATCH4
+0BB     @DIV3232.@SCRATCH4
+0BC     @DIV3232.@SCRATCH5
+0BF     cos.quad
+0C0     cos.i
+0C1-0C4 cos.frac
+0C5-0DC cos.p
+0DD-0E0 @FLT.P1
+0DD-0E0 @DIVFF.P2
+0DD-0E0 @SFTOI.P3
+0DD     cos.@SCRATCH1
+0DE     cos.@SCRATCH2
+0DF     cos.@SCRATCH3
+0E0     cos.@SCRATCH4
+0E1-0E4 @FLT.P1
+0E1-0E4 @DIVFF.P2
+0E1-0E2 @ITOF.P3
+0E1-0E4 @ADDFF.P4
+0E1-0E4 @MULFF.P5
+0E5-0E8 @ADDFF.P1
+0E5-0E8 @MULFF.P2
+0E5     @FLT.@SCRATCH1
+0E5     @DIVFF.@SCRATCH1
+0E6     @FLT.@SCRATCH2
+0E6     @DIVFF.@SCRATCH2
+0E7     @DIVFF.@SCRATCH3
+0E8     @DIVFF.@SCRATCH4
+0E9     @DIVFF.@SCRATCH5
+0E9     @ADDFF.@SCRATCH1
+0E9     @MULFF.@SCRATCH1
+0EA     @DIVFF.@SCRATCH6
+0EA     @ADDFF.@SCRATCH2
+0EA     @MULFF.@SCRATCH2
+0EB     @ADDFF.@SCRATCH3
+0EB     @MULFF.@SCRATCH3
+0EC     @ADDFF.@SCRATCH4
+0ED     @ADDFF.@SCRATCH5
+0EE     @ADDFF.@SCRATCH6
+0EF     @ADDFF.@SCRATCH7
+0F0     @ADDFF.@SCRATCH8
+F81     lcd
+F83     PSP_DATA
+FB4.6   C1OUT
+FB4.7   C2OUT
+FBB     CCP_2
+FBB     CCP_2_LOW
+FBC     CCP_2_HIGH
+FBE     CCP_1
+FBE     CCP_1_LOW
+FBF     CCP_1_HIGH
+FE1-FE2 @READ_PACKED_MEMORY.P1
+FE1-FE2 @WRITE_PACKED_MEMORY.P2
+FE9-FEA @READ_PACKED_MEMORY.P1
+FE9-FEA @WRITE_PACKED_MEMORY.P2
+FE9-FEA @WRITE_PROGRAM_MEMORY.P3
+FE9-FEA @READ_PROGRAM_MEMORY.P4
+FF6-FF8 @READ_PROGRAM_MEMORY.P1
+FF6-FF8 @WRITE_PROGRAM_MEMORY.P2
+
+ROM Allocation:
+087A  @FLT
+0F3C  @SFTOI
+0F76  @ITOF
+0720  @DIVFF
+04B6  @ADDFF
+03C4  @MULFF
+08F0  sqrt
+0FAE  cos
+1320  sin
+09FA  atan
+016E  @delay_ms1
+304E  @MUL3232
+2F7E  @DIVS3232
+0004  LCD_INIT_STRING
+01AE  lcd_read_byte
+0196  lcd_send_nibble
+01E6  lcd_send_byte
+021C  lcd_init
+026A  lcd_gotoxy
+02A0  @goto11727
+02C2  lcd_putc
+032C  ee_write_float
+0382  ee_read_float
+0EDA  no_point
+0018  @const567
+030C  @PSTRINGC_509
+0026  @const569
+0038  @const570
+136A  hesapla_aci
+323A  motor_hareket
+2F40  @FTOSD
+30A2  @DIV3232
+311C  @PRINTF_L32D_9600_31766_31767
+0046  @const586
+321A  @PSTRINGCN_9600_31766_31767
+4458  MAIN
+0088  @const591
+0094  @const592
+00A0  @const593
+00B2  @const594
+00BE  @const595
+00CE  @const596
+00DC  @const597
+00EC  @const598
+4DD0  @goto12113
+00FA  @const600
+41A8  @PRINTF_L32D_509FPFPF
+0108  @const607
+0118  @const611
+012A  @const612
+4336  @PSTRINGCN_509
+4356  @PRINTF_L32D_509
+0132  @const617
+013A  @const618
+0142  @const619
+014E  @const620
+015E  @const621
+4DF4  @goto12188
+4458  @cinit
+0136  StrtoulGO
+0136  StrtolGO
+
+
+User Memory space: 
+
+User Memory space: 
+
+Project Directory:
+    D:\ram\parellel robot\elektronik\kumandadan xyz kontrol\test\step motor kontrol 877\
+
+Project Files:
+    xyz_kontrol_18f4620.c
+    C:\Program Files\PICC\devices\18F4620.h
+    C:\Program Files\PICC\drivers\MATH.h
+    C:\Program Files\PICC\drivers\stdlib.h
+    C:\Program Files\PICC\drivers\stddef.h
+    C:\Program Files\PICC\drivers\string.h
+    C:\Program Files\PICC\drivers\ctype.h
+    C:\Program Files\PICC\drivers\input.c
+    C:\Program Files\PICC\drivers\LCD416.c
+
+Units:
+    D:\ram\parellel robot\elektronik\kumandadan xyz kontrol\test\step motor kontrol 877\xyz_kontrol_18f4620 (main)
+
+Compiler Settings:
+    Processor:      PIC18F4620
+    Pointer Size:   16
+    ADC Range:      0-255
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    Errors:      xyz_kontrol_18f4620.err
+    Ext Symbols: xyz_kontrol_18f4620.esym
+    INHX32:      xyz_kontrol_18f4620.hex
+    Symbols:     xyz_kontrol_18f4620.sym
+    List:        xyz_kontrol_18f4620.lst
+    Debug/COFF:  xyz_kontrol_18f4620.cof
+    Project:     xyz_kontrol_18f4620.PJT
+    Call Tree:   xyz_kontrol_18f4620.tre
+    Statistics:  xyz_kontrol_18f4620.sta

@@ -1,0 +1,164 @@
+CCS PCM C Compiler, Version 4.018, 12203               12-Þub-07 19:13
+
+               Filename: D:\pic\dizin kavramý\çift kolonlu\dizin_cift_kolon.lst
+
+               ROM used: 141 words (7%)
+                         Largest free fragment is 1907
+               RAM used: 25 (11%) at main() level
+                         26 (12%) worst case
+               Stack:    1 locations
+
+*
+0000:  MOVLW  00
+0001:  MOVWF  0A
+0002:  GOTO   03E
+0003:  NOP
+.................... //dizi kavramý çift kolon uygulamasý 
+.................... //12.02.2007 
+.................... #if defined (__PCM__) 
+.................... #include <16F628A.h> 
+.................... //////// Standard Header file for the PIC16F628A device //////////////// 
+.................... #device PIC16F628A 
+.................... #list 
+....................  
+.................... #use delay(clock=4000000) 
+0029:  MOVLW  32
+002A:  MOVWF  04
+002B:  BCF    03.7
+002C:  MOVF   00,W
+002D:  BTFSC  03.2
+002E:  GOTO   03D
+002F:  MOVLW  01
+0030:  MOVWF  78
+0031:  CLRF   77
+0032:  DECFSZ 77,F
+0033:  GOTO   032
+0034:  DECFSZ 78,F
+0035:  GOTO   031
+0036:  MOVLW  4A
+0037:  MOVWF  77
+0038:  DECFSZ 77,F
+0039:  GOTO   038
+003A:  GOTO   03B
+003B:  DECFSZ 00,F
+003C:  GOTO   02F
+003D:  GOTO   084 (RETURN)
+.................... #fuses NOWDT,PUT,NOLVP,NOBROWNOUT,MCLR,INTRC_IO,NOPROTECT 
+.................... #endif 
+....................  
+.................... int a[3][5]={1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};      // dizin olusturuldu 
+*
+0044:  MOVLW  01
+0045:  MOVWF  20
+0046:  MOVLW  02
+0047:  MOVWF  21
+0048:  MOVLW  03
+0049:  MOVWF  22
+004A:  MOVLW  04
+004B:  MOVWF  23
+004C:  MOVLW  05
+004D:  MOVWF  24
+004E:  MOVLW  06
+004F:  MOVWF  25
+0050:  MOVLW  07
+0051:  MOVWF  26
+0052:  MOVLW  08
+0053:  MOVWF  27
+0054:  MOVLW  09
+0055:  MOVWF  28
+0056:  MOVLW  0A
+0057:  MOVWF  29
+0058:  MOVLW  0B
+0059:  MOVWF  2A
+005A:  MOVLW  0C
+005B:  MOVWF  2B
+005C:  MOVLW  0D
+005D:  MOVWF  2C
+005E:  MOVLW  0E
+005F:  MOVWF  2D
+0060:  MOVLW  0F
+0061:  MOVWF  2E
+....................                                                                                                           
+.................... // a için verilen elemanlarýn bellekteki görünümü aþaðýdaki gibi olacaktýr 
+.................... //     x  y   
+.................... //   a[0][0]=1   a[0][1]=2   a[0][2]=3   a[0][3]=4   a[0][4]=5   
+.................... //   a[1][0]=6   a[1][1]=7   a[1][2]=8   a[1][3]=9   a[1][4]=10       
+.................... //   a[2][0]=11  a[2][1]=12  a[2][2]=13  a[2][3]=14  a[2][4]=15  
+.................... //     
+....................  
+.................... void main() 
+.................... { 
+*
+003E:  CLRF   04
+003F:  BCF    03.7
+0040:  MOVLW  1F
+0041:  ANDWF  03,F
+0042:  MOVLW  07
+0043:  MOVWF  1F
+.................... int dizi; 
+.................... int x=0, y=0; 
+*
+0062:  CLRF   30
+0063:  CLRF   31
+....................  
+.................... tekrar: 
+.................... x=0; 
+0064:  CLRF   30
+.................... y=0; 
+0065:  CLRF   31
+....................    for (x=0; x<3; x=x+1) 
+0066:  CLRF   30
+0067:  MOVF   30,W
+0068:  SUBLW  02
+0069:  BTFSS  03.0
+006A:  GOTO   08B
+....................    {                         // i nin degeri a dizinindeki degere karsýlýk gelip  
+....................       for(y=0; y<4; y=y+1) 
+006B:  CLRF   31
+006C:  MOVF   31,W
+006D:  SUBLW  03
+006E:  BTFSS  03.0
+006F:  GOTO   087
+....................       { 
+....................        
+....................       dizi = a[x][y];        // deger dizin saklayýcýsýna atandý 
+0070:  MOVF   30,W
+0071:  MOVWF  32
+0072:  MOVLW  05
+0073:  MOVWF  33
+0074:  GOTO   004
+0075:  MOVF   31,W
+0076:  ADDWF  78,W
+0077:  ADDLW  20
+0078:  MOVWF  04
+0079:  BCF    03.7
+007A:  MOVF   00,W
+007B:  MOVWF  2F
+....................       output_b (dizi);       // dizin saklayýcýsýndaki deðer portb ye gönderildi 
+007C:  BSF    03.5
+007D:  CLRF   06
+007E:  BCF    03.5
+007F:  MOVF   2F,W
+0080:  MOVWF  06
+....................       delay_ms(200); 
+0081:  MOVLW  C8
+0082:  MOVWF  32
+0083:  GOTO   029
+....................       } 
+0084:  MOVLW  01
+0085:  ADDWF  31,F
+0086:  GOTO   06C
+....................       y=0; 
+0087:  CLRF   31
+....................    } 
+0088:  MOVLW  01
+0089:  ADDWF  30,F
+008A:  GOTO   067
+....................    goto tekrar; 
+008B:  GOTO   064
+.................... }   
+....................  
+008C:  SLEEP
+
+Configuration Fuses:
+   Word  1: 3F30   NOWDT PUT NOPROTECT NOBROWNOUT MCLR NOLVP INTRC_IO NOCPD

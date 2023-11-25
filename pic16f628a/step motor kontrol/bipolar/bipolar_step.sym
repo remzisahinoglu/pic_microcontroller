@@ -1,0 +1,46 @@
+004-005 @READ_PROGRAM_MEMORY.P1
+005     PORTA
+015     CCP_1_LOW
+015-016 CCP_1
+016     CCP_1_HIGH
+01F.6   C1OUT
+01F.7   C2OUT
+020     i
+021     @delay_ms1.P1
+021     main.@SCRATCH
+077     @SCRATCH
+078     @SCRATCH
+078     _RETURN_
+079     @SCRATCH
+07A     @SCRATCH
+07B     @SCRATCH
+10D     @READ_PROGRAM_MEMORY.P1
+10F     @READ_PROGRAM_MEMORY.P1
+
+0004  @delay_ms1
+0019  main
+005A  @goto10054
+0019  @cinit
+
+Project Files:
+    bipolar_step.c
+    C:\Program Files\PICC\devices\16F628A.h
+
+Units:
+    D:\pic\pic16f628a\step motor kontrol\bipolar\bipolar_step.c (main)
+
+Compiler Settings:
+    Processor:      PIC16F628A
+    Pointer Size:   16
+    Opt Level:      0
+    Short,Int,Long: 1,8,16
+
+Output Files:
+    Errors:      D:\pic\pic16f628a\step motor kontrol\bipolar\bipolar_step.err
+    Ext Symbols: D:\pic\pic16f628a\step motor kontrol\bipolar\bipolar_step.esym
+    INHX8:       D:\pic\pic16f628a\step motor kontrol\bipolar\bipolar_step.hex
+    Symbols:     D:\pic\pic16f628a\step motor kontrol\bipolar\bipolar_step.sym
+    List:        D:\pic\pic16f628a\step motor kontrol\bipolar\bipolar_step.lst
+    Debug/COFF:  D:\pic\pic16f628a\step motor kontrol\bipolar\bipolar_step.cof
+    Call Tree:   bipolar_step.tre
+    Statistics:  bipolar_step.sta

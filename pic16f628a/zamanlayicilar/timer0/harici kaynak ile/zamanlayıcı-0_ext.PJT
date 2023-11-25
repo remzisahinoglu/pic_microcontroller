@@ -1,0 +1,42 @@
+[PROJECT]
+Target=zamanlayýcý-0_ext.HEX
+Development_Mode=2
+Processor=0x628A
+ToolSuite=CCS
+Processor_Text=PIC16F628A
+
+[Directories]
+Include=
+Library=
+LinkerScript=
+
+[Target Data]
+FileList=C:\pic\pic16f628a\zamanlayicilar\timer0\harici kaynak ile\zamanlayýcý-0_ext.c
+BuildTool=C-COMPILER
+OptionString=+FM
+AdditionalOptionString=
+BuildRequired=1
+
+[zamanlayýcý-0_ext.c]
+Type=4
+Path=
+FileList=
+BuildTool=
+OptionString=
+AdditionalOptionString=
+
+[mru-list]
+1=ZAMANL~1.C
+
+[Windows]
+0=0000 ZAMANL~1.C 0 0 796 451 3 0
+
+[Opened Files]
+1=C:\pic\pic16f628a\zamanlayicilar\timer0\harici kaynak ile\zamanlayýcý-0_ext.c
+2=
+3=
+4=
+[Units]
+Count=1
+1=zamanlayýcý-0_ext.c (main)
+Link=0

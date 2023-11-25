@@ -1,0 +1,13 @@
+ÀÄpc_motor_derece
+   ÃÄMAIN  0/165  Ram=1
+   ³  ÃÄ??0??
+   ³  ÃÄ@delay_ms1  0/20  Ram=1
+   ³  ÃÄ@delay_ms1  0/20  Ram=1
+   ³  ÃÄ@delay_ms1  0/20  Ram=1
+   ³  ÃÄ@delay_ms1  0/20  Ram=1
+   ³  ÃÄ@delay_us1  0/15  Ram=1
+   ³  ÃÄ@delay_us1  0/15  Ram=1
+   ³  ÃÄ@delay_us1  0/15  Ram=1
+   ³  ÀÄ@delay_us1  0/15  Ram=1
+   ÀÄserihaberlesme_kesmesi  0/67  Ram=0
+      ÀÄ@MUL1616  (Inline)  Ram=5

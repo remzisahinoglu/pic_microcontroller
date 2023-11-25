@@ -1,0 +1,59 @@
+004-005 @READ_PROGRAM_MEMORY8.P1
+015     CCP_1_LOW
+015     CCP_1
+016     CCP_1_HIGH
+01F.6   C1OUT
+01F.7   C2OUT
+020     @INTERRUPT_AREA
+021     @INTERRUPT_AREA
+022     @INTERRUPT_AREA
+023     @INTERRUPT_AREA
+024     @INTERRUPT_AREA
+025     @INTERRUPT_AREA
+026     @INTERRUPT_AREA
+027     @INTERRUPT_AREA
+028     a
+077     @SCRATCH
+078     @SCRATCH
+078     _RETURN_
+079     @SCRATCH
+07A     @SCRATCH
+09B-09C @READ_PROGRAM_MEMORY8.P1
+
+ROM Allocation:
+0031  serihaberlesme_kesmesi
+0041  MAIN
+0041  @cinit
+
+
+User Memory space: 
+
+User Memory space: 
+
+Project Directory:
+    D:\ram\parellel robot\elektronik\kumandadan xyz kontrol\test\seri tx ve rx\
+
+Project Files:
+    tx_rx_16f628a_alici.c
+    C:\Program Files\PICC\devices\16F628A.h
+
+Units:
+    D:\ram\parellel robot\elektronik\kumandadan xyz kontrol\test\seri tx ve rx\tx_rx_16f628a_alici (main)
+
+Compiler Settings:
+    Processor:      PIC16F628A
+    Pointer Size:   16
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    Errors:      tx_rx_16f628a_alici.err
+    Ext Symbols: tx_rx_16f628a_alici.esym
+    INHX8:       tx_rx_16f628a_alici.hex
+    Symbols:     tx_rx_16f628a_alici.sym
+    List:        tx_rx_16f628a_alici.lst
+    Debug/COFF:  tx_rx_16f628a_alici.cof
+    Project:     tx_rx_16f628a_alici.PJT
+    Call Tree:   tx_rx_16f628a_alici.tre
+    Statistics:  tx_rx_16f628a_alici.sta

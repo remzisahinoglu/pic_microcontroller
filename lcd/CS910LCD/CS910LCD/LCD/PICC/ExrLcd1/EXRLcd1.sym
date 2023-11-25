@@ -1,0 +1,141 @@
+007.3   LED_IND1
+007.4   LED_IND2
+008     PSP_DATA
+008     lcd
+015-016 CCP_1
+015     CCP_1_LOW
+016     CCP_1_HIGH
+01B     CCP_2_LOW
+01B-01C CCP_2
+01C     CCP_2_HIGH
+020-033 lcd_string
+034     @sprintf_string
+035     @TRIS_C
+036     main.m_Cntr
+037-038 main.m_Adc_Value
+039-03C main.m_Voltages
+03D     lcd_init.i
+03D-040 @DIVFF.P1
+03D-03E @ITOF.P2
+03D-040 PrintVoltage.m_Volts
+03D     main.@SCRATCH
+03E     PrintCounter.m_lng
+03E     lcd_init.@SCRATCH
+03E     main.@SCRATCH
+03F     PrintCounter.@SCRATCH
+03F     main.@SCRATCH
+040     @PRINTF_D_342.P1
+040     PrintCounter.@SCRATCH
+040     main.@SCRATCH
+041-044 @DIVFF.P1
+041     print_lcd.str
+041     @PRINTF_D_342.P1
+041     PrintVoltage.@SCRATCH
+042-045 @PRINTF_L32D_342FPFPF.P1
+042     print_lcd.cntr
+042     PrintVoltage.@SCRATCH
+042     @PRINTF_D_342.@SCRATCH
+043     print_lcd.@SCRATCH
+043     @PRINTF_D_342.@SCRATCH
+044     lcd_putc.c
+044     @PRINTF_D_342.@SCRATCH
+045     @delay_ms1.P1
+045     lcd_gotoxy.x
+045     @PRINTF_D_342.@SCRATCH
+045     @DIVFF.@SCRATCH
+046     @DIV88.P1
+046     @PRINTF_L32D_342FPFPF.P2
+046     lcd_gotoxy.y
+046     @DIVFF.@SCRATCH
+047     @DIV88.P1
+047     lcd_gotoxy.address
+047     @PRINTF_L32D_342FPFPF.@SCRATCH
+047     @DIVFF.@SCRATCH
+048     lcd_gotoxy.@SCRATCH
+048     @PRINTF_L32D_342FPFPF.@SCRATCH
+048     @DIV88.@SCRATCH
+048     @DIVFF.@SCRATCH
+049     lcd_send_byte.address
+049     @PRINTF_L32D_342FPFPF.@SCRATCH
+049     @DIVFF.@SCRATCH
+04A     lcd_send_byte.n
+04A     @PRINTF_L32D_342FPFPF.@SCRATCH
+04A     @DIVFF.@SCRATCH
+04B     lcd_read_byte.low
+04B     lcd_send_byte.@SCRATCH
+04B     @PRINTF_L32D_342FPFPF.@SCRATCH
+04C     lcd_read_byte.high
+04C     lcd_send_nibble.n
+04C     @PRINTF_L32D_342FPFPF.@SCRATCH
+04D-050 @DIV3232.P1
+04D-050 @FTOSD.P2
+04D     @SPRINTF.P3
+04D-050 @MULFF.P4
+04D     lcd_read_byte.@SCRATCH
+051-054 @DIV3232.P1
+051-054 @MULFF.P2
+051     @FTOSD.@SCRATCH
+055     @MULFF.@SCRATCH
+055     @DIV3232.@SCRATCH
+056     @MULFF.@SCRATCH
+056     @DIV3232.@SCRATCH
+057     @MULFF.@SCRATCH
+057     @DIV3232.@SCRATCH
+058     @MULFF.@SCRATCH
+058     @DIV3232.@SCRATCH
+059     @MULFF.@SCRATCH
+059     @DIV3232.@SCRATCH
+077     @SCRATCH
+078     @SCRATCH
+078     _RETURN_
+079     @SCRATCH
+07A     @SCRATCH
+07B     @SCRATCH
+
+0030  @delay_ms1
+0004  @const46
+0053  lcd_read_byte
+0045  lcd_send_nibble
+0052  lcd_send_byte
+008C  lcd_init
+021B  lcd_gotoxy
+0371  lcd_putc
+0364  print_lcd
+0398  PrintVoltage
+000C  @const10101
+022D  @SPRINTF
+01A5  @MULFF
+0235  @FTOSD
+0256  @DIV3232
+0298  @PRINTF_L32D_342FPFPF
+043F  PrintCounter
+0020  @const10152
+03C3  @DIV88
+03D8  @PRINTF_D_342
+0463  main
+00B8  @ITOF
+00D8  @DIVFF
+0463  @cinit
+
+Project Files:
+    F:\Classes\CS910LCD\LCD\PICC\ExrLcd1\EXRLcd1.c
+    C:\PROGRA~1\PICC\devices\16F877.h
+    F:\Classes\CS910LCD\LCD\PICC\ExrLcd1\lcd.c
+
+Units:
+    EXRLcd1.c (main)
+
+Compiler Settings:
+    Processor:      PIC16F877
+    Pointer Size:   8
+    ADC Range:      0-1023
+    Opt Level:      9
+    Short,Int,Long: 1,8,16
+
+Output Files:
+    Errors:      F:\Classes\CS910LCD\LCD\PICC\ExrLcd1\EXRLcd1.err
+    INHX8:       EXRLcd1.hex
+    Symbols:     EXRLcd1.sym
+    List:        EXRLcd1.lst
+    Debug/COFF:  EXRLcd1.cof
+    Call Tree:   F:\Classes\CS910LCD\LCD\PICC\ExrLcd1\EXRLcd1.tre

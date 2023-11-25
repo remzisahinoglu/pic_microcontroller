@@ -1,0 +1,55 @@
+
+ROM used: 458 (11%)
+          458 (11%) including unused fragments
+
+          1 Average locations per line
+          5 Average locations per statement
+
+RAM used: 56 (22%) at main() level
+          66 (26%) worst case
+
+Stack used: 4 worst case (out of 8 total available)
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+   77    31  33  vs_bateria.c
+  208     0   0  ..\..\..\..\..\Program Files\PICC\devices\16f648a.h
+  180    63  67  ..\..\..\..\..\Program Files\PICC\drivers\lcd.c
+----- -----
+  465    94 Total
+
+Page ROM  %  RAM   Vol Diff  Functions:
+---- --- --- ---   --- ----  ----------
+0     21   5   1             @delay_ms1
+0      8   2   0             @const59
+ Inline        3   463  4.3  lcd_read_byte
+0     12   3   1   134  2.2  lcd_send_nibble
+0     54  12   3   317  4.3  lcd_send_byte
+0     41   9   2   422  4.7  lcd_init
+0     18   4   4   186  5.5  lcd_gotoxy
+0     38   8   1   272  4.1  lcd_putc
+0    111  24   1   219  2.6  MAIN
+0     16   3   0             @const95
+0    125  27   2  1074  6.3  anim
+0     10   2   0             @goto10151
+
+Program metrics:
+    Functions               8
+    Statements              94
+    Comments                194
+    Volume (V)              4653
+    Difficilty (D)          33.5
+    Effort to implement (E) 155998
+    Time to implement (T)   2 hours, 24 minutes
+    Est Delivered Bugs (B)  1
+    Cyclomatic Complexity   20
+    Maintainability (MI)    146
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00003     4  0  
+00004-007FF   454  1590  
+00800-00FFF     0  2048  
+
+
+

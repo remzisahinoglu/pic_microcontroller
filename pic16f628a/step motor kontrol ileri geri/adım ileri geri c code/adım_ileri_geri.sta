@@ -1,0 +1,45 @@
+
+ROM used: 211 (10%)
+          211 (10%) including unused fragments
+
+          1 Average locations per line
+          4 Average locations per statement
+
+RAM used: 9 (4%) at main() level
+          10 (4%) worst case
+
+Stack used: 1 worst case (out of 8 total available)
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+   66    53 100  adým_ileri_geri.c
+  222     0   0  C:\Program Files\PICC\devices\16F628A.h
+----- -----
+  288    53 Total
+
+Page ROM  %  RAM   Vol Diff  Functions:
+---- --- --- ---   --- ----  ----------
+0     21  10   1             @delay_ms1
+0    170  81   1  1474  7.8  main
+0      8   4   0             @goto10059
+0      8   4   0             @goto10084
+
+Program metrics:
+    Functions               1
+    Statements              53
+    Comments                84
+    Volume (V)              1483
+    Difficilty (D)          7.6
+    Effort to implement (E) 11213
+    Time to implement (T)   10 minutes
+    Est Delivered Bugs (B)  0
+    Cyclomatic Complexity   13
+    Maintainability (MI)    116
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00003     4  0  
+00004-007FF   207  1837  
+
+
+

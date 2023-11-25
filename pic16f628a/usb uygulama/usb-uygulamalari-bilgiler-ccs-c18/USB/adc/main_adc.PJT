@@ -1,0 +1,42 @@
+[PROJECT]
+Target=main_adc.HEX
+Development_Mode=2
+Processor=0x2550
+Processor_Text=PIC18F2550
+ToolSuite=CCS
+
+[Directories]
+Include=
+Library=
+LinkerScript=
+
+[Target Data]
+FileList=C:\Documents and Settings\tmcone\Desktop\pic18f2550_usb\adc\main_adc.c
+BuildTool=C-COMPILER
+OptionString=+FH
+AdditionalOptionString=
+BuildRequired=1
+
+[main_adc.c]
+Type=4
+Path=
+FileList=
+BuildTool=
+OptionString=
+AdditionalOptionString=
+
+[mru-list]
+1=main_adc.c
+
+[Windows]
+0=0000 main_adc.c 0 0 796 451 3 0
+
+[Opened Files]
+1=C:\Documents and Settings\tmcone\Desktop\pic18f2550_usb\adc\main_adc.c
+2=
+3=
+4=
+5=
+[Units]
+Count=1
+1=main_adc.c (main)

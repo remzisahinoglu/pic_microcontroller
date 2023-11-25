@@ -1,0 +1,72 @@
+004-005 @READ_PROGRAM_MEMORY.P1
+006     lcd
+015     CCP_1_LOW
+015-016 CCP_1
+016     CCP_1_HIGH
+01F.6   C1OUT
+01F.7   C2OUT
+020     y
+021     x
+022     lcd_init.i
+022     derecha.@SCRATCH
+022     izquierda.@SCRATCH
+023     lcd_putc.c
+023     lcd_init.@SCRATCH
+024     lcd_gotoxy.x
+024     @delay_ms1.P1
+025     lcd_gotoxy.y
+026     lcd_gotoxy.address
+027     lcd_gotoxy.@SCRATCH
+028     lcd_send_byte.address
+029     lcd_send_byte.n
+02A     lcd_read_byte.low
+02A     lcd_send_byte.@SCRATCH
+02B     lcd_read_byte.high
+02B     lcd_send_nibble.n
+02C     lcd_read_byte.@SCRATCH
+077     @SCRATCH
+078     @SCRATCH
+078     _RETURN_
+079     @SCRATCH
+07A     @SCRATCH
+07B     @SCRATCH
+10D     @READ_PROGRAM_MEMORY.P1
+10F     @READ_PROGRAM_MEMORY.P1
+
+0021  @delay_ms1
+0004  LCD_INIT_STRING
+0043  lcd_read_byte
+0036  lcd_send_nibble
+0042  lcd_send_byte
+0078  lcd_init
+00A1  lcd_gotoxy
+00B3  lcd_putc
+0137  MAIN
+00D7  derecha
+000C  @const84
+001B  @const85
+0109  izquierda
+0137  @cinit
+
+Project Files:
+    C:\3414\Ejemplitos en C para 16F648A\lcd limites\vs_VsZeNeR_mov_limites.c
+    C:\ARQUIV~1\PICC\devices\16f648a.h
+    C:\ARQUIV~1\PICC\drivers\lcd.c
+
+Units:
+    vs_VsZeNeR_mov_limites.c (main)
+
+Compiler Settings:
+    Processor:      PIC16F648A
+    Pointer Size:   16
+    Opt Level:      0
+    Short,Int,Long: 1,8,16
+
+Output Files:
+    Errors:      C:\3414\Ejemplitos en C para 16F648A\lcd limites\vs_VsZeNeR_mov_limites.err
+    Ext Symbols: C:\3414\Ejemplitos en C para 16F648A\lcd limites\vs_VsZeNeR_mov_limites.esym
+    INHX8:\       vs_VsZeNeR_mov_limites.hex
+    Symbols:\     vs_VsZeNeR_mov_limites.sym
+    List:\        vs_VsZeNeR_mov_limites.lst
+    Debug/COFF:\  vs_VsZeNeR_mov_limites.cof
+    Project:\     vs_VsZeNeR_mov_limites.PJT

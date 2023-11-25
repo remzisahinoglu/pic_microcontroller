@@ -1,0 +1,43 @@
+
+ROM used: 183 (9%)
+          183 (9%) including unused fragments
+
+          1 Average locations per line
+          4 Average locations per statement
+
+RAM used: 5 (2%) at main() level
+          6 (3%) worst case
+
+Stack used: 1 worst case (out of 8 total available)
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+   68    43 100  flasor.c
+  222     0   0  C:\Program Files (x86)\PICC\devices\16F628A.h
+----- -----
+  290    43 Total
+
+Page ROM  %  RAM   Vol Diff  Functions:
+---- --- --- ---   --- ----  ----------
+0     21  11   1             @delay_ms1
+0    158  86   0  1076  2.0  main
+
+Program metrics:
+    Functions               1
+    Statements              43
+    Comments                69
+    Volume (V)              1079
+    Difficilty (D)          1.9
+    Effort to implement (E) 2080
+    Time to implement (T)   2 minutes
+    Est Delivered Bugs (B)  0
+    Cyclomatic Complexity   1
+    Maintainability (MI)    88
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00003     4  0  
+00004-007FF   179  1865  
+
+
+

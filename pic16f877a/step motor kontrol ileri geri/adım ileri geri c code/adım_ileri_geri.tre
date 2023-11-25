@@ -1,0 +1,10 @@
+ÀÄadım_ileri_geri
+   ÀÄmain  0/170  Ram=1
+      ÃÄ??0??
+      ÃÄ@delay_ms1  0/21  Ram=1
+      ÃÄ@goto10059  0/8  Ram=0
+      ÃÄ@delay_ms1  0/21  Ram=1
+      ÃÄ@delay_ms1  0/21  Ram=1
+      ÃÄ@goto10084  0/8  Ram=0
+      ÃÄ@delay_ms1  0/21  Ram=1
+      ÀÄ@delay_ms1  0/21  Ram=1

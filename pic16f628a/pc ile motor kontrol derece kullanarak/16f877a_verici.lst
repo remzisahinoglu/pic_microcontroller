@@ -1,0 +1,224 @@
+CCS PCM C Compiler, Version 4.106, 14749               24-Haz-11 23:19
+
+               Filename: D:\ram\projeler\parellel robot - lisans bitirme tezi\elektronik\test\pc ile motor kontrol derece kullanarak\16f877a_verici.lst
+
+               ROM used: 151 words (2%)
+                         Largest free fragment is 2048
+               RAM used: 8 (2%) at main() level
+                         8 (2%) worst case
+               Stack:    1 locations
+
+*
+0000:  MOVLW  00
+0001:  MOVWF  0A
+0002:  GOTO   019
+0003:  NOP
+.................... //get_long fon kullanýmý verici programý - baþarýlý 
+.................... //01.05.2011 
+.................... //yazan = Remzi ÞAHÝNOÐLU 
+....................  
+.................... #if defined(__PCM__) 
+.................... #include <16F877A.h> 
+.................... //////// Standard Header file for the PIC16F877A device //////////////// 
+.................... #device PIC16F877A 
+.................... #list 
+....................  
+.................... #fuses XT, NOWDT, NOPROTECT, NOLVP, NOBROWNOUT, NOPUT, NOWRT, NODEBUG, NOCPD 
+.................... #use delay(clock=4000000)                
+*
+0004:  MOVLW  22
+0005:  MOVWF  04
+0006:  BCF    03.7
+0007:  MOVF   00,W
+0008:  BTFSC  03.2
+0009:  GOTO   018
+000A:  MOVLW  01
+000B:  MOVWF  78
+000C:  CLRF   77
+000D:  DECFSZ 77,F
+000E:  GOTO   00D
+000F:  DECFSZ 78,F
+0010:  GOTO   00C
+0011:  MOVLW  4A
+0012:  MOVWF  77
+0013:  DECFSZ 77,F
+0014:  GOTO   013
+0015:  GOTO   016
+0016:  DECFSZ 00,F
+0017:  GOTO   00A
+0018:  RETURN
+.................... #use rs232 (baud=9600, xmit=PIN_C6, rcv=PIN_c7, parity=N, stop=1) 
+.................... #endif 
+....................  
+.................... //#device PIC16F877 
+....................  
+.................... int bilgi=0; 
+....................  
+....................  
+.................... void main() 
+.................... { 
+0019:  CLRF   04
+001A:  BCF    03.7
+001B:  MOVLW  1F
+001C:  ANDWF  03,F
+001D:  MOVLW  19
+001E:  BSF    03.5
+001F:  MOVWF  19
+0020:  MOVLW  A6
+0021:  MOVWF  18
+0022:  MOVLW  90
+0023:  BCF    03.5
+0024:  MOVWF  18
+0025:  CLRF   20
+0026:  BSF    03.5
+0027:  BSF    1F.0
+0028:  BSF    1F.1
+0029:  BSF    1F.2
+002A:  BCF    1F.3
+002B:  MOVLW  07
+002C:  MOVWF  1C
+....................    setup_PSP(PSP_DISABLED); 
+*
+0030:  BSF    03.5
+0031:  BCF    09.4
+....................    setup_spi(SPI_SS_DISABLED); 
+0032:  BCF    03.5
+0033:  BCF    14.5
+0034:  BCF    21.5
+0035:  MOVF   21,W
+0036:  BSF    03.5
+0037:  MOVWF  07
+0038:  BCF    03.5
+0039:  BSF    21.4
+003A:  MOVF   21,W
+003B:  BSF    03.5
+003C:  MOVWF  07
+003D:  BCF    03.5
+003E:  BCF    21.3
+003F:  MOVF   21,W
+0040:  BSF    03.5
+0041:  MOVWF  07
+0042:  MOVLW  01
+0043:  BCF    03.5
+0044:  MOVWF  14
+0045:  MOVLW  00
+0046:  BSF    03.5
+0047:  MOVWF  14
+....................    setup_timer_1(T1_DISABLED); 
+0048:  BCF    03.5
+0049:  CLRF   10
+....................    setup_timer_2(T2_DISABLED,0,1); 
+004A:  MOVWF  78
+004B:  MOVWF  12
+004C:  MOVLW  00
+004D:  BSF    03.5
+004E:  MOVWF  12
+....................    setup_adc_ports(NO_ANALOGS); 
+004F:  BSF    1F.0
+0050:  BSF    1F.1
+0051:  BSF    1F.2
+0052:  BCF    1F.3
+....................    setup_adc(ADC_OFF); 
+0053:  BCF    03.5
+0054:  BCF    1F.0
+....................    setup_CCP1(CCP_OFF); 
+0055:  BSF    21.2
+0056:  MOVF   21,W
+0057:  BSF    03.5
+0058:  MOVWF  07
+0059:  BCF    03.5
+005A:  CLRF   17
+....................    setup_CCP2(CCP_OFF); 
+005B:  BSF    21.1
+005C:  MOVF   21,W
+005D:  BSF    03.5
+005E:  MOVWF  07
+005F:  BCF    03.5
+0060:  CLRF   1D
+....................     
+....................    output_low(pin_c5); 
+0061:  BCF    21.5
+0062:  MOVF   21,W
+0063:  BSF    03.5
+0064:  MOVWF  07
+0065:  BCF    03.5
+0066:  BCF    07.5
+....................     
+....................    disable_interrupts(GLOBAL); 
+0067:  BCF    0B.6
+0068:  BCF    0B.7
+0069:  BTFSC  0B.7
+006A:  GOTO   068
+....................     
+....................    while(TRUE) 
+....................    { 
+....................        
+....................       if(input(PIN_A0)==0) 
+006B:  BSF    03.5
+006C:  BSF    05.0
+006D:  BCF    03.5
+006E:  BTFSC  05.0
+006F:  GOTO   079
+....................       { 
+....................          delay_ms(100); 
+0070:  MOVLW  64
+0071:  MOVWF  22
+0072:  CALL   004
+....................          bilgi=90; 
+0073:  MOVLW  5A
+0074:  MOVWF  20
+....................          putc(bilgi);          
+0075:  MOVF   20,W
+0076:  BTFSS  0C.4
+0077:  GOTO   076
+0078:  MOVWF  19
+....................       } 
+....................        
+....................       if(input(PIN_A1)==0) 
+0079:  BSF    03.5
+007A:  BSF    05.1
+007B:  BCF    03.5
+007C:  BTFSC  05.1
+007D:  GOTO   087
+....................       { 
+....................          delay_ms(100); 
+007E:  MOVLW  64
+007F:  MOVWF  22
+0080:  CALL   004
+....................          bilgi=120; 
+0081:  MOVLW  78
+0082:  MOVWF  20
+....................          putc(bilgi);          
+0083:  MOVF   20,W
+0084:  BTFSS  0C.4
+0085:  GOTO   084
+0086:  MOVWF  19
+....................       } 
+....................        
+....................       if(input(PIN_A2)==0) 
+0087:  BSF    03.5
+0088:  BSF    05.2
+0089:  BCF    03.5
+008A:  BTFSC  05.2
+008B:  GOTO   095
+....................       { 
+....................          delay_ms(100); 
+008C:  MOVLW  64
+008D:  MOVWF  22
+008E:  CALL   004
+....................          bilgi=150; 
+008F:  MOVLW  96
+0090:  MOVWF  20
+....................          putc(bilgi);          
+0091:  MOVF   20,W
+0092:  BTFSS  0C.4
+0093:  GOTO   092
+0094:  MOVWF  19
+....................       } 
+....................    } 
+0095:  GOTO   06B
+.................... } 
+0096:  SLEEP
+
+Configuration Fuses:
+   Word  1: 3F39   XT NOWDT NOPUT NODEBUG NOPROTECT NOBROWNOUT NOLVP NOCPD NOWRT

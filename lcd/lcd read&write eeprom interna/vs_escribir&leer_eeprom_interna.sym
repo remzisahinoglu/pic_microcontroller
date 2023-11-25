@@ -1,0 +1,72 @@
+004-005 @READ_PROGRAM_MEMORY.P1
+006     lcd
+015     CCP_1_LOW
+015-016 CCP_1
+016     CCP_1_HIGH
+01F.6   C1OUT
+01F.7   C2OUT
+021     MAIN.LAST_VOLUME
+022     MAIN.volume
+023-02D MAIN.mensaje1
+02E-032 MAIN.mensaje2
+033-037 MAIN.mensaje3
+038-040 MAIN.mensaje4
+041     lcd_init.i
+041     MAIN.@SCRATCH
+042     lcd_init.@SCRATCH
+042     MAIN.@SCRATCH
+043     lcd_putc.c
+044     lcd_gotoxy.x
+044     @delay_ms1.P1
+045     lcd_gotoxy.y
+046     lcd_gotoxy.address
+047     lcd_gotoxy.@SCRATCH
+048     lcd_send_byte.address
+049     lcd_send_byte.n
+04A     lcd_read_byte.low
+04A     lcd_send_byte.@SCRATCH
+04B     lcd_send_nibble.n
+04B     lcd_read_byte.high
+04C     lcd_read_byte.@SCRATCH
+077     @SCRATCH
+078     @SCRATCH
+078     _RETURN_
+079     @SCRATCH
+07A     @SCRATCH
+07B     @SCRATCH
+10D     @READ_PROGRAM_MEMORY.P1
+10F     @READ_PROGRAM_MEMORY.P1
+
+0012  @delay_ms1
+0004  LCD_INIT_STRING
+0034  lcd_read_byte
+0027  lcd_send_nibble
+0033  lcd_send_byte
+0069  lcd_init
+00A8  lcd_gotoxy
+0092  lcd_putc
+00C6  MAIN
+000C  @const87
+00C6  @cinit
+
+Project Files:
+    C:\3414\Ejemplitos en C para 16F648A\lcd read&write eeprom interna\vs_escribir&leer_eeprom_interna.c
+    C:\ARQUIV~1\PICC\devices\16f648a.h
+    C:\ARQUIV~1\PICC\drivers\lcd.c
+
+Units:
+    vs_escribir&leer_eeprom_interna.c (main)
+
+Compiler Settings:
+    Processor:      PIC16F648A
+    Pointer Size:   16
+    Opt Level:      0
+    Short,Int,Long: 1,8,16
+
+Output Files:
+    Errors:      C:\3414\Ejemplitos en C para 16F648A\lcd read&write eeprom interna\vs_escribir&leer_eeprom_interna.err
+    Ext Symbols: C:\3414\Ejemplitos en C para 16F648A\lcd read&write eeprom interna\vs_escribir&leer_eeprom_interna.esym
+    INHX8:\       vs_escribir&leer_eeprom_interna.hex
+    Symbols:\     vs_escribir&leer_eeprom_interna.sym
+    List:\        vs_escribir&leer_eeprom_interna.lst
+    Debug/COFF:\  vs_escribir&leer_eeprom_interna.cof

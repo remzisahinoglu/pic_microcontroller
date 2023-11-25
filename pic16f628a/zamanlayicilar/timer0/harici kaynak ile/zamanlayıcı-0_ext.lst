@@ -1,0 +1,77 @@
+CCS PCM C Compiler, Version 4.023, 11016               26-Nis-07 15:14
+
+               Filename: C:\pic\pic16f628a\zamanlayicilar\timer0\harici kaynak ile\zamanlayýcý-0_ext.lst
+
+               ROM used: 27 words (1%)
+                         Largest free fragment is 2021
+               RAM used: 7 (3%) at main() level
+                         7 (3%) worst case
+               Stack:    0 locations
+
+*
+0000:  MOVLW  00
+0001:  MOVWF  0A
+0002:  GOTO   004
+0003:  NOP
+.................... //Zamanlayýcý-0 (TMR0) harici kaynak ile uygulamasý 
+.................... //19.02.2007 
+.................... //yazan = Remzi ÞAHÝNOÐLU 
+.................... // 
+.................... // TMR0 zamanlayýcýsýný kullnarak harici kaynaktan girilen sinyal ile sayýcý yapmak 
+.................... // ra4 ucundaki düþen kenarda olusan sinyal tmr0 saklaycýsýndaki degeri 1 arttýrýr 
+.................... // 
+.................... #if defined (__PCM__) 
+.................... #include <16F628A.h> 
+.................... //////// Standard Header file for the PIC16F628A device //////////////// 
+.................... #device PIC16F628A 
+.................... #list 
+....................  
+.................... #use delay(clock=4000000) 
+.................... #fuses NOWDT,PUT,NOLVP,NOBROWNOUT,MCLR,INTRC_IO,NOPROTECT 
+.................... #endif 
+....................  
+.................... #byte OPTION = 0x81 
+.................... #byte TMR0 = 0x01 
+....................  
+.................... void main() 
+.................... { 
+0004:  CLRF   04
+0005:  BCF    03.7
+0006:  MOVLW  1F
+0007:  ANDWF  03,F
+0008:  MOVLW  07
+0009:  MOVWF  1F
+....................    OPTION=0b00111000;          // TOCS=1   zamanlayýcý-0 için saat sinyal secme biti  
+000A:  MOVLW  38
+000B:  BSF    03.5
+000C:  MOVWF  01
+....................                                // TOSE=1   zamanlayýcý-0 iþaret kaynaðý kenar seçme biti 
+....................                                // PSA=1    ön bölücü atama biti 
+....................    output_b(0); 
+000D:  CLRF   06
+000E:  BCF    03.5
+000F:  CLRF   06
+....................    TMR0=0; 
+0010:  CLRF   01
+....................    while(TRUE) 
+....................    {       
+....................       output_b(TMR0);                                 
+0011:  BSF    03.5
+0012:  CLRF   06
+0013:  BCF    03.5
+0014:  MOVF   01,W
+0015:  MOVWF  06
+....................       if (bit_test(TMR0,7) == 1)    // tmr0 doldugu zaman 0 la 
+0016:  BTFSS  01.7
+0017:  GOTO   019
+....................       { 
+....................          TMR0 = 0; 
+0018:  CLRF   01
+....................       }                  
+....................    }                                 
+0019:  GOTO   011
+.................... } 
+001A:  SLEEP
+
+Configuration Fuses:
+   Word  1: 3F30   NOWDT PUT NOPROTECT NOBROWNOUT MCLR NOLVP INTRC_IO NOCPD

@@ -1,0 +1,24 @@
+MSComm1.Output = Chr(2)   desimal olarak gonderir
+
+MSComm1.Output = Hex(2)	  hex olarak gonderir
+
+
+Text2.Text = Text2.Text & MSComm1.Input   oku text box a yan yana yaz.
+
+eger alt alta yazýlmasý isteniyorsa
+
+gonderici den satýr basý ve satýr atla kodlarýda gonderilmelidir.
+
+printf("kontrol ediliyor...\r\n")
+
+TextBox'un "Multiline" özelliðini True yaptým.
+\n = 13 numaralý ascii karakteri imiþ.
+\r = 10 numaralý ascii karackteri.
+
+ayný þekilde;
+
+printf("kontrol ediliyor...");
+putc(13);
+putc(10);
+
+çalýþýr

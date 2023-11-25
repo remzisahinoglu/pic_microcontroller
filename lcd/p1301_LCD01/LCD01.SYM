@@ -1,0 +1,81 @@
+006     lcd
+008     PSP_DATA
+015     CCP_1_LOW
+015-016 CCP_1
+016     CCP_1_HIGH
+01B-01C CCP_2
+01B     CCP_2_LOW
+01C     CCP_2_HIGH
+021     lcd_init.i
+021     LCD_Show.i
+022-032 LCD_Show.str
+022     lcd_init.@SCRATCH
+033     LCD_Command.cm
+033     LCD_String.s
+033     LCD_Show.@SCRATCH
+034     LCD_String.dly
+034     LCD_Show.@SCRATCH
+035     LCD_String.@SCRATCH
+036     lcd_putc.c
+037     lcd_gotoxy.x
+037     @delay_ms1.@delay_ms1.P1
+038     lcd_gotoxy.y
+039     lcd_gotoxy.address
+03A     lcd_gotoxy.@SCRATCH
+03B     lcd_send_byte.address
+03C     lcd_send_byte.n
+03D     lcd_read_byte.low
+03D     lcd_send_byte.@SCRATCH
+03E     lcd_send_nibble.n
+03E     lcd_read_byte.high
+03F     lcd_read_byte.@SCRATCH
+077     @SCRATCH
+078     @SCRATCH
+078     _RETURN_
+079     @SCRATCH
+07A     @SCRATCH
+07B     @SCRATCH
+
+009F  @delay_ms1
+0004  @const39
+00C2  lcd_read_byte
+00B2  lcd_send_nibble
+00C1  lcd_send_byte
+0101  lcd_init
+0158  lcd_gotoxy
+013D  lcd_putc
+012D  LCD_Command
+01D7  LCD_ShiftLeft
+021C  LCD_ShiftRight
+0132  LCD_String
+0179  LCD_Show
+000C  @const10142
+0021  @const10146
+0036  @const10150
+004B  @const10154
+0060  @const10169
+0075  @const10173
+008A  @const10187
+027B  main
+027B  @cinit
+
+Project Files:
+    C:\Book_PIC-C\LAB\ch13\Ex_LCD01\lcd01.c
+    C:\Program Files\PICC\devices\16F877.h
+    C:\Program Files\PICC\drivers\lcd.c
+
+Compiler Settings:
+    Processor:      PIC16F877
+    Pointer Size:   8
+    ADC Range:      0-255
+    Opt Level:      9
+    Short,Int,Long: 1,8,16
+
+Output Files:
+    Errors:      C:\Book_PIC-C\LAB\ch13\Ex_LCD01\lcd01.err
+    INHX8:       C:\Book_PIC-C\LAB\ch13\Ex_LCD01\lcd01.HEX
+    Symbols:     C:\Book_PIC-C\LAB\ch13\Ex_LCD01\lcd01.SYM
+    List:        C:\Book_PIC-C\LAB\ch13\Ex_LCD01\lcd01.LST
+    Debug/COFF:  C:\Book_PIC-C\LAB\ch13\Ex_LCD01\lcd01.cof
+    Call Tree:   C:\Book_PIC-C\LAB\ch13\Ex_LCD01\lcd01.tre
+    Statistics:  C:\Book_PIC-C\LAB\ch13\Ex_LCD01\lcd01.sta

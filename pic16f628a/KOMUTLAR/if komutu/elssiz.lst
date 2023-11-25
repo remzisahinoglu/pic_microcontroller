@@ -1,0 +1,91 @@
+CCS PCM C Compiler, Version 4.074, 13730               15-May-09 17:33
+
+               Filename: E:\priv\picmicro\PIC C\pic uygulama\pic16f628a\KOMUTLAR\if komutu\elssiz.lst
+
+               ROM used: 49 words (2%)
+                         Largest free fragment is 1999
+               RAM used: 8 (4%) at main() level
+                         8 (4%) worst case
+               Stack:    1 locations
+
+*
+0000:  MOVLW  00
+0001:  MOVWF  0A
+0002:  GOTO   019
+0003:  NOP
+.................... //butona basýlýnca binary olarak artan led uygulamasý 
+.................... //04.02.2007 
+.................... //yazan = Remzi ÞAHÝNOÐLU 
+.................... #if defined (__PCM__) 
+.................... #include <16F628A.h> 
+.................... //////// Standard Header file for the PIC16F628A device //////////////// 
+.................... #device PIC16F628A 
+.................... #list 
+....................  
+.................... #use delay(clock=4000000) 
+0004:  MOVLW  22
+0005:  MOVWF  04
+0006:  BCF    03.7
+0007:  MOVF   00,W
+0008:  BTFSC  03.2
+0009:  GOTO   018
+000A:  MOVLW  01
+000B:  MOVWF  78
+000C:  CLRF   77
+000D:  DECFSZ 77,F
+000E:  GOTO   00D
+000F:  DECFSZ 78,F
+0010:  GOTO   00C
+0011:  MOVLW  4A
+0012:  MOVWF  77
+0013:  DECFSZ 77,F
+0014:  GOTO   013
+0015:  GOTO   016
+0016:  DECFSZ 00,F
+0017:  GOTO   00A
+0018:  GOTO   020 (RETURN)
+.................... #fuses NOWDT,PUT,NOLVP,NOBROWNOUT,MCLR,INTRC_IO,NOPROTECT 
+.................... #endif 
+....................  
+....................  
+.................... void main() 
+.................... { 
+0019:  CLRF   04
+001A:  BCF    03.7
+001B:  MOVLW  1F
+001C:  ANDWF  03,F
+001D:  MOVLW  07
+001E:  MOVWF  1F
+.................... char x=0;   
+001F:  CLRF   21
+.................... tekrar: 
+....................  
+.................... output_b(x); 
+0020:  BSF    03.5
+0021:  CLRF   06
+0022:  BCF    03.5
+0023:  MOVF   21,W
+0024:  MOVWF  06
+....................    if (input(PIN_A0)==1) 
+0025:  BSF    03.5
+0026:  BSF    05.0
+0027:  BCF    03.5
+0028:  BTFSS  05.0
+0029:  GOTO   02F
+....................    { 
+....................       x=x+1; 
+002A:  MOVLW  01
+002B:  ADDWF  21,F
+....................       delay_ms(200); 
+002C:  MOVLW  C8
+002D:  MOVWF  22
+002E:  GOTO   004
+....................       goto tekrar; 
+....................    } 
+....................       goto tekrar; 
+002F:  GOTO   020
+.................... } 
+0030:  SLEEP
+
+Configuration Fuses:
+   Word  1: 3F30   NOWDT PUT NOPROTECT NOBROWNOUT MCLR NOLVP INTRC_IO NOCPD

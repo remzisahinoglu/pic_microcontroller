@@ -1,0 +1,246 @@
+1    : /******************************************************************************
+2    :  * File     :  lcd01.c
+3    :  * Purpose  :  Drive LCD 4-bit Mode Using B to digital output port
+4    :  * Author   :  Prajin Palangsantikul
+5    :  * E-mail   :  prajin@appsofttech.com
+6    :  * Release  :  PCW Compiler 3.180
+7    :  * Copyright (c) 2004 APPSOFTTECH CO.,LTD.
+8    :  *****************************************************************************/
+9    : 
+10   : #define _PIC16F877_           // Use PIC16F877 device
+11   : 
+12   : #ifdef _PIC16F877_
+13   : #include <16F877.h>           // Standard Header file for the PIC16F877 device
+14   : #define  TxD         PIN_C6   // Define Transmitted Data
+15   : #define  RxD         PIN_C7   // Define Received Data
+16   : #define  CLOCK_SP    20000000 // Clock Speed(Hz)
+17   : 
+18   : #else
+19   : #include <16F628.h>           // Standard Header file for the PIC16F628 device
+20   : #define  TxD         PIN_A2   // Define Transmitted Data
+21   : #define  RxD         PIN_A3   // Define Received Data
+22   : #define  CLOCK_SP    4000000  // Clock Speed(Hz)
+23   : 
+24   : #endif
+25   : 
+26   : // Device Specification
+27   : #fuses HS                     // Oscillator
+28   : #fuses NOLVP, NOWDT           // No Low Voltage Program, No Watchdog timer
+29   : #fuses NOPROTECT              // Code protection
+30   : #use delay (clock=CLOCK_SP)   // Use built-in function: delay_ms() & delay_us()
+31   : #use rs232(baud=9600, xmit=TxD,rcv=RxD) // Use serial I/O port (RS232)
+32   : 
+33   : #define use_portb_lcd         // define for use portb lcd
+34   : #include "lcd.c"              // use module function
+35   : 
+36   : 
+37   : /***********************************************************************
+38   :  *	Constants
+39   :  ***********************************************************************/
+40   : #define STRING_SIZE 17
+41   : #define msg0   "LCD Module Show "
+42   : #define msg1   " 16x2 character "
+43   : #define msg2   "Test Running ..."
+44   : #define msg3   " Left & Right   "
+45   : #define msg4   "Write Character "
+46   : #define msg5   "  on sequence   "
+47   : #define msg6   "Hello World AST."
+48   : 
+49   : //** LCD.C : Driver for common LCD modules *******************************
+50   : // As defined in the following structure the pin connection is as follows:
+51   : //   B0 = E(enable), B1 = RS, B2 = R/W
+52   : //   B4 = D4, B5 = D5, B6 = D6
+53   : //   B7 = D7
+54   : //   LCD pins D0-D3 are not used and PIC B3 is not used.
+55   : 
+56   : 
+57   : /***********************************************************************
+58   :  *	Functions prototypes
+59   :  ***********************************************************************/
+60   : void LCD_Command(int cm);
+61   : void LCD_ShiftLeft(void);
+62   : void LCD_ShiftRight(void);
+63   : void LCD_MoveRight(char p);
+64   : void LCD_MoveLeft(char p);
+65   : void strcpy(char *s1, char *s2);
+66   : void LCD_String(char *s, int dly);
+67   : void LCD_Show(void);
+68   : 
+69   : 
+70   : /***********************************************************************
+71   :  * FUNCTION:     LCD_Command
+72   :  * DESCRIPTION:  LCD Command
+73   :  * PARAMETERS:   cm
+74   :  * RETURNED:     nothing
+75   :  ***********************************************************************/
+76   : void LCD_Command(int cm) {
+77   : 
+78   :    lcd_send_byte(0,cm);
+79   : }
+80   : 
+81   : 
+82   : /***********************************************************************
+83   :  * FUNCTION:     LCD_ShiftLeft
+84   :  * DESCRIPTION:  LCD ShiftLeft
+85   :  * PARAMETERS:   nothing
+86   :  * RETURNED:     nothing
+87   :  ***********************************************************************/
+88   : void LCD_ShiftLeft(void) {
+89   : 
+90   :    lcd_send_byte(0,0x18);
+91   : }
+92   : 
+93   : 
+94   : /***********************************************************************
+95   :  * FUNCTION:     LCD_ShiftRight
+96   :  * DESCRIPTION:  LCD ShiftRight
+97   :  * PARAMETERS:   nothing
+98   :  * RETURNED:     nothing
+99   :  ***********************************************************************/
+100  : void LCD_ShiftRight(void) {
+101  : 
+102  :    lcd_send_byte(0,0x1C);
+103  : }
+104  : 
+105  : 
+106  : /***********************************************************************
+107  :  * FUNCTION:     LCD_MoveRight
+108  :  * DESCRIPTION:  LCD MoveRight
+109  :  * PARAMETERS:   p
+110  :  * RETURNED:     nothing
+111  :  ***********************************************************************/
+112  : void LCD_MoveRight(char p) {
+113  : 
+114  :    char i;
+115  : 
+116  :    for(i=0; i<p; i++) {
+117  :       LCD_ShiftRight();
+118  :       delay_ms(100);
+119  :    }
+120  : }
+121  : 
+122  : 
+123  : /***********************************************************************
+124  :  * FUNCTION:     LCD_MoveLeft
+125  :  * DESCRIPTION:  LCD MoveLeft
+126  :  * PARAMETERS:   p
+127  :  * RETURNED:     nothing
+128  :  ***********************************************************************/
+129  : void LCD_MoveLeft(char p) {
+130  : 
+131  :    char i;
+132  : 
+133  :    for(i=0; i<p; i++) {
+134  :       LCD_ShiftLeft();
+135  :       delay_ms(100);
+136  :    }
+137  : }
+138  : 
+139  : 
+140  : /***********************************************************************
+141  :  * FUNCTION:     strcpy
+142  :  * DESCRIPTION:  string copy
+143  :  * PARAMETERS:   *s1, *s2
+144  :  * RETURNED:     nothing
+145  :  ***********************************************************************/
+146  : void strcpy(char *s1, char *s2) {
+147  : 
+148  :    while(*s1++ = *s2++)
+149  :    ;
+150  : }
+151  : 
+152  : 
+153  : /***********************************************************************
+154  :  * FUNCTION:     LCD_String
+155  :  * DESCRIPTION:  LCD String
+156  :  * PARAMETERS:   *s, dly
+157  :  * RETURNED:     nothing
+158  :  ***********************************************************************/
+159  : void LCD_String(char *s, int dly) {
+160  : 
+161  :    while(*s!=0) {
+162  : 		lcd_putc(*s++);
+163  :       delay_ms(dly);
+164  :    }
+165  : }
+166  : 
+167  : 
+168  : /***********************************************************************
+169  :  * FUNCTION:     LCD_Show
+170  :  * DESCRIPTION:  LCD Show
+171  :  * PARAMETERS:   nothing
+172  :  * RETURNED:     nothing
+173  :  ***********************************************************************/
+174  : void LCD_Show(void) {
+175  : 
+176  :    int i;
+177  :    char str[17];
+178  : 
+179  : 	LCD_Command(0x80);		// start 1st line
+180  :    strcpy(str, msg0);
+181  :    LCD_String(str,0);
+182  :    strcpy(str, msg1);
+183  :    LCD_String(str,0);
+184  : 	LCD_Command(0xC0);		// start 2nd line
+185  :    strcpy(str, msg2);
+186  :    LCD_String(str,0);
+187  :    strcpy(str, msg3);
+188  :    LCD_String(str,0);
+189  : 
+190  : 	delay_ms(1000);
+191  : 
+192  : 	for(i=0; i<16; i++) {
+193  : 		LCD_ShiftLeft();	// LCD Shift Left
+194  :  	    delay_ms(400);
+195  : 	}
+196  : 
+197  : 	delay_ms(500);
+198  : 
+199  : 	LCD_Command(0x80);		// start 1st line
+200  :    strcpy(str, msg4);
+201  :    LCD_String(str,0);
+202  : 	LCD_Command(0xC0);		// start 2nd line
+203  :    strcpy(str, msg5);
+204  :    LCD_String(str,0);
+205  : 
+206  : 	for(i=0; i<16; i++) {
+207  : 		LCD_ShiftRight();	   // LCD Shift Right
+208  :  	    delay_ms(400);
+209  : 	}
+210  : 
+211  : 	delay_ms(500);
+212  : 	LCD_Command(0x01);		// Clear LCD
+213  : 	delay_ms(100);
+214  : 	LCD_Command(0x02);		// cursor to home
+215  : 	LCD_Command(0x0F);		// LCD On, & cursor	blink
+216  : 	delay_ms(200);
+217  :    strcpy(str, msg6);
+218  :    LCD_String(str,1000);
+219  : 
+220  : 	for(i=0; i<2; i++) {
+221  : 		delay_ms(1000);
+222  : 		LCD_Command(0x08);		// LCD Off & cursor off
+223  : 		delay_ms(1000);
+224  : 		LCD_Command(0x0E);		// LCD On, & cursor	on
+225  : 	}
+226  : 
+227  : 	delay_ms(500);
+228  : 	LCD_Command(0x01);		// Clear LCD
+229  : 
+230  : }
+231  : 
+232  : 
+233  : /***********************************************************************
+234  :  * FUNCTION:    Main
+235  :  * DESCRIPTION: This is the main entry point for the program.
+236  :  * PARAMETERS:  nothing
+237  :  * RETURNED:    nothing
+238  :  ***********************************************************************/
+239  : void main(void) {
+240  : 
+241  :    lcd_init();       // LCD initialize
+242  : 
+243  : 	while(TRUE){
+244  :       LCD_Show();
+245  :    };
+246  : }

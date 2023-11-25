@@ -1,0 +1,161 @@
+CCS PCM C Compiler, Version 4.018, 12203               21-Þub-07 16:55
+
+               Filename: D:\pic\usart birimi ve seri iletiþim\verici\usart_verici.lst
+
+               ROM used: 82 words (4%)
+                         Largest free fragment is 1966
+               RAM used: 7 (3%) at main() level
+                         7 (3%) worst case
+               Stack:    1 locations
+
+*
+0000:  MOVLW  00
+0001:  MOVWF  0A
+0002:  GOTO   019
+0003:  NOP
+.................... //usart birimi seri iletiþim verici uygulamasý 
+.................... //20.02.2007 
+.................... //yazan = Remzi ÞAHÝNOÐLU 
+.................... #if defined (__PCM__) 
+.................... #include <16F628A.h> 
+.................... //////// Standard Header file for the PIC16F628A device //////////////// 
+.................... #device PIC16F628A 
+.................... #list 
+....................  
+.................... #use delay(clock=4000000) 
+0004:  MOVLW  21
+0005:  MOVWF  04
+0006:  BCF    03.7
+0007:  MOVF   00,W
+0008:  BTFSC  03.2
+0009:  GOTO   018
+000A:  MOVLW  01
+000B:  MOVWF  78
+000C:  CLRF   77
+000D:  DECFSZ 77,F
+000E:  GOTO   00D
+000F:  DECFSZ 78,F
+0010:  GOTO   00C
+0011:  MOVLW  4A
+0012:  MOVWF  77
+0013:  DECFSZ 77,F
+0014:  GOTO   013
+0015:  GOTO   016
+0016:  DECFSZ 00,F
+0017:  GOTO   00A
+0018:  RETLW  00
+.................... #fuses NOWDT,PUT,NOLVP,NOBROWNOUT,MCLR,INTRC_IO,NOPROTECT 
+.................... #endif 
+....................  
+.................... #byte PORTA = 0x05 
+.................... #byte SPRG = 0x99 
+.................... #byte TXSTA = 0x98 
+.................... #byte RCSTA = 0x18 
+.................... #byte TXREG = 0x19 
+....................  
+.................... #bit SPEN = 0x18.7 
+....................  
+.................... void main() 
+.................... { 
+0019:  CLRF   04
+001A:  BCF    03.7
+001B:  MOVLW  1F
+001C:  ANDWF  03,F
+001D:  MOVLW  07
+001E:  MOVWF  1F
+....................    set_tris_a(0b00000011);           // RA0 ve RA1 ucunda anahtar var 
+001F:  MOVLW  03
+0020:  TRIS   5
+....................    set_tris_b(0b00000010);           // RB1/RX=giriþ, RB2/TX=çýkýþ 
+0021:  MOVLW  02
+0022:  TRIS   6
+....................    SPRG = 25;                        // bound hýzý 9600 olara kayarlandý      
+0023:  MOVLW  19
+0024:  BSF    03.5
+0025:  MOVWF  19
+....................    TXSTA = 0b00100100;               // BRGH=1(yüksek hýz), TXEN=1(gönderme aktif) 
+0026:  MOVLW  24
+0027:  MOVWF  18
+....................    bit_set(RCSTA,7);                 // seri iletiþim aktif (SPEN) 
+0028:  BCF    03.5
+0029:  BSF    18.7
+....................     
+....................    delay_ms(100);                    // biraz bekle acele etme :) 
+002A:  MOVLW  64
+002B:  MOVWF  21
+002C:  CALL   004
+.................... // veri gönderme rutinleri 
+.................... bas:    
+.................... // butona basýlý tutunca veri gönderilir, parmak butondan çekildiðinde gönderilen veri tekrar sýfýr olur          
+....................    if(bit_test(PORTA,1)==0)          // RA1 butona basýlý mý? 
+002D:  BTFSC  05.1
+002E:  GOTO   040
+....................    {                                 // basýlý burdan devam et 
+....................       delay_ms(200);                 // butondan parmagý çekme süresi 
+002F:  MOVLW  C8
+0030:  MOVWF  21
+0031:  CALL   004
+....................       output_high(PIN_B2);           // hattý 1'e çek 
+0032:  BSF    03.5
+0033:  BCF    06.2
+0034:  BCF    03.5
+0035:  BSF    06.2
+....................       TXREG = 0x6A;                  // veriyi TXREG saklayýcýsýna yükle 
+0036:  MOVLW  6A
+0037:  MOVWF  19
+....................       tekrar1: 
+....................       if(bit_test(TXSTA,1)==0)       // veri gönderimi bitti mi    
+0038:  BSF    03.5
+0039:  BTFSC  18.1
+003A:  GOTO   03C
+....................       {                              // TMRT=0 >> saklayýcý boþ                            
+....................          goto tekrar1; 
+003B:  GOTO   039
+....................       }                              // TMRT=1 >> saklayýcý dolu 
+....................       if(bit_test(PORTA,1)==1)       // basýlý mý? 
+003C:  BCF    03.5
+003D:  BTFSS  05.1
+003E:  GOTO   040
+....................       {                              // basýlý deðil 
+....................          TXREG = 0x00;               // o zaman sýfýr bilgisini gönder 
+003F:  CLRF   19
+....................       } 
+....................    }                                 // basýlý veri gönderimi için tekrar kontrol et 
+....................     
+.................... // butona bi kere basýnca veri gider ve TXREG de sürekli kalýr 
+....................    if(bit_test(PORTA,0)==0)          // RA0 butona basýlý mý?  
+0040:  BTFSC  05.0
+0041:  GOTO   050
+....................    {                                 // basýlý burdan devam et         
+....................       delay_ms(200);                 // butondan parmagý çekme süresi 
+0042:  MOVLW  C8
+0043:  MOVWF  21
+0044:  CALL   004
+....................       output_high(PIN_B2);           // hattý 1'e çek 
+0045:  BSF    03.5
+0046:  BCF    06.2
+0047:  BCF    03.5
+0048:  BSF    06.2
+....................       TXREG = 0x6C;                  // veriyi TXREG saklayýcýsýna yükle 
+0049:  MOVLW  6C
+004A:  MOVWF  19
+....................       tekrar: 
+....................       if(bit_test(TXSTA,1)==0)       // veri gönderimi bitti mi    
+004B:  BSF    03.5
+004C:  BTFSC  18.1
+004D:  GOTO   04F
+....................       {                              // TMRT=0 >> saklayýcý boþ                            
+....................          goto tekrar; 
+004E:  GOTO   04C
+004F:  BCF    03.5
+....................       }                              // TMRT=1 >> saklayýcý dolu                              
+....................    }    
+....................    goto bas; 
+0050:  GOTO   02D
+.................... } 
+....................  
+....................  
+0051:  SLEEP
+
+Configuration Fuses:
+   Word  1: 3F30   NOWDT PUT NOPROTECT NOBROWNOUT MCLR NOLVP INTRC_IO NOCPD

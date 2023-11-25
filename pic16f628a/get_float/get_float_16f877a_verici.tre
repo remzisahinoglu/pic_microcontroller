@@ -1,0 +1,15 @@
+ÀÄget_float_16f877a_verici
+   ÀÄMAIN  0/158  Ram=1
+      ÃÄ??0??
+      ÃÄ@delay_ms1  0/21  Ram=1
+      ÃÄ@PRINTF_L32D_9600_62_63FPFPF  0/350  Ram=13
+      ³  ÃÄ@MULFF  (Inline)  Ram=13
+      ³  ÃÄ@FTOSD  (Inline)  Ram=5
+      ³  ÃÄ@DIV3232  0/66  Ram=13
+      ³  ÀÄ@DIV3232  0/66  Ram=13
+      ÃÄ@delay_ms1  0/21  Ram=1
+      ÀÄ@PRINTF_L32D_9600_62_63FPFPF  0/350  Ram=13
+         ÃÄ@MULFF  (Inline)  Ram=13
+         ÃÄ@FTOSD  (Inline)  Ram=5
+         ÃÄ@DIV3232  0/66  Ram=13
+         ÀÄ@DIV3232  0/66  Ram=13

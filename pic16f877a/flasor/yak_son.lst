@@ -1,0 +1,91 @@
+CCS PCM C Compiler, Version 4.018, 12203               19-Mar-07 19:26
+
+               Filename: D:\pic\pic16f877\yak_son.lst
+
+               ROM used: 53 words (1%)
+                         Largest free fragment is 2048
+               RAM used: 6 (2%) at main() level
+                         7 (2%) worst case
+               Stack:    1 locations
+
+*
+0000:  MOVLW  00
+0001:  MOVWF  0A
+0002:  GOTO   019
+0003:  NOP
+.................... // led yak söndür uygulamsý 
+.................... // 17.04.2007 
+.................... // yazan = Remzi ÞAHÝNOÐLU 
+.................... #if defined (__PCM__) 
+.................... #include <16F877.h> 
+.................... //////// Standard Header file for the PIC16F877 device //////////////// 
+.................... #device PIC16F877 
+.................... #list 
+....................  
+.................... #use delay(clock=4000000) 
+0004:  MOVLW  21
+0005:  MOVWF  04
+0006:  BCF    03.7
+0007:  MOVF   00,W
+0008:  BTFSC  03.2
+0009:  GOTO   018
+000A:  MOVLW  01
+000B:  MOVWF  78
+000C:  CLRF   77
+000D:  DECFSZ 77,F
+000E:  GOTO   00D
+000F:  DECFSZ 78,F
+0010:  GOTO   00C
+0011:  MOVLW  4A
+0012:  MOVWF  77
+0013:  DECFSZ 77,F
+0014:  GOTO   013
+0015:  GOTO   016
+0016:  DECFSZ 00,F
+0017:  GOTO   00A
+0018:  RETLW  00
+.................... #fuses XT,NOWDT,NOPROTECT,NOLVP,NOBROWNOUT 
+.................... #endif 
+....................  
+.................... void main() 
+.................... { 
+0019:  CLRF   04
+001A:  BCF    03.7
+001B:  MOVLW  1F
+001C:  ANDWF  03,F
+001D:  BSF    03.5
+001E:  BSF    1F.0
+001F:  BSF    1F.1
+0020:  BSF    1F.2
+0021:  BCF    1F.3
+....................    set_tris_b(0); 
+0022:  MOVLW  00
+0023:  MOVWF  06
+....................    while(TRUE) 
+....................    { 
+....................       output_b(255); 
+0024:  CLRF   06
+0025:  MOVLW  FF
+0026:  BCF    03.5
+0027:  MOVWF  06
+....................       delay_ms(250); 
+0028:  MOVLW  FA
+0029:  MOVWF  21
+002A:  CALL   004
+....................       output_b(0); 
+002B:  BSF    03.5
+002C:  CLRF   06
+002D:  BCF    03.5
+002E:  CLRF   06
+....................       delay_ms(250);       
+002F:  MOVLW  FA
+0030:  MOVWF  21
+0031:  CALL   004
+....................    } 
+0032:  BSF    03.5
+0033:  GOTO   024
+.................... } 
+0034:  SLEEP
+
+Configuration Fuses:
+   Word  1: 3F31   XT NOWDT PUT NOPROTECT NOBROWNOUT NOLVP NOCPD NOWRT NODEBUG

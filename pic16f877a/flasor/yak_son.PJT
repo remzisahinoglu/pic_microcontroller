@@ -1,0 +1,42 @@
+[PROJECT]
+Target=yak_son.HEX
+Development_Mode=2
+Processor=0x877F
+ToolSuite=CCS
+Processor_Text=PIC16F877
+
+[Directories]
+Include=
+Library=
+LinkerScript=
+
+[Target Data]
+FileList=D:\pic\pic16f877\yak_son.c
+BuildTool=C-COMPILER
+OptionString=+FM
+AdditionalOptionString=
+BuildRequired=1
+
+[yak_son.c]
+Type=4
+Path=
+FileList=
+BuildTool=
+OptionString=
+AdditionalOptionString=
+
+[mru-list]
+1=yak_son.c
+
+[Windows]
+0=0000 yak_son.c 0 0 796 451 3 0
+
+[Opened Files]
+1=D:\pic\pic16f877\yak_son.c
+2=D:\pic\pic16f628a\flasor\flaþör.c
+3=
+4=
+[Units]
+Count=1
+1=yak_son.c (main)
+Link=0

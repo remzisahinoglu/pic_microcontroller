@@ -1,0 +1,149 @@
+CCS PCM C Compiler, Version 4.106, 14749               02-Haz-11 21:59
+
+               Filename: D:\ram\projeler\kartezyen robot from cdrom\bipolar step motor kontrol\bipolar_step.lst
+
+               ROM used: 99 words (5%)
+                         Largest free fragment is 1949
+               RAM used: 7 (3%) at main() level
+                         7 (3%) worst case
+               Stack:    1 locations
+
+*
+0000:  MOVLW  00
+0001:  MOVWF  0A
+0002:  GOTO   019
+0003:  NOP
+.................... //bipolar step motor ileri-geri tam adým kontrol uygulamasý 
+.................... //02.06.2011 
+.................... //yazan = Remzi ÞAHÝNOÐLU 
+....................  
+.................... #if defined (__PCM__) 
+.................... #include <16F628A.h> 
+.................... //////// Standard Header file for the PIC16F628A device //////////////// 
+.................... #device PIC16F628A 
+.................... #list 
+....................  
+.................... #use delay(clock=4000000) 
+*
+0004:  MOVLW  21
+0005:  MOVWF  04
+0006:  BCF    03.7
+0007:  MOVF   00,W
+0008:  BTFSC  03.2
+0009:  GOTO   018
+000A:  MOVLW  01
+000B:  MOVWF  78
+000C:  CLRF   77
+000D:  DECFSZ 77,F
+000E:  GOTO   00D
+000F:  DECFSZ 78,F
+0010:  GOTO   00C
+0011:  MOVLW  4A
+0012:  MOVWF  77
+0013:  DECFSZ 77,F
+0014:  GOTO   013
+0015:  GOTO   016
+0016:  DECFSZ 00,F
+0017:  GOTO   00A
+0018:  RETURN
+.................... #fuses NOWDT,NOPUT,NOLVP,NOBROWNOUT,NOMCLR,INTRC_IO,NOPROTECT 
+.................... #endif 
+....................  
+.................... #byte PORTA = 0x05 
+.................... char i=1; 
+....................  
+.................... void main() 
+.................... { 
+0019:  CLRF   04
+001A:  BCF    03.7
+001B:  MOVLW  1F
+001C:  ANDWF  03,F
+001D:  MOVLW  01
+001E:  MOVWF  20
+001F:  MOVLW  07
+0020:  MOVWF  1F
+....................    while(TRUE)                   // sonsuz döngüde kal 
+....................    { 
+....................       if(bit_test(PORTA,0)==0)   // MOTOR ÝLERÝ 
+0021:  BTFSC  05.0
+0022:  GOTO   02E
+....................       { 
+....................          delay_ms(2);          // butondaki arktan etkilenmemesi için bekleme yapýlýr   
+0023:  MOVLW  02
+0024:  MOVWF  21
+0025:  CALL   004
+....................          i=i+1;                  // adým sayacý 
+0026:  MOVLW  01
+0027:  ADDWF  20,F
+....................          if(i==5){i=1;}          // adým5 oldugunda adým1 olarak algýla 
+0028:  MOVF   20,W
+0029:  SUBLW  05
+002A:  BTFSS  03.2
+002B:  GOTO   02E
+002C:  MOVLW  01
+002D:  MOVWF  20
+....................       } 
+....................       if(bit_test(PORTA,1)==0)   // MOTOR GERÝ 
+002E:  BTFSC  05.1
+002F:  GOTO   03A
+....................       { 
+....................          delay_ms(2);          // butondaki arktan etkilenmemesi için bekleme yapýlýr 
+0030:  MOVLW  02
+0031:  MOVWF  21
+0032:  CALL   004
+....................          i=i-1;                  // adým sayacý 
+0033:  MOVLW  01
+0034:  SUBWF  20,F
+....................          if(i==0){i=4;}          // adým0  oldugunda adým4 olarak algýla 
+0035:  MOVF   20,F
+0036:  BTFSS  03.2
+0037:  GOTO   03A
+0038:  MOVLW  04
+0039:  MOVWF  20
+....................       } 
+....................        
+....................       switch (i)                 // motoru yönlendir 
+....................       {                          // buradaki aþamalarýn deðerleri excel dosyasýnda açýklanmýþtýr  
+003A:  MOVLW  01
+003B:  SUBWF  20,W
+003C:  ADDLW  FC
+003D:  BTFSC  03.0
+003E:  GOTO   059
+003F:  ADDLW  04
+0040:  GOTO   05B
+....................          case 1: output_b(6);   break;   // adým 1 
+0041:  BSF    03.5
+0042:  CLRF   06
+0043:  MOVLW  06
+0044:  BCF    03.5
+0045:  MOVWF  06
+0046:  GOTO   059
+....................          case 2: output_b(5);   break;   // adým 2 
+0047:  BSF    03.5
+0048:  CLRF   06
+0049:  MOVLW  05
+004A:  BCF    03.5
+004B:  MOVWF  06
+004C:  GOTO   059
+....................          case 3: output_b(9);   break;   // adým 3 
+004D:  BSF    03.5
+004E:  CLRF   06
+004F:  MOVLW  09
+0050:  BCF    03.5
+0051:  MOVWF  06
+0052:  GOTO   059
+....................          case 4: output_b(10);  break;   // adým 4  
+0053:  BSF    03.5
+0054:  CLRF   06
+0055:  MOVLW  0A
+0056:  BCF    03.5
+0057:  MOVWF  06
+0058:  GOTO   059
+....................       } 
+....................    } 
+0059:  GOTO   021
+.................... } 
+005A:  SLEEP
+
+Configuration Fuses:
+   Word  1: 3F18   NOWDT NOPUT NOPROTECT NOBROWNOUT NOMCLR NOLVP INTRC_IO NOCPD

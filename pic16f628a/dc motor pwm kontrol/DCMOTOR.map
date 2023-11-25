@@ -1,0 +1,68 @@
+MPLINK 4.34, Linker
+Linker Map File - Created Tue Dec 28 18:24:48 2010
+
+                                 Section Info
+                  Section       Type    Address   Location Size(Bytes)
+                ---------  ---------  ---------  ---------  ---------
+                   .org_0       code   0x000000    program   0x000000
+                   .org_1       code   0x000000    program   0x000002
+                   .org_2       code   0x000004    program   0x00011e
+   .config_2007_DCMOTOR.O       code   0x002007    program   0x000002
+
+
+
+                              Program Memory Usage 
+                               Start         End      
+                           ---------   ---------      
+                            0x000000    0x000000      
+                            0x000004    0x000092      
+                            0x002007    0x002007      
+            145 out of 8453 program addresses used, program memory utilization is 1%
+
+
+
+                              Symbols - Sorted by Name
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+                     AC10   0x000049    program     static X:\MPLAB\DCMOTOR.ASM     
+                     AC11   0x000044    program     static X:\MPLAB\DCMOTOR.ASM     
+                  ANALOG1   0x000067    program     static X:\MPLAB\DCMOTOR.ASM     
+                    BEKLE   0x000054    program     static X:\MPLAB\DCMOTOR.ASM     
+                    INTER   0x000006    program     static X:\MPLAB\DCMOTOR.ASM     
+                  INTEROF   0x00000d    program     static X:\MPLAB\DCMOTOR.ASM     
+                     MAIN   0x000018    program     static X:\MPLAB\DCMOTOR.ASM     
+                       MM   0x00005e    program     static X:\MPLAB\DCMOTOR.ASM     
+                      MMS   0x00005c    program     static X:\MPLAB\DCMOTOR.ASM     
+                   MS_100   0x00005a    program     static X:\MPLAB\DCMOTOR.ASM     
+                  PWMLOAD   0x000036    program     static X:\MPLAB\DCMOTOR.ASM     
+                    PWMM1   0x00003d    program     static X:\MPLAB\DCMOTOR.ASM     
+                     SEC2   0x00007a    program     static X:\MPLAB\DCMOTOR.ASM     
+                    SETUP   0x000082    program     static X:\MPLAB\DCMOTOR.ASM     
+                    START   0x000014    program     static X:\MPLAB\DCMOTOR.ASM     
+                     WAIT   0x00004f    program     static X:\MPLAB\DCMOTOR.ASM     
+                      YON   0x00001b    program     static X:\MPLAB\DCMOTOR.ASM     
+
+
+
+                              Symbols - Sorted by Address
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+                    INTER   0x000006    program     static X:\MPLAB\DCMOTOR.ASM     
+                  INTEROF   0x00000d    program     static X:\MPLAB\DCMOTOR.ASM     
+                    START   0x000014    program     static X:\MPLAB\DCMOTOR.ASM     
+                     MAIN   0x000018    program     static X:\MPLAB\DCMOTOR.ASM     
+                      YON   0x00001b    program     static X:\MPLAB\DCMOTOR.ASM     
+                  PWMLOAD   0x000036    program     static X:\MPLAB\DCMOTOR.ASM     
+                    PWMM1   0x00003d    program     static X:\MPLAB\DCMOTOR.ASM     
+                     AC11   0x000044    program     static X:\MPLAB\DCMOTOR.ASM     
+                     AC10   0x000049    program     static X:\MPLAB\DCMOTOR.ASM     
+                     WAIT   0x00004f    program     static X:\MPLAB\DCMOTOR.ASM     
+                    BEKLE   0x000054    program     static X:\MPLAB\DCMOTOR.ASM     
+                   MS_100   0x00005a    program     static X:\MPLAB\DCMOTOR.ASM     
+                      MMS   0x00005c    program     static X:\MPLAB\DCMOTOR.ASM     
+                       MM   0x00005e    program     static X:\MPLAB\DCMOTOR.ASM     
+                  ANALOG1   0x000067    program     static X:\MPLAB\DCMOTOR.ASM     
+                     SEC2   0x00007a    program     static X:\MPLAB\DCMOTOR.ASM     
+                    SETUP   0x000082    program     static X:\MPLAB\DCMOTOR.ASM     
+
+

@@ -1,0 +1,139 @@
+CCS PCM C Compiler, Version 4.018, 12203               16-Þub-07 15:54
+
+               Filename: D:\pic\karsilastiriciler ve gerilim referans birimi\gerilim referans birimi\gerilim_ref.lst
+
+               ROM used: 92 words (4%)
+                         Largest free fragment is 1956
+               RAM used: 15 (7%) at main() level
+                         15 (7%) worst case
+               Stack:    1 worst case (0 in main + 1 for interrupts)
+
+*
+0000:  MOVLW  00
+0001:  MOVWF  0A
+0002:  GOTO   03C
+0003:  NOP
+0004:  MOVWF  7F
+0005:  SWAPF  03,W
+0006:  CLRF   03
+0007:  MOVWF  21
+0008:  MOVF   7F,W
+0009:  MOVWF  20
+000A:  MOVF   0A,W
+000B:  MOVWF  28
+000C:  CLRF   0A
+000D:  SWAPF  20,F
+000E:  MOVF   04,W
+000F:  MOVWF  22
+0010:  MOVF   77,W
+0011:  MOVWF  23
+0012:  MOVF   78,W
+0013:  MOVWF  24
+0014:  MOVF   79,W
+0015:  MOVWF  25
+0016:  MOVF   7A,W
+0017:  MOVWF  26
+0018:  MOVF   7B,W
+0019:  MOVWF  27
+001A:  BCF    03.7
+001B:  BCF    03.5
+001C:  MOVLW  8C
+001D:  MOVWF  04
+001E:  BTFSS  00.6
+001F:  GOTO   022
+0020:  BTFSC  0C.6
+0021:  GOTO   035
+0022:  MOVF   22,W
+0023:  MOVWF  04
+0024:  MOVF   23,W
+0025:  MOVWF  77
+0026:  MOVF   24,W
+0027:  MOVWF  78
+0028:  MOVF   25,W
+0029:  MOVWF  79
+002A:  MOVF   26,W
+002B:  MOVWF  7A
+002C:  MOVF   27,W
+002D:  MOVWF  7B
+002E:  MOVF   28,W
+002F:  MOVWF  0A
+0030:  SWAPF  21,W
+0031:  MOVWF  03
+0032:  SWAPF  7F,F
+0033:  SWAPF  7F,W
+0034:  RETFIE
+.................... //Gerilim referans birimi uygulamasý 
+.................... //16.02.2007 
+.................... //yazan = Remzi ÞAHÝNOÐLU 
+.................... #if defined (__PCM__) 
+.................... #include <16F628A.h> 
+.................... //////// Standard Header file for the PIC16F628A device //////////////// 
+.................... #device PIC16F628A 
+.................... #list 
+....................  
+.................... #use delay(clock=4000000) 
+.................... #fuses NOWDT,PUT,NOLVP,NOBROWNOUT,MCLR,INTRC_IO,NOPROTECT 
+.................... #endif 
+....................  
+.................... #byte CMCON = 0x1F 
+....................  
+.................... #INT_COMP                              // C2out 1 oldugunda program akýsý buradan devam eder    
+.................... void comp_isr()  
+.................... {       
+....................    output_low(PIN_B0);                 // RA1 portundan gelen voltaj vref den  
+0035:  BSF    03.5
+0036:  BCF    06.0
+0037:  BCF    03.5
+0038:  BCF    06.0
+.................... }                                      // küçük oldugunda çýkýs 0 olur           
+....................  
+0039:  BCF    0C.6
+003A:  BCF    0A.3
+003B:  GOTO   022
+.................... void main() 
+.................... { 
+003C:  CLRF   04
+003D:  BCF    03.7
+003E:  MOVLW  1F
+003F:  ANDWF  03,F
+0040:  MOVLW  07
+0041:  MOVWF  1F
+....................    setup_comparator(A0_VR_A1_VR);      // 010 nolu comp aktif edildi 
+0042:  MOVLW  02
+0043:  MOVWF  1F
+0044:  BSF    03.5
+0045:  MOVF   05,W
+0046:  IORLW  03
+0047:  MOVWF  05
+0048:  MOVLW  03
+0049:  MOVWF  77
+004A:  DECFSZ 77,F
+004B:  GOTO   04A
+004C:  BCF    03.5
+004D:  MOVF   1F,W
+004E:  BCF    0C.6
+....................    setup_vref(VREF_LOW|5);             // vref=5 secildi bu 1v ta karsýlýk gelir 
+004F:  MOVLW  A5
+0050:  BSF    03.5
+0051:  MOVWF  1F
+....................    enable_interrupts(INT_COMP);        // karsýlastýrýcý kesmesi aktif 
+0052:  BSF    0C.6
+....................    enable_interrupts(GLOBAL);          // çevresel kesmeler aktif 
+0053:  MOVLW  C0
+0054:  BCF    03.5
+0055:  IORWF  0B,F
+....................     
+.................... tekrar:                   
+....................    output_high(PIN_B0);                // RA1 portundan gelen voltaj vref den 
+0056:  BSF    03.5
+0057:  BCF    06.0
+0058:  BCF    03.5
+0059:  BSF    06.0
+....................    goto tekrar;                        // küçük oldugunda çýkýs 1 olur 
+005A:  GOTO   056
+.................... }   
+....................  
+005B:  SLEEP
+
+Configuration Fuses:
+   Word  1: 3F30   NOWDT PUT NOPROTECT NOBROWNOUT MCLR NOLVP INTRC_IO NOCPD

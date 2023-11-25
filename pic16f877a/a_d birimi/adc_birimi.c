@@ -1,0 +1,26 @@
+// analog dijital dönüþtürücü ile step motoru ileri geri kontrol uygulamasý
+// 22.04.2007
+// yazan = Remzi ÞAHÝNOÐLU
+#if defined (__PCM__)
+#include <16F877A.h>
+#use delay(clock=4000000)
+#fuses XT,NOWDT,NOPROTECT,NOLVP,NOBROWNOUT
+#endif
+
+#byte PORTC = 0x07               
+                       
+char veri = 0;
+                                                 
+void main()              
+{                    
+   setup_adc(ADC_CLOCK_INTERNAL);   // adc modunu belirle
+   setup_adc_ports(AN0);            // adc portunu seç
+   set_adc_channel(0);              // adc kanalýný seç
+   delay_us(10);                    // kanal seçtikten sonra biraz beklenir 
+                                    
+   while(TRUE)
+   {                                                         
+      veri = read_adc();            // analog bilgiyi veri ye yaz
+      output_b(veri);               // veriyi portb den göster  
+   }                           
+}                          

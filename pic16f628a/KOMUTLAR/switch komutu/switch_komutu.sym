@@ -1,0 +1,46 @@
+004-005 @READ_PROGRAM_MEMORY.P1
+015     CCP_1_LOW
+015-016 CCP_1
+016     CCP_1_HIGH
+01F.6   C1OUT
+01F.7   C2OUT
+021     main.i
+022     main.@SCRATCH
+023     @delay_ms1.P1
+077     @SCRATCH
+078     @SCRATCH
+078     _RETURN_
+079     @SCRATCH
+07A     @SCRATCH
+07B     @SCRATCH
+10D     @READ_PROGRAM_MEMORY.P1
+10F     @READ_PROGRAM_MEMORY.P1
+
+0004  @delay_ms1
+0019  main
+004E  @goto10032
+0019  @cinit
+0020  tekrar
+
+Project Files:
+    switch_komutu.c
+    C:\Program Files\PICC\devices\16F628A.h
+
+Units:
+    D:\pic\switch komutu\switch_komutu.c (main)
+
+Compiler Settings:
+    Processor:      PIC16F628A
+    Pointer Size:   16
+    Opt Level:      0
+    Short,Int,Long: 1,8,16
+
+Output Files:
+    Errors:      D:\pic\switch komutu\switch_komutu.err
+    Ext Symbols: D:\pic\switch komutu\switch_komutu.esym
+    INHX8:       D:\pic\switch komutu\switch_komutu.hex
+    Symbols:     D:\pic\switch komutu\switch_komutu.sym
+    List:        D:\pic\switch komutu\switch_komutu.lst
+    Debug/COFF:  D:\pic\switch komutu\switch_komutu.cof
+    Call Tree:   switch_komutu.tre
+    Statistics:  switch_komutu.sta

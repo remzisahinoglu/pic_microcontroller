@@ -1,0 +1,286 @@
+CCS PCM C Compiler, Version 4.074, 34509               22-Eyl-09 01:57
+
+               Filename: D:\epriv\atmproj\pic prog\dizin ayýklama\dizin-ayýklama.lst
+
+               ROM used: 226 words (3%)
+                         Largest free fragment is 2048
+               RAM used: 47 (13%) at main() level
+                         51 (14%) worst case
+               Stack:    2 worst case (1 in main + 1 for interrupts)
+
+*
+0000:  MOVLW  00
+0001:  MOVWF  0A
+0002:  GOTO   078
+0003:  NOP
+0004:  MOVWF  7F
+0005:  SWAPF  03,W
+0006:  CLRF   03
+0007:  MOVWF  21
+0008:  MOVF   0A,W
+0009:  MOVWF  20
+000A:  CLRF   0A
+000B:  MOVF   04,W
+000C:  MOVWF  22
+000D:  MOVF   77,W
+000E:  MOVWF  23
+000F:  MOVF   78,W
+0010:  MOVWF  24
+0011:  MOVF   79,W
+0012:  MOVWF  25
+0013:  MOVF   7A,W
+0014:  MOVWF  26
+0015:  MOVF   7B,W
+0016:  MOVWF  27
+0017:  BCF    03.7
+0018:  BCF    03.5
+0019:  MOVLW  8C
+001A:  MOVWF  04
+001B:  BTFSS  00.5
+001C:  GOTO   01F
+001D:  BTFSC  0C.5
+001E:  GOTO   032
+001F:  MOVF   22,W
+0020:  MOVWF  04
+0021:  MOVF   23,W
+0022:  MOVWF  77
+0023:  MOVF   24,W
+0024:  MOVWF  78
+0025:  MOVF   25,W
+0026:  MOVWF  79
+0027:  MOVF   26,W
+0028:  MOVWF  7A
+0029:  MOVF   27,W
+002A:  MOVWF  7B
+002B:  MOVF   20,W
+002C:  MOVWF  0A
+002D:  SWAPF  21,W
+002E:  MOVWF  03
+002F:  SWAPF  7F,F
+0030:  SWAPF  7F,W
+0031:  RETFIE
+0032:  BCF    0A.3
+0033:  BCF    0A.4
+0034:  GOTO   04A
+.................... // dizin içersindeki veriyi göndermek - basarýlý 
+.................... //21.09.2009 
+.................... //yazan = Remzi ÞAHÝNOÐLU 
+.................... #if defined (__PCM__) 
+.................... #include <16F877A.h> 
+.................... //////// Standard Header file for the PIC16F877A device //////////////// 
+.................... #device PIC16F877A 
+.................... #list 
+....................  
+.................... #fuses XT,NOWDT,NOPROTECT,NOBROWNOUT,NOLVP,NOPUT,NOWRT,NODEBUG,NOCPD 
+.................... #use delay (clock=4000000) // Gecikme fonksiyonu için kullanýlacak osilatör frekansý belirtiliyor. 
+*
+0061:  MOVLW  48
+0062:  MOVWF  04
+0063:  BCF    03.7
+0064:  MOVF   00,W
+0065:  BTFSC  03.2
+0066:  GOTO   075
+0067:  MOVLW  01
+0068:  MOVWF  78
+0069:  CLRF   77
+006A:  DECFSZ 77,F
+006B:  GOTO   06A
+006C:  DECFSZ 78,F
+006D:  GOTO   069
+006E:  MOVLW  4A
+006F:  MOVWF  77
+0070:  DECFSZ 77,F
+0071:  GOTO   070
+0072:  GOTO   073
+0073:  DECFSZ 00,F
+0074:  GOTO   067
+0075:  BCF    0A.3
+0076:  BCF    0A.4
+0077:  GOTO   0D1 (RETURN)
+.................... #use rs232 (baud=9600, xmit=pin_C6, rcv=pin_C7, parity=N, stop=1) // RS232 protokolünün 9600 bit/sn baud hýzýnda olacaðýný ve 
+....................                                                                   // TX,RX uçlarýnýn hangi pinler olacaðýný tanýmlýyor 
+....................                                                                   // parity bitinin olmadýðýný, stop bitinin 1 bit olacaðý belirtiliyor 
+.................... char data[30];  // 80 bytelýk data saklayýcýsý olustur 
+.................... #byte reg = 0x72 
+.................... #byte x = 0x71 
+.................... #byte porta = 0x05     
+....................  
+.................... #int_rda   // RX ucuna veri gelince meydane gelen kesme alt programý buradan devam eder 
+.................... // MESAJ GELDÝ UYARI +CMTI: "MT",1  ÞEKLÝNDE 
+.................... void serihaberlesme_kesmesi () 
+.................... { 
+....................    disable_interrupts(int_rda); // int_rda kesmesini pasif yap 
+*
+004A:  BSF    03.5
+004B:  BCF    0C.5
+....................    output_high(pin_c5);  // RC5 çýkýþý lojik-1 
+004C:  BCF    03.5
+004D:  BCF    46.5
+004E:  MOVF   46,W
+004F:  BSF    03.5
+0050:  MOVWF  07
+0051:  BCF    03.5
+0052:  BSF    07.5
+....................        
+....................    data[0]="A";          // A karakterini kayedet dizinin 0. satýrýna 
+0053:  MOVLW  41
+0054:  MOVWF  28
+....................    data[1]="b"; 
+0055:  MOVLW  62
+0056:  MOVWF  29
+....................     
+....................    output_low(pin_c5);   // RC5 çýkýþý lojik-0 
+0057:  BCF    46.5
+0058:  MOVF   46,W
+0059:  BSF    03.5
+005A:  MOVWF  07
+005B:  BCF    03.5
+005C:  BCF    07.5
+....................     
+.................... } 
+....................  
+.................... /********* ANA PROGRAM FONKSÝYONU********/ 
+....................  
+005D:  BCF    0C.5
+005E:  BCF    0A.3
+005F:  BCF    0A.4
+0060:  GOTO   01F
+.................... void main ( ) 
+.................... { 
+*
+0078:  CLRF   04
+0079:  BCF    03.7
+007A:  MOVLW  1F
+007B:  ANDWF  03,F
+007C:  MOVLW  19
+007D:  BSF    03.5
+007E:  MOVWF  19
+007F:  MOVLW  A6
+0080:  MOVWF  18
+0081:  MOVLW  90
+0082:  BCF    03.5
+0083:  MOVWF  18
+0084:  BSF    03.5
+0085:  BSF    1F.0
+0086:  BSF    1F.1
+0087:  BSF    1F.2
+0088:  BCF    1F.3
+0089:  MOVLW  07
+008A:  MOVWF  1C
+....................    setup_psp(PSP_DISABLED);        // PSP birimi devre dýþý 
+*
+008E:  BSF    03.5
+008F:  BCF    09.4
+....................    setup_timer_1(T1_DISABLED);     // T1 zamanlayýcýsý devre dýþý 
+0090:  BCF    03.5
+0091:  CLRF   10
+....................    setup_timer_2(T2_DISABLED,0,1); // T2 zamanlayýcýsý devre dýþý 
+0092:  MOVLW  00
+0093:  MOVWF  78
+0094:  MOVWF  12
+0095:  MOVLW  00
+0096:  BSF    03.5
+0097:  MOVWF  12
+....................    setup_adc_ports(NO_ANALOGS);    // ANALOG giriþ yok 
+0098:  BSF    1F.0
+0099:  BSF    1F.1
+009A:  BSF    1F.2
+009B:  BCF    1F.3
+....................    setup_adc(ADC_OFF);             // ADC birimi devre dýþý 
+009C:  BCF    03.5
+009D:  BCF    1F.0
+....................    setup_CCP1(CCP_OFF);            // CCP1 birimi devre dýþý 
+009E:  BSF    46.2
+009F:  MOVF   46,W
+00A0:  BSF    03.5
+00A1:  MOVWF  07
+00A2:  BCF    03.5
+00A3:  CLRF   17
+....................    setup_CCP2(CCP_OFF);            // CCP2 birimi devre dýþý 
+00A4:  BSF    46.1
+00A5:  MOVF   46,W
+00A6:  BSF    03.5
+00A7:  MOVWF  07
+00A8:  BCF    03.5
+00A9:  CLRF   1D
+....................  
+....................    output_low(pin_c5); // RC5 çýkýþý ilk anda sýfýrlanýyor 
+00AA:  BCF    46.5
+00AB:  MOVF   46,W
+00AC:  BSF    03.5
+00AD:  MOVWF  07
+00AE:  BCF    03.5
+00AF:  BCF    07.5
+....................  
+....................    enable_interrupts(GLOBAL);      // Aktif edilen tüm kesmelere izin ver 
+00B0:  MOVLW  C0
+00B1:  IORWF  0B,F
+....................  
+....................    while(TRUE) // Sonsuz döngü 
+....................    {   
+....................        
+....................       enable_interrupts(int_rda);   // int_rda kesmesi aktif 
+00B2:  BSF    03.5
+00B3:  BSF    0C.5
+....................       if(bit_test(porta,0)==1) 
+00B4:  BCF    03.5
+00B5:  BTFSS  05.0
+00B6:  GOTO   0E0
+....................       { 
+....................          putc(data[0]);                     // dizin içersindeki veriyi gonder 
+00B7:  MOVF   28,W
+00B8:  BTFSS  0C.4
+00B9:  GOTO   0B8
+00BA:  MOVWF  19
+....................          putc(data[1]); 
+00BB:  MOVF   29,W
+00BC:  BTFSS  0C.4
+00BD:  GOTO   0BC
+00BE:  MOVWF  19
+....................          printf("atd 05358574412\r");       // \r=0D ENTER-SATIR BAÞI, \n=0A SATIR ATLA   
+00BF:  CLRF   47
+00C0:  MOVF   47,W
+00C1:  CALL   035
+00C2:  INCF   47,F
+00C3:  MOVWF  77
+00C4:  MOVF   77,W
+00C5:  BTFSS  0C.4
+00C6:  GOTO   0C5
+00C7:  MOVWF  19
+00C8:  MOVLW  10
+00C9:  SUBWF  47,W
+00CA:  BTFSS  03.2
+00CB:  GOTO   0C0
+....................          delay_ms(1000);                    // butondaki arký söndürmek için bekle 
+00CC:  MOVLW  04
+00CD:  MOVWF  47
+00CE:  MOVLW  FA
+00CF:  MOVWF  48
+00D0:  GOTO   061
+00D1:  DECFSZ 47,F
+00D2:  GOTO   0CE
+....................          for (x=0; x<31; x=x+1) 
+00D3:  CLRF   71
+00D4:  MOVF   71,W
+00D5:  SUBLW  1E
+00D6:  BTFSS  03.0
+00D7:  GOTO   0E0
+....................          {                          // x nin degeri 80 den küçük oldugu sürece   
+....................             data[x]=0;              // döngünün içini yap 
+00D8:  MOVLW  28
+00D9:  ADDWF  71,W
+00DA:  MOVWF  04
+00DB:  BCF    03.7
+00DC:  CLRF   00
+....................          } 
+00DD:  MOVLW  01
+00DE:  ADDWF  71,F
+00DF:  GOTO   0D4
+....................       } 
+....................    } 
+00E0:  GOTO   0B2
+.................... } 
+00E1:  SLEEP
+
+Configuration Fuses:
+   Word  1: 3F39   XT NOWDT NOPUT NODEBUG NOPROTECT NOBROWNOUT NOLVP NOCPD NOWRT

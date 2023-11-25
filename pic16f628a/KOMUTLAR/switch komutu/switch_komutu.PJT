@@ -1,0 +1,40 @@
+[PROJECT]
+Target=switch_komutu.HEX
+Development_Mode=2
+Processor=0x628A
+ToolSuite=CCS
+Processor_Text=PIC16F628A
+
+[Directories]
+Include=
+Library=
+LinkerScript=
+
+[Target Data]
+FileList=D:\pic\switch komutu\switch_komutu.c
+BuildTool=C-COMPILER
+OptionString=+FM
+AdditionalOptionString=
+BuildRequired=1
+
+[switch_komutu.c]
+Type=4
+Path=
+FileList=
+BuildTool=
+OptionString=
+AdditionalOptionString=
+
+[mru-list]
+1=SWITCH~1.C
+
+[Windows]
+0=0000 SWITCH~1.C 0 0 796 451 3 0
+
+[Opened Files]
+1=D:\pic\switch komutu\switch_komutu.c
+2=
+[Units]
+Count=1
+1=switch_komutu.c (main)
+Link=0

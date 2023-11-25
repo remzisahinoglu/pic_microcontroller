@@ -1,0 +1,50 @@
+
+ROM used: 86 (4%)
+          86 (4%) including unused fragments
+
+          0 Average locations per line
+          5 Average locations per statement
+
+RAM used: 8 (4%) at main() level
+          9 (4%) worst case
+
+Stack used: 1 worst case (out of 8 total available)
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+   30    17 100  switch_komutu.c
+  205     0   0  C:\Program Files\PICC\devices\16F628A.h
+----- -----
+  235    17 Total
+
+Page ROM  %  RAM   Vol Diff  Functions:
+---- --- --- ---   --- ----  ----------
+0     21  24   1             @delay_ms1
+0     53  62   2   418  5.6  main
+0      8   9   0   220  4.5  @goto10032
+
+Program metrics:
+    Functions               2
+    Statements              17
+    Comments                71
+    Volume (V)              756
+    Difficilty (D)          10.0
+    Effort to implement (E) 7546
+    Time to implement (T)   7 minutes
+    Est Delivered Bugs (B)  0
+    Cyclomatic Complexity   6
+    Maintainability (MI)    114
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00003     4  0  
+00004-007FF    82  1962  
+
+
+
+THE FOLLOWING IS TEMPORARY FOR DIAGNOSTIC USE ONLY:
+
+    n1    n2    N1    N2   v(G)
+     0     1     0     0     0    @delay_ms1
+    12    31    48    29     5    main
+    10    22    24    20     1    @goto10032

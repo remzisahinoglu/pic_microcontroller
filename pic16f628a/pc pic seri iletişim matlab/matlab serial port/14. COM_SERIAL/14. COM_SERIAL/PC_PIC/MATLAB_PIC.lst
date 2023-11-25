@@ -1,0 +1,296 @@
+PM Assembler 4.08, Copyright (c) 1995, 2006 microEngineering Labs, Inc.					Page 1
+
+     1					
+     2					; PICBASIC PRO(TM) Compiler 2.47, (c) 1998, 2006 microEngineering Labs, In
+     3	=0001				PM_USED			EQU	1
+     4					
+     5						INCLUDE	"16F628A.INC"
+*    1					;****************************************************************
+*    2					;*  16F628A.INC                                                 *
+*    3					;*                                                              *
+*    4					;*  By        : Leonard Zerman, Jeff Schmoyer                   *
+*    5					;*  Notice    : Copyright (c) 2003 microEngineering Labs, Inc.  *
+*    6					;*              All Rights Reserved                             *
+*    7					;*  Date      : 11/06/03                                        *
+*    8					;*  Version   : 2.45                                            *
+*    9					;*  Notes     :                                                 *
+*   10					;****************************************************************
+*   13					        LIST
+*   14					        include 'M16F62xA.INC'  ; PM header
+*    1					;*************************************************************************
+*    2					; PIC16F62xA Family Header
+*    3					;       Copyright 1995, 2006 microEngineering Labs, Inc.
+*    4					;*************************************************************************
+*  206					        LIST
+*   15					        device  pic16F628A, xt_osc, wdt_on, mclr_on, lvp_off, protect_off
+*   16					        XALL
+*   25					        LIST
+     6					
+     7	=0020				RAM_START       		EQU	00020h
+     8	=014F				RAM_END         		EQU	0014Fh
+     9	=0003				RAM_BANKS       		EQU	00003h
+    10	=0020				BANK0_START     		EQU	00020h
+    11	=007F				BANK0_END       		EQU	0007Fh
+    12	=00A0				BANK1_START     		EQU	000A0h
+    13	=00EF				BANK1_END       		EQU	000EFh
+    14	=0120				BANK2_START     		EQU	00120h
+    15	=014F				BANK2_END       		EQU	0014Fh
+    16	=2100				EEPROM_START    		EQU	02100h
+    17	=217F				EEPROM_END      		EQU	0217Fh
+    18					
+    19	=0020				R0              		EQU	RAM_START + 000h
+    20	=0022				R1              		EQU	RAM_START + 002h
+    21	=0024				R2              		EQU	RAM_START + 004h
+    22	=0026				R3              		EQU	RAM_START + 006h
+    23	=0028				R4              		EQU	RAM_START + 008h
+    24	=002A				R5              		EQU	RAM_START + 00Ah
+    25	=002C				R6              		EQU	RAM_START + 00Ch
+    26	=002E				R7              		EQU	RAM_START + 00Eh
+    27	=0030				R8              		EQU	RAM_START + 010h
+    28	=0032				FLAGS           		EQU	RAM_START + 012h
+    29	=0033				GOP             		EQU	RAM_START + 013h
+    30	=0034				RM1             		EQU	RAM_START + 014h
+    31	=0035				RM2             		EQU	RAM_START + 015h
+    32	=0036				RR1             		EQU	RAM_START + 016h
+    33	=0037				RR2             		EQU	RAM_START + 017h
+    34	=0038				_valor           		EQU	RAM_START + 018h
+    35	=0006				_PORTL           		EQU	 PORTB
+    36	=0005				_PORTH           		EQU	 PORTA
+    37	=0086				_TRISL           		EQU	 TRISB
+    38	=0085				_TRISH           		EQU	 TRISA
+PM Assembler 4.08, Copyright (c) 1995, 2006 microEngineering Labs, Inc.					Page 2
+
+    39					#define _PORTB??0        	 PORTB, 000h
+    40					#define _PORTB??1        	 PORTB, 001h
+    41					
+    42					; Constants.
+    43	=0000				_T2400           		EQU	00000h
+    44	=0001				_T1200           		EQU	00001h
+    45	=0002				_T9600           		EQU	00002h
+    46	=0003				_T300            		EQU	00003h
+    47	=0004				_N2400           		EQU	00004h
+    48	=0005				_N1200           		EQU	00005h
+    49	=0006				_N9600           		EQU	00006h
+    50	=0007				_N300            		EQU	00007h
+    51	=0008				_OT2400          		EQU	00008h
+    52	=0009				_OT1200          		EQU	00009h
+    53	=000A				_OT9600          		EQU	0000Ah
+    54	=000B				_OT300           		EQU	0000Bh
+    55	=000C				_ON2400          		EQU	0000Ch
+    56	=000D				_ON1200          		EQU	0000Dh
+    57	=000E				_ON9600          		EQU	0000Eh
+    58	=000F				_ON300           		EQU	0000Fh
+    59	=0000				_MSBPRE          		EQU	00000h
+    60	=0001				_LSBPRE          		EQU	00001h
+    61	=0002				_MSBPOST         		EQU	00002h
+    62	=0003				_LSBPOST         		EQU	00003h
+    63	=0000				_LSBFIRST        		EQU	00000h
+    64	=0001				_MSBFIRST        		EQU	00001h
+    65	=0000				_CLS             		EQU	00000h
+    66	=0001				_HOME            		EQU	00001h
+    67	=0007				_BELL            		EQU	00007h
+    68	=0008				_BKSP            		EQU	00008h
+    69	=0009				_TAB             		EQU	00009h
+    70	=000D				_CR              		EQU	0000Dh
+    71	=0012				_UnitOn          		EQU	00012h
+    72	=001A				_UnitOff         		EQU	0001Ah
+    73	=001C				_UnitsOff        		EQU	0001Ch
+    74	=0014				_LightsOn        		EQU	00014h
+    75	=0010				_LightsOff       		EQU	00010h
+    76	=001E				_Dim             		EQU	0001Eh
+    77	=0016				_Bright          		EQU	00016h
+    78						INCLUDE	"MATLAB~2.MAC"
+*    1					
+*   56						LIST
+    79						INCLUDE	"PBPPIC14.LIB"
+*    1					;******************************************************************
+*    2					;*  PBPPIC14.LIB                                                  *
+*    3					;*                                                                *
+*    4					;*  By        : Leonard Zerman, Jeff Schmoyer                     *
+*    5					;*  Notice    : Copyright (c) 2006 microEngineering Labs, Inc.    *
+*    6					;*              All Rights Reserved                               *
+*    7					;*  Date      : 01/16/06                                          *
+*    8					;*  Version   : 2.47                                              *
+*    9					;*  Notes     :                                                   *
+*   10					;******************************************************************
+*   45					  LIST
+*   46					; Oscillator is 4MHz
+* 1110					  LIST
+* 1111					    ORG 0                       ; Reset vector at 0
+* 1125					  LIST
+PM Assembler 4.08, Copyright (c) 1995, 2006 microEngineering Labs, Inc.					Page 3
+
+* 1126	0000- 2859			        goto    INIT            ; Finish initialization
+* 3625					  LIST
+* 3626	0001-				SERIN   CLRWDT?			; Keep Watchdog timer clear
+     +	0001- 0064			        clrwdt
+* 3627	0002- 2011			        call    serinbit        ; Get a serial bit
+* 3628	0003- 1803			        btfsc   STATUS, C       ; Wait for start bit
+* 3629	0004- 2801			        goto    SERIN
+* 3635					  LIST
+* 3636	0005- 201C			serinstart call sersdelay       ; Wait 1/4 bit time
+* 3637	0006- 3008			        movlw   8               ; 8 bits to a byte
+* 3638	0007- 00A3			        movwf   R1 + 1          ; Bit counter
+* 3639	0008- 201D			serinloop call  serdelay        ; 2 (22) Wait bit time
+* 3640	0009- 2011			        call    serinbit        ; 14 Get a bit
+* 3641	000A- 0CA2			        rrf     R1, F           ; 1 Move bit into byte
+* 3642	000B- 280C			        goto    $ + 1           ; 2 Burn more time
+* 3643	000C- 0BA3			        decfsz  R1 + 1, F       ; 1 / 2 More bits?
+* 3644	000D- 2808			        goto    serinloop       ; 2 / 0 Yes
+* 3645	000E- 201D			        call    serdelay        ; Delay to stop bit
+* 3646					      ifdef SERINTO_USED
+* 3647					        bsf     STATUS, C       ; Indicate not timed out (C set)
+* 3648					      endif
+* 3649	000F- 0822			        movf    R1, W           ; Get char to W
+* 3650	0010- 0008			        return
+* 3651					
+* 3652	0011- 0836			serinbit movf   RR1, W          ; 1 (14) Get port
+* 3653	0012- 0084			        movwf   FSR             ; 1
+* 3654	0013- 0834			        movf    RM1, W          ; 1 W = Bit Mask
+* 3655	0014- 1784			        bsf     FSR, 7          ; 1 Point to TRIS
+* 3656	0015- 0480			        iorwf   INDF, F         ; 1 Set bit to input
+* 3657	0016- 1384			        bcf     FSR, 7          ; 1 Point back to port
+* 3658	0017- 0500			        andwf   INDF, W         ; 1 W = Current State
+* 3659	0018- 1933			        btfsc   GOP,2           ; 1 / 2 Invert if 'N' Mode
+* 3660	0019- 0634			        xorwf   RM1, W          ; 1 / 0
+* 3661	001A- 3EFF			        addlw   -1              ; 1 Move bit to Carry
+* 3662	001B- 0008			        return                  ; 2 Done
+* 3804					  LIST
+* 3805					      ifdef SERINX_USED
+* 3806	001C- 1733			sersdelay bsf   GOP, 6          ; Mark short delay
+* 3807					      endif
+* 3808	001D- 0D33			serdelay rlf    GOP, W          ; 1 (22 + 22) Get baud value x 2
+* 3809	001E- 3906			        andlw   06h             ; 1 Mask to our bits
+* 3810	001F- 00A0			        movwf   R0              ; 1 Save it
+* 3811	0020- 202B			        call    sergettbl       ; 9 Get high part of delay
+* 3812	0021- 00A1			        movwf   R0 + 1          ; 1 Store for PAUSEUS
+* 3813	0022- 0AA0			        incf    R0, F           ; 1 Point to low entry
+* 3814	0023- 202B			        call    sergettbl       ; 9 Get low part of delay
+* 3815					      ifndef SERINX_USED
+* 3816					        nop                     ; 1
+* 3817					        goto    PAUSEUSL        ; -2 (PAUSEUSL gives you 2 less than you a
+* 3818					      else
+* 3819	0024- 1F33			        btfss   GOP, 6          ; 1
+* 3820	0025- 2838			        goto    PAUSEUSL        ; -2 (PAUSEUSL gives you 2 less than you a
+* 3821	0026- 1333			        bcf     GOP, 6          ; Clear short delay mark
+* 3822	0027- 00A0			        movwf   R0              ; Save low part
+* 3823	0028- 3002			        movlw   2               ; Divide time by 4
+* 3824	0029- 204F			        call    SHIFTR
+* 3825	002A- 2838			        goto    PAUSEUSL        ; Do 1/4 delay
+* 3826	=0001				SHIFTR_USED = 1
+PM Assembler 4.08, Copyright (c) 1995, 2006 microEngineering Labs, Inc.					Page 4
+
+* 3827					      endif
+* 3828					
+* 3829	002B- 3000			sergettbl movlw sertable >> 8   ; 1 Set PC latch high
+* 3830	002C- 008A			        movwf   PCLATH          ; 1
+* 3831	002D- 0820			        movf    R0, W           ; 1 Get value for jump
+* 3832					        TABLE?C 8               ; 4 Do jump
+     +	002E- 0782			        addwf   PCL, F
+* 3833	002F- 3401			sertable retlw  high SDELAY_2400
+* 3834	0030- 3475			        retlw   low SDELAY_2400
+* 3835	0031- 3403			        retlw   high SDELAY_1200
+* 3836	0032- 3415			        retlw   low SDELAY_1200
+* 3837	0033- 3400			        retlw   high SDELAY_9600
+* 3838	0034- 343C			        retlw   low SDELAY_9600
+* 3839	0035- 340C			        retlw   high SDELAY_300
+* 3840	0036- 34D9			        retlw   low SDELAY_300
+* 6195					  LIST
+* 6196	0037- 01A1			PAUSEUS clrf    R0 + 1          ; 1
+* 6197	0038- 3EE8			PAUSEUSL addlw  -24             ; 1 Subtract overhead
+* 6198	0039- 00A0			        movwf   R0              ; 1
+* 6199	003A- 09A1			        comf    R0 + 1, F       ; 1
+* 6200	003B- 30FC			        movlw   -4              ; 1
+* 6201	003C- 1C03			        btfss   STATUS, C       ; 1 / 2
+* 6202	003D- 2841			        goto    pauseush        ; 2 / 0
+* 6203	003E- 07A0			pauseusloop addwf R0, F         ; 1
+* 6204	003F- 1803			        btfsc   STATUS, C       ; 1 / 2
+* 6205	0040- 283E			        goto    pauseusloop     ; 2 / 0
+* 6206	0041- 07A0			pauseush addwf  R0, F           ; 1 Do an extra countdown
+* 6207					        CLRWDT?NOP		; 1 Keep Watchdog clear
+     +	0042- 0064			        clrwdt
+* 6208	0043- 0FA1			        incfsz  R0 + 1, F       ; 1 / 2
+* 6209	0044- 283E			        goto    pauseusloop     ; 2 / 0
+* 6210	0045- 1820			        btfsc   R0, 0           ; 1 / 2
+* 6211	0046- 2847			        goto    $ + 1           ; 2 / 0 Burn an extra cycle
+* 6212	0047- 1CA0			        btfss   R0, 1           ; 1 / 2
+* 6213	0048- 284B			        goto    pauseusdone     ; 2 / 0
+* 6214	0049- 0000			        nop                     ; 1
+* 6215	004A- 284B			        goto    $ + 1           ; 2 Burn an extra 2 cycles
+* 6216	004B- 0008			pauseusdone return              ; 2 + 3 (call + setup)
+* 6726					  LIST
+* 6727	004C- 1003			shiftrloop bcf  STATUS, C       ; Shift in 0 bits
+* 6728	004D- 0CA1			        rrf     R0 + 1, F       ; Shift right once
+* 6729	004E- 0CA0			        rrf     R0, F
+* 6730	004F- 3EFF			SHIFTR  addlw   -1
+* 6731	0050- 1803			        btfsc   STATUS, C       ; Done?
+* 6732	0051- 284C			        goto    shiftrloop
+* 6733	0052- 0820			        movf    R0, W           ; Move low part of result to W
+* 6734	0053- 2854			        goto    DONE
+* 7403					  LIST
+* 7404	0054- 1383			DONE    bcf     STATUS, IRP     ; 1 Set FSR to bank 0/1
+* 7405	0055- 1303			        bcf     STATUS, RP1     ; 1 Show direct bank 0
+* 7406	0056- 1283			        bcf     STATUS, RP0     ; 1
+* 7407					        CLRWDT?NOP		; 1 Hit Watchdog timer
+     +	0057- 0064			        clrwdt
+* 7408	0058- 0008			DONERET return                  ; 2 Done
+* 7432					  LIST
+* 7433	0059-				INIT
+* 7471					  LIST
+* 7472	0059-				main
+PM Assembler 4.08, Copyright (c) 1995, 2006 microEngineering Labs, Inc.					Page 5
+
+    80					
+    81						MOVE?CB	001h, TRISB
+     +	0059- 1683			        bsf     STATUS, RP0
+     +	005A- 3001			        movlw   low (001h)
+     +	005B- 0086			        movwf   TRISB
+    82						MOVE?CB	000h, PORTB
+     +	005C- 1283			        bcf     STATUS, RP0
+     +	005D- 0186			        clrf    PORTB
+    83					
+    84						LABEL?L	_inicio	
+     +					        LALL
+     +	005E-				_inicio
+    85						SERPIN?T	_PORTB??0
+     +	005E- 3006			        movlw   low (PORTB)
+     +	005F- 00B6			        movwf   RR1
+     +	0060- 3001			        movlw   01h
+     +	0061- 00B4			        movwf   RM1
+    86						SERMODE?C	_T2400
+     +	0062- 01B3			        clrf    GOP
+    87						SERIN?B	_valor
+     +	0063- 2001			        call    SERIN
+     +	0064- 00B8			        movwf   _valor
+    88						CMPNE?BCL	_valor, 045h, L00001
+     +	0065- 0064			        clrwdt
+     +	0066- 0838			        movf    _valor, W
+     +	0067- 3C45			        sublw   045h
+     +	0068- 1D03			        btfss   STATUS, Z
+     +	0069- 286E			        goto    L00001
+    89						HIGH?T	_PORTB??1
+     +	006A- 1486			        bsf     PORTB, 001h
+     +	006B- 1683			        bsf     STATUS, RP0
+     +	006C- 1086			        bcf     ((PORTB) + 80h), 001h
+    90						LABEL?L	L00001	
+     +	006D- 1283			        bcf     STATUS, RP0
+     +					        LALL
+     +	006E-				L00001
+    91						CMPNE?BCL	_valor, 041h, L00003
+     +	006E- 0064			        clrwdt
+     +	006F- 0838			        movf    _valor, W
+     +	0070- 3C41			        sublw   041h
+     +	0071- 1D03			        btfss   STATUS, Z
+     +	0072- 2877			        goto    L00003
+    92						LOW?T	_PORTB??1
+     +	0073- 1086			        bcf     PORTB, 001h
+     +	0074- 1683			        bsf     STATUS, RP0
+     +	0075- 1086			        bcf     ((PORTB) + 80h), 001h
+    93						LABEL?L	L00003	
+     +	0076- 1283			        bcf     STATUS, RP0
+     +					        LALL
+     +	0077-				L00003
+    94						GOTO?L	_inicio
+     +	0077- 285E			        goto    _inicio
+    95					
+    96						END

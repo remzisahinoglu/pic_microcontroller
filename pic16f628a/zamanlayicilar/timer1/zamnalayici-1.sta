@@ -1,0 +1,49 @@
+
+ROM used: 114 (6%)
+          114 (6%) including unused fragments
+
+          0 Average locations per line
+          5 Average locations per statement
+
+RAM used: 17 (8%) at main() level
+          17 (8%) worst case
+
+Stack used: 1 worst case (out of 7 total available)
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+   51    22 100  zamnalayici-1.c
+  205     0   0  C:\Program Files\PICC\devices\16F628A.h
+----- -----
+  256    22 Total
+
+Page ROM  %  RAM   Vol Diff  Functions:
+---- --- --- ---   --- ----  ----------
+0     22  19   0   214  4.0  timer1
+0     39  34   0   228  4.0  MAIN
+
+Program metrics:
+    Functions               2
+    Statements              22
+    Comments                82
+    Volume (V)              533
+    Difficilty (D)          8.1
+    Effort to implement (E) 4318
+    Time to implement (T)   4 minutes
+    Est Delivered Bugs (B)  0
+    Cyclomatic Complexity   4
+    Maintainability (MI)    79
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00003     4  0  
+00004-00034    49  0  
+00035-007FF    61  1934  
+
+
+
+THE FOLLOWING IS TEMPORARY FOR DIAGNOSTIC USE ONLY:
+
+    n1    n2    N1    N2   v(G)
+     9    20    26    18     2    timer1
+     9    20    29    18     2    MAIN

@@ -1,0 +1,209 @@
+CCS PCM C Compiler, Version 4.018, 19894               28-Nis-07 13:01
+
+               Filename: C:\pic\pic16f628a\klavyeden veri okuma\klavye.lst
+
+               ROM used: 133 words (6%)
+                         Largest free fragment is 1915
+               RAM used: 9 (4%) at main() level
+                         9 (4%) worst case
+               Stack:    1 locations
+
+*
+0000:  MOVLW  00
+0001:  MOVWF  0A
+0002:  GOTO   019
+0003:  NOP
+.................... //Pic kalavye iletiþim uygulamasý 
+.................... //28.04.2007 
+.................... //yazan = Remzi ÞAHÝNOÐLU 
+.................... // 
+.................... // klavyedeki karakterlerin binary karþýþýklarýný portb ye yazdýran program 
+.................... // hýzlý yazýldýgý zaman hata veriyor :) 
+....................  
+.................... #if defined (__PCM__) 
+.................... #include <16F628A.h> 
+.................... //////// Standard Header file for the PIC16F628A device //////////////// 
+.................... #device PIC16F628A 
+.................... #list 
+....................  
+.................... #use delay(clock=4000000) 
+*
+0004:  MOVLW  22
+0005:  MOVWF  04
+0006:  BCF    03.7
+0007:  MOVF   00,W
+0008:  BTFSC  03.2
+0009:  GOTO   018
+000A:  MOVLW  01
+000B:  MOVWF  78
+000C:  CLRF   77
+000D:  DECFSZ 77,F
+000E:  GOTO   00D
+000F:  DECFSZ 78,F
+0010:  GOTO   00C
+0011:  MOVLW  4A
+0012:  MOVWF  77
+0013:  DECFSZ 77,F
+0014:  GOTO   013
+0015:  GOTO   016
+0016:  DECFSZ 00,F
+0017:  GOTO   00A
+0018:  GOTO   06F (RETURN)
+.................... #fuses NOWDT,PUT,NOLVP,NOBROWNOUT,MCLR,INTRC_IO,NOPROTECT 
+.................... #endif 
+....................  
+.................... #byte PORTA = 0x05 
+.................... // veri adresini tanýmladým 
+.................... #byte veri = 0x25 
+.................... #bit b_0 = 0x25.0 
+.................... #bit b_1 = 0x25.1 
+.................... #bit b_2 = 0x25.2 
+.................... #bit b_3 = 0x25.3 
+.................... #bit b_4 = 0x25.4 
+.................... #bit b_5 = 0x25.5 
+.................... #bit b_6 = 0x25.6 
+.................... #bit b_7 = 0x25.7 
+....................  
+.................... char clk=0, mev_veri=0; 
+*
+001F:  CLRF   20
+0020:  CLRF   21
+....................  
+.................... void main() 
+.................... { 
+*
+0019:  CLRF   04
+001A:  BCF    03.7
+001B:  MOVLW  1F
+001C:  ANDWF  03,F
+001D:  MOVLW  07
+001E:  MOVWF  1F
+....................    veri=0;                      
+*
+0021:  CLRF   25
+....................    output_b(0); 
+0022:  BSF    03.5
+0023:  CLRF   06
+0024:  BCF    03.5
+0025:  CLRF   06
+....................        
+....................    while(TRUE) 
+....................    {             
+....................       tekrar: 
+....................       if(bit_test(PORTA,4)==0)   // clock palsi -start biti- 
+0026:  BTFSC  05.4
+0027:  GOTO   071
+....................       {      
+....................          bekle:                          
+....................          if(bit_test(PORTA,4)==0){goto bekle;}   // ilk yükselen kenar biti gelene kadar bekle  
+0028:  BTFSS  05.4
+0029:  GOTO   028
+....................                             
+....................          clk=clk+1;      // ilk clock pals geldi 
+002A:  MOVLW  01
+002B:  ADDWF  20,F
+....................          bekle1: 
+....................          switch (clk)    // clock palse göre veriyi algýlayýp kaydet  
+....................          {             
+002C:  MOVLW  01
+002D:  SUBWF  20,W
+002E:  ADDLW  F8
+002F:  BTFSC  03.0
+0030:  GOTO   063
+0031:  ADDLW  08
+0032:  GOTO   079
+....................             case 1:   if(bit_test(PORTA,3)==1){b_0=1;} else{b_0=0;}   break; 
+0033:  BTFSS  05.3
+0034:  GOTO   037
+0035:  BSF    25.0
+0036:  GOTO   038
+0037:  BCF    25.0
+0038:  GOTO   063
+....................             case 2:   if(bit_test(PORTA,3)==1){b_1=1;} else{b_1=0;}   break; 
+0039:  BTFSS  05.3
+003A:  GOTO   03D
+003B:  BSF    25.1
+003C:  GOTO   03E
+003D:  BCF    25.1
+003E:  GOTO   063
+....................             case 3:   if(bit_test(PORTA,3)==1){b_2=1;} else{b_2=0;}   break; 
+003F:  BTFSS  05.3
+0040:  GOTO   043
+0041:  BSF    25.2
+0042:  GOTO   044
+0043:  BCF    25.2
+0044:  GOTO   063
+....................             case 4:   if(bit_test(PORTA,3)==1){b_3=1;} else{b_3=0;}   break; 
+0045:  BTFSS  05.3
+0046:  GOTO   049
+0047:  BSF    25.3
+0048:  GOTO   04A
+0049:  BCF    25.3
+004A:  GOTO   063
+....................             case 5:   if(bit_test(PORTA,3)==1){b_4=1;} else{b_4=0;}   break; 
+004B:  BTFSS  05.3
+004C:  GOTO   04F
+004D:  BSF    25.4
+004E:  GOTO   050
+004F:  BCF    25.4
+0050:  GOTO   063
+....................             case 6:   if(bit_test(PORTA,3)==1){b_5=1;} else{b_5=0;}   break; 
+0051:  BTFSS  05.3
+0052:  GOTO   055
+0053:  BSF    25.5
+0054:  GOTO   056
+0055:  BCF    25.5
+0056:  GOTO   063
+....................             case 7:   if(bit_test(PORTA,3)==1){b_6=1;} else{b_6=0;}   break; 
+0057:  BTFSS  05.3
+0058:  GOTO   05B
+0059:  BSF    25.6
+005A:  GOTO   05C
+005B:  BCF    25.6
+005C:  GOTO   063
+....................             case 8:   if(bit_test(PORTA,3)==1){b_7=1;} else{b_7=0;}   break;             
+005D:  BTFSS  05.3
+005E:  GOTO   061
+005F:  BSF    25.7
+0060:  GOTO   062
+0061:  BCF    25.7
+0062:  GOTO   063
+....................          }                                        
+....................          mev_veri = veri;      // veriyi mevcut veriye kaydet ardýndan veriyi sil ki  
+0063:  MOVF   25,W
+0064:  MOVWF  21
+....................                                // sonraki veriler üst üste binmesin                   
+....................          if(bit_test(PORTA,4)==1){goto bekle1;}   // diger clk gelene kadar sürekli algýla ve yaz 
+0065:  BTFSC  05.4
+0066:  GOTO   02C
+....................                             
+....................          if(clk == 11)            // son clk mý? 
+0067:  MOVF   20,W
+0068:  SUBLW  0B
+0069:  BTFSS  03.2
+006A:  GOTO   070
+....................          {clk=0; delay_ms(50);}   // evet clkyý sil ve -uzun çizgi (stop) için bekletme yaptým- 
+006B:  CLRF   20
+006C:  MOVLW  32
+006D:  MOVWF  22
+006E:  GOTO   004
+....................          else 
+006F:  GOTO   071
+....................          {goto tekrar;}           // hayýr tekrar veriyi almaya git                 
+0070:  GOTO   026
+....................       }       
+....................       veri = 0;                   // sonraki veriler üst üste binmesin diye siliniyor 
+0071:  CLRF   25
+....................       output_b(mev_veri);         // veriyi portb ye çak       
+0072:  BSF    03.5
+0073:  CLRF   06
+0074:  BCF    03.5
+0075:  MOVF   21,W
+0076:  MOVWF  06
+....................    } 
+0077:  GOTO   026
+.................... } 
+0078:  SLEEP
+
+Configuration Fuses:
+   Word  1: 3F30   NOWDT PUT NOPROTECT NOBROWNOUT MCLR NOLVP INTRC_IO NOCPD

@@ -1,0 +1,83 @@
+004-005 @READ_PROGRAM_MEMORY8.P1
+006     lcd
+015-016 CCP_1
+015     CCP_1_LOW
+016     CCP_1_HIGH
+01F.6   C1OUT
+01F.7   C2OUT
+020     cont
+021-028 bat0
+029-030 bat20
+031-038 bat40
+039-040 bat60
+041-048 bat80
+049-050 bat100
+051     anim.i
+051     lcd_init.i
+051     MAIN.@SCRATCH1
+052     lcd_putc.c
+052     lcd_init.@SCRATCH1
+052     anim.@SCRATCH1
+053     lcd_gotoxy.x
+053     @delay_ms1.P1
+054     lcd_gotoxy.y
+055     lcd_gotoxy.address
+056     lcd_gotoxy.@SCRATCH1
+057     lcd_send_byte.address
+058     lcd_send_byte.n
+059     lcd_read_byte.low
+059     lcd_send_byte.@SCRATCH1
+05A     lcd_read_byte.high
+05A     lcd_send_nibble.n
+05B     lcd_read_byte.@SCRATCH1
+077     @SCRATCH
+078     @SCRATCH
+078     _RETURN_
+079     @SCRATCH
+07A     @SCRATCH
+07B     @SCRATCH
+10D-10E @READ_PROGRAM_MEMORY8.P1
+
+ROM Allocation:
+001C  @delay_ms1
+0004  LCD_INIT_STRING
+003E  lcd_read_byte
+0031  lcd_send_nibble
+003D  lcd_send_byte
+0073  lcd_init
+0123  lcd_gotoxy
+0135  lcd_putc
+015B  MAIN
+000C  @const95
+009C  anim
+0119  @goto10151
+015B  @cinit
+
+Project Directory:
+    C:\Documents and Settings\ugur\Desktop\lcd\lcd caracter nuevo\
+
+Project Files:
+    vs_bateria.c
+    ..\..\..\..\..\Program Files\PICC\devices\16f648a.h
+    ..\..\..\..\..\Program Files\PICC\drivers\lcd.c
+
+Units:
+    C:\Documents and Settings\ugur\Desktop\lcd\lcd caracter nuevo\vs_bateria.c (main)
+
+Compiler Settings:
+    Processor:      PIC16F648A
+    Pointer Size:   16
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    Errors:      vs_bateria.err
+    Ext Symbols: vs_bateria.esym
+    INHX8:       vs_bateria.hex
+    Symbols:     vs_bateria.sym
+    List:        vs_bateria.lst
+    Debug/COFF:  vs_bateria.cof
+    Project:     vs_bateria.PJT
+    Call Tree:   vs_bateria.tre
+    Statistics:  vs_bateria.sta

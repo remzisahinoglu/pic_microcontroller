@@ -1,0 +1,15 @@
+ÀÄdemux
+   ÀÄMAIN  0/158  Ram=1
+      ÃÄ??0??
+      ÃÄlcd_init  0/78  Ram=2
+      ³  ÃÄ@delay_ms1  0/40  Ram=1
+      ³  ÃÄlcd_send_nibble  0/24  Ram=1
+      ³  ÃÄ@delay_ms1  0/40  Ram=1
+      ³  ÃÄlcd_send_nibble  0/24  Ram=1
+      ³  ÃÄ@const208  0/20  Ram=0
+      ³  ÀÄlcd_send_byte  0/56  Ram=3
+      ³     ÃÄlcd_read_byte  0/56  Ram=3
+      ³     ÃÄlcd_send_nibble  0/24  Ram=1
+      ³     ÀÄlcd_send_nibble  0/24  Ram=1
+      ÃÄ@PSTRINGC_9600_31766_31767  0/34  Ram=2
+      ÀÄ@PSTRINGC_9600_31766_31767  0/34  Ram=2

@@ -1,0 +1,75 @@
+CCS PCM C Compiler, Version 4.018, 12203               10-Þub-07 21:02
+
+               Filename: D:\pic\fonk tanýmlama oluþturma\fonksiyon.lst
+
+               ROM used: 31 words (2%)
+                         Largest free fragment is 2017
+               RAM used: 7 (3%) at main() level
+                         8 (4%) worst case
+               Stack:    1 locations
+
+*
+0000:  MOVLW  00
+0001:  MOVWF  0A
+0002:  GOTO   00A
+0003:  NOP
+.................... //port okuma ve test uygulamasý 
+.................... //05.02.2007 
+.................... #if defined (__PCM__) 
+.................... #include <16F628A.h> 
+.................... //////// Standard Header file for the PIC16F628A device //////////////// 
+.................... #device PIC16F628A 
+.................... #list 
+....................  
+.................... #use delay(clock=4000000) 
+.................... #fuses NOWDT,PUT,NOLVP,NOBROWNOUT,MCLR,INTRC_IO,NOPROTECT 
+.................... #endif 
+....................  
+.................... void gonder(char a) 
+.................... { 
+.................... output_b(a); 
+0004:  BSF    03.5
+0005:  CLRF   06
+0006:  BCF    03.5
+0007:  MOVF   22,W
+0008:  MOVWF  06
+.................... return; 
+.................... } 
+0009:  GOTO   01D (RETURN)
+....................  
+.................... void main() 
+.................... { 
+000A:  CLRF   04
+000B:  BCF    03.7
+000C:  MOVLW  1F
+000D:  ANDWF  03,F
+000E:  MOVLW  07
+000F:  MOVWF  1F
+.................... char a; 
+.................... tekrar: 
+.................... set_tris_a(1); 
+0010:  MOVLW  01
+0011:  TRIS   5
+.................... a=input_a(); 
+0012:  MOVLW  FF
+0013:  BSF    03.5
+0014:  MOVWF  05
+0015:  BCF    03.5
+0016:  MOVF   05,W
+0017:  MOVWF  21
+.................... if (bit_test(a,1))         //x in 1. bitini test et. yani RA0 ý 
+0018:  BTFSS  21.1
+0019:  GOTO   01D
+....................    {    
+....................    gonder(a);              //parentez içindeki fonk un geri dönüþ degeridir 
+001A:  MOVF   21,W
+001B:  MOVWF  22
+001C:  GOTO   004
+....................    } 
+....................    goto tekrar; 
+001D:  GOTO   010
+.................... } 
+001E:  SLEEP
+
+Configuration Fuses:
+   Word  1: 3F30   NOWDT PUT NOPROTECT NOBROWNOUT MCLR NOLVP INTRC_IO NOCPD

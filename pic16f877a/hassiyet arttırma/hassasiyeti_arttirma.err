@@ -1,0 +1,6 @@
+*** Error 24 "C:\Program Files\PICC\devices\33FJ32MC204.h" Line 2(9,25): Unknown device type    -- Try PCD
+      1 Errors,  0 Warnings.
+*** Error 12 "hassasiyeti_arttirma.c" Line 22(11,12): Undefined identifier  -- sin
+*** Error 12 "hassasiyeti_arttirma.c" Line 23(20,28): Undefined identifier   lcd_putc
+*** Error 12 "hassasiyeti_arttirma.c" Line 24(10,14): Undefined identifier   TRUE
+      3 Errors,  0 Warnings.

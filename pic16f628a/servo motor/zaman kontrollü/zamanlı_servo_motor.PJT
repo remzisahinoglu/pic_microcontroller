@@ -1,0 +1,39 @@
+[PROJECT]
+Target=zamanlý_servo_motor.HEX
+Development_Mode=2
+Processor=0x628A
+Processor_Text=PIC16F628A
+ToolSuite=CCS
+
+[Directories]
+Include=
+Library=
+LinkerScript=
+
+[Target Data]
+FileList=D:\ram\microcontrol\picmicro\pic c\pic uygulama\pic16f628a\servo motor\zaman kontrollü\zamanlý_servo_motor.c
+BuildTool=C-COMPILER
+OptionString=+FM
+AdditionalOptionString=
+BuildRequired=1
+
+[zamanlý_servo_motor.c]
+Type=4
+Path=
+FileList=
+BuildTool=
+OptionString=
+AdditionalOptionString=
+
+[mru-list]
+1=ZAMANL~1.C
+
+[Windows]
+0=0000 ZAMANL~1.C 0 0 796 451 3 0
+
+[Opened Files]
+1=zamanlý_servo_motor.c
+2=
+[Units]
+Count=1
+1=zamanlý_servo_motor (main)

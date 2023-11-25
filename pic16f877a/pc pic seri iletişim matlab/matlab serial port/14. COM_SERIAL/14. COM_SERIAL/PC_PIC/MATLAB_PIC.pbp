@@ -1,0 +1,12 @@
+include "modedefs.bas"
+
+valor var byte
+
+trisb =%00000001
+portb =%00000000
+
+inicio:
+serin portb.0,T2400,valor
+if valor == "E" then high portb.1 'E->Encendido
+if valor == "A" then low portb.1  'A->Apagado
+goto inicio

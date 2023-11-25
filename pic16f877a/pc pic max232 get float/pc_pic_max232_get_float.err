@@ -1,0 +1,3 @@
+>>> Warning 216 "pc_pic_max232_get_float.c" Line 74(0,1): Interrupts disabled during call to prevent re-entrancy:  (@MULFF)
+      Memory usage:   ROM=5%      RAM=1% - 3%
+      0 Errors,  1 Warnings.

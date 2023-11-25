@@ -1,0 +1,212 @@
+MPASM 03.20 Released         PROGRAMý.ASM   10-15-2005  0:11:29         PAGE  1
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00001 ;************ 7 SEGMENTLÝ DÝJÝTAL SAAT****************************
+                      00002 
+                      00003 ;*********DEÐÝÞKENLERÝN TANIMLANMASI******************************
+                      00004         LIST    P=16F628A
+                      00005 
+  00000006            00006 PORTB   EQU     0X06
+  00000005            00007 PORTA   EQU     0X05
+  00000003            00008 STATUS  EQU     0X03
+  00000086            00009 TRISB   EQU     0X86
+  00000085            00010 TRISA   EQU     0X85
+  0000001F            00011 CMCON   EQU     0X1F
+                      00012 
+                      00013 ;*********GÝRÝS/CIKIS AYARLARININ OLUSTURULMASI*******************
+                      00014 
+0000   1683           00015         BSF     STATUS,5        ;BANK1 E GEC    
+0001   0186           00016         CLRF    TRISB           ;PORTB CIKIS
+0002   3043           00017         MOVLW   b'01000011'     ;RB0,RB1,RB7 GÝRÝÞ
+0003   0085           00018         MOVWF   TRISA           ;PORTA GÝRÝS
+0004   1283           00019         BCF     STATUS,5        ;BANK0 A GEC
+                      00020 
+0005   3007           00021         MOVLW   b'00000111'     ;BÜTÜN KARSILASTIRICILAR KAPALI
+0006   009F           00022         MOVWF   CMCON           ;TÜM PÝNLER GÝRÝS/CIKIS
+0007   0186           00023         CLRF    PORTB           ;BASLANGICTA TÜM LED LER SÖNÜK
+                      00024 
+                      00025 ;***************ANA PROGRAMIN OLUSTURULMASI***********************
+                      00026 
+                      00027 ;************* "R" HARFÝ ÝÇÝN ************************************
+                      00028 
+0008                  00029 BASLA
+0008   307F           00030         MOVLW   b'01111111'
+0009   0086           00031         MOVWF   PORTB
+000A   2052           00032         CALL    BEKLE1
+000B   3009           00033         MOVLW   b'00001001'
+000C   0086           00034         MOVWF   PORTB
+000D   2052           00035         CALL    BEKLE1
+000E   3019           00036         MOVLW   b'00011001'
+000F   0086           00037         MOVWF   PORTB           
+0010   2052           00038         CALL    BEKLE1
+0011   3029           00039         MOVLW   b'00101001'
+0012   0086           00040         MOVWF   PORTB
+0013   2052           00041         CALL    BEKLE1
+0014   3046           00042         MOVLW   b'01000110'
+0015   0086           00043         MOVWF   PORTB
+0016   2052           00044         CALL    BEKLE1
+                      00045 
+0017   0186           00046         CLRF    PORTB
+0018   2052           00047         CALL    BEKLE1
+                      00048 
+                      00049 ;************* "E" HARFÝ ÝÇÝN*************************************
+                      00050 
+0019   307F           00051         MOVLW   b'01111111'
+001A   0086           00052         MOVWF   PORTB
+001B   2052           00053         CALL    BEKLE1
+MPASM 03.20 Released         PROGRAMý.ASM   10-15-2005  0:11:29         PAGE  2
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+001C   3049           00054         MOVLW   b'01001001'
+001D   0086           00055         MOVWF   PORTB
+001E   2052           00056         CALL    BEKLE1
+001F   3049           00057         MOVLW   b'01001001'
+0020   0086           00058         MOVWF   PORTB
+0021   2052           00059         CALL    BEKLE1
+0022   3049           00060         MOVLW   b'01001001'
+0023   0086           00061         MOVWF   PORTB
+0024   2052           00062         CALL    BEKLE1
+0025   3041           00063         MOVLW   b'01000001'
+0026   0086           00064         MOVWF   PORTB
+0027   2052           00065         CALL    BEKLE1
+                      00066         
+0028   0186           00067         CLRF    PORTB
+0029   2052           00068         CALL    BEKLE1
+                      00069 
+                      00070 ;************ "M" HARFÝ ÝÇÝN**************************************
+                      00071 
+002A   307F           00072         MOVLW   b'01111111'
+002B   0086           00073         MOVWF   PORTB
+002C   2052           00074         CALL    BEKLE1
+002D   3002           00075         MOVLW   b'00000010'
+002E   0086           00076         MOVWF   PORTB
+002F   2052           00077         CALL    BEKLE1
+0030   3004           00078         MOVLW   b'00000100'
+0031   0086           00079         MOVWF   PORTB
+0032   2052           00080         CALL    BEKLE1
+0033   3002           00081         MOVLW   b'00000010'
+0034   0086           00082         MOVWF   PORTB
+0035   2052           00083         CALL    BEKLE1
+0036   307F           00084         MOVLW   b'01111111'
+0037   0086           00085         MOVWF   PORTB
+0038   2052           00086         CALL    BEKLE1
+                      00087         
+0039   0186           00088         CLRF    PORTB
+003A   2052           00089         CALL    BEKLE1
+                      00090 
+                      00091 ;************ "Z" HARFÝ ÝÇÝN**************************************
+                      00092 
+003B   3061           00093         MOVLW   b'01100001'
+003C   0086           00094         MOVWF   PORTB
+003D   2052           00095         CALL    BEKLE1
+003E   3051           00096         MOVLW   b'01010001'
+003F   0086           00097         MOVWF   PORTB
+0040   2052           00098         CALL    BEKLE1
+0041   3049           00099         MOVLW   b'01001001'
+0042   0086           00100         MOVWF   PORTB
+0043   2052           00101         CALL    BEKLE1
+0044   3045           00102         MOVLW   b'01000101'
+0045   0086           00103         MOVWF   PORTB
+0046   2052           00104         CALL    BEKLE1
+0047   3043           00105         MOVLW   b'01000011'
+0048   0086           00106         MOVWF   PORTB
+MPASM 03.20 Released         PROGRAMý.ASM   10-15-2005  0:11:29         PAGE  3
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0049   2052           00107         CALL    BEKLE1
+                      00108         
+004A   0186           00109         CLRF    PORTB
+004B   2052           00110         CALL    BEKLE1
+                      00111 
+                      00112 ;************ "Ý" HARFÝ ÝÇÝN**************************************
+                      00113 
+004C   307D           00114         MOVLW   b'01111101'
+004D   0086           00115         MOVWF   PORTB
+004E   2052           00116         CALL    BEKLE1
+                      00117                 
+004F   0186           00118         CLRF    PORTB
+0050   205B           00119         CALL    BEKLE2
+                      00120 
+                      00121 
+                      00122 
+0051   2808           00123         GOTO    BASLA
+                      00124 
+                      00125 
+                      00126 
+                      00127 ;***************1 MÝLÝSANÝYE GECÝKME YAP**************************
+                      00128 ;***********LEDÝN BÝR PARCA YANIK KALMA SÜRESÝ********************
+                      00129 
+0052                  00130 BEKLE1
+0052   306F           00131         MOVLW   d'111'          ;YAKLASIK 1 MÝLÝSANÝYE 
+0053   00A1           00132         MOVWF   0X21            ;BEKLEME YAP
+0054   3003           00133 D1      MOVLW   d'3'            
+0055   00A0           00134         MOVWF   0X20            
+0056   0BA0           00135 D2      DECFSZ  0X20,1          
+0057   2856           00136         GOTO    D2              
+0058   0BA1           00137         DECFSZ  0X21,1
+0059   2854           00138         GOTO    D1
+005A   0008           00139         RETURN
+                      00140 
+                      00141 ;*****************95 MÝLÝSANÝYE GECÝKME YAP***********************
+                      00142 ;************PROGRAM BOSLUGUNDA KÝ LEDÝN SÖNÜK KALMA SÜRESÝ*******
+                      00143 
+005B                  00144 BEKLE2
+005B   30FF           00145         MOVLW   d'255'          ;YAKLASIK 74 MÝLÝSANÝYE 
+005C   00A2           00146         MOVWF   0X22            ;BEKLEME YAP
+005D   3061           00147 D3      MOVLW   d'97'           
+005E   00A3           00148         MOVWF   0X23            
+005F   0BA3           00149 D4      DECFSZ  0X23,1          
+0060   285F           00150         GOTO    D4              
+0061   0BA2           00151         DECFSZ  0X22,1
+0062   285D           00152         GOTO    D3
+0063   0008           00153         RETURN
+                      00154         
+                      00155         
+                      00156         END
+MPASM 03.20 Released         PROGRAMý.ASM   10-15-2005  0:11:29         PAGE  4
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+BASLA                             00000008
+BEKLE1                            00000052
+BEKLE2                            0000005B
+CMCON                             0000001F
+D1                                00000054
+D2                                00000056
+D3                                0000005D
+D4                                0000005F
+PORTA                             00000005
+PORTB                             00000006
+STATUS                            00000003
+TRISA                             00000085
+TRISB                             00000086
+__16F628A                         00000001
+
+
+MEMORY USAGE MAP ('X' = Used,  '-' = Unused)
+
+0000 : XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX
+0040 : XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXX------------ ----------------
+
+All other memory blocks unused.
+
+Program Memory Words Used:   100
+Program Memory Words Free:  1948
+
+
+Errors   :     0
+Warnings :     0 reported,     0 suppressed
+Messages :     0 reported,     2 suppressed
+
+

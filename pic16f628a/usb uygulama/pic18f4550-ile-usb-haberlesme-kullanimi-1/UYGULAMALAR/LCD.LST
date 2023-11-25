@@ -1,0 +1,3215 @@
+MPASM  5.35                           LCD.ASM   7-17-2010  12:13:26         PAGE  1
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00001 
+                      00002 ; PICBASIC PRO(TM) Compiler 2.50b, (c) 1998, 2008 microEngineering Labs, Inc. All Rights Reserved.  
+  00000001            00003 _USED                   EQU     1
+                      00004 
+                      00005         INCLUDE "F:\PBP\18F4550.INC"
+                      00001 ;****************************************************************
+                      00002 ;*  18F4550.INC                                                 *
+                      00003 ;*                                                              *
+                      00004 ;*  By        : Leonard Zerman, Jeff Schmoyer                   *
+                      00005 ;*  Notice    : Copyright (c) 2006 microEngineering Labs, Inc.  *
+                      00006 ;*              All Rights Reserved                             *
+                      00007 ;*  Date      : 06/05/06                                        *
+                      00008 ;*  Version   : 2.47                                            *
+                      00009 ;*  Notes     :                                                 *
+                      00010 ;****************************************************************
+                      00017         LIST
+                      00018         LIST p = 18F4550, r = dec, w = -311, w = -230, f = inhx32
+                      00019         INCLUDE "P18F4550.INC"  ; MPASM  Header
+                      00001         LIST
+                      00002 
+                      00003 ;==========================================================================
+                      00004 ;  MPASM PIC18F4550 processor include
+                      00005 ; 
+                      00006 ;  (c) Copyright 1999-2007 Microchip Technology, All rights reserved
+                      00007 ;==========================================================================
+                      00008 
+                      01643         LIST
+                      00020         __CONFIG    _CONFIG1L, _PLLDIV_5_1L & _CPUDIV_OSC1_PLL2_1L & _USBDIV_2_1L
+300000 FEE4           00021         __CONFIG    _CONFIG1H, _FOSC_HSPLL_HS_1H
+300002 F31F           00022         __CONFIG    _CONFIG2H, _WDT_ON_2H & _WDTPS_512_2H
+300004 FDFF           00023         __CONFIG    _CONFIG3H, _PBADEN_OFF_3H
+300006 FF9B           00024         __CONFIG    _CONFIG4L, _LVP_OFF_4L & _ICPRT_OFF_4L & _XINST_OFF_4L
+                      00027         LIST
+  00F00000            00028 EEPROM_START    EQU     0F00000h
+  00000020            00029 BLOCK_SIZE      EQU     32
+                      00006 
+                      00007 
+                      00008 ; Define statements.
+                      00009 #define         RESET_ORG                1000h        
+                      00010 #define         OSC              48                
+                      00011 #define         LCD_DREG                                PORTB   
+                      00012 #define         LCD_DBIT                                0               
+                      00013 #define         LCD_EREG                                PORTB   
+                      00014 #define         LCD_EBIT                                4               
+                      00015 #define         LCD_RSREG                       PORTB   
+                      00016 #define         LCD_RSBIT                       5               
+                      00017 #define         LCD_BITS                                4               
+                      00018 #define         LCD_LINES                       2               
+                      00019 
+  00000000            00020 RAM_START                       EQU     00000h
+  000007FF            00021 RAM_END                         EQU     007FFh
+  00000008            00022 RAM_BANKS                       EQU     00008h
+  00000060            00023 BANK0_START                     EQU     00060h
+MPASM  5.35                           LCD.ASM   7-17-2010  12:13:26         PAGE  2
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+  000000FF            00024 BANK0_END                       EQU     000FFh
+  00000100            00025 BANK1_START                     EQU     00100h
+  000001FF            00026 BANK1_END                       EQU     001FFh
+  00000200            00027 BANK2_START                     EQU     00200h
+  000002FF            00028 BANK2_END                       EQU     002FFh
+  00000300            00029 BANK3_START                     EQU     00300h
+  000003FF            00030 BANK3_END                       EQU     003FFh
+  00000400            00031 BANK4_START                     EQU     00400h
+  000004FF            00032 BANK4_END                       EQU     004FFh
+  00000500            00033 BANK5_START                     EQU     00500h
+  000005FF            00034 BANK5_END                       EQU     005FFh
+  00000600            00035 BANK6_START                     EQU     00600h
+  000006FF            00036 BANK6_END                       EQU     006FFh
+  00000700            00037 BANK7_START                     EQU     00700h
+  000007FF            00038 BANK7_END                       EQU     007FFh
+  00000000            00039 BANKA_START                     EQU     00000h
+  0000005F            00040 BANKA_END                       EQU     0005Fh
+                      00041 
+  00000000            00042 FLAGS                           EQU     RAM_START + 000h
+  00000001            00043 R0                              EQU     RAM_START + 001h
+  00000003            00044 R1                              EQU     RAM_START + 003h
+  00000005            00045 R2                              EQU     RAM_START + 005h
+  00000007            00046 R3                              EQU     RAM_START + 007h
+  00000009            00047 R4                              EQU     RAM_START + 009h
+  0000000B            00048 R5                              EQU     RAM_START + 00Bh
+  0000000D            00049 R6                              EQU     RAM_START + 00Dh
+  0000000F            00050 R7                              EQU     RAM_START + 00Fh
+  00000011            00051 R8                              EQU     RAM_START + 011h
+  00000013            00052 GOP                             EQU     RAM_START + 013h
+  00000014            00053 RM1                             EQU     RAM_START + 014h
+  00000015            00054 RM2                             EQU     RAM_START + 015h
+  00000016            00055 RR1                             EQU     RAM_START + 016h
+  00000017            00056 RR2                             EQU     RAM_START + 017h
+  00000018            00057 RS1                             EQU     RAM_START + 018h
+  00000019            00058 RS2                             EQU     RAM_START + 019h
+  0000001A            00059 _X                              EQU     RAM_START + 01Ah
+  00000F81            00060 _PORTL                          EQU      PORTB
+  00000F82            00061 _PORTH                          EQU      PORTC
+  00000F93            00062 _TRISL                          EQU      TRISB
+  00000F94            00063 _TRISH                          EQU      TRISC
+                      00064 #define _LED_1                  _PORTC??0
+                      00065 #define _LED_2                  _PORTC??1
+                      00066 #define _LED_3                  _PORTC??2
+                      00067 #define _LED_4                  _PORTD??0
+                      00068 #define _LED_5                  _PORTD??1
+                      00069 #define _LED_6                  _PORTD??2
+                      00070 #define _LED_7                  _PORTD??3
+                      00071 #define _LCD_BACKLIGHT          _PORTD??7
+                      00072 #define _PORTC??0                PORTC, 000h
+                      00073 #define _PORTC??1                PORTC, 001h
+                      00074 #define _PORTC??2                PORTC, 002h
+                      00075 #define _PORTD??0                PORTD, 000h
+                      00076 #define _PORTD??1                PORTD, 001h
+MPASM  5.35                           LCD.ASM   7-17-2010  12:13:26         PAGE  3
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00077 #define _PORTD??2                PORTD, 002h
+                      00078 #define _PORTD??3                PORTD, 003h
+                      00079 #define _PORTD??7                PORTD, 007h
+                      00080 
+                      00081 ; EEPROM data.
+                      00082 
+                      00083 
+                      00084         INCLUDE "LCD.MAC"
+                      00001 
+                      00070         LIST
+                      00085         INCLUDE "F:\PBP\PBPPIC18.LIB"
+                      00001 ;******************************************************************
+                      00002 ;*  PBPPIC18.LIB                                                  *
+                      00003 ;*                                                                *
+                      00004 ;*  By        : Leonard Zerman, Jeff Schmoyer                     *
+                      00005 ;*  Notice    : Copyright (c) 2007 microEngineering Labs, Inc.    *
+                      00006 ;*              All Rights Reserved                               *
+                      00007 ;*  Date      : 11/15/07                                          *
+                      00008 ;*  Version   : 2.50a                                             *
+                      00009 ;*  Notes     :                                                   *
+                      00010 ;******************************************************************
+                      00128   LIST
+                      00129 ; Oscillator is 48MHz
+                      01177   LIST
+001000                01178     ORG RESET_ORG               ; Reset vector at 0
+                      01182   LIST
+001000 6A00           01183         clrf    FLAGS           ; Clear all flags on reset
+                      01187   LIST
+001002 EF77 F008      01188         goto    INIT            ; Finish initialization
+                      02962   LIST
+001006 6E08           02963 LCDOUT  movwf   R3 + 1          ; Save char
+                      02964 
+001008 9881           02965         bcf     LCD_EREG, LCD_EBIT      ; Set E low
+00100A 9A81           02966         bcf     LCD_RSREG, LCD_RSBIT    ; Set command register select
+00100C 9A81           02967         bcf     LCD_RWREG, LCD_RWBIT    ; Set RW low (write)
+                      02968 
+00100E 9893           02969         bcf     (LCD_EREG) + 12h, LCD_EBIT      ; Set E to output
+001010 9A93           02970         bcf     (LCD_RSREG) + 12h, LCD_RSBIT    ; Set RS to output
+001012 9A93           02971         bcf     (LCD_RWREG) + 12h, LCD_RWBIT    ; Set RW to output
+                      02972     if ((LCD_BITS) == 8)
+                      02973         clrf    (LCD_DREG) + 12h        ; Set port to all output
+                      02974     else
+                      02975       if ((LCD_DBIT) == 0)
+001014 0EF0           02976         movlw   0f0h
+                      02977       else
+                      02978         movlw   0fh
+                      02979       endif
+001016 1693           02980         andwf   (LCD_DREG) + 12h, F     ; Set proper half of port to output
+001018 5008           02981         movf    R3 + 1, W       ; Get back char
+                      02982     endif
+                      02983 
+00101A B200           02984         btfsc   LCDINITFLAG     ; Has lcd been inititalized?
+00101C D020           02985         bra     lcdout1         ; Yes
+MPASM  5.35                           LCD.ASM   7-17-2010  12:13:26         PAGE  4
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      02986 
+00101E 0E3A           02987         movlw   high 15100      ; Wait at least 15ms
+001020 6E02           02988         movwf   R0 + 1
+001022 0EFC           02989         movlw   low 15100
+001024 EC69 F008      02990         call    PAUSEUSL
+                      02991 
+001028 0E33           02992         movlw   33h             ; Init lcd
+00102A 6E07           02993         movwf   R3              ; Save char
+00102C D82E           02994         rcall   lcdloop         ; Send init
+                      02995 
+00102E 0E10           02996         movlw   high 4200       ; Wait at least 4.1ms
+001030 6E02           02997         movwf   R0 + 1
+001032 0E68           02998         movlw   low 4200
+001034 EC69 F008      02999         call    PAUSEUSL
+                      03000 
+001038 D828           03001         rcall   lcdloop         ; Send init (33) again
+                      03002 
+00103A 0E64           03003         movlw   100             ; Wait at least 100us
+00103C EC68 F008      03004         call    PAUSEUS
+                      03005 
+                      03006     if ((LCD_BITS) == 8)
+                      03007         rcall   lcdloop         ; Send init (33) more time
+                      03008       if ((LCD_LINES) == 1)
+                      03009         movlw   30h             ; 8-bit mode, 1 line, 5x7 font
+                      03010       else
+                      03011         movlw   38h             ; 8-bit mode, 2+ lines, 5x7 font
+                      03012       endif
+                      03013     else
+001040 0E22           03014         movlw   22h             ; Send init to 4-bit mode
+001042 6E07           03015         movwf   R3              ; Save character
+001044 D822           03016         rcall   lcdloop         ; Set interface to 4-bit mode
+                      03017       if ((LCD_LINES) == 1)
+                      03018         movlw   20h             ; 4-bit mode, 1 line, 5x7 font
+                      03019       else
+001046 0E28           03020         movlw   28h             ; 4-bit mode, 2+ lines, 5x7 font
+                      03021       endif
+                      03022     endif
+001048 D809           03023         rcall   lcdoutcom       ; Send function set
+                      03024 
+00104A 0E0C           03025         movlw   0ch             ; Display on, no cursor, no blink
+00104C D807           03026         rcall   lcdoutcom
+                      03027 
+00104E 0E01           03028         movlw   01h             ; Display clear
+001050 D805           03029         rcall   lcdoutcom
+                      03030 
+001052 0E06           03031         movlw   06h             ; Lcd entry mode set, increment, no shift
+001054 D803           03032         rcall   lcdoutcom
+                      03033 
+001056 8200           03034         bsf     LCDINITFLAG     ; Set to initialized
+                      03035 
+001058 5008           03036         movf    R3 + 1, W       ; Get saved char back (again)
+00105A D001           03037         bra     lcdout1
+                      03038 
+MPASM  5.35                           LCD.ASM   7-17-2010  12:13:26         PAGE  5
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+00105C 8000           03039 lcdoutcom bsf   LCDCDFLAG       ; Set for command
+                      03040 
+00105E 6E07           03041 lcdout1 movwf   R3              ; Save char
+001060 A000           03042         btfss   LCDCDFLAG       ; Command this time?
+001062 D00B           03043         bra     lcdchkcd        ; No
+                      03044 
+001064 9A81           03045         bcf     LCD_RSREG, LCD_RSBIT    ; Set command register select
+001066 0803           03046         sublw   3               ; Is it a slow command (clear screen or home)?
+001068 E30E           03047         bnc     lcdsend         ; Short delay
+                      03048 
+00106A D80D           03049         rcall   lcdsend         ; Long delay (includes short delay)
+00106C 0E05           03050         movlw   high LCD_COMMANDUS      ; Wait for command to complete
+00106E 6E02           03051         movwf   R0 + 1
+001070 0EDC           03052         movlw   low LCD_COMMANDUS
+001072 EC69 F008      03053         call    PAUSEUSL
+001076 80D8           03054         bsf     STATUS, C       ; Set no timeout for Serout2mod
+001078 0012           03055         return
+                      03056 
+00107A 8000           03057 lcdchkcd bsf    LCDCDFLAG       ; Indicate first nibble (or command next time)
+00107C 08FE           03058         sublw   0feh            ; Command next time? (char still in W)
+00107E B4D8           03059         btfsc   STATUS, Z
+001080 EF74 F008      03060         goto    DUNN            ; Yes - nothing to do this time (C set for no timeout for Serout2mod)
+                      03061 
+001084 8A81           03062         bsf     LCD_RSREG, LCD_RSBIT    ; Set data register select
+                      03063 
+001086                03064 lcdsend
+                      03065     if ((LCD_BITS) == 8)
+                      03066 lcdloop bsf     LCD_EREG, LCD_EBIT      ; Enabled
+                      03067         movf    R3, W           ; Get char back
+                      03068         movwf   LCD_DREG        ; Write char to the port
+                      03069       if (OSC > 16)
+                      03070         nop                     ; Minimum 1us enable time
+                      03071       endif
+                      03072       if (OSC > 20)
+                      03073         nop
+                      03074       endif
+                      03075       if (OSC > 24)
+                      03076         bra     $ + 2
+                      03077       endif
+                      03078       if (OSC > 32)
+                      03079         bra     $ + 2
+                      03080       endif
+                      03081       if (OSC > 40)
+                      03082         bra     $ + 2
+                      03083       endif
+                      03084       if (OSC > 48)
+                      03085         bra     $ + 2
+                      03086         bra     $ + 2
+                      03087       endif
+                      03088         bcf     LCDCDFLAG       ; Indicate data next time
+                      03089         bcf     LCD_EREG, LCD_EBIT      ; Not enabled
+                      03090     else
+                      03091 
+MPASM  5.35                           LCD.ASM   7-17-2010  12:13:26         PAGE  6
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      03092       if ((LCD_DBIT) == 0)
+001086 3A07           03093         swapf   R3, F           ; Swap top and bottom nibbles
+                      03094       endif
+                      03095 
+001088 A000           03096         btfss   LCDCDFLAG       ; First time through only
+00108A 9000           03097 lcdloop bcf     LCDCDFLAG       ; Indicate second nibble (and data next time)
+                      03098 
+00108C 8881           03099         bsf     LCD_EREG, LCD_EBIT      ; Enabled
+                      03100 
+                      03101       if ((LCD_DBIT) == 0)
+00108E 0EF0           03102         movlw   0f0h            ; Clear lcd data port
+                      03103       else
+                      03104         movlw   0fh             ; Clear lcd data port
+                      03105       endif
+001090 1681           03106         andwf   LCD_DREG, F
+                      03107 
+001092 5007           03108         movf    R3, W           ; Isolate proper nibble of char
+                      03109       if ((LCD_DBIT) == 0)
+001094 0B0F           03110         andlw   0fh
+                      03111       else
+                      03112         andlw   0f0h
+                      03113       endif
+001096 1281           03114         iorwf   LCD_DREG, F     ; Write char to port
+                      03115 
+                      03116       if (OSC > 24)
+001098 D000           03117         bra     $ + 2           ; Minimum 1us enable time
+                      03118       endif
+                      03119       if (OSC > 32)
+00109A D000           03120         bra     $ + 2
+                      03121       endif
+                      03122       if (OSC > 40)
+00109C D000           03123         bra     $ + 2
+                      03124       endif
+                      03125       if (OSC > 48)
+                      03126         bra     $ + 2
+                      03127         bra     $ + 2
+                      03128       endif
+                      03129 
+00109E 9881           03130         bcf     LCD_EREG, LCD_EBIT      ; Not enabled - that's four
+0010A0 3A07           03131         swapf   R3, F           ; Get to other nibble
+                      03132 
+                      03133       if (OSC > 24)
+0010A2 D000           03134         bra     $ + 2           ; Minimum 1us not enabled time
+                      03135       endif
+                      03136       if (OSC > 32)
+0010A4 D000           03137         bra     $ + 2
+                      03138       endif
+                      03139       if (OSC > 40)
+0010A6 D000           03140         bra     $ + 2
+                      03141       endif
+                      03142       if (OSC > 48)
+                      03143         bra     $ + 2
+                      03144         bra     $ + 2
+MPASM  5.35                           LCD.ASM   7-17-2010  12:13:26         PAGE  7
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      03145       endif
+                      03146 
+0010A8 B000           03147         btfsc   LCDCDFLAG       ; Need to send 4 more?
+0010AA D7EF           03148         bra     lcdloop         ; Send lower 4 to lcd
+                      03149     endif
+                      03150 
+0010AC 0E2C           03151         movlw   LCD_DATAUS      ; Wait for data operation to complete
+0010AE EC68 F008      03152         call    PAUSEUS
+0010B2 80D8           03153         bsf     STATUS, C       ; Set no timeout for Serout2mod
+0010B4 0012           03154         return
+                      06232   LIST
+0010B6 6A04           06233 PAUSE   clrf    R1 + 1
+0010B8 6E03           06234 PAUSEL  movwf   R1
+0010BA 6AE8           06235 pauseloop clrf  WREG            ; 1 (8) Clear W for subtracts
+0010BC 0603           06236         decf    R1, F           ; 1
+0010BE 5A04           06237         subwfb  R1 + 1, F       ; 1
+0010C0 A0D8           06238         btfss   STATUS, C       ; 2
+0010C2 EF74 F008      06239         goto    DUNN
+0010C6 0E03           06240         movlw   (PAUSE_DELAY) >> 8      ; 1
+0010C8 6E02           06241         movwf   R0 + 1          ; 1
+0010CA 0EE7           06242         movlw   low (PAUSE_DELAY)       ; 1
+0010CC D802           06243         rcall   PAUSEUSL        ; -2 (PAUSEUSL gives you 2 less than you ask for)
+0010CE D7F5           06244         bra     pauseloop       ; 2
+                      06626   LIST
+0010D0 6A02           06627 PAUSEUS clrf    R0 + 1          ; 1
+0010D2 0FFE           06628 PAUSEUSL addlw  -2              ; 1 Subtract overhead
+0010D4 6E01           06629         movwf   R0              ; 1
+                      06630 pauseusloop CLRWDT?NOP          ; 1
+                          M     ifndef NO_CLRWDT
+0010D6 0004               M         clrwdt
+                          M     else
+                          M         nop
+                          M     endif
+0010D8 6AE8           06631         clrf    WREG            ; 1
+0010DA 5A02           06632         subwfb  R0 + 1, F       ; 1
+0010DC A0D8           06633         btfss   STATUS, C       ; 1 / 2
+0010DE 0012           06634         return                  ; 2 + 3 (call + setup)
+0010E0 0601           06635         decf    R0, F           ; 1
+0010E2 D000           06636         bra     $ + 2           ; 2
+0010E4 D000           06637         bra     $ + 2           ; 2
+0010E6 D7F7           06638         bra     pauseusloop     ; 2
+                      07567   LIST
+0010E8 0100           07568 DUNN    movlb   0               ; 1 Reset banks to 0
+                      07569 DUNN5   CLRWDT?NOP              ; 1 Hit Watchdog timer
+                          M     ifndef NO_CLRWDT
+0010EA 0004               M         clrwdt
+                          M     else
+                          M         nop
+                          M     endif
+0010EC 0012           07570         return                  ; 2 Done
+                      07583   LIST
+0010EE                07584 INIT
+                      07628   LIST
+MPASM  5.35                           LCD.ASM   7-17-2010  12:13:26         PAGE  8
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0010EE                07629 main
+                      00086 
+                      00087         CLEAR?  
+  0000                    M     local loop
+                          M       ifdef USE_LFSR
+                          M         lfsr    0, RAM_END
+                          M       else
+                          M         MOVE?CW RAM_END, FSR0L
+                          M     ifdef USE_LINKER
+                          M         CHK?RP  FSR0L
+                          M         movlw   low (RAM_END)
+                          M         movwf   FSR0L
+                          M         movlw   high (RAM_END)
+                          M         movwf   (FSR0L) + 1
+                          M     else
+                          M         MOVE?CB low (RAM_END), FSR0L
+                          M         CHK?RP  FSR0L
+                          M     if (((FSR0L) & 8000h) != PREV_ALT)
+                          M       if ((FSR0L) & 8000h)
+                          M         bsf     WDTCON, ADSHR
+                          M       else
+                          M         bcf     WDTCON, ADSHR
+                          M       endif
+                          M PREV_ALT = (FSR0L) & 8000h
+                          M     endif
+                          M     if ((((FSR0L) & 0fffh) > BANKA_END) & (((FSR0L) & 0fffh) < (0f01h + BANKA_END)))
+                          M       if (((FSR0L) & 0f00h) != (PREV_BANK << 8))
+                          M         movlb   high (FSR0L)
+                          M PREV_BANK = high (FSR0L)
+                          M       endif
+                          M     endif
+                          M     if (low (low (RAM_END)) == 0)
+                          M         clrf    FSR0L
+                          M     else
+                          M       if (low (low (RAM_END)) == 255)
+0010EE 68E9               M         setf    FSR0L
+                          M       else
+                          M         movlw   low (low (RAM_END))
+                          M         movwf   FSR0L
+                          M       endif
+                          M     endif
+                          M         MOVE?CB high (RAM_END), (FSR0L) + 1
+                          M         CHK?RP  (FSR0L) + 1
+                          M     if ((((FSR0L) + 1) & 8000h) != PREV_ALT)
+                          M       if (((FSR0L) + 1) & 8000h)
+                          M         bsf     WDTCON, ADSHR
+                          M       else
+                          M         bcf     WDTCON, ADSHR
+                          M       endif
+                          M PREV_ALT = ((FSR0L) + 1) & 8000h
+                          M     endif
+                          M     if (((((FSR0L) + 1) & 0fffh) > BANKA_END) & ((((FSR0L) + 1) & 0fffh) < (0f01h + BANKA_END)))
+                          M       if ((((FSR0L) + 1) & 0f00h) != (PREV_BANK << 8))
+MPASM  5.35                           LCD.ASM   7-17-2010  12:13:26         PAGE  9
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                          M         movlb   high ((FSR0L) + 1)
+                          M PREV_BANK = high ((FSR0L) + 1)
+                          M       endif
+                          M     endif
+                          M     if (low (high (RAM_END)) == 0)
+                          M         clrf    (FSR0L) + 1
+                          M     else
+                          M       if (low (high (RAM_END)) == 255)
+                          M         setf    (FSR0L) + 1
+                          M       else
+0010F0 0E07               M         movlw   low (high (RAM_END))
+0010F2 6EEA               M         movwf   (FSR0L) + 1
+                          M       endif
+                          M     endif
+                          M     endif
+                          M       endif
+0010F4 6AED               M loop    clrf    POSTDEC0
+0010F6 50E9               M         movf    FSR0L, W
+0010F8 10EA               M         iorwf   FSR0H, W
+0010FA E1FC               M         bnz     loop
+0010FC 6AEF               M         clrf    INDF0
+                      00088         MOVE?CB 000h, PORTA
+                          M         CHK?RP  PORTA
+                          M     if (((PORTA) & 8000h) != PREV_ALT)
+                          M       if ((PORTA) & 8000h)
+                          M         bsf     WDTCON, ADSHR
+                          M       else
+                          M         bcf     WDTCON, ADSHR
+                          M       endif
+                          M PREV_ALT = (PORTA) & 8000h
+                          M     endif
+                          M     if ((((PORTA) & 0fffh) > BANKA_END) & (((PORTA) & 0fffh) < (0f01h + BANKA_END)))
+                          M       if (((PORTA) & 0f00h) != (PREV_BANK << 8))
+                          M         movlb   high (PORTA)
+                          M PREV_BANK = high (PORTA)
+                          M       endif
+                          M     endif
+                          M     if (low (000h) == 0)
+0010FE 6A80               M         clrf    PORTA
+                          M     else
+                          M       if (low (000h) == 255)
+                          M         setf    PORTA
+                          M       else
+                          M         movlw   low (000h)
+                          M         movwf   PORTA
+                          M       endif
+                          M     endif
+                      00089         MOVE?CB 000h, PORTB
+                          M         CHK?RP  PORTB
+                          M     if (((PORTB) & 8000h) != PREV_ALT)
+                          M       if ((PORTB) & 8000h)
+                          M         bsf     WDTCON, ADSHR
+                          M       else
+MPASM  5.35                           LCD.ASM   7-17-2010  12:13:26         PAGE 10
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                          M         bcf     WDTCON, ADSHR
+                          M       endif
+                          M PREV_ALT = (PORTB) & 8000h
+                          M     endif
+                          M     if ((((PORTB) & 0fffh) > BANKA_END) & (((PORTB) & 0fffh) < (0f01h + BANKA_END)))
+                          M       if (((PORTB) & 0f00h) != (PREV_BANK << 8))
+                          M         movlb   high (PORTB)
+                          M PREV_BANK = high (PORTB)
+                          M       endif
+                          M     endif
+                          M     if (low (000h) == 0)
+001100 6A81               M         clrf    PORTB
+                          M     else
+                          M       if (low (000h) == 255)
+                          M         setf    PORTB
+                          M       else
+                          M         movlw   low (000h)
+                          M         movwf   PORTB
+                          M       endif
+                          M     endif
+                      00090         MOVE?CB 000h, PORTC
+                          M         CHK?RP  PORTC
+                          M     if (((PORTC) & 8000h) != PREV_ALT)
+                          M       if ((PORTC) & 8000h)
+                          M         bsf     WDTCON, ADSHR
+                          M       else
+                          M         bcf     WDTCON, ADSHR
+                          M       endif
+                          M PREV_ALT = (PORTC) & 8000h
+                          M     endif
+                          M     if ((((PORTC) & 0fffh) > BANKA_END) & (((PORTC) & 0fffh) < (0f01h + BANKA_END)))
+                          M       if (((PORTC) & 0f00h) != (PREV_BANK << 8))
+                          M         movlb   high (PORTC)
+                          M PREV_BANK = high (PORTC)
+                          M       endif
+                          M     endif
+                          M     if (low (000h) == 0)
+001102 6A82               M         clrf    PORTC
+                          M     else
+                          M       if (low (000h) == 255)
+                          M         setf    PORTC
+                          M       else
+                          M         movlw   low (000h)
+                          M         movwf   PORTC
+                          M       endif
+                          M     endif
+                      00091         MOVE?CB 000h, PORTD
+                          M         CHK?RP  PORTD
+                          M     if (((PORTD) & 8000h) != PREV_ALT)
+                          M       if ((PORTD) & 8000h)
+                          M         bsf     WDTCON, ADSHR
+                          M       else
+                          M         bcf     WDTCON, ADSHR
+MPASM  5.35                           LCD.ASM   7-17-2010  12:13:26         PAGE 11
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                          M       endif
+                          M PREV_ALT = (PORTD) & 8000h
+                          M     endif
+                          M     if ((((PORTD) & 0fffh) > BANKA_END) & (((PORTD) & 0fffh) < (0f01h + BANKA_END)))
+                          M       if (((PORTD) & 0f00h) != (PREV_BANK << 8))
+                          M         movlb   high (PORTD)
+                          M PREV_BANK = high (PORTD)
+                          M       endif
+                          M     endif
+                          M     if (low (000h) == 0)
+001104 6A83               M         clrf    PORTD
+                          M     else
+                          M       if (low (000h) == 255)
+                          M         setf    PORTD
+                          M       else
+                          M         movlw   low (000h)
+                          M         movwf   PORTD
+                          M       endif
+                          M     endif
+                      00092         MOVE?CB 000h, PORTE
+                          M         CHK?RP  PORTE
+                          M     if (((PORTE) & 8000h) != PREV_ALT)
+                          M       if ((PORTE) & 8000h)
+                          M         bsf     WDTCON, ADSHR
+                          M       else
+                          M         bcf     WDTCON, ADSHR
+                          M       endif
+                          M PREV_ALT = (PORTE) & 8000h
+                          M     endif
+                          M     if ((((PORTE) & 0fffh) > BANKA_END) & (((PORTE) & 0fffh) < (0f01h + BANKA_END)))
+                          M       if (((PORTE) & 0f00h) != (PREV_BANK << 8))
+                          M         movlb   high (PORTE)
+                          M PREV_BANK = high (PORTE)
+                          M       endif
+                          M     endif
+                          M     if (low (000h) == 0)
+001106 6A84               M         clrf    PORTE
+                          M     else
+                          M       if (low (000h) == 255)
+                          M         setf    PORTE
+                          M       else
+                          M         movlw   low (000h)
+                          M         movwf   PORTE
+                          M       endif
+                          M     endif
+                      00093         MOVE?CB 03Fh, TRISA
+                          M         CHK?RP  TRISA
+                          M     if (((TRISA) & 8000h) != PREV_ALT)
+                          M       if ((TRISA) & 8000h)
+                          M         bsf     WDTCON, ADSHR
+                          M       else
+                          M         bcf     WDTCON, ADSHR
+                          M       endif
+MPASM  5.35                           LCD.ASM   7-17-2010  12:13:26         PAGE 12
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                          M PREV_ALT = (TRISA) & 8000h
+                          M     endif
+                          M     if ((((TRISA) & 0fffh) > BANKA_END) & (((TRISA) & 0fffh) < (0f01h + BANKA_END)))
+                          M       if (((TRISA) & 0f00h) != (PREV_BANK << 8))
+                          M         movlb   high (TRISA)
+                          M PREV_BANK = high (TRISA)
+                          M       endif
+                          M     endif
+                          M     if (low (03Fh) == 0)
+                          M         clrf    TRISA
+                          M     else
+                          M       if (low (03Fh) == 255)
+                          M         setf    TRISA
+                          M       else
+001108 0E3F               M         movlw   low (03Fh)
+00110A 6E92               M         movwf   TRISA
+                          M       endif
+                          M     endif
+                      00094         MOVE?CB 000h, TRISB
+                          M         CHK?RP  TRISB
+                          M     if (((TRISB) & 8000h) != PREV_ALT)
+                          M       if ((TRISB) & 8000h)
+                          M         bsf     WDTCON, ADSHR
+                          M       else
+                          M         bcf     WDTCON, ADSHR
+                          M       endif
+                          M PREV_ALT = (TRISB) & 8000h
+                          M     endif
+                          M     if ((((TRISB) & 0fffh) > BANKA_END) & (((TRISB) & 0fffh) < (0f01h + BANKA_END)))
+                          M       if (((TRISB) & 0f00h) != (PREV_BANK << 8))
+                          M         movlb   high (TRISB)
+                          M PREV_BANK = high (TRISB)
+                          M       endif
+                          M     endif
+                          M     if (low (000h) == 0)
+00110C 6A93               M         clrf    TRISB
+                          M     else
+                          M       if (low (000h) == 255)
+                          M         setf    TRISB
+                          M       else
+                          M         movlw   low (000h)
+                          M         movwf   TRISB
+                          M       endif
+                          M     endif
+                      00095         MOVE?CB 0F8h, TRISC
+                          M         CHK?RP  TRISC
+                          M     if (((TRISC) & 8000h) != PREV_ALT)
+                          M       if ((TRISC) & 8000h)
+                          M         bsf     WDTCON, ADSHR
+                          M       else
+                          M         bcf     WDTCON, ADSHR
+                          M       endif
+                          M PREV_ALT = (TRISC) & 8000h
+MPASM  5.35                           LCD.ASM   7-17-2010  12:13:26         PAGE 13
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                          M     endif
+                          M     if ((((TRISC) & 0fffh) > BANKA_END) & (((TRISC) & 0fffh) < (0f01h + BANKA_END)))
+                          M       if (((TRISC) & 0f00h) != (PREV_BANK << 8))
+                          M         movlb   high (TRISC)
+                          M PREV_BANK = high (TRISC)
+                          M       endif
+                          M     endif
+                          M     if (low (0F8h) == 0)
+                          M         clrf    TRISC
+                          M     else
+                          M       if (low (0F8h) == 255)
+                          M         setf    TRISC
+                          M       else
+00110E 0EF8               M         movlw   low (0F8h)
+001110 6E94               M         movwf   TRISC
+                          M       endif
+                          M     endif
+                      00096         MOVE?CB 000h, TRISD
+                          M         CHK?RP  TRISD
+                          M     if (((TRISD) & 8000h) != PREV_ALT)
+                          M       if ((TRISD) & 8000h)
+                          M         bsf     WDTCON, ADSHR
+                          M       else
+                          M         bcf     WDTCON, ADSHR
+                          M       endif
+                          M PREV_ALT = (TRISD) & 8000h
+                          M     endif
+                          M     if ((((TRISD) & 0fffh) > BANKA_END) & (((TRISD) & 0fffh) < (0f01h + BANKA_END)))
+                          M       if (((TRISD) & 0f00h) != (PREV_BANK << 8))
+                          M         movlb   high (TRISD)
+                          M PREV_BANK = high (TRISD)
+                          M       endif
+                          M     endif
+                          M     if (low (000h) == 0)
+001112 6A95               M         clrf    TRISD
+                          M     else
+                          M       if (low (000h) == 255)
+                          M         setf    TRISD
+                          M       else
+                          M         movlw   low (000h)
+                          M         movwf   TRISD
+                          M       endif
+                          M     endif
+                      00097         MOVE?CB 007h, TRISE
+                          M         CHK?RP  TRISE
+                          M     if (((TRISE) & 8000h) != PREV_ALT)
+                          M       if ((TRISE) & 8000h)
+                          M         bsf     WDTCON, ADSHR
+                          M       else
+                          M         bcf     WDTCON, ADSHR
+                          M       endif
+                          M PREV_ALT = (TRISE) & 8000h
+                          M     endif
+MPASM  5.35                           LCD.ASM   7-17-2010  12:13:26         PAGE 14
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                          M     if ((((TRISE) & 0fffh) > BANKA_END) & (((TRISE) & 0fffh) < (0f01h + BANKA_END)))
+                          M       if (((TRISE) & 0f00h) != (PREV_BANK << 8))
+                          M         movlb   high (TRISE)
+                          M PREV_BANK = high (TRISE)
+                          M       endif
+                          M     endif
+                          M     if (low (007h) == 0)
+                          M         clrf    TRISE
+                          M     else
+                          M       if (low (007h) == 255)
+                          M         setf    TRISE
+                          M       else
+001114 0E07               M         movlw   low (007h)
+001116 6E96               M         movwf   TRISE
+                          M       endif
+                          M     endif
+                      00098         MOVE?CB 00Fh, ADCON1
+                          M         CHK?RP  ADCON1
+                          M     if (((ADCON1) & 8000h) != PREV_ALT)
+                          M       if ((ADCON1) & 8000h)
+                          M         bsf     WDTCON, ADSHR
+                          M       else
+                          M         bcf     WDTCON, ADSHR
+                          M       endif
+                          M PREV_ALT = (ADCON1) & 8000h
+                          M     endif
+                          M     if ((((ADCON1) & 0fffh) > BANKA_END) & (((ADCON1) & 0fffh) < (0f01h + BANKA_END)))
+                          M       if (((ADCON1) & 0f00h) != (PREV_BANK << 8))
+                          M         movlb   high (ADCON1)
+                          M PREV_BANK = high (ADCON1)
+                          M       endif
+                          M     endif
+                          M     if (low (00Fh) == 0)
+                          M         clrf    ADCON1
+                          M     else
+                          M       if (low (00Fh) == 255)
+                          M         setf    ADCON1
+                          M       else
+001118 0E0F               M         movlw   low (00Fh)
+00111A 6EC1               M         movwf   ADCON1
+                          M       endif
+                          M     endif
+                      00099 
+                      00100         LABEL?L _BASLA  
+                          M         RST?RP
+                          M     if (PREV_ALT != 0)
+                          M         bcf     WDTCON, ADSHR
+                          M PREV_ALT = 0
+                          M     endif
+                          M     if (PREV_BANK != 0)
+                          M         movlb   0
+                          M PREV_BANK = 0
+                          M     endif
+MPASM  5.35                           LCD.ASM   7-17-2010  12:13:26         PAGE 15
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                          M     ifdef PM_USED
+                          M         LALL
+                          M _BASLA
+                          M         XALL
+                          M     else
+00111C                    M _BASLA
+                          M     endif
+                      00101         HIGH?T  _LCD_BACKLIGHT
+                          M         MOVE?CT 1, PORTD, 007h
+                          M         CHK?RP  PORTD
+                          M     if (((PORTD) & 8000h) != PREV_ALT)
+                          M       if ((PORTD) & 8000h)
+                          M         bsf     WDTCON, ADSHR
+                          M       else
+                          M         bcf     WDTCON, ADSHR
+                          M       endif
+                          M PREV_ALT = (PORTD) & 8000h
+                          M     endif
+                          M     if ((((PORTD) & 0fffh) > BANKA_END) & (((PORTD) & 0fffh) < (0f01h + BANKA_END)))
+                          M       if (((PORTD) & 0f00h) != (PREV_BANK << 8))
+                          M         movlb   high (PORTD)
+                          M PREV_BANK = high (PORTD)
+                          M       endif
+                          M     endif
+                          M     if (((1)   & 1) == 1)
+00111C 8E83               M         bsf     PORTD,  007h
+                          M     else
+                          M         bcf     PORTD,  007h
+                          M     endif
+                          M         MOVE?CT 0, ((PORTD) + 12h), 007h
+                          M         CHK?RP  ((PORTD) + 12h)
+                          M     if (((((PORTD) + 12h)) & 8000h) != PREV_ALT)
+                          M       if ((((PORTD) + 12h)) & 8000h)
+                          M         bsf     WDTCON, ADSHR
+                          M       else
+                          M         bcf     WDTCON, ADSHR
+                          M       endif
+                          M PREV_ALT = (((PORTD) + 12h)) & 8000h
+                          M     endif
+                          M     if ((((((PORTD) + 12h)) & 0fffh) > BANKA_END) & (((((PORTD) + 12h)) & 0fffh) < (0f01h + BANKA_END)))
+                          M       if (((((PORTD) + 12h)) & 0f00h) != (PREV_BANK << 8))
+                          M         movlb   high (((PORTD) + 12h))
+                          M PREV_BANK = high (((PORTD) + 12h))
+                          M       endif
+                          M     endif
+                          M     if (((0)   & 1) == 1)
+                          M         bsf     ((PORTD) + 12h), 007h
+                          M     else
+00111E 9E95               M         bcf     ((PORTD) + 12h), 007h
+                          M     endif
+                      00102         LCDOUT?C        0FEh
+001120 0EFE               M         movlw   0FEh
+                          M         L?CALL  LCDOUT
+MPASM  5.35                           LCD.ASM   7-17-2010  12:13:26         PAGE 16
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                          M         RST?RP
+                          M     if (PREV_ALT != 0)
+                          M         bcf     WDTCON, ADSHR
+                          M PREV_ALT = 0
+                          M     endif
+                          M     if (PREV_BANK != 0)
+                          M         movlb   0
+                          M PREV_BANK = 0
+                          M     endif
+                          M 
+                          M     ifdef USE_LINKER
+                          M         call    LCDOUT
+                          M     else
+                          M       if ((LCDOUT) < 1)
+                          M         call    LCDOUT
+                          M       else
+                          M         if ((LCDOUT) > $)
+                          M         call    LCDOUT
+                          M         else
+                          M           if ((LCDOUT) < ($ - 3ffh))
+                          M         call    LCDOUT
+                          M           else
+001122 DF71               M         rcall   LCDOUT
+                          M           endif
+                          M         endif
+                          M       endif
+                          M     endif
+                      00103         LCDOUT?C        001h
+001124 0E01               M         movlw   001h
+                          M         L?CALL  LCDOUT
+                          M         RST?RP
+                          M     if (PREV_ALT != 0)
+                          M         bcf     WDTCON, ADSHR
+                          M PREV_ALT = 0
+                          M     endif
+                          M     if (PREV_BANK != 0)
+                          M         movlb   0
+                          M PREV_BANK = 0
+                          M     endif
+                          M 
+                          M     ifdef USE_LINKER
+                          M         call    LCDOUT
+                          M     else
+                          M       if ((LCDOUT) < 1)
+                          M         call    LCDOUT
+                          M       else
+                          M         if ((LCDOUT) > $)
+                          M         call    LCDOUT
+                          M         else
+                          M           if ((LCDOUT) < ($ - 3ffh))
+                          M         call    LCDOUT
+                          M           else
+001126 DF6F               M         rcall   LCDOUT
+MPASM  5.35                           LCD.ASM   7-17-2010  12:13:26         PAGE 17
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                          M           endif
+                          M         endif
+                          M       endif
+                          M     endif
+                      00104         LCDOUT?C        0FEh
+001128 0EFE               M         movlw   0FEh
+                          M         L?CALL  LCDOUT
+                          M         RST?RP
+                          M     if (PREV_ALT != 0)
+                          M         bcf     WDTCON, ADSHR
+                          M PREV_ALT = 0
+                          M     endif
+                          M     if (PREV_BANK != 0)
+                          M         movlb   0
+                          M PREV_BANK = 0
+                          M     endif
+                          M 
+                          M     ifdef USE_LINKER
+                          M         call    LCDOUT
+                          M     else
+                          M       if ((LCDOUT) < 1)
+                          M         call    LCDOUT
+                          M       else
+                          M         if ((LCDOUT) > $)
+                          M         call    LCDOUT
+                          M         else
+                          M           if ((LCDOUT) < ($ - 3ffh))
+                          M         call    LCDOUT
+                          M           else
+00112A DF6D               M         rcall   LCDOUT
+                          M           endif
+                          M         endif
+                          M       endif
+                          M     endif
+                      00105         LCDOUT?C        081h
+00112C 0E81               M         movlw   081h
+                          M         L?CALL  LCDOUT
+                          M         RST?RP
+                          M     if (PREV_ALT != 0)
+                          M         bcf     WDTCON, ADSHR
+                          M PREV_ALT = 0
+                          M     endif
+                          M     if (PREV_BANK != 0)
+                          M         movlb   0
+                          M PREV_BANK = 0
+                          M     endif
+                          M 
+                          M     ifdef USE_LINKER
+                          M         call    LCDOUT
+                          M     else
+                          M       if ((LCDOUT) < 1)
+                          M         call    LCDOUT
+                          M       else
+MPASM  5.35                           LCD.ASM   7-17-2010  12:13:26         PAGE 18
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                          M         if ((LCDOUT) > $)
+                          M         call    LCDOUT
+                          M         else
+                          M           if ((LCDOUT) < ($ - 3ffh))
+                          M         call    LCDOUT
+                          M           else
+00112E DF6B               M         rcall   LCDOUT
+                          M           endif
+                          M         endif
+                          M       endif
+                          M     endif
+                      00106         LCDOUT?C        055h
+001130 0E55               M         movlw   055h
+                          M         L?CALL  LCDOUT
+                          M         RST?RP
+                          M     if (PREV_ALT != 0)
+                          M         bcf     WDTCON, ADSHR
+                          M PREV_ALT = 0
+                          M     endif
+                          M     if (PREV_BANK != 0)
+                          M         movlb   0
+                          M PREV_BANK = 0
+                          M     endif
+                          M 
+                          M     ifdef USE_LINKER
+                          M         call    LCDOUT
+                          M     else
+                          M       if ((LCDOUT) < 1)
+                          M         call    LCDOUT
+                          M       else
+                          M         if ((LCDOUT) > $)
+                          M         call    LCDOUT
+                          M         else
+                          M           if ((LCDOUT) < ($ - 3ffh))
+                          M         call    LCDOUT
+                          M           else
+001132 DF69               M         rcall   LCDOUT
+                          M           endif
+                          M         endif
+                          M       endif
+                          M     endif
+                      00107         LCDOUT?C        053h
+001134 0E53               M         movlw   053h
+                          M         L?CALL  LCDOUT
+                          M         RST?RP
+                          M     if (PREV_ALT != 0)
+                          M         bcf     WDTCON, ADSHR
+                          M PREV_ALT = 0
+                          M     endif
+                          M     if (PREV_BANK != 0)
+                          M         movlb   0
+                          M PREV_BANK = 0
+                          M     endif
+MPASM  5.35                           LCD.ASM   7-17-2010  12:13:26         PAGE 19
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                          M 
+                          M     ifdef USE_LINKER
+                          M         call    LCDOUT
+                          M     else
+                          M       if ((LCDOUT) < 1)
+                          M         call    LCDOUT
+                          M       else
+                          M         if ((LCDOUT) > $)
+                          M         call    LCDOUT
+                          M         else
+                          M           if ((LCDOUT) < ($ - 3ffh))
+                          M         call    LCDOUT
+                          M           else
+001136 DF67               M         rcall   LCDOUT
+                          M           endif
+                          M         endif
+                          M       endif
+                          M     endif
+                      00108         LCDOUT?C        042h
+001138 0E42               M         movlw   042h
+                          M         L?CALL  LCDOUT
+                          M         RST?RP
+                          M     if (PREV_ALT != 0)
+                          M         bcf     WDTCON, ADSHR
+                          M PREV_ALT = 0
+                          M     endif
+                          M     if (PREV_BANK != 0)
+                          M         movlb   0
+                          M PREV_BANK = 0
+                          M     endif
+                          M 
+                          M     ifdef USE_LINKER
+                          M         call    LCDOUT
+                          M     else
+                          M       if ((LCDOUT) < 1)
+                          M         call    LCDOUT
+                          M       else
+                          M         if ((LCDOUT) > $)
+                          M         call    LCDOUT
+                          M         else
+                          M           if ((LCDOUT) < ($ - 3ffh))
+                          M         call    LCDOUT
+                          M           else
+00113A DF65               M         rcall   LCDOUT
+                          M           endif
+                          M         endif
+                          M       endif
+                          M     endif
+                      00109         LCDOUT?C        020h
+00113C 0E20               M         movlw   020h
+                          M         L?CALL  LCDOUT
+                          M         RST?RP
+                          M     if (PREV_ALT != 0)
+MPASM  5.35                           LCD.ASM   7-17-2010  12:13:26         PAGE 20
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                          M         bcf     WDTCON, ADSHR
+                          M PREV_ALT = 0
+                          M     endif
+                          M     if (PREV_BANK != 0)
+                          M         movlb   0
+                          M PREV_BANK = 0
+                          M     endif
+                          M 
+                          M     ifdef USE_LINKER
+                          M         call    LCDOUT
+                          M     else
+                          M       if ((LCDOUT) < 1)
+                          M         call    LCDOUT
+                          M       else
+                          M         if ((LCDOUT) > $)
+                          M         call    LCDOUT
+                          M         else
+                          M           if ((LCDOUT) < ($ - 3ffh))
+                          M         call    LCDOUT
+                          M           else
+00113E DF63               M         rcall   LCDOUT
+                          M           endif
+                          M         endif
+                          M       endif
+                          M     endif
+                      00110         LCDOUT?C        042h
+001140 0E42               M         movlw   042h
+                          M         L?CALL  LCDOUT
+                          M         RST?RP
+                          M     if (PREV_ALT != 0)
+                          M         bcf     WDTCON, ADSHR
+                          M PREV_ALT = 0
+                          M     endif
+                          M     if (PREV_BANK != 0)
+                          M         movlb   0
+                          M PREV_BANK = 0
+                          M     endif
+                          M 
+                          M     ifdef USE_LINKER
+                          M         call    LCDOUT
+                          M     else
+                          M       if ((LCDOUT) < 1)
+                          M         call    LCDOUT
+                          M       else
+                          M         if ((LCDOUT) > $)
+                          M         call    LCDOUT
+                          M         else
+                          M           if ((LCDOUT) < ($ - 3ffh))
+                          M         call    LCDOUT
+                          M           else
+001142 DF61               M         rcall   LCDOUT
+                          M           endif
+                          M         endif
+MPASM  5.35                           LCD.ASM   7-17-2010  12:13:26         PAGE 21
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                          M       endif
+                          M     endif
+                      00111         LCDOUT?C        04Fh
+001144 0E4F               M         movlw   04Fh
+                          M         L?CALL  LCDOUT
+                          M         RST?RP
+                          M     if (PREV_ALT != 0)
+                          M         bcf     WDTCON, ADSHR
+                          M PREV_ALT = 0
+                          M     endif
+                          M     if (PREV_BANK != 0)
+                          M         movlb   0
+                          M PREV_BANK = 0
+                          M     endif
+                          M 
+                          M     ifdef USE_LINKER
+                          M         call    LCDOUT
+                          M     else
+                          M       if ((LCDOUT) < 1)
+                          M         call    LCDOUT
+                          M       else
+                          M         if ((LCDOUT) > $)
+                          M         call    LCDOUT
+                          M         else
+                          M           if ((LCDOUT) < ($ - 3ffh))
+                          M         call    LCDOUT
+                          M           else
+001146 DF5F               M         rcall   LCDOUT
+                          M           endif
+                          M         endif
+                          M       endif
+                          M     endif
+                      00112         LCDOUT?C        04Fh
+001148 0E4F               M         movlw   04Fh
+                          M         L?CALL  LCDOUT
+                          M         RST?RP
+                          M     if (PREV_ALT != 0)
+                          M         bcf     WDTCON, ADSHR
+                          M PREV_ALT = 0
+                          M     endif
+                          M     if (PREV_BANK != 0)
+                          M         movlb   0
+                          M PREV_BANK = 0
+                          M     endif
+                          M 
+                          M     ifdef USE_LINKER
+                          M         call    LCDOUT
+                          M     else
+                          M       if ((LCDOUT) < 1)
+                          M         call    LCDOUT
+                          M       else
+                          M         if ((LCDOUT) > $)
+                          M         call    LCDOUT
+MPASM  5.35                           LCD.ASM   7-17-2010  12:13:26         PAGE 22
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                          M         else
+                          M           if ((LCDOUT) < ($ - 3ffh))
+                          M         call    LCDOUT
+                          M           else
+00114A DF5D               M         rcall   LCDOUT
+                          M           endif
+                          M         endif
+                          M       endif
+                          M     endif
+                      00113         LCDOUT?C        054h
+00114C 0E54               M         movlw   054h
+                          M         L?CALL  LCDOUT
+                          M         RST?RP
+                          M     if (PREV_ALT != 0)
+                          M         bcf     WDTCON, ADSHR
+                          M PREV_ALT = 0
+                          M     endif
+                          M     if (PREV_BANK != 0)
+                          M         movlb   0
+                          M PREV_BANK = 0
+                          M     endif
+                          M 
+                          M     ifdef USE_LINKER
+                          M         call    LCDOUT
+                          M     else
+                          M       if ((LCDOUT) < 1)
+                          M         call    LCDOUT
+                          M       else
+                          M         if ((LCDOUT) > $)
+                          M         call    LCDOUT
+                          M         else
+                          M           if ((LCDOUT) < ($ - 3ffh))
+                          M         call    LCDOUT
+                          M           else
+00114E DF5B               M         rcall   LCDOUT
+                          M           endif
+                          M         endif
+                          M       endif
+                          M     endif
+                      00114         LCDOUT?C        04Ch
+001150 0E4C               M         movlw   04Ch
+                          M         L?CALL  LCDOUT
+                          M         RST?RP
+                          M     if (PREV_ALT != 0)
+                          M         bcf     WDTCON, ADSHR
+                          M PREV_ALT = 0
+                          M     endif
+                          M     if (PREV_BANK != 0)
+                          M         movlb   0
+                          M PREV_BANK = 0
+                          M     endif
+                          M 
+                          M     ifdef USE_LINKER
+MPASM  5.35                           LCD.ASM   7-17-2010  12:13:26         PAGE 23
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                          M         call    LCDOUT
+                          M     else
+                          M       if ((LCDOUT) < 1)
+                          M         call    LCDOUT
+                          M       else
+                          M         if ((LCDOUT) > $)
+                          M         call    LCDOUT
+                          M         else
+                          M           if ((LCDOUT) < ($ - 3ffh))
+                          M         call    LCDOUT
+                          M           else
+001152 DF59               M         rcall   LCDOUT
+                          M           endif
+                          M         endif
+                          M       endif
+                          M     endif
+                      00115         LCDOUT?C        04Fh
+001154 0E4F               M         movlw   04Fh
+                          M         L?CALL  LCDOUT
+                          M         RST?RP
+                          M     if (PREV_ALT != 0)
+                          M         bcf     WDTCON, ADSHR
+                          M PREV_ALT = 0
+                          M     endif
+                          M     if (PREV_BANK != 0)
+                          M         movlb   0
+                          M PREV_BANK = 0
+                          M     endif
+                          M 
+                          M     ifdef USE_LINKER
+                          M         call    LCDOUT
+                          M     else
+                          M       if ((LCDOUT) < 1)
+                          M         call    LCDOUT
+                          M       else
+                          M         if ((LCDOUT) > $)
+                          M         call    LCDOUT
+                          M         else
+                          M           if ((LCDOUT) < ($ - 3ffh))
+                          M         call    LCDOUT
+                          M           else
+001156 DF57               M         rcall   LCDOUT
+                          M           endif
+                          M         endif
+                          M       endif
+                          M     endif
+                      00116         LCDOUT?C        041h
+001158 0E41               M         movlw   041h
+                          M         L?CALL  LCDOUT
+                          M         RST?RP
+                          M     if (PREV_ALT != 0)
+                          M         bcf     WDTCON, ADSHR
+                          M PREV_ALT = 0
+MPASM  5.35                           LCD.ASM   7-17-2010  12:13:26         PAGE 24
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                          M     endif
+                          M     if (PREV_BANK != 0)
+                          M         movlb   0
+                          M PREV_BANK = 0
+                          M     endif
+                          M 
+                          M     ifdef USE_LINKER
+                          M         call    LCDOUT
+                          M     else
+                          M       if ((LCDOUT) < 1)
+                          M         call    LCDOUT
+                          M       else
+                          M         if ((LCDOUT) > $)
+                          M         call    LCDOUT
+                          M         else
+                          M           if ((LCDOUT) < ($ - 3ffh))
+                          M         call    LCDOUT
+                          M           else
+00115A DF55               M         rcall   LCDOUT
+                          M           endif
+                          M         endif
+                          M       endif
+                          M     endif
+                      00117         LCDOUT?C        044h
+00115C 0E44               M         movlw   044h
+                          M         L?CALL  LCDOUT
+                          M         RST?RP
+                          M     if (PREV_ALT != 0)
+                          M         bcf     WDTCON, ADSHR
+                          M PREV_ALT = 0
+                          M     endif
+                          M     if (PREV_BANK != 0)
+                          M         movlb   0
+                          M PREV_BANK = 0
+                          M     endif
+                          M 
+                          M     ifdef USE_LINKER
+                          M         call    LCDOUT
+                          M     else
+                          M       if ((LCDOUT) < 1)
+                          M         call    LCDOUT
+                          M       else
+                          M         if ((LCDOUT) > $)
+                          M         call    LCDOUT
+                          M         else
+                          M           if ((LCDOUT) < ($ - 3ffh))
+                          M         call    LCDOUT
+                          M           else
+00115E DF53               M         rcall   LCDOUT
+                          M           endif
+                          M         endif
+                          M       endif
+                          M     endif
+MPASM  5.35                           LCD.ASM   7-17-2010  12:13:26         PAGE 25
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00118         LCDOUT?C        045h
+001160 0E45               M         movlw   045h
+                          M         L?CALL  LCDOUT
+                          M         RST?RP
+                          M     if (PREV_ALT != 0)
+                          M         bcf     WDTCON, ADSHR
+                          M PREV_ALT = 0
+                          M     endif
+                          M     if (PREV_BANK != 0)
+                          M         movlb   0
+                          M PREV_BANK = 0
+                          M     endif
+                          M 
+                          M     ifdef USE_LINKER
+                          M         call    LCDOUT
+                          M     else
+                          M       if ((LCDOUT) < 1)
+                          M         call    LCDOUT
+                          M       else
+                          M         if ((LCDOUT) > $)
+                          M         call    LCDOUT
+                          M         else
+                          M           if ((LCDOUT) < ($ - 3ffh))
+                          M         call    LCDOUT
+                          M           else
+001162 DF51               M         rcall   LCDOUT
+                          M           endif
+                          M         endif
+                          M       endif
+                          M     endif
+                      00119         LCDOUT?C        052h
+001164 0E52               M         movlw   052h
+                          M         L?CALL  LCDOUT
+                          M         RST?RP
+                          M     if (PREV_ALT != 0)
+                          M         bcf     WDTCON, ADSHR
+                          M PREV_ALT = 0
+                          M     endif
+                          M     if (PREV_BANK != 0)
+                          M         movlb   0
+                          M PREV_BANK = 0
+                          M     endif
+                          M 
+                          M     ifdef USE_LINKER
+                          M         call    LCDOUT
+                          M     else
+                          M       if ((LCDOUT) < 1)
+                          M         call    LCDOUT
+                          M       else
+                          M         if ((LCDOUT) > $)
+                          M         call    LCDOUT
+                          M         else
+                          M           if ((LCDOUT) < ($ - 3ffh))
+MPASM  5.35                           LCD.ASM   7-17-2010  12:13:26         PAGE 26
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                          M         call    LCDOUT
+                          M           else
+001166 DF4F               M         rcall   LCDOUT
+                          M           endif
+                          M         endif
+                          M       endif
+                          M     endif
+                      00120         LCDOUT?C        0FEh
+001168 0EFE               M         movlw   0FEh
+                          M         L?CALL  LCDOUT
+                          M         RST?RP
+                          M     if (PREV_ALT != 0)
+                          M         bcf     WDTCON, ADSHR
+                          M PREV_ALT = 0
+                          M     endif
+                          M     if (PREV_BANK != 0)
+                          M         movlb   0
+                          M PREV_BANK = 0
+                          M     endif
+                          M 
+                          M     ifdef USE_LINKER
+                          M         call    LCDOUT
+                          M     else
+                          M       if ((LCDOUT) < 1)
+                          M         call    LCDOUT
+                          M       else
+                          M         if ((LCDOUT) > $)
+                          M         call    LCDOUT
+                          M         else
+                          M           if ((LCDOUT) < ($ - 3ffh))
+                          M         call    LCDOUT
+                          M           else
+00116A DF4D               M         rcall   LCDOUT
+                          M           endif
+                          M         endif
+                          M       endif
+                          M     endif
+                      00121         LCDOUT?C        0C3h
+00116C 0EC3               M         movlw   0C3h
+                          M         L?CALL  LCDOUT
+                          M         RST?RP
+                          M     if (PREV_ALT != 0)
+                          M         bcf     WDTCON, ADSHR
+                          M PREV_ALT = 0
+                          M     endif
+                          M     if (PREV_BANK != 0)
+                          M         movlb   0
+                          M PREV_BANK = 0
+                          M     endif
+                          M 
+                          M     ifdef USE_LINKER
+                          M         call    LCDOUT
+                          M     else
+MPASM  5.35                           LCD.ASM   7-17-2010  12:13:26         PAGE 27
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                          M       if ((LCDOUT) < 1)
+                          M         call    LCDOUT
+                          M       else
+                          M         if ((LCDOUT) > $)
+                          M         call    LCDOUT
+                          M         else
+                          M           if ((LCDOUT) < ($ - 3ffh))
+                          M         call    LCDOUT
+                          M           else
+00116E DF4B               M         rcall   LCDOUT
+                          M           endif
+                          M         endif
+                          M       endif
+                          M     endif
+                      00122         LCDOUT?C        055h
+001170 0E55               M         movlw   055h
+                          M         L?CALL  LCDOUT
+                          M         RST?RP
+                          M     if (PREV_ALT != 0)
+                          M         bcf     WDTCON, ADSHR
+                          M PREV_ALT = 0
+                          M     endif
+                          M     if (PREV_BANK != 0)
+                          M         movlb   0
+                          M PREV_BANK = 0
+                          M     endif
+                          M 
+                          M     ifdef USE_LINKER
+                          M         call    LCDOUT
+                          M     else
+                          M       if ((LCDOUT) < 1)
+                          M         call    LCDOUT
+                          M       else
+                          M         if ((LCDOUT) > $)
+                          M         call    LCDOUT
+                          M         else
+                          M           if ((LCDOUT) < ($ - 3ffh))
+                          M         call    LCDOUT
+                          M           else
+001172 DF49               M         rcall   LCDOUT
+                          M           endif
+                          M         endif
+                          M       endif
+                          M     endif
+                      00123         LCDOUT?C        059h
+001174 0E59               M         movlw   059h
+                          M         L?CALL  LCDOUT
+                          M         RST?RP
+                          M     if (PREV_ALT != 0)
+                          M         bcf     WDTCON, ADSHR
+                          M PREV_ALT = 0
+                          M     endif
+                          M     if (PREV_BANK != 0)
+MPASM  5.35                           LCD.ASM   7-17-2010  12:13:26         PAGE 28
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                          M         movlb   0
+                          M PREV_BANK = 0
+                          M     endif
+                          M 
+                          M     ifdef USE_LINKER
+                          M         call    LCDOUT
+                          M     else
+                          M       if ((LCDOUT) < 1)
+                          M         call    LCDOUT
+                          M       else
+                          M         if ((LCDOUT) > $)
+                          M         call    LCDOUT
+                          M         else
+                          M           if ((LCDOUT) < ($ - 3ffh))
+                          M         call    LCDOUT
+                          M           else
+001176 DF47               M         rcall   LCDOUT
+                          M           endif
+                          M         endif
+                          M       endif
+                          M     endif
+                      00124         LCDOUT?C        047h
+001178 0E47               M         movlw   047h
+                          M         L?CALL  LCDOUT
+                          M         RST?RP
+                          M     if (PREV_ALT != 0)
+                          M         bcf     WDTCON, ADSHR
+                          M PREV_ALT = 0
+                          M     endif
+                          M     if (PREV_BANK != 0)
+                          M         movlb   0
+                          M PREV_BANK = 0
+                          M     endif
+                          M 
+                          M     ifdef USE_LINKER
+                          M         call    LCDOUT
+                          M     else
+                          M       if ((LCDOUT) < 1)
+                          M         call    LCDOUT
+                          M       else
+                          M         if ((LCDOUT) > $)
+                          M         call    LCDOUT
+                          M         else
+                          M           if ((LCDOUT) < ($ - 3ffh))
+                          M         call    LCDOUT
+                          M           else
+00117A DF45               M         rcall   LCDOUT
+                          M           endif
+                          M         endif
+                          M       endif
+                          M     endif
+                      00125         LCDOUT?C        055h
+00117C 0E55               M         movlw   055h
+MPASM  5.35                           LCD.ASM   7-17-2010  12:13:26         PAGE 29
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                          M         L?CALL  LCDOUT
+                          M         RST?RP
+                          M     if (PREV_ALT != 0)
+                          M         bcf     WDTCON, ADSHR
+                          M PREV_ALT = 0
+                          M     endif
+                          M     if (PREV_BANK != 0)
+                          M         movlb   0
+                          M PREV_BANK = 0
+                          M     endif
+                          M 
+                          M     ifdef USE_LINKER
+                          M         call    LCDOUT
+                          M     else
+                          M       if ((LCDOUT) < 1)
+                          M         call    LCDOUT
+                          M       else
+                          M         if ((LCDOUT) > $)
+                          M         call    LCDOUT
+                          M         else
+                          M           if ((LCDOUT) < ($ - 3ffh))
+                          M         call    LCDOUT
+                          M           else
+00117E DF43               M         rcall   LCDOUT
+                          M           endif
+                          M         endif
+                          M       endif
+                          M     endif
+                      00126         LCDOUT?C        04Ch
+001180 0E4C               M         movlw   04Ch
+                          M         L?CALL  LCDOUT
+                          M         RST?RP
+                          M     if (PREV_ALT != 0)
+                          M         bcf     WDTCON, ADSHR
+                          M PREV_ALT = 0
+                          M     endif
+                          M     if (PREV_BANK != 0)
+                          M         movlb   0
+                          M PREV_BANK = 0
+                          M     endif
+                          M 
+                          M     ifdef USE_LINKER
+                          M         call    LCDOUT
+                          M     else
+                          M       if ((LCDOUT) < 1)
+                          M         call    LCDOUT
+                          M       else
+                          M         if ((LCDOUT) > $)
+                          M         call    LCDOUT
+                          M         else
+                          M           if ((LCDOUT) < ($ - 3ffh))
+                          M         call    LCDOUT
+                          M           else
+MPASM  5.35                           LCD.ASM   7-17-2010  12:13:26         PAGE 30
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+001182 DF41               M         rcall   LCDOUT
+                          M           endif
+                          M         endif
+                          M       endif
+                          M     endif
+                      00127         LCDOUT?C        041h
+001184 0E41               M         movlw   041h
+                          M         L?CALL  LCDOUT
+                          M         RST?RP
+                          M     if (PREV_ALT != 0)
+                          M         bcf     WDTCON, ADSHR
+                          M PREV_ALT = 0
+                          M     endif
+                          M     if (PREV_BANK != 0)
+                          M         movlb   0
+                          M PREV_BANK = 0
+                          M     endif
+                          M 
+                          M     ifdef USE_LINKER
+                          M         call    LCDOUT
+                          M     else
+                          M       if ((LCDOUT) < 1)
+                          M         call    LCDOUT
+                          M       else
+                          M         if ((LCDOUT) > $)
+                          M         call    LCDOUT
+                          M         else
+                          M           if ((LCDOUT) < ($ - 3ffh))
+                          M         call    LCDOUT
+                          M           else
+001186 DF3F               M         rcall   LCDOUT
+                          M           endif
+                          M         endif
+                          M       endif
+                          M     endif
+                      00128         LCDOUT?C        04Dh
+001188 0E4D               M         movlw   04Dh
+                          M         L?CALL  LCDOUT
+                          M         RST?RP
+                          M     if (PREV_ALT != 0)
+                          M         bcf     WDTCON, ADSHR
+                          M PREV_ALT = 0
+                          M     endif
+                          M     if (PREV_BANK != 0)
+                          M         movlb   0
+                          M PREV_BANK = 0
+                          M     endif
+                          M 
+                          M     ifdef USE_LINKER
+                          M         call    LCDOUT
+                          M     else
+                          M       if ((LCDOUT) < 1)
+                          M         call    LCDOUT
+MPASM  5.35                           LCD.ASM   7-17-2010  12:13:26         PAGE 31
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                          M       else
+                          M         if ((LCDOUT) > $)
+                          M         call    LCDOUT
+                          M         else
+                          M           if ((LCDOUT) < ($ - 3ffh))
+                          M         call    LCDOUT
+                          M           else
+00118A DF3D               M         rcall   LCDOUT
+                          M           endif
+                          M         endif
+                          M       endif
+                          M     endif
+                      00129         LCDOUT?C        041h
+00118C 0E41               M         movlw   041h
+                          M         L?CALL  LCDOUT
+                          M         RST?RP
+                          M     if (PREV_ALT != 0)
+                          M         bcf     WDTCON, ADSHR
+                          M PREV_ALT = 0
+                          M     endif
+                          M     if (PREV_BANK != 0)
+                          M         movlb   0
+                          M PREV_BANK = 0
+                          M     endif
+                          M 
+                          M     ifdef USE_LINKER
+                          M         call    LCDOUT
+                          M     else
+                          M       if ((LCDOUT) < 1)
+                          M         call    LCDOUT
+                          M       else
+                          M         if ((LCDOUT) > $)
+                          M         call    LCDOUT
+                          M         else
+                          M           if ((LCDOUT) < ($ - 3ffh))
+                          M         call    LCDOUT
+                          M           else
+00118E DF3B               M         rcall   LCDOUT
+                          M           endif
+                          M         endif
+                          M       endif
+                          M     endif
+                      00130         LCDOUT?C        053h
+001190 0E53               M         movlw   053h
+                          M         L?CALL  LCDOUT
+                          M         RST?RP
+                          M     if (PREV_ALT != 0)
+                          M         bcf     WDTCON, ADSHR
+                          M PREV_ALT = 0
+                          M     endif
+                          M     if (PREV_BANK != 0)
+                          M         movlb   0
+                          M PREV_BANK = 0
+MPASM  5.35                           LCD.ASM   7-17-2010  12:13:26         PAGE 32
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                          M     endif
+                          M 
+                          M     ifdef USE_LINKER
+                          M         call    LCDOUT
+                          M     else
+                          M       if ((LCDOUT) < 1)
+                          M         call    LCDOUT
+                          M       else
+                          M         if ((LCDOUT) > $)
+                          M         call    LCDOUT
+                          M         else
+                          M           if ((LCDOUT) < ($ - 3ffh))
+                          M         call    LCDOUT
+                          M           else
+001192 DF39               M         rcall   LCDOUT
+                          M           endif
+                          M         endif
+                          M       endif
+                          M     endif
+                      00131         LCDOUT?C        049h
+001194 0E49               M         movlw   049h
+                          M         L?CALL  LCDOUT
+                          M         RST?RP
+                          M     if (PREV_ALT != 0)
+                          M         bcf     WDTCON, ADSHR
+                          M PREV_ALT = 0
+                          M     endif
+                          M     if (PREV_BANK != 0)
+                          M         movlb   0
+                          M PREV_BANK = 0
+                          M     endif
+                          M 
+                          M     ifdef USE_LINKER
+                          M         call    LCDOUT
+                          M     else
+                          M       if ((LCDOUT) < 1)
+                          M         call    LCDOUT
+                          M       else
+                          M         if ((LCDOUT) > $)
+                          M         call    LCDOUT
+                          M         else
+                          M           if ((LCDOUT) < ($ - 3ffh))
+                          M         call    LCDOUT
+                          M           else
+001196 DF37               M         rcall   LCDOUT
+                          M           endif
+                          M         endif
+                          M       endif
+                          M     endif
+                      00132         PAUSE?C 0C8h
+                          M     if (((0C8h) >> 8) == 0)
+                          M         MOVE?CA 0C8h
+001198 0EC8               M         movlw   low (0C8h)
+MPASM  5.35                           LCD.ASM   7-17-2010  12:13:26         PAGE 33
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                          M         L?CALL  PAUSE
+                          M         RST?RP
+                          M     if (PREV_ALT != 0)
+                          M         bcf     WDTCON, ADSHR
+                          M PREV_ALT = 0
+                          M     endif
+                          M     if (PREV_BANK != 0)
+                          M         movlb   0
+                          M PREV_BANK = 0
+                          M     endif
+                          M 
+                          M     ifdef USE_LINKER
+                          M         call    PAUSE
+                          M     else
+                          M       if ((PAUSE) < 1)
+                          M         call    PAUSE
+                          M       else
+                          M         if ((PAUSE) > $)
+                          M         call    PAUSE
+                          M         else
+                          M           if ((PAUSE) < ($ - 3ffh))
+                          M         call    PAUSE
+                          M           else
+00119A DF8D               M         rcall   PAUSE
+                          M           endif
+                          M         endif
+                          M       endif
+                          M     endif
+                          M     else
+                          M         MOVE?CB (0C8h) >> 8, R1 + 1
+                          M         MOVE?CA low (0C8h)
+                          M         L?CALL  PAUSEL
+                          M     endif
+                      00133         LOW?T   _LCD_BACKLIGHT
+                          M         MOVE?CT 0, PORTD, 007h
+                          M         CHK?RP  PORTD
+                          M     if (((PORTD) & 8000h) != PREV_ALT)
+                          M       if ((PORTD) & 8000h)
+                          M         bsf     WDTCON, ADSHR
+                          M       else
+                          M         bcf     WDTCON, ADSHR
+                          M       endif
+                          M PREV_ALT = (PORTD) & 8000h
+                          M     endif
+                          M     if ((((PORTD) & 0fffh) > BANKA_END) & (((PORTD) & 0fffh) < (0f01h + BANKA_END)))
+                          M       if (((PORTD) & 0f00h) != (PREV_BANK << 8))
+                          M         movlb   high (PORTD)
+                          M PREV_BANK = high (PORTD)
+                          M       endif
+                          M     endif
+                          M     if (((0)   & 1) == 1)
+                          M         bsf     PORTD,  007h
+                          M     else
+MPASM  5.35                           LCD.ASM   7-17-2010  12:13:26         PAGE 34
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+00119C 9E83               M         bcf     PORTD,  007h
+                          M     endif
+                          M         MOVE?CT 0, ((PORTD) + 12h), 007h
+                          M         CHK?RP  ((PORTD) + 12h)
+                          M     if (((((PORTD) + 12h)) & 8000h) != PREV_ALT)
+                          M       if ((((PORTD) + 12h)) & 8000h)
+                          M         bsf     WDTCON, ADSHR
+                          M       else
+                          M         bcf     WDTCON, ADSHR
+                          M       endif
+                          M PREV_ALT = (((PORTD) + 12h)) & 8000h
+                          M     endif
+                          M     if ((((((PORTD) + 12h)) & 0fffh) > BANKA_END) & (((((PORTD) + 12h)) & 0fffh) < (0f01h + BANKA_END)))
+                          M       if (((((PORTD) + 12h)) & 0f00h) != (PREV_BANK << 8))
+                          M         movlb   high (((PORTD) + 12h))
+                          M PREV_BANK = high (((PORTD) + 12h))
+                          M       endif
+                          M     endif
+                          M     if (((0)   & 1) == 1)
+                          M         bsf     ((PORTD) + 12h), 007h
+                          M     else
+00119E 9E95               M         bcf     ((PORTD) + 12h), 007h
+                          M     endif
+                      00134         PAUSE?C 0C8h
+                          M     if (((0C8h) >> 8) == 0)
+                          M         MOVE?CA 0C8h
+0011A0 0EC8               M         movlw   low (0C8h)
+                          M         L?CALL  PAUSE
+                          M         RST?RP
+                          M     if (PREV_ALT != 0)
+                          M         bcf     WDTCON, ADSHR
+                          M PREV_ALT = 0
+                          M     endif
+                          M     if (PREV_BANK != 0)
+                          M         movlb   0
+                          M PREV_BANK = 0
+                          M     endif
+                          M 
+                          M     ifdef USE_LINKER
+                          M         call    PAUSE
+                          M     else
+                          M       if ((PAUSE) < 1)
+                          M         call    PAUSE
+                          M       else
+                          M         if ((PAUSE) > $)
+                          M         call    PAUSE
+                          M         else
+                          M           if ((PAUSE) < ($ - 3ffh))
+                          M         call    PAUSE
+                          M           else
+0011A2 DF89               M         rcall   PAUSE
+                          M           endif
+                          M         endif
+MPASM  5.35                           LCD.ASM   7-17-2010  12:13:26         PAGE 35
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                          M       endif
+                          M     endif
+                          M     else
+                          M         MOVE?CB (0C8h) >> 8, R1 + 1
+                          M         MOVE?CA low (0C8h)
+                          M         L?CALL  PAUSEL
+                          M     endif
+                      00135         GOTO?L  _BASLA
+                          M         L?GOTO  _BASLA
+                          M     ifdef USE_LINKER
+                          M         CLRWDT?
+                          M     else
+                          M       if ($ == (_BASLA))
+                          M         CLRWDT?
+                          M       endif
+                          M     endif
+                          M 
+                          M         RST?RP
+                          M     if (PREV_ALT != 0)
+                          M         bcf     WDTCON, ADSHR
+                          M PREV_ALT = 0
+                          M     endif
+                          M     if (PREV_BANK != 0)
+                          M         movlb   0
+                          M PREV_BANK = 0
+                          M     endif
+                          M 
+                          M     ifdef USE_LINKER
+                          M         goto    _BASLA
+                          M     else
+                          M       if ((_BASLA) < 1)
+                          M         goto    _BASLA
+                          M       else
+                          M         if ((_BASLA) > $)
+                          M         goto    _BASLA
+                          M         else
+                          M           if ((_BASLA) < ($ - 3ffh))
+                          M         goto    _BASLA
+                          M           else
+0011A4 D7BB               M         bra     _BASLA
+                          M           endif
+                          M         endif
+                          M       endif
+                          M     endif
+                      00136         END?    
+  0000                    M     local loop
+0011A6 0003               M loop    sleep
+0011A8 D7FE               M         bra     loop
+                      00137 
+                      00138         END
+MPASM  5.35                           LCD.ASM   7-17-2010  12:13:26         PAGE 36
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+A                                 00000000
+ABDEN                             00000000
+ABDOVF                            00000007
+ACCESS                            00000000
+ACKDT                             00000005
+ACKEN                             00000004
+ACKSTAT                           00000006
+ACQT0                             00000003
+ACQT1                             00000004
+ACQT2                             00000005
+ACTVIE                            00000002
+ACTVIF                            00000002
+ADCON0                            00000FC2
+ADCON1                            00000FC1
+ADCON2                            00000FC0
+ADCS0                             00000000
+ADCS1                             00000001
+ADCS2                             00000002
+ADC_BITS                          00000008
+ADC_CLOCK                         00000003
+ADC_SAMPLEUS                      00000032
+ADDEN                             00000003
+ADDR0                             00000000
+ADDR1                             00000001
+ADDR2                             00000002
+ADDR3                             00000003
+ADDR4                             00000004
+ADDR5                             00000005
+ADDR6                             00000006
+ADEN                              00000003
+ADFM                              00000007
+ADIE                              00000006
+ADIF                              00000006
+ADIP                              00000006
+ADON                              00000000
+ADRES                             00000FC3
+ADRESH                            00000FC4
+ADRESL                            00000FC3
+AN0                               00000000
+AN1                               00000001
+AN2                               00000002
+AN3                               00000003
+AN4                               00000005
+BANK0_END                         000000FF
+BANK0_START                       00000060
+BANK1_END                         000001FF
+BANK1_START                       00000100
+BANK2_END                         000002FF
+BANK2_START                       00000200
+BANK3_END                         000003FF
+BANK3_START                       00000300
+BANK4_END                         000004FF
+BANK4_START                       00000400
+MPASM  5.35                           LCD.ASM   7-17-2010  12:13:26         PAGE 37
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+BANK5_END                         000005FF
+BANK5_START                       00000500
+BANK6_END                         000006FF
+BANK6_START                       00000600
+BANK7_END                         000007FF
+BANK7_START                       00000700
+BANKA_END                         0000005F
+BANKA_START                       00000000
+BANKED                            00000001
+BAUDCON                           00000FB8
+BCLIE                             00000003
+BCLIF                             00000003
+BCLIP                             00000003
+BF                                00000000
+BGST                              00000005
+BIT?FLIP                          
+BIT?GOTO                          
+BIT?R1                            
+BIT?R2                            
+BIT?W                             
+BLOCK_SIZE                        00000020
+BOR                               00000000
+BRG16                             00000003
+BRGH                              00000002
+BSR                               00000FE0
+BTOEE                             00000004
+BTOEF                             00000004
+BTSEE                             00000007
+BTSEF                             00000007
+BUTTON_PAUSE                      0000000A
+C                                 00000000
+C1INV                             00000004
+C1OUT                             00000006
+C2INV                             00000005
+C2OUT                             00000007
+CCP1                              00000002
+CCP1AS                            00000FB6
+CCP1CON                           00000FBD
+CCP1DEL                           00000FB7
+CCP1IE                            00000002
+CCP1IF                            00000002
+CCP1IP                            00000002
+CCP1M0                            00000000
+CCP1M1                            00000001
+CCP1M2                            00000002
+CCP1M3                            00000003
+CCP1_BIT                          00000002
+CCP1_REG                          00000F82
+CCP2CON                           00000FBA
+CCP2IE                            00000000
+CCP2IF                            00000000
+CCP2IP                            00000000
+CCP2M0                            00000000
+MPASM  5.35                           LCD.ASM   7-17-2010  12:13:26         PAGE 38
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+CCP2M1                            00000001
+CCP2M2                            00000002
+CCP2M3                            00000003
+CCP2_BIT                          00000001
+CCP2_REG                          00000F82
+CCPR1                             00000FBE
+CCPR1H                            00000FBF
+CCPR1L                            00000FBE
+CCPR2                             00000FBB
+CCPR2H                            00000FBC
+CCPR2L                            00000FBB
+CFGS                              00000006
+CHK?RP                            
+CHS0                              00000002
+CHS1                              00000003
+CHS2                              00000004
+CHS3                              00000005
+CIS                               00000003
+CK                                00000006
+CK1SPP                            00000000
+CK2SPP                            00000001
+CKE                               00000006
+CKP                               00000004
+CLEAR?                            
+CLEAR_USED                        00000001
+CLK1EN                            00000004
+CLKCFG0                           00000006
+CLKCFG1                           00000007
+CLRWDT?                           
+CLRWDT?NOP                        
+CM0                               00000000
+CM1                               00000001
+CM2                               00000002
+CMCON                             00000FB4
+CMIE                              00000006
+CMIF                              00000006
+CMIP                              00000006
+CRC16EE                           00000002
+CRC16EF                           00000002
+CRC5EE                            00000001
+CRC5EF                            00000001
+CREN                              00000004
+CSEN                              00000005
+CSRC                              00000007
+CVR0                              00000000
+CVR1                              00000001
+CVR2                              00000002
+CVR3                              00000003
+CVRCON                            00000FB5
+CVREF                             00000004
+CVREN                             00000007
+CVROE                             00000006
+CVRR                              00000005
+MPASM  5.35                           LCD.ASM   7-17-2010  12:13:26         PAGE 39
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+CVRSS                             00000004
+D                                 00000005
+DATA_ADDRESS                      00000005
+DC                                00000001
+DC1B0                             00000004
+DC1B1                             00000005
+DC2B0                             00000004
+DC2B1                             00000005
+DDRA                              TRISA
+DDRB                              TRISB
+DDRC                              TRISC
+DDRD                              TRISD
+DDRE                              TRISE
+DEBUGIN_BIT                       00000000
+DEBUGIN_MODE                      00000001
+DEBUGIN_REG                       00000F81
+DEBUG_BAUD                        00000960
+DEBUG_BIT                         00000000
+DEBUG_DELAY                       0000019F
+DEBUG_MODE                        00000001
+DEBUG_REG                         00000F81
+DFN8EE                            00000003
+DFN8EF                            00000003
+DIR                               00000002
+DONE                              00000001
+DUNN                              000010E8
+DUNN5                             000010EA
+DUNN_USED                         00000001
+D_A                               00000005
+ECCP1AS                           00000FB6
+ECCP1CON                          00000FBD
+ECCP1DEL                          00000FB7
+ECCPAS0                           00000004
+ECCPAS1                           00000005
+ECCPAS2                           00000006
+ECCPASE                           00000007
+EEADR                             00000FA9
+EECON1                            00000FA6
+EECON2                            00000FA7
+EEDATA                            00000FA8
+EEIE                              00000004
+EEIF                              00000004
+EEIP                              00000004
+EEPGD                             00000007
+EEPROM_START                      00F00000
+END?                              
+ENDP0                             00000003
+ENDP1                             00000004
+ENDP2                             00000005
+ENDP3                             00000006
+EPCONDIS                          00000003
+EPHSHK                            00000004
+EPINEN                            00000001
+MPASM  5.35                           LCD.ASM   7-17-2010  12:13:26         PAGE 40
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+EPOUTEN                           00000002
+EPSTALL                           00000000
+FAST                              00000001
+FERR                              00000002
+FLAGS                             00000000
+FLAGS_USED                        00000001
+FLTS                              00000002
+FREE                              00000004
+FRM0                              00000000
+FRM1                              00000001
+FRM10                             00000002
+FRM2                              00000002
+FRM3                              00000003
+FRM4                              00000004
+FRM5                              00000005
+FRM6                              00000006
+FRM7                              00000007
+FRM8                              00000000
+FRM9                              00000001
+FSEN                              00000002
+FSR0                              00000000
+FSR0H                             00000FEA
+FSR0L                             00000FE9
+FSR1                              00000001
+FSR1H                             00000FE2
+FSR1L                             00000FE1
+FSR2                              00000002
+FSR2H                             00000FDA
+FSR2L                             00000FD9
+GCEN                              00000007
+GIE                               00000007
+GIEH                              00000007
+GIEL                              00000006
+GO                                00000001
+GOP                               00000013
+GOTO?L                            
+GO_DONE                           00000001
+HIGH?T                            
+HLVDCON                           00000FD2
+HLVDEN                            00000004
+HLVDIE                            00000002
+HLVDIF                            00000002
+HLVDIN                            00000005
+HLVDIP                            00000002
+HLVDL0                            00000000
+HLVDL1                            00000001
+HLVDL2                            00000002
+HLVDL3                            00000003
+HSER2_BAUD                        00000960
+HSER2_BITS                        00000008
+HSER2_RCSTA                       00000090
+HSER2_SPBRG                       00000138
+HSER2_TXSTA                       00000020
+MPASM  5.35                           LCD.ASM   7-17-2010  12:13:26         PAGE 41
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+HSER_BAUD                         00000960
+HSER_BITS                         00000008
+HSER_PORT                         00000001
+HSER_RCSTA                        00000090
+HSER_SPBRG                        00000138
+HSER_TXSTA                        00000020
+I2CFIRSTFLAG                      FLAGS, 2
+I2CREADFLAG                       FLAGS, 3
+I2CSTOPFLAG                       FLAGS, 5
+I2CSTOPSTRFLAG                    FLAGS, 6
+I2CWRITEFLAG                      FLAGS, 4
+I2C_DAT                           00000005
+I2C_READ                          00000002
+I2C_START                         00000003
+I2C_STOP                          00000004
+IDLEIE                            00000004
+IDLEIF                            00000004
+IDLEN                             00000007
+INDF0                             00000FEF
+INDF1                             00000FE7
+INDF2                             00000FDF
+INIT                              000010EE
+INT0                              00000000
+INT0E                             00000004
+INT0F                             00000001
+INT0IE                            00000004
+INT0IF                            00000001
+INT1                              00000001
+INT1E                             00000003
+INT1F                             00000000
+INT1IE                            00000003
+INT1IF                            00000000
+INT1IP                            00000006
+INT1P                             00000006
+INT2                              00000002
+INT2E                             00000004
+INT2F                             00000001
+INT2IE                            00000004
+INT2IF                            00000001
+INT2IP                            00000007
+INT2P                             00000007
+INTCON                            00000FF2
+INTCON2                           00000FF1
+INTCON3                           00000FF0
+INTEDG0                           00000006
+INTEDG1                           00000005
+INTEDG2                           00000004
+INTSRC                            00000007
+IOFS                              00000002
+IPEN                              00000007
+IPR1                              00000F9F
+IPR2                              00000FA2
+IRCF0                             00000004
+MPASM  5.35                           LCD.ASM   7-17-2010  12:13:26         PAGE 42
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+IRCF1                             00000005
+IRCF2                             00000006
+IRVST                             00000005
+IVRST                             00000005
+L?CALL                            
+L?GOTO                            
+LABEL?L                           
+LATA                              00000F89
+LATA0                             00000000
+LATA1                             00000001
+LATA2                             00000002
+LATA3                             00000003
+LATA4                             00000004
+LATA5                             00000005
+LATA6                             00000006
+LATB                              00000F8A
+LATB0                             00000000
+LATB1                             00000001
+LATB2                             00000002
+LATB3                             00000003
+LATB4                             00000004
+LATB5                             00000005
+LATB6                             00000006
+LATB7                             00000007
+LATC                              00000F8B
+LATC0                             00000000
+LATC1                             00000001
+LATC2                             00000002
+LATC6                             00000006
+LATC7                             00000007
+LATD                              00000F8C
+LATD0                             00000000
+LATD1                             00000001
+LATD2                             00000002
+LATD3                             00000003
+LATD4                             00000004
+LATD5                             00000005
+LATD6                             00000006
+LATD7                             00000007
+LATE                              00000F8D
+LATE0                             00000000
+LATE1                             00000001
+LATE2                             00000002
+LCDCDFLAG                         FLAGS, 0
+LCDINITFLAG                       FLAGS, 1
+LCDOUT                            00001006
+LCDOUT?C                          
+LCDOUT_USED                       00000001
+LCD_BITS                          4
+LCD_COMMANDUS                     000005DC
+LCD_DATAUS                        0000002C
+LCD_DBIT                          0
+LCD_DREG                          PORTB
+MPASM  5.35                           LCD.ASM   7-17-2010  12:13:26         PAGE 43
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+LCD_EBIT                          4
+LCD_EREG                          PORTB
+LCD_LINES                         2
+LCD_RSBIT                         5
+LCD_RSREG                         PORTB
+LCD_RWBIT                         00000005
+LCD_RWREG                         00000F81
+LOW?T                             
+LVDCON                            00000FD2
+LVDEN                             00000004
+LVDIE                             00000002
+LVDIF                             00000002
+LVDIN                             00000005
+LVDIP                             00000002
+LVDL0                             00000000
+LVDL1                             00000001
+LVDL2                             00000002
+LVDL3                             00000003
+LVV0                              00000000
+LVV1                              00000001
+LVV2                              00000002
+LVV3                              00000003
+MOVE?AB                           
+MOVE?AT                           
+MOVE?AW                           
+MOVE?AWW                          
+MOVE?BA                           
+MOVE?BB                           
+MOVE?BT                           
+MOVE?BW                           
+MOVE?CA                           
+MOVE?CB                           
+MOVE?CT                           
+MOVE?CW                           
+MOVE?TA                           
+MOVE?TB                           
+MOVE?TT                           
+MOVE?TW                           
+MOVE?WA                           
+MOVE?WB                           
+MOVE?WT                           
+MOVE?WW                           
+MOVE?WWA                          
+N                                 00000004
+NOT_A                             00000005
+NOT_ADDRESS                       00000005
+NOT_BOR                           00000000
+NOT_DONE                          00000001
+NOT_IPEN                          00000007
+NOT_PD                            00000002
+NOT_POR                           00000001
+NOT_RBPU                          00000007
+NOT_RI                            00000004
+MPASM  5.35                           LCD.ASM   7-17-2010  12:13:26         PAGE 44
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+NOT_T1SYNC                        00000002
+NOT_T3SYNC                        00000002
+NOT_TO                            00000003
+NOT_W                             00000002
+NOT_WRITE                         00000002
+OERR                              00000001
+OESPP                             00000002
+OSC                               48
+OSC2                              00000006
+OSCCON                            00000FD3
+OSCFIE                            00000007
+OSCFIF                            00000007
+OSCFIP                            00000007
+OSCTUNE                           00000F9B
+OSC_VALID                         00000001
+OSTS                              00000003
+OV                                00000003
+P                                 00000004
+P1A                               00000002
+P1M0                              00000006
+P1M1                              00000007
+PAUSE                             000010B6
+PAUSE?C                           
+PAUSEL                            000010B8
+PAUSEUS                           000010D0
+PAUSEUSL                          000010D2
+PAUSEUS_USED                      00000001
+PAUSE_DELAY                       000003E7
+PAUSE_USED                        00000001
+PC                                00000FF9
+PCFG0                             00000000
+PCFG1                             00000001
+PCFG2                             00000002
+PCFG3                             00000003
+PCL                               00000FF9
+PCLATH                            00000FFA
+PCLATU                            00000FFB
+PD                                00000002
+PDC0                              00000000
+PDC1                              00000001
+PDC2                              00000002
+PDC3                              00000003
+PDC4                              00000004
+PDC5                              00000005
+PDC6                              00000006
+PEIE                              00000006
+PEN                               00000002
+PGC                               00000006
+PGD                               00000007
+PGM                               00000005
+PIDEE                             00000000
+PIDEF                             00000000
+PIE1                              00000F9D
+MPASM  5.35                           LCD.ASM   7-17-2010  12:13:26         PAGE 45
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+PIE2                              00000FA0
+PIR                               00000F9E
+PIR1                              00000F9E
+PIR2                              00000FA1
+PKTDIS                            00000004
+PLUSW0                            00000FEB
+PLUSW1                            00000FE3
+PLUSW2                            00000FDB
+POR                               00000001
+PORTA                             00000F80
+PORTB                             00000F81
+PORTC                             00000F82
+PORTD                             00000F83
+PORTE                             00000F84
+POSTDEC0                          00000FED
+POSTDEC1                          00000FE5
+POSTDEC2                          00000FDD
+POSTINC0                          00000FEE
+POSTINC1                          00000FE6
+POSTINC2                          00000FDE
+PPB0                              00000000
+PPB1                              00000001
+PPBI                              00000001
+PPBRST                            00000006
+PR2                               00000FCB
+PREINC0                           00000FEC
+PREINC1                           00000FE4
+PREINC2                           00000FDC
+PREV_ALT                          00000000
+PREV_BANK                         00000000
+PROD                              00000FF3
+PRODH                             00000FF4
+PRODL                             00000FF3
+PRSEN                             00000007
+PSA                               00000003
+PSSAC0                            00000002
+PSSAC1                            00000003
+PSSBD0                            00000000
+PSSBD1                            00000001
+R                                 00000002
+R0                                00000001
+R1                                00000003
+R2                                00000005
+R3                                00000007
+R4                                00000009
+R5                                0000000B
+R6                                0000000D
+R7                                0000000F
+R8                                00000011
+RA0                               00000000
+RA1                               00000001
+RA2                               00000002
+RA3                               00000003
+MPASM  5.35                           LCD.ASM   7-17-2010  12:13:26         PAGE 46
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+RA4                               00000004
+RA5                               00000005
+RA6                               00000006
+RAM_BANKS                         00000008
+RAM_END                           000007FF
+RAM_START                         00000000
+RB0                               00000000
+RB1                               00000001
+RB2                               00000002
+RB3                               00000003
+RB4                               00000004
+RB5                               00000005
+RB6                               00000006
+RB7                               00000007
+RBIE                              00000003
+RBIF                              00000000
+RBIP                              00000000
+RBPU                              00000007
+RC0                               00000000
+RC1                               00000001
+RC2                               00000002
+RC4                               00000004
+RC5                               00000005
+RC6                               00000006
+RC7                               00000007
+RCEN                              00000003
+RCIDL                             00000006
+RCIE                              00000005
+RCIF                              00000005
+RCIP                              00000005
+RCMT                              00000006
+RCON                              00000FD0
+RCREG                             00000FAE
+RCSTA                             00000FAB
+RD                                00000000
+RD0                               00000000
+RD1                               00000001
+RD16                              00000007
+RD2                               00000002
+RD3                               00000003
+RD4                               00000004
+RD5                               00000005
+RD6                               00000006
+RD7                               00000007
+RDPU                              00000007
+RDSPP                             00000007
+RE0                               00000000
+RE1                               00000001
+RE2                               00000002
+RE3                               00000003
+READ_WRITE                        00000002
+RESET_ORG                         1000h
+RESUME                            00000002
+MPASM  5.35                           LCD.ASM   7-17-2010  12:13:26         PAGE 47
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+RI                                00000004
+RM1                               00000014
+RM2                               00000015
+RR1                               00000016
+RR2                               00000017
+RS1                               00000018
+RS2                               00000019
+RSEN                              00000001
+RST?RP                            
+RX                                00000007
+RX9                               00000006
+RX9D                              00000000
+RXDTP                             00000005
+R_W                               00000002
+S                                 00000003
+SBOREN                            00000006
+SCKP                              00000004
+SCS0                              00000000
+SCS1                              00000001
+SE0                               00000005
+SEN                               00000000
+SENDB                             00000003
+SMP                               00000007
+SOFIE                             00000006
+SOFIF                             00000006
+SPBRG                             00000FAF
+SPBRGH                            00000FB0
+SPEN                              00000007
+SPP0                              00000000
+SPP1                              00000001
+SPP2                              00000002
+SPP3                              00000003
+SPP4                              00000004
+SPP5                              00000005
+SPP6                              00000006
+SPP7                              00000007
+SPPBUSY                           00000004
+SPPCFG                            00000F63
+SPPCON                            00000F65
+SPPDATA                           00000F62
+SPPEN                             00000000
+SPPEPS                            00000F64
+SPPIE                             00000007
+SPPIF                             00000007
+SPPIP                             00000007
+SPPOWN                            00000001
+SREN                              00000005
+SSPADD                            00000FC8
+SSPBUF                            00000FC9
+SSPCON1                           00000FC6
+SSPCON2                           00000FC5
+SSPEN                             00000005
+SSPIE                             00000003
+MPASM  5.35                           LCD.ASM   7-17-2010  12:13:26         PAGE 48
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+SSPIF                             00000003
+SSPIP                             00000003
+SSPM0                             00000000
+SSPM1                             00000001
+SSPM2                             00000002
+SSPM3                             00000003
+SSPOV                             00000006
+SSPSTAT                           00000FC7
+STALLIE                           00000005
+STALLIF                           00000005
+STATUS                            00000FD8
+STKFUL                            00000007
+STKPTR                            00000FFC
+STKPTR0                           00000000
+STKPTR1                           00000001
+STKPTR2                           00000002
+STKPTR3                           00000003
+STKPTR4                           00000004
+STKUNF                            00000006
+SUSPND                            00000001
+SWDTE                             00000000
+SWDTEN                            00000000
+SYNC                              00000004
+T08BIT                            00000006
+T0CKI                             00000004
+T0CON                             00000FD5
+T0CS                              00000005
+T0IE                              00000005
+T0IF                              00000002
+T0IP                              00000002
+T0PS0                             00000000
+T0PS1                             00000001
+T0PS2                             00000002
+T0SE                              00000004
+T13CKI                            00000000
+T1CKPS0                           00000004
+T1CKPS1                           00000005
+T1CON                             00000FCD
+T1OSCEN                           00000003
+T1OSI                             00000001
+T1OSO                             00000000
+T1RUN                             00000006
+T1SYNC                            00000002
+T2CKPS0                           00000000
+T2CKPS1                           00000001
+T2CON                             00000FCA
+T2OUTPS0                          00000003
+T2OUTPS1                          00000004
+T2OUTPS2                          00000005
+T2OUTPS3                          00000006
+T3CCP1                            00000003
+T3CCP2                            00000006
+T3CKPS0                           00000004
+MPASM  5.35                           LCD.ASM   7-17-2010  12:13:26         PAGE 49
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+T3CKPS1                           00000005
+T3CON                             00000FB1
+T3NSYNC                           00000002
+T3SYNC                            00000002
+TABLAT                            00000FF5
+TBLPTR                            00000FF6
+TBLPTRH                           00000FF7
+TBLPTRL                           00000FF6
+TBLPTRU                           00000FF8
+TMR0H                             00000FD7
+TMR0IE                            00000005
+TMR0IF                            00000002
+TMR0IP                            00000002
+TMR0L                             00000FD6
+TMR0ON                            00000007
+TMR1CS                            00000001
+TMR1H                             00000FCF
+TMR1IE                            00000000
+TMR1IF                            00000000
+TMR1IP                            00000000
+TMR1L                             00000FCE
+TMR1ON                            00000000
+TMR2                              00000FCC
+TMR2IE                            00000001
+TMR2IF                            00000001
+TMR2IP                            00000001
+TMR2ON                            00000002
+TMR3CS                            00000001
+TMR3H                             00000FB3
+TMR3IE                            00000001
+TMR3IF                            00000001
+TMR3IP                            00000001
+TMR3L                             00000FB2
+TMR3ON                            00000000
+TO                                00000003
+TOS                               00000FFD
+TOSH                              00000FFE
+TOSL                              00000FFD
+TOSU                              00000FFF
+TRISA                             00000F92
+TRISA0                            00000000
+TRISA1                            00000001
+TRISA2                            00000002
+TRISA3                            00000003
+TRISA4                            00000004
+TRISA5                            00000005
+TRISA6                            00000006
+TRISB                             00000F93
+TRISB0                            00000000
+TRISB1                            00000001
+TRISB2                            00000002
+TRISB3                            00000003
+TRISB4                            00000004
+MPASM  5.35                           LCD.ASM   7-17-2010  12:13:26         PAGE 50
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+TRISB5                            00000005
+TRISB6                            00000006
+TRISB7                            00000007
+TRISC                             00000F94
+TRISC0                            00000000
+TRISC1                            00000001
+TRISC2                            00000002
+TRISC6                            00000006
+TRISC7                            00000007
+TRISD                             00000F95
+TRISD0                            00000000
+TRISD1                            00000001
+TRISD2                            00000002
+TRISD3                            00000003
+TRISD4                            00000004
+TRISD5                            00000005
+TRISD6                            00000006
+TRISD7                            00000007
+TRISE                             00000F96
+TRISE0                            00000000
+TRISE1                            00000001
+TRISE2                            00000002
+TRMT                              00000001
+TRNIE                             00000003
+TRNIF                             00000003
+TUN0                              00000000
+TUN1                              00000001
+TUN2                              00000002
+TUN3                              00000003
+TUN4                              00000004
+TX                                00000006
+TX9                               00000006
+TX9D                              00000000
+TXCKP                             00000004
+TXEN                              00000005
+TXIE                              00000004
+TXIF                              00000004
+TXIP                              00000004
+TXREG                             00000FAD
+TXSTA                             00000FAC
+UA                                00000001
+UADDR                             00000F6E
+UCFG                              00000F6F
+UCON                              00000F6D
+UEIE                              00000F6B
+UEIR                              00000F6A
+UEP0                              00000F70
+UEP1                              00000F71
+UEP10                             00000F7A
+UEP11                             00000F7B
+UEP12                             00000F7C
+UEP13                             00000F7D
+UEP14                             00000F7E
+MPASM  5.35                           LCD.ASM   7-17-2010  12:13:26         PAGE 51
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+UEP15                             00000F7F
+UEP2                              00000F72
+UEP3                              00000F73
+UEP4                              00000F74
+UEP5                              00000F75
+UEP6                              00000F76
+UEP7                              00000F77
+UEP8                              00000F78
+UEP9                              00000F79
+UERRIE                            00000001
+UERRIF                            00000001
+UFRM                              00000F66
+UFRMH                             00000F67
+UFRML                             00000F66
+UIE                               00000F69
+UIR                               00000F68
+UOEMON                            00000006
+UPUEN                             00000004
+URSTIE                            00000000
+URSTIF                            00000000
+USBEN                             00000003
+USBIE                             00000005
+USBIF                             00000005
+USBIP                             00000005
+USTAT                             00000F6C
+UTEYE                             00000007
+UTRDIS                            00000003
+VCFG0                             00000004
+VCFG1                             00000005
+VDIRMAG                           00000007
+VREFM                             00000002
+VREFP                             00000003
+W                                 00000000
+WCOL                              00000007
+WDTCON                            00000FD1
+WR                                00000001
+WREG                              00000FE8
+WREN                              00000002
+WRERR                             00000003
+WRSPP                             00000006
+WS0                               00000000
+WS1                               00000001
+WS2                               00000002
+WS3                               00000003
+WUE                               00000001
+Z                                 00000002
+_BASLA                            0000111C
+_BORV_0_2L                        000000E7
+_BORV_1_2L                        000000EF
+_BORV_2_2L                        000000F7
+_BORV_3_2L                        000000FF
+_BOR_OFF_2L                       000000F9
+_BOR_ON_2L                        000000FF
+MPASM  5.35                           LCD.ASM   7-17-2010  12:13:26         PAGE 52
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+_BOR_ON_ACTIVE_2L                 000000FD
+_BOR_SOFT_2L                      000000FB
+_CCP2MX_OFF_3H                    000000FE
+_CCP2MX_ON_3H                     000000FF
+_CONFIG1H                         00300001
+_CONFIG1L                         00300000
+_CONFIG2H                         00300003
+_CONFIG2L                         00300002
+_CONFIG3H                         00300005
+_CONFIG4L                         00300006
+_CONFIG5H                         00300009
+_CONFIG5L                         00300008
+_CONFIG6H                         0030000B
+_CONFIG6L                         0030000A
+_CONFIG7H                         0030000D
+_CONFIG7L                         0030000C
+_CP0_OFF_5L                       000000FF
+_CP0_ON_5L                        000000FE
+_CP1_OFF_5L                       000000FF
+_CP1_ON_5L                        000000FD
+_CP2_OFF_5L                       000000FF
+_CP2_ON_5L                        000000FB
+_CP3_OFF_5L                       000000FF
+_CP3_ON_5L                        000000F7
+_CPB_OFF_5H                       000000FF
+_CPB_ON_5H                        000000BF
+_CPD_OFF_5H                       000000FF
+_CPD_ON_5H                        0000007F
+_CPUDIV_OSC1_PLL2_1L              000000E7
+_CPUDIV_OSC2_PLL3_1L              000000EF
+_CPUDIV_OSC3_PLL4_1L              000000F7
+_CPUDIV_OSC4_PLL6_1L              000000FF
+_DEBUG_OFF_4L                     000000FF
+_DEBUG_ON_4L                      0000007F
+_DEVID1                           003FFFFE
+_DEVID2                           003FFFFF
+_EBTR0_OFF_7L                     000000FF
+_EBTR0_ON_7L                      000000FE
+_EBTR1_OFF_7L                     000000FF
+_EBTR1_ON_7L                      000000FD
+_EBTR2_OFF_7L                     000000FF
+_EBTR2_ON_7L                      000000FB
+_EBTR3_OFF_7L                     000000FF
+_EBTR3_ON_7L                      000000F7
+_EBTRB_OFF_7H                     000000FF
+_EBTRB_ON_7H                      000000BF
+_FCMEN_OFF_1H                     000000BF
+_FCMEN_ON_1H                      000000FF
+_FOSC_ECIO_EC_1H                  000000F4
+_FOSC_ECPLLIO_EC_1H               000000F6
+_FOSC_ECPLL_EC_1H                 000000F7
+_FOSC_EC_EC_1H                    000000F5
+_FOSC_HSPLL_HS_1H                 000000FE
+MPASM  5.35                           LCD.ASM   7-17-2010  12:13:26         PAGE 53
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+_FOSC_HS_1H                       000000FC
+_FOSC_INTOSCIO_EC_1H              000000F8
+_FOSC_INTOSC_EC_1H                000000F9
+_FOSC_INTOSC_HS_1H                000000FB
+_FOSC_INTOSC_XT_1H                000000FA
+_FOSC_XTPLL_XT_1H                 000000F2
+_FOSC_XT_XT_1H                    000000F0
+_ICPRT_OFF_4L                     000000DF
+_ICPRT_ON_4L                      000000FF
+_IDLOC0                           00200000
+_IDLOC1                           00200001
+_IDLOC2                           00200002
+_IDLOC3                           00200003
+_IDLOC4                           00200004
+_IDLOC5                           00200005
+_IDLOC6                           00200006
+_IDLOC7                           00200007
+_IESO_OFF_1H                      0000007F
+_IESO_ON_1H                       000000FF
+_LCD_BACKLIGHT                    _PORTD??7
+_LED_1                            _PORTC??0
+_LED_2                            _PORTC??1
+_LED_3                            _PORTC??2
+_LED_4                            _PORTD??0
+_LED_5                            _PORTD??1
+_LED_6                            _PORTD??2
+_LED_7                            _PORTD??3
+_LPT1OSC_OFF_3H                   000000FB
+_LPT1OSC_ON_3H                    000000FF
+_LVP_OFF_4L                       000000FB
+_LVP_ON_4L                        000000FF
+_MCLRE_OFF_3H                     0000007F
+_MCLRE_ON_3H                      000000FF
+_PBADEN_OFF_3H                    000000FD
+_PBADEN_ON_3H                     000000FF
+_PLLDIV_10_1L                     000000FE
+_PLLDIV_12_1L                     000000FF
+_PLLDIV_1_1L                      000000F8
+_PLLDIV_2_1L                      000000F9
+_PLLDIV_3_1L                      000000FA
+_PLLDIV_4_1L                      000000FB
+_PLLDIV_5_1L                      000000FC
+_PLLDIV_6_1L                      000000FD
+_PORTC??0                         PORTC, 000h
+_PORTC??1                         PORTC, 001h
+_PORTC??2                         PORTC, 002h
+_PORTD??0                         PORTD, 000h
+_PORTD??1                         PORTD, 001h
+_PORTD??2                         PORTD, 002h
+_PORTD??3                         PORTD, 003h
+_PORTD??7                         PORTD, 007h
+_PORTH                            00000F82
+_PORTL                            00000F81
+MPASM  5.35                           LCD.ASM   7-17-2010  12:13:26         PAGE 54
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+_PWRT_OFF_2L                      000000FF
+_PWRT_ON_2L                       000000FE
+_STVREN_OFF_4L                    000000FE
+_STVREN_ON_4L                     000000FF
+_TRISH                            00000F94
+_TRISL                            00000F93
+_USBDIV_1_1L                      000000DF
+_USBDIV_2_1L                      000000FF
+_USED                             00000001
+_VREGEN_OFF_2L                    000000DF
+_VREGEN_ON_2L                     000000FF
+_WDTPS_1024_2H                    000000F5
+_WDTPS_128_2H                     000000EF
+_WDTPS_16384_2H                   000000FD
+_WDTPS_16_2H                      000000E9
+_WDTPS_1_2H                       000000E1
+_WDTPS_2048_2H                    000000F7
+_WDTPS_256_2H                     000000F1
+_WDTPS_2_2H                       000000E3
+_WDTPS_32768_2H                   000000FF
+_WDTPS_32_2H                      000000EB
+_WDTPS_4096_2H                    000000F9
+_WDTPS_4_2H                       000000E5
+_WDTPS_512_2H                     000000F3
+_WDTPS_64_2H                      000000ED
+_WDTPS_8192_2H                    000000FB
+_WDTPS_8_2H                       000000E7
+_WDT_OFF_2H                       000000FE
+_WDT_ON_2H                        000000FF
+_WRT0_OFF_6L                      000000FF
+_WRT0_ON_6L                       000000FE
+_WRT1_OFF_6L                      000000FF
+_WRT1_ON_6L                       000000FD
+_WRT2_OFF_6L                      000000FF
+_WRT2_ON_6L                       000000FB
+_WRT3_OFF_6L                      000000FF
+_WRT3_ON_6L                       000000F7
+_WRTB_OFF_6H                      000000FF
+_WRTB_ON_6H                       000000BF
+_WRTC_OFF_6H                      000000FF
+_WRTC_ON_6H                       000000DF
+_WRTD_OFF_6H                      000000FF
+_WRTD_ON_6H                       0000007F
+_X                                0000001A
+_XINST_OFF_4L                     000000BF
+_XINST_ON_4L                      000000FF
+__18F4550                         00000001
+lcdchkcd                          0000107A
+lcdloop                           0000108A
+lcdout1                           0000105E
+lcdoutcom                         0000105C
+lcdsend                           00001086
+main                              000010EE
+MPASM  5.35                           LCD.ASM   7-17-2010  12:13:26         PAGE 55
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+pauseloop                         000010BA
+pauseusloop                       000010D6
+
+
+MEMORY USAGE MAP ('X' = Used,  '-' = Unused)
+
+1000 : XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX
+1040 : XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX
+1080 : XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX
+10C0 : XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX
+1100 : XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX
+1140 : XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX
+1180 : XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXX------ ----------------
+0000 : XXXXXXXX-------- ---------------- ---------------- ----------------
+
+All other memory blocks unused.
+
+Program Memory Bytes Used:   434
+Program Memory Bytes Free: 32334
+
+
+Errors   :     0
+Warnings :     0 reported,     5 suppressed
+Messages :     0 reported,     0 suppressed
+
+

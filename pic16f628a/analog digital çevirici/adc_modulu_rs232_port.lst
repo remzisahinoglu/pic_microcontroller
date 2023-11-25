@@ -1,0 +1,207 @@
+CCS PCM C Compiler, Version 4.106, 26506               23-Kas-11 20:56
+
+               Filename: D:\ram\projeler\parellel robot - lisans bitirme tezi\elektronik\test\analog digital çevirici\adc_modulu_rs232_port.lst
+
+               ROM used: 124 words (2%)
+                         Largest free fragment is 2048
+               RAM used: 7 (2%) at main() level
+                         8 (2%) worst case
+               Stack:    1 locations
+
+*
+0000:  MOVLW  00
+0001:  MOVWF  0A
+0002:  GOTO   019
+0003:  NOP
+.................... // analog dijital dönüþtürücü ile data aquasion uygulamasý 
+.................... // 22.11.2011 
+.................... // yazan = Remzi ÞAHÝNOÐLU 
+....................  
+.................... #if defined(__PCM__) 
+.................... #include <16F877A.h> 
+.................... //////// Standard Header file for the PIC16F877A device //////////////// 
+.................... #device PIC16F877A 
+.................... #list 
+....................  
+.................... #device ADC=8    // dahili adc 10 bit olarak ayarlanmýstýr 
+.................... #fuses XT, NOWDT, NOPROTECT, NOLVP, NOBROWNOUT, NOPUT, NOWRT, NODEBUG, NOCPD 
+.................... #use delay(clock=4000000) 
+0004:  MOVLW  22
+0005:  MOVWF  04
+0006:  BCF    03.7
+0007:  MOVF   00,W
+0008:  BTFSC  03.2
+0009:  GOTO   018
+000A:  MOVLW  01
+000B:  MOVWF  78
+000C:  CLRF   77
+000D:  DECFSZ 77,F
+000E:  GOTO   00D
+000F:  DECFSZ 78,F
+0010:  GOTO   00C
+0011:  MOVLW  4A
+0012:  MOVWF  77
+0013:  DECFSZ 77,F
+0014:  GOTO   013
+0015:  GOTO   016
+0016:  DECFSZ 00,F
+0017:  GOTO   00A
+0018:  RETURN
+.................... #use rs232 (baud=9600, xmit=PIN_C6, rcv=PIN_c7, parity=N, stop=1) 
+.................... #use fast_io(c) 
+.................... #use fast_io(d) 
+.................... #use fast_io(e) 
+.................... #endif 
+....................  
+.................... /* 
+.................... #INT_AD 
+.................... void ADC_kesmesi()      // adc okumasý bittiginde kesme oluþtur 
+.................... { 
+....................    output_high(PIN_C5); 
+....................    delay_ms(200);          // uyarýyý burasý veriyor 
+....................    output_low(PIN_C5); 
+.................... } 
+.................... */ 
+....................  
+.................... int bilgi=0; 
+....................  
+.................... void main()               
+.................... { 
+0019:  CLRF   04
+001A:  BCF    03.7
+001B:  MOVLW  1F
+001C:  ANDWF  03,F
+001D:  MOVLW  19
+001E:  BSF    03.5
+001F:  MOVWF  19
+0020:  MOVLW  A6
+0021:  MOVWF  18
+0022:  MOVLW  90
+0023:  BCF    03.5
+0024:  MOVWF  18
+0025:  CLRF   20
+0026:  BSF    03.5
+0027:  BSF    1F.0
+0028:  BSF    1F.1
+0029:  BSF    1F.2
+002A:  BCF    1F.3
+002B:  MOVLW  07
+002C:  MOVWF  1C
+....................    setup_psp(PSP_DISABLED); 
+002D:  BCF    09.4
+....................    setup_spi(SPI_SS_DISABLED); 
+002E:  BCF    03.5
+002F:  BCF    14.5
+0030:  MOVLW  01
+0031:  MOVWF  14
+0032:  MOVLW  00
+0033:  BSF    03.5
+0034:  MOVWF  14
+....................    setup_timer_1(T1_DISABLED); 
+0035:  BCF    03.5
+0036:  CLRF   10
+....................    setup_timer_2(T2_DISABLED,0,1); 
+0037:  MOVWF  78
+0038:  MOVWF  12
+0039:  MOVLW  00
+003A:  BSF    03.5
+003B:  MOVWF  12
+....................    setup_CCP1(CCP_OFF); 
+003C:  BCF    03.5
+003D:  CLRF   17
+....................    setup_CCP2(CCP_OFF); 
+003E:  CLRF   1D
+....................     
+....................    set_tris_a(0x01); 
+003F:  MOVLW  01
+0040:  BSF    03.5
+0041:  MOVWF  05
+....................    set_tris_b(0x00); 
+0042:  MOVLW  00
+0043:  MOVWF  06
+....................    set_tris_c(0x00); 
+0044:  MOVWF  07
+....................    set_tris_d(0x00); 
+0045:  MOVWF  08
+....................    set_tris_e(0x00); 
+0046:  BCF    09.0
+0047:  BCF    09.1
+0048:  BCF    09.2
+....................     
+....................    output_c(0x00); 
+0049:  BCF    03.5
+004A:  CLRF   07
+....................    output_d(0x00); 
+004B:  CLRF   08
+....................     
+....................    setup_adc(adc_clock_div_32);     // adc clock frenkansý fosc/32 
+004C:  BSF    03.5
+004D:  BCF    1F.6
+004E:  BCF    03.5
+004F:  BCF    1F.6
+0050:  BSF    1F.7
+0051:  BSF    03.5
+0052:  BCF    1F.7
+0053:  BCF    03.5
+0054:  BSF    1F.0
+....................    setup_adc_ports(ALL_ANALOG); 
+0055:  BSF    03.5
+0056:  BCF    1F.0
+0057:  BCF    1F.1
+0058:  BCF    1F.2
+0059:  BCF    1F.3
+....................     
+....................    //enable_interrupts(INT_AD); 
+....................    enable_interrupts(GLOBAL); 
+005A:  MOVLW  C0
+005B:  BCF    03.5
+005C:  IORWF  0B,F
+....................     
+....................    delay_ms(1000); 
+005D:  MOVLW  04
+005E:  MOVWF  21
+005F:  MOVLW  FA
+0060:  MOVWF  22
+0061:  CALL   004
+0062:  DECFSZ 21,F
+0063:  GOTO   05F
+....................        
+....................    while(TRUE) 
+....................    { 
+....................       set_adc_channel(0); 
+0064:  MOVLW  00
+0065:  MOVWF  78
+0066:  MOVF   1F,W
+0067:  ANDLW  C7
+0068:  IORWF  78,W
+0069:  MOVWF  1F
+....................       delay_us(10); 
+006A:  MOVLW  03
+006B:  MOVWF  77
+006C:  DECFSZ 77,F
+006D:  GOTO   06C
+....................        
+....................       bilgi = read_adc(); 
+006E:  BSF    1F.2
+006F:  BTFSC  1F.2
+0070:  GOTO   06F
+0071:  MOVF   1E,W
+0072:  MOVWF  20
+....................        
+....................       putc(bilgi); 
+0073:  MOVF   20,W
+0074:  BTFSS  0C.4
+0075:  GOTO   074
+0076:  MOVWF  19
+....................  
+....................       delay_ms(100); 
+0077:  MOVLW  64
+0078:  MOVWF  22
+0079:  CALL   004
+....................    } 
+007A:  GOTO   064
+.................... } 
+007B:  SLEEP
+
+Configuration Fuses:
+   Word  1: 3F39   XT NOWDT NOPUT NODEBUG NOPROTECT NOBROWNOUT NOLVP NOCPD NOWRT

@@ -1,0 +1,5 @@
+*** Error 12 "servo_motor_pot_628a.c" Line 36(19,20): Undefined identifier  -- setup_adc_ports
+*** Error 12 "servo_motor_pot_628a.c" Line 37(13,14): Undefined identifier  -- setup_adc
+*** Error 12 "servo_motor_pot_628a.c" Line 38(19,20): Undefined identifier  -- set_adc_channel
+*** Error 12 "servo_motor_pot_628a.c" Line 49(23,24): Undefined identifier  -- read_adc
+      4 Errors,  0 Warnings.

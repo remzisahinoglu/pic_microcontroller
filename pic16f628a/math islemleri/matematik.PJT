@@ -1,0 +1,41 @@
+[PROJECT]
+Target=matematik.HEX
+Development_Mode=2
+Processor=0xE620
+Processor_Text=PIC18F46K20
+ToolSuite=CCS
+
+[Directories]
+Include=
+Library=
+LinkerScript=
+
+[Target Data]
+FileList=D:\ram\parellel robot\elektronik\kumandadan xyz kontrol\test\mat islemleri\matematik.c
+BuildTool=C-COMPILER
+OptionString=+FH
+AdditionalOptionString=
+BuildRequired=1
+
+[matematik.c]
+Type=4
+Path=
+FileList=
+BuildTool=
+OptionString=
+AdditionalOptionString=
+
+[mru-list]
+1=MATEMA~1.C
+
+[Windows]
+0=0000 MATEMA~1.C 0 0 796 451 3 0
+
+[Opened Files]
+1=matematik.c
+2=..\..\xyz_kontrol_18f46k20.c
+3=C:\Program Files\PICC\Examples\EX_FLOAT.C
+4=
+[Units]
+Count=1
+1=matematik (main)

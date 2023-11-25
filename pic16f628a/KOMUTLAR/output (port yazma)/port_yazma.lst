@@ -1,0 +1,84 @@
+CCS PCM C Compiler, Version 4.074, 13730               15-May-09 11:52
+
+               Filename: E:\priv\picmicro\PIC C\pic uygulama\pic16f628a\KOMUTLAR\output (port yazma)\port_yazma.lst
+
+               ROM used: 48 words (2%)
+                         Largest free fragment is 2000
+               RAM used: 6 (3%) at main() level
+                         7 (3%) worst case
+               Stack:    1 locations
+
+*
+0000:  MOVLW  00
+0001:  MOVWF  0A
+0002:  GOTO   019
+0003:  NOP
+.................... // portlara veri gönderme uygulamsý 
+.................... // 08.04.2007 
+.................... // yazan = Remzi ÞAHÝNOÐLU 
+.................... #if defined (__PCM__) 
+.................... #include <16F628A.h> 
+.................... //////// Standard Header file for the PIC16F628A device //////////////// 
+.................... #device PIC16F628A 
+.................... #list 
+....................  
+.................... #use delay(clock=4000000) 
+0004:  MOVLW  21
+0005:  MOVWF  04
+0006:  BCF    03.7
+0007:  MOVF   00,W
+0008:  BTFSC  03.2
+0009:  GOTO   018
+000A:  MOVLW  01
+000B:  MOVWF  78
+000C:  CLRF   77
+000D:  DECFSZ 77,F
+000E:  GOTO   00D
+000F:  DECFSZ 78,F
+0010:  GOTO   00C
+0011:  MOVLW  4A
+0012:  MOVWF  77
+0013:  DECFSZ 77,F
+0014:  GOTO   013
+0015:  GOTO   016
+0016:  DECFSZ 00,F
+0017:  GOTO   00A
+0018:  RETLW  00
+.................... #fuses NOWDT,PUT,NOLVP,NOBROWNOUT,MCLR,INTRC_IO,NOPROTECT 
+.................... #endif 
+....................  
+.................... void main() 
+.................... { 
+0019:  CLRF   04
+001A:  BCF    03.7
+001B:  MOVLW  1F
+001C:  ANDWF  03,F
+001D:  MOVLW  07
+001E:  MOVWF  1F
+.................... tekrar: 
+....................    output_b(255);   // b portuna desimal 255 sayýsýný yazar 
+001F:  BSF    03.5
+0020:  CLRF   06
+0021:  MOVLW  FF
+0022:  BCF    03.5
+0023:  MOVWF  06
+....................    delay_ms(250); 
+0024:  MOVLW  FA
+0025:  MOVWF  21
+0026:  CALL   004
+....................    output_b(0); 
+0027:  BSF    03.5
+0028:  CLRF   06
+0029:  BCF    03.5
+002A:  CLRF   06
+....................    delay_ms(250); 
+002B:  MOVLW  FA
+002C:  MOVWF  21
+002D:  CALL   004
+....................    goto tekrar; 
+002E:  GOTO   01F
+.................... } 
+002F:  SLEEP
+
+Configuration Fuses:
+   Word  1: 3F30   NOWDT PUT NOPROTECT NOBROWNOUT MCLR NOLVP INTRC_IO NOCPD

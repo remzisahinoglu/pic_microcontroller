@@ -1,0 +1,64 @@
+
+ROM used: 1714 (3%)
+          1714 (3%) including unused fragments
+
+          0 Average locations per line
+          2 Average locations per statement
+
+RAM used: 20 (1%) at main() level
+          45 (1%) worst case
+
+Stack used: 5 worst case (out of 31 total available)
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+  105    42   5  float_eprom_18f46k20.c
+  489     0   0  C:\Program Files\PICC\devices\18F46K20.h
+ 2172   260  29  C:\Program Files\PICC\drivers\MATH.h
+ 1273   359  40  C:\Program Files\PICC\drivers\stdlib.h
+   28     0   0  C:\Program Files\PICC\drivers\stddef.h
+  409   121  14  C:\Program Files\PICC\drivers\string.h
+   28     0   0  C:\Program Files\PICC\drivers\ctype.h
+  121    38   4  C:\Program Files\PICC\drivers\input.c
+  158    68   8  C:\Program Files\PICC\drivers\LCD416.c
+----- -----
+ 4783   888 Total
+
+Page ROM  %  RAM   Vol Diff  Functions:
+---- --- --- ---   --- ----  ----------
+0    244   7  11             @MULFF
+0     40   1   1             @delay_ms1
+0     20   1   0             @const487
+0     56   2   3   463  4.3  lcd_read_byte
+0     24   1   1   134  2.2  lcd_send_nibble
+0     54   2   3   317  4.3  lcd_send_byte
+0     78   2   2   422  4.7  lcd_init
+0     54   2   3   321  5.5  lcd_gotoxy
+0     34   1   0             @goto11727
+0     74   2   1   308  5.0  lcd_putc
+0     86   3   6   250  5.7  ee_write_float
+0     66   2   7   250  5.7  ee_read_float
+0    312   9   1  1041  4.7  MAIN
+0     64   2   5             @FTOSD
+0    122   4  13             @DIV3232
+0    382  11  13             @PRINTF_L32D_509FPFPF
+
+Program metrics:
+    Functions               9
+    Statements              888
+    Comments                1067
+    Volume (V)              5430
+    Difficilty (D)          40.5
+    Effort to implement (E) 220059
+    Time to implement (T)   3 hours, 24 minutes
+    Est Delivered Bugs (B)  1
+    Cyclomatic Complexity   16
+    Maintainability (MI)    17
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00002     4  0  
+00004-0FFFE  1710  63822  
+
+
+

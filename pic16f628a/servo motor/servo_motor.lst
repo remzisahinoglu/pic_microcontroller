@@ -1,0 +1,269 @@
+CCS PCM C Compiler, Version 4.106, 14749               13-Mar-11 16:50
+
+               Filename: D:\ram\microcontrol\picmicro\pic c\pic uygulama\pic16f628a\servo motor\servo_motor.lst
+
+               ROM used: 185 words (9%)
+                         Largest free fragment is 1863
+               RAM used: 12 (5%) at main() level
+                         13 (6%) worst case
+               Stack:    1 locations
+
+*
+0000:  MOVLW  00
+0001:  MOVWF  0A
+0002:  GOTO   02D
+0003:  NOP
+.................... /* 
+.................... Project : servo kontrol 
+.................... Version : 1.0 
+.................... Date    : 21.07.2010 
+.................... Author  : Remzi ÞAHÝNOÐLU 
+.................... Comment : servo motor kullanýmýný ogrenmek 
+....................  
+.................... periyod 20ms, duty 600us ile 2000us arasýnda deðiþebilir. 
+....................  
+.................... duty    konum (derece) 
+.................... ----    ----- 
+.................... 600us   -90 
+.................... 1500us  0 
+.................... 2000us  +90 
+....................  
+.................... */ 
+....................  
+.................... #if defined (__PCM__) 
+.................... #include <16F628A.h> 
+.................... //////// Standard Header file for the PIC16F628A device //////////////// 
+.................... #device PIC16F628A 
+.................... #list 
+....................  
+.................... #use delay(clock=4000000) 
+0004:  MOVLW  26
+0005:  MOVWF  04
+0006:  BCF    03.7
+0007:  MOVF   00,W
+0008:  BTFSC  03.2
+0009:  GOTO   018
+000A:  MOVLW  01
+000B:  MOVWF  78
+000C:  CLRF   77
+000D:  DECFSZ 77,F
+000E:  GOTO   00D
+000F:  DECFSZ 78,F
+0010:  GOTO   00C
+0011:  MOVLW  4A
+0012:  MOVWF  77
+0013:  DECFSZ 77,F
+0014:  GOTO   013
+0015:  GOTO   016
+0016:  DECFSZ 00,F
+0017:  GOTO   00A
+0018:  RETURN
+0019:  MOVLW  12
+001A:  SUBWF  27,F
+001B:  BTFSS  03.0
+001C:  GOTO   02C
+001D:  MOVLW  27
+001E:  MOVWF  04
+001F:  BCF    03.7
+0020:  MOVLW  FC
+0021:  ANDWF  00,F
+0022:  BCF    03.0
+0023:  RRF    00,F
+0024:  RRF    00,F
+0025:  MOVF   00,W
+0026:  BTFSC  03.2
+0027:  GOTO   02C
+0028:  GOTO   02A
+0029:  NOP
+002A:  DECFSZ 00,F
+002B:  GOTO   029
+002C:  RETURN
+.................... #fuses NOWDT,PUT,NOLVP,NOBROWNOUT,NOMCLR,INTRC_IO,NOPROTECT 
+.................... #endif 
+....................  
+.................... #byte PORTB = 0x06 
+.................... #byte PORTA = 0x05 
+....................  
+....................  
+.................... long periyod=0, doluluk=0, bosluk=0;     // periyod degeri 255 den büyük olduug için log olarak tanýmlandý 
+....................  
+.................... void main() 
+.................... { 
+002D:  CLRF   04
+002E:  BCF    03.7
+002F:  MOVLW  1F
+0030:  ANDWF  03,F
+0031:  CLRF   21
+0032:  CLRF   20
+0033:  CLRF   23
+0034:  CLRF   22
+0035:  CLRF   25
+0036:  CLRF   24
+0037:  MOVLW  07
+0038:  MOVWF  1F
+....................  
+....................    set_tris_a (0x03); 
+0039:  MOVLW  03
+003A:  TRIS   5
+....................    set_tris_b (0x00); 
+003B:  MOVLW  00
+003C:  TRIS   6
+....................    output_b(0); 
+003D:  BSF    03.5
+003E:  CLRF   06
+003F:  BCF    03.5
+0040:  CLRF   06
+....................  
+....................    periyod = 20000;                      // pwm periyodu = 20ms   olarak ayarladýk 
+0041:  MOVLW  4E
+0042:  MOVWF  21
+0043:  MOVLW  20
+0044:  MOVWF  20
+....................    doluluk = 1500;                       // doluluk oranýný ilk olarak motoru orta konuma getirmek için 1.5ms olarak ayarlandý 
+0045:  MOVLW  05
+0046:  MOVWF  23
+0047:  MOVLW  DC
+0048:  MOVWF  22
+....................    bosluk = periyod - doluluk;           // boþluðu hesapla ilk enerji verildiðinde sorun çýkmasýn 
+0049:  MOVF   22,W
+004A:  SUBWF  20,W
+004B:  MOVWF  24
+004C:  MOVF   21,W
+004D:  MOVWF  25
+004E:  MOVF   23,W
+004F:  BTFSS  03.0
+0050:  INCFSZ 23,W
+0051:  SUBWF  25,F
+....................     
+....................    while(TRUE) 
+....................    { 
+....................       if(bit_test(PORTA,0)==0)                      // ARTTIR - PORTA nin 0. biti - 
+0052:  BTFSC  05.0
+0053:  GOTO   073
+....................       { 
+....................          delay_ms(50);                              // ark söndür 
+0054:  MOVLW  32
+0055:  MOVWF  26
+0056:  CALL   004
+....................          doluluk = doluluk + 5;                     // deðer kadar art 
+0057:  MOVLW  05
+0058:  ADDWF  22,F
+0059:  BTFSC  03.0
+005A:  INCF   23,F
+....................          if(doluluk > 2000){doluluk = 2000;}        // üst sýnýrda kal 
+005B:  MOVF   23,W
+005C:  SUBLW  06
+005D:  BTFSC  03.0
+005E:  GOTO   06A
+005F:  XORLW  FF
+0060:  BTFSS  03.2
+0061:  GOTO   066
+0062:  MOVF   22,W
+0063:  SUBLW  D0
+0064:  BTFSC  03.0
+0065:  GOTO   06A
+0066:  MOVLW  07
+0067:  MOVWF  23
+0068:  MOVLW  D0
+0069:  MOVWF  22
+....................          bosluk = periyod - doluluk;                // bosluk süresini ayarla 
+006A:  MOVF   22,W
+006B:  SUBWF  20,W
+006C:  MOVWF  24
+006D:  MOVF   21,W
+006E:  MOVWF  25
+006F:  MOVF   23,W
+0070:  BTFSS  03.0
+0071:  INCFSZ 23,W
+0072:  SUBWF  25,F
+....................       }    
+....................  
+....................       if(bit_test(PORTA,1)==0)                      // AZALT - PORTA nin 1. biti - 
+0073:  BTFSC  05.1
+0074:  GOTO   095
+....................       { 
+....................          delay_ms(50); 
+0075:  MOVLW  32
+0076:  MOVWF  26
+0077:  CALL   004
+....................          doluluk = doluluk - 5;                     // deðer kadar azal 
+0078:  MOVLW  05
+0079:  SUBWF  22,F
+007A:  MOVLW  00
+007B:  BTFSS  03.0
+007C:  MOVLW  01
+007D:  SUBWF  23,F
+....................          if(doluluk < 600){doluluk = 600;}          // alt sýnýrda kal 
+007E:  MOVF   23,W
+007F:  SUBLW  02
+0080:  BTFSS  03.0
+0081:  GOTO   08C
+0082:  BTFSS  03.2
+0083:  GOTO   088
+0084:  MOVF   22,W
+0085:  SUBLW  57
+0086:  BTFSS  03.0
+0087:  GOTO   08C
+0088:  MOVLW  02
+0089:  MOVWF  23
+008A:  MOVLW  58
+008B:  MOVWF  22
+....................          bosluk = periyod - doluluk;                // bosluk süresini ayarla  
+008C:  MOVF   22,W
+008D:  SUBWF  20,W
+008E:  MOVWF  24
+008F:  MOVF   21,W
+0090:  MOVWF  25
+0091:  MOVF   23,W
+0092:  BTFSS  03.0
+0093:  INCFSZ 23,W
+0094:  SUBWF  25,F
+....................       }    
+....................           
+....................       // periyod 
+....................       output_high(PIN_B3);                          // PWM çýkýþ PORTB nin 4. bitinden (RB3) 
+0095:  BSF    03.5
+0096:  BCF    06.3
+0097:  BCF    03.5
+0098:  BSF    06.3
+....................       delay_us(doluluk);                                            
+0099:  MOVF   23,W
+009A:  MOVWF  26
+009B:  INCF   26,F
+009C:  DECF   26,F
+009D:  BTFSC  03.2
+009E:  GOTO   0A3
+009F:  MOVLW  FF
+00A0:  MOVWF  27
+00A1:  CALL   019
+00A2:  GOTO   09C
+00A3:  MOVF   22,W
+00A4:  MOVWF  27
+00A5:  CALL   019
+....................       output_low(PIN_B3); 
+00A6:  BSF    03.5
+00A7:  BCF    06.3
+00A8:  BCF    03.5
+00A9:  BCF    06.3
+....................       delay_us(bosluk);                                                 
+00AA:  MOVF   25,W
+00AB:  MOVWF  26
+00AC:  INCF   26,F
+00AD:  DECF   26,F
+00AE:  BTFSC  03.2
+00AF:  GOTO   0B4
+00B0:  MOVLW  FF
+00B1:  MOVWF  27
+00B2:  CALL   019
+00B3:  GOTO   0AD
+00B4:  MOVF   24,W
+00B5:  MOVWF  27
+00B6:  CALL   019
+....................                                                              
+....................    } 
+00B7:  GOTO   052
+.................... } 
+00B8:  SLEEP
+
+Configuration Fuses:
+   Word  1: 3F10   NOWDT PUT NOPROTECT NOBROWNOUT NOMCLR NOLVP INTRC_IO NOCPD

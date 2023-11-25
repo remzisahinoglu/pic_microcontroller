@@ -1,0 +1,72 @@
+CCS PCM C Compiler, Version 4.018, 19894               26-Nis-07 22:05
+
+               Filename: C:\pic\pic16f628a\bit ve byte tanýmlama\bit_byte_tanimlama.lst
+
+               ROM used: 20 words (1%)
+                         Largest free fragment is 2028
+               RAM used: 6 (3%) at main() level
+                         6 (3%) worst case
+               Stack:    0 locations
+
+*
+0000:  MOVLW  00
+0001:  MOVWF  0A
+0002:  GOTO   004
+0003:  NOP
+.................... //bit ve byte tanýmlama uygulamasý 
+.................... //26.04.2007 
+.................... //yazan = Remzi ÞAHÝNOÐLU 
+....................  
+.................... #if defined (__PCM__) 
+.................... #include <16F628A.h> 
+.................... //////// Standard Header file for the PIC16F628A device //////////////// 
+.................... #device PIC16F628A 
+.................... #list 
+....................  
+.................... #use delay(clock=4000000) 
+.................... #fuses NOWDT,PUT,NOLVP,NOBROWNOUT,MCLR,INTRC_IO,NOPROTECT 
+.................... #endif 
+....................  
+.................... #byte PORTA = 0x05 
+.................... #byte OPTION = 0x81 
+.................... #byte TMR0 = 0x01 
+....................  
+.................... #byte veri = 0x25 
+.................... #bit b_0 = 0x25.0 
+.................... #bit b_1 = 0x25.1 
+.................... #bit b_2 = 0x25.2 
+.................... #bit b_3 = 0x25.3 
+.................... #bit b_4 = 0x25.4 
+.................... #bit b_5 = 0x25.5 
+.................... #bit b_6 = 0x25.6 
+.................... #bit b_7 = 0x25.7 
+....................  
+.................... void main() 
+.................... { 
+0004:  CLRF   04
+0005:  BCF    03.7
+0006:  MOVLW  1F
+0007:  ANDWF  03,F
+0008:  MOVLW  07
+0009:  MOVWF  1F
+....................    veri=0;    
+000A:  CLRF   25
+....................    while(TRUE) 
+....................    { 
+....................       b_0 = 1; 
+000B:  BSF    25.0
+....................       b_2 = 1; 
+000C:  BSF    25.2
+....................       output_b(veri);       
+000D:  BSF    03.5
+000E:  CLRF   06
+000F:  BCF    03.5
+0010:  MOVF   25,W
+0011:  MOVWF  06
+....................    } 
+0012:  GOTO   00B
+.................... } 
+0013:  SLEEP
+
+Configuration Fuses:
+   Word  1: 3F30   NOWDT PUT NOPROTECT NOBROWNOUT MCLR NOLVP INTRC_IO NOCPD

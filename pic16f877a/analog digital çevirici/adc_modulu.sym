@@ -1,0 +1,139 @@
+004     @WRITE_PROGRAM_MEMORY8.P1
+004-005 @READ_PROGRAM_MEMORY8.P2
+006     lcd
+008     PSP_DATA
+015     CCP_1_LOW
+015     CCP_1
+016     CCP_1_HIGH
+01B     CCP_2_LOW
+01B     CCP_2
+01C     CCP_2_HIGH
+020     lcdline
+021-022 bilgi
+023-024 eski_bilgi
+025-028 voltaj
+029-02C @PRINTF_L32D_95FPFPF.P1
+029     @PSTRINGCN7_95.P2
+029-02A @ITOF.P3
+029     lcd_init.i
+029-02A @PRINTF_LU_95.P1
+029     MAIN.@SCRATCH1
+029     @PSTRINGC7_95.@SCRATCH1
+02A     lcd_init.@SCRATCH1
+02A     @PSTRINGC7_95.@SCRATCH2
+02A     @PSTRINGCN7_95.@SCRATCH1
+02B     @PSTRINGC7_95.@SCRATCH3
+02B     @PSTRINGCN7_95.@SCRATCH2
+02B     @PRINTF_LU_95.@SCRATCH1
+02C     @PSTRINGCN7_95.@SCRATCH3
+02C     @PRINTF_LU_95.@SCRATCH2
+02D     @PRINTF_L32D_95FPFPF.P1
+02D     @PRINTF_LU_95.@SCRATCH3
+02E     @PRINTF_LU_95.@SCRATCH4
+02E     @PRINTF_L32D_95FPFPF.@SCRATCH1
+02F     @PRINTF_LU_95.@SCRATCH5
+02F     @PRINTF_L32D_95FPFPF.@SCRATCH2
+030     @PRINTF_LU_95.@SCRATCH6
+030     @PRINTF_L32D_95FPFPF.@SCRATCH3
+031     @PRINTF_LU_95.@SCRATCH7
+031     @PRINTF_L32D_95FPFPF.@SCRATCH4
+032     @PRINTF_L32D_95FPFPF.@SCRATCH5
+033     @PRINTF_L32D_95FPFPF.@SCRATCH6
+034     @PRINTF_L32D_95FPFPF.@SCRATCH7
+035     @PRINTF_L32D_95FPFPF.@SCRATCH8
+036-039 @MULFF.P1
+036-039 @FTOSD.P2
+036-039 @DIV3232.P3
+036     lcd_putc.c
+037     @delay_ms1.P1
+037     lcd_gotoxy.x
+038     lcd_gotoxy.y
+039     lcd_gotoxy.address
+03A     lcd_send_byte.address
+03A-03D @MULFF.P1
+03A-03D @DIV3232.P2
+03A     @FTOSD.@SCRATCH1
+03B     lcd_send_byte.n
+03C     lcd_read_byte.low
+03C     lcd_send_byte.@SCRATCH1
+03D     lcd_read_byte.high
+03D     lcd_send_nibble.n
+03E     lcd_read_byte.@SCRATCH1
+03E     @MULFF.@SCRATCH1
+03E     @DIV3232.@SCRATCH1
+03F     @MULFF.@SCRATCH2
+03F     @DIV3232.@SCRATCH2
+040     @MULFF.@SCRATCH3
+040     @DIV3232.@SCRATCH3
+041     @MULFF.@SCRATCH4
+041     @DIV3232.@SCRATCH4
+042     @MULFF.@SCRATCH5
+042     @DIV3232.@SCRATCH5
+077     @SCRATCH
+078     @SCRATCH
+078     _RETURN_
+079     @SCRATCH
+07A     @SCRATCH
+09C.6   C1OUT
+09C.7   C2OUT
+10D-10E @WRITE_PROGRAM_MEMORY8.P1
+10D-10E @READ_PROGRAM_MEMORY8.P2
+
+ROM Allocation:
+0022  @delay_ms1
+0004  LCD_INIT_STRING
+0044  lcd_read_byte
+0037  lcd_send_nibble
+0043  lcd_send_byte
+007D  lcd_init
+00A9  lcd_gotoxy
+00C6  @goto10099
+00CE  lcd_putc
+03B1  MAIN
+000C  @const106
+00F6  @PSTRINGC7_95
+013E  @ITOF
+015D  @MULFF
+0015  @const113
+01D2  @PSTRINGCN7_95
+0221  @PRINTF_LU_95
+001C  @const118
+02EF  @FTOSD
+0286  @DIV3232
+02C8  @PRINTF_L32D_95FPFPF
+03B1  @cinit
+
+
+User Memory space: 
+
+User Memory space: 
+
+Project Directory:
+    D:\ram\projeler\parellel robot - lisans bitirme tezi\elektronik\test\analog digital çevirici\
+
+Project Files:
+    adc_modulu.c
+    C:\Program Files\PICC\devices\16F877A.h
+    C:\Program Files\PICC\drivers\lcd416.c
+
+Units:
+    D:\ram\projeler\parellel robot - lisans bitirme tezi\elektronik\test\analog digital çevirici\adc_modulu (main)
+
+Compiler Settings:
+    Processor:      PIC16F877A
+    Pointer Size:   16
+    ADC Range:      0-1023
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    Errors:      adc_modulu.err
+    Ext Symbols: adc_modulu.esym
+    INHX8:       adc_modulu.hex
+    Symbols:     adc_modulu.sym
+    List:        adc_modulu.lst
+    Debug/COFF:  adc_modulu.cof
+    Project:     adc_modulu.PJT
+    Call Tree:   adc_modulu.tre
+    Statistics:  adc_modulu.sta

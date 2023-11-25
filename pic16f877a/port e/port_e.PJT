@@ -1,0 +1,39 @@
+[PROJECT]
+Target=port_e.HEX
+Development_Mode=2
+Processor=0xE620
+Processor_Text=PIC18F46K20
+ToolSuite=CCS
+
+[Directories]
+Include=
+Library=
+LinkerScript=
+
+[Target Data]
+FileList=D:\ram\parellel robot\elektronik\kumandadan xyz kontrol\test\port e\port_e.c
+BuildTool=C-COMPILER
+OptionString=+FH
+AdditionalOptionString=
+BuildRequired=1
+
+[port_e.c]
+Type=4
+Path=
+FileList=
+BuildTool=
+OptionString=
+AdditionalOptionString=
+
+[mru-list]
+1=port_e.c
+
+[Windows]
+0=0000 port_e.c 0 0 796 451 3 0
+
+[Opened Files]
+1=port_e.c
+2=
+[Units]
+Count=1
+1=port_e (main)

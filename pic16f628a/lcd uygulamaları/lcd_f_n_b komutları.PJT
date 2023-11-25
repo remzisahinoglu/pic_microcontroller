@@ -1,0 +1,39 @@
+[PROJECT]
+Target=lcd_f_n_b komutlarý.HEX
+Development_Mode=2
+Processor=0x628A
+Processor_Text=PIC16F628A
+ToolSuite=CCS
+
+[Directories]
+Include=
+Library=
+LinkerScript=
+
+[Target Data]
+FileList=lcd_f_n_b komutlarý.c;
+BuildTool=C-COMPILER
+OptionString=+FM
+AdditionalOptionString=
+BuildRequired=1
+
+[lcd_f_n_b komutlarý.c]
+Type=4
+Path=
+FileList=
+BuildTool=
+OptionString=
+AdditionalOptionString=
+
+[mru-list]
+1=LCD_F_~1.C
+
+[Windows]
+0=0000 LCD_F_~1.C 0 0 796 451 3 0
+
+[Units]
+Count=1
+1=lcd_f_n_b komutlarý (main)
+[Opened Files]
+1=lcd_f_n_b komutlarý.c
+2=

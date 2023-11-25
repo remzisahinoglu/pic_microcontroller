@@ -1,0 +1,10 @@
+obj\Release\ResolveAssemblyReference.cache
+obj\Debug\ResolveAssemblyReference.cache
+bin\Debug\umng.dll
+bin\Debug\umng.pdb
+obj\Debug\umng.dll
+obj\Debug\umng.pdb
+bin\Release\umng.dll
+bin\Release\umng.pdb
+obj\Release\umng.dll
+obj\Release\umng.pdb

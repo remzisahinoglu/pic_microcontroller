@@ -1,0 +1,57 @@
+003     STATUS
+004-005 @READ_PROGRAM_MEMORY.P1
+00B     INTCON
+015     CCP_1_LOW
+015-016 CCP_1
+016     CCP_1_HIGH
+01F.6   C1OUT
+01F.7   C2OUT
+020     @INTERRUPT_AREA
+021     @INTERRUPT_AREA
+022     @INTERRUPT_AREA
+023     @INTERRUPT_AREA
+024     @INTERRUPT_AREA
+025     @INTERRUPT_AREA
+026     @INTERRUPT_AREA
+027     @INTERRUPT_AREA
+028     @INTERRUPT_AREA
+029     MAIN.@SCRATCH
+02A     @delay_ms1.P1
+077     @SCRATCH
+078     @SCRATCH
+078     _RETURN_
+079     @SCRATCH
+07A     @SCRATCH
+07B     @SCRATCH
+081     OPTION
+10D     @READ_PROGRAM_MEMORY.P1
+10F     @READ_PROGRAM_MEMORY.P1
+
+003B  @delay_ms1
+0033  RB_isr
+0050  MAIN
+0050  @cinit
+005F  tekrar
+
+Project Files:
+    kesme_RB4_7.c
+    C:\Program Files\PICC\devices\16F628A.h
+
+Units:
+    D:\pic\interrupt (kesmeler)\RB4-7 kesmesi\kesme_RB4_7.c (main)
+
+Compiler Settings:
+    Processor:      PIC16F628A
+    Pointer Size:   16
+    Opt Level:      0
+    Short,Int,Long: 1,8,16
+
+Output Files:
+    Errors:      D:\pic\interrupt (kesmeler)\RB4-7 kesmesi\kesme_RB4_7.err
+    Ext Symbols: D:\pic\interrupt (kesmeler)\RB4-7 kesmesi\kesme_RB4_7.esym
+    INHX8:       D:\pic\interrupt (kesmeler)\RB4-7 kesmesi\kesme_RB4_7.hex
+    Symbols:     D:\pic\interrupt (kesmeler)\RB4-7 kesmesi\kesme_RB4_7.sym
+    List:        D:\pic\interrupt (kesmeler)\RB4-7 kesmesi\kesme_RB4_7.lst
+    Debug/COFF:  D:\pic\interrupt (kesmeler)\RB4-7 kesmesi\kesme_RB4_7.cof
+    Call Tree:   kesme_RB4_7.tre
+    Statistics:  kesme_RB4_7.sta

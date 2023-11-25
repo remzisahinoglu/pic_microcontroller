@@ -1,0 +1,106 @@
+
+ROM used: 19990 (31%)
+          19990 (31%) including unused fragments
+
+          4 Average locations per line
+          17 Average locations per statement
+
+RAM used: 164 (4%) at main() level
+          241 (6%) worst case
+
+Stack used: 7 worst case (out of 31 total available)
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+  622   355  30  xyz_kontrol_18f4620.c
+  463     0   0  C:\Program Files\PICC\devices\18F4620.h
+ 2172   260  22  C:\Program Files\PICC\drivers\MATH.h
+ 1273   359  30  C:\Program Files\PICC\drivers\stdlib.h
+   28     0   0  C:\Program Files\PICC\drivers\stddef.h
+  409   121  10  C:\Program Files\PICC\drivers\string.h
+   28     0   0  C:\Program Files\PICC\drivers\ctype.h
+  121    38   3  C:\Program Files\PICC\drivers\input.c
+  158    68   6  C:\Program Files\PICC\drivers\LCD416.c
+----- -----
+ 5274  1201 Total
+
+Page ROM  %  RAM   Vol Diff  Functions:
+---- --- --- ---   --- ----  ----------
+0    118   0  10             @FLT
+0     58   0   4             @SFTOI
+0     56   0   2             @ITOF
+0    346   1  14             @DIVFF
+0    618   2  16             @ADDFF
+0    242   1  11             @MULFF
+0    266   1  18   494 10.7  sqrt
+0    882   2  50  1171 10.4  cos
+0     74   0   8    44  1.9  sin
+0   1248   3  21  1082  6.9  atan
+0     40   0   1             @delay_ms1
+0     84   0  14             @MUL3232
+0    208   1  14             @DIVS3232
+0     20   0   0             @const487
+0     56   0   3   463  4.3  lcd_read_byte
+0     24   0   1   134  2.2  lcd_send_nibble
+0     54   0   3   317  4.3  lcd_send_byte
+0     78   0   2   422  4.7  lcd_init
+0     54   0   3   321  5.5  lcd_gotoxy
+0     34   0   0             @goto11727
+0     74   0   1   308  5.0  lcd_putc
+0     86   0   6   250  5.7  ee_write_float
+0     66   0   7   250  5.7  ee_read_float
+0     98   0   1   236  1.8  no_point
+0     14   0   0             @const567
+0     32   0   2             @PSTRINGC_509
+0     18   0   0             @const569
+0     14   0   0             @const570
+0   7126  18  12  4484  6.4  hesapla_aci
+0   3950  10   8  4103  6.9  motor_hareket
+0     62   0   5             @FTOSD
+0    122   0  13             @DIV3232
+0    254   1  12             @PRINTF_L32D_9600_31766_31767
+0     66   0   0             @const586
+0     32   0   3             @PSTRINGCN_9600_31766_31767
+0   2424   6   1  8158  8.9  MAIN
+0     12   0   0             @const591
+0     12   0   0             @const592
+0     18   0   0             @const593
+0     12   0   0             @const594
+0     16   0   0             @const595
+0     14   0   0             @const596
+0     16   0   0             @const597
+0     14   0   0             @const598
+0     36   0   0             @goto12113
+0     14   0   0             @const600
+0    398   1  13             @PRINTF_L32D_509FPFPF
+0     16   0   0             @const607
+0     18   0   0             @const611
+0      8   0   0             @const612
+0     32   0   3             @PSTRINGCN_509
+0    258   1  12             @PRINTF_L32D_509
+0      8   0   0             @const617
+0      8   0   0             @const618
+0     12   0   0             @const619
+0     16   0   0             @const620
+0     16   0   0             @const621
+0     34   0   0             @goto12188
+
+Program metrics:
+    Functions               16
+    Statements              1201
+    Comments                1879
+    Volume (V)              31444
+    Difficilty (D)          87.5
+    Effort to implement (E) 2750638
+    Time to implement (T)   42 hours, 27 minutes
+    Est Delivered Bugs (B)  7
+    Cyclomatic Complexity   61
+    Maintainability (MI)    17
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00002     4  0  
+00004-0FFFE  19986  45546  
+
+
+

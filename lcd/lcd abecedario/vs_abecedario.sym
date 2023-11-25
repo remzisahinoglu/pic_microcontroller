@@ -1,0 +1,74 @@
+004-005 @READ_PROGRAM_MEMORY8.P1
+006     lcd
+015     CCP_1_LOW
+015-016 CCP_1
+016     CCP_1_HIGH
+01F.6   C1OUT
+01F.7   C2OUT
+021-03B MAIN.alfabe
+03C     MAIN.x
+03D     MAIN.y
+03E     lcd_init.i
+03E     MAIN.@SCRATCH1
+03F     lcd_putc.c
+03F     lcd_init.@SCRATCH1
+040     @delay_ms1.P1
+040     lcd_gotoxy.x
+041     lcd_gotoxy.y
+042     lcd_gotoxy.address
+043     lcd_gotoxy.@SCRATCH1
+044     lcd_send_byte.address
+045     lcd_send_byte.n
+046     lcd_read_byte.low
+046     lcd_send_byte.@SCRATCH1
+047     lcd_read_byte.high
+047     lcd_send_nibble.n
+048     lcd_read_byte.@SCRATCH1
+077     @SCRATCH
+078     @SCRATCH
+078     _RETURN_
+079     @SCRATCH
+07A     @SCRATCH
+07B     @SCRATCH
+10D-10E @READ_PROGRAM_MEMORY8.P1
+
+ROM Allocation:
+000C  @delay_ms1
+0004  LCD_INIT_STRING
+002E  lcd_read_byte
+0021  lcd_send_nibble
+002D  lcd_send_byte
+0063  lcd_init
+008C  lcd_gotoxy
+009E  lcd_putc
+00C3  MAIN
+00C3  @cinit
+
+Project Directory:
+    C:\Documents and Settings\ugur\Desktop\lcd\lcd abecedario\
+
+Project Files:
+    vs_abecedario.c
+    ..\..\..\..\..\Program Files\PICC\devices\16f648a.h
+    ..\..\..\..\..\Program Files\PICC\drivers\lcd.c
+
+Units:
+    C:\Documents and Settings\ugur\Desktop\lcd\lcd abecedario\vs_abecedario.c (main)
+
+Compiler Settings:
+    Processor:      PIC16F648A
+    Pointer Size:   16
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    Errors:      vs_abecedario.err
+    Ext Symbols: vs_abecedario.esym
+    INHX8:       vs_abecedario.hex
+    Symbols:     vs_abecedario.sym
+    List:        vs_abecedario.lst
+    Debug/COFF:  vs_abecedario.cof
+    Project:     vs_abecedario.PJT
+    Call Tree:   vs_abecedario.tre
+    Statistics:  vs_abecedario.sta

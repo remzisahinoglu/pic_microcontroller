@@ -1,0 +1,35 @@
+//lcd uygulamasý \n, \f, \b kullanýmý
+//22.06.2010
+//yazan = Remzi ÞAHÝNOÐLU
+
+#if defined(__PCM__)
+#include <16F628A.h>
+#use delay(clock=4000000)
+#fuses INTRC_IO, NOWDT, NOPROTECT, NOLVP, NOBROWNOUT, MCLR
+#define use_portb_lcd TRUE             // lcd bilgisi için port b’yi kullanýyoruz
+#include <lcd.c>                       // lcd için gerekecek fonksiyonlarýn bulunduðu dosya lcd.c
+#endif
+
+void main()
+{
+   lcd_init(); //lcd ekraný kurar.
+   delay_ms(6);
+   
+   bas:
+   
+   lcd_putc("ilk satýr\nikinci satýr");      // \n satýr atlatýr
+   delay_ms(1000);
+   lcd_putc("\f");                           // ekraný temizler
+   delay_ms(1000);
+   
+   lcd_putc("remzi");                        // satýr atla
+   delay_ms(1000);
+   lcd_putc("\b");                           // en son yazýlan karakterin üsütnden yazmaya baslar
+   delay_ms(1000);
+   lcd_putc("sahýnoglu");                    // sonuc remzsahinoglu olur
+   delay_ms(1000);
+   
+   lcd_putc("\f");
+   goto bas;
+}
+

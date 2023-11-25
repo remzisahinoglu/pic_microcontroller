@@ -1,0 +1,52 @@
+
+ROM used: 309 (8%)
+          309 (8%) including unused fragments
+
+          1 Average locations per line
+          4 Average locations per statement
+
+RAM used: 36 (14%) at main() level
+          46 (18%) worst case
+
+Stack used: 4 worst case (out of 8 total available)
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+   57    14  18  vs_abecedario.c
+  208     0   0  ..\..\..\..\..\Program Files\PICC\devices\16f648a.h
+  180    63  82  ..\..\..\..\..\Program Files\PICC\drivers\lcd.c
+----- -----
+  445    77 Total
+
+Page ROM  %  RAM   Vol Diff  Functions:
+---- --- --- ---   --- ----  ----------
+0     21   7   1             @delay_ms1
+0      8   3   0             @const59
+ Inline        3   463  4.3  lcd_read_byte
+0     12   4   1   134  2.2  lcd_send_nibble
+0     54  17   3   317  4.3  lcd_send_byte
+0     41  13   2   422  4.7  lcd_init
+0     18   6   4   186  5.5  lcd_gotoxy
+0     37  12   1   272  4.1  lcd_putc
+0    114  37  30   929  7.7  MAIN
+
+Program metrics:
+    Functions               7
+    Statements              77
+    Comments                202
+    Volume (V)              4013
+    Difficilty (D)          32.5
+    Effort to implement (E) 130273
+    Time to implement (T)   2 hours, 1 minutes
+    Est Delivered Bugs (B)  1
+    Cyclomatic Complexity   11
+    Maintainability (MI)    143
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00003     4  0  
+00004-007FF   305  1739  
+00800-00FFF     0  2048  
+
+
+

@@ -1,0 +1,20 @@
+읕unipolar_step
+   읕main  0/446  Ram=1
+      쳐??0??
+      쳐@delay_ms1  0/21  Ram=1
+      쳐@goto10059  0/8  Ram=0
+      쳐@delay_ms1  0/21  Ram=1
+      쳐@delay_ms1  0/21  Ram=1
+      쳐@goto10084  0/8  Ram=0
+      쳐@delay_ms1  0/21  Ram=1
+      쳐@delay_ms1  0/21  Ram=1
+      쳐@goto10109  0/8  Ram=0
+      쳐@delay_ms1  0/21  Ram=1
+      쳐@delay_ms1  0/21  Ram=1
+      쳐@goto10134  0/8  Ram=0
+      쳐@delay_ms1  0/21  Ram=1
+      쳐@goto10158  0/8  Ram=0
+      쳐@delay_ms1  0/21  Ram=1
+      쳐@delay_ms1  0/21  Ram=1
+      쳐@goto10183  0/8  Ram=0
+      읕@delay_ms1  0/21  Ram=1

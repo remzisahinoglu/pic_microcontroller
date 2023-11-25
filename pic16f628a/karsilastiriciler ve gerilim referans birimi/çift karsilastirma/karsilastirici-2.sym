@@ -1,0 +1,53 @@
+004-005 @READ_PROGRAM_MEMORY.P1
+015-016 CCP_1
+015     CCP_1_LOW
+016     CCP_1_HIGH
+01F     CMCON
+01F.6   C1OUT
+01F.7   C2OUT
+020     @INTERRUPT_AREA
+021     @INTERRUPT_AREA
+022     @INTERRUPT_AREA
+023     @INTERRUPT_AREA
+024     @INTERRUPT_AREA
+025     @INTERRUPT_AREA
+026     @INTERRUPT_AREA
+027     @INTERRUPT_AREA
+028     @INTERRUPT_AREA
+029     @delay_ms1.P1
+077     @SCRATCH
+078     @SCRATCH
+078     _RETURN_
+079     @SCRATCH
+07A     @SCRATCH
+07B     @SCRATCH
+10D     @READ_PROGRAM_MEMORY.P1
+10F     @READ_PROGRAM_MEMORY.P1
+
+0044  @delay_ms1
+0035  comp_isr
+0059  MAIN
+0059  @cinit
+
+Project Files:
+    karsilastirici-2.c
+    C:\Program Files\PICC\devices\16F628A.h
+
+Units:
+    D:\pic\karsilastiriciler\çift karsilastirma\karsilastirici-2.c (main)
+
+Compiler Settings:
+    Processor:      PIC16F628A
+    Pointer Size:   16
+    Opt Level:      0
+    Short,Int,Long: 1,8,16
+
+Output Files:
+    Errors:      D:\pic\karsilastiriciler\çift karsilastirma\karsilastirici-2.err
+    Ext Symbols: D:\pic\karsilastiriciler\çift karsilastirma\karsilastirici-2.esym
+    INHX8:       D:\pic\karsilastiriciler\çift karsilastirma\karsilastirici-2.hex
+    Symbols:     D:\pic\karsilastiriciler\çift karsilastirma\karsilastirici-2.sym
+    List:        D:\pic\karsilastiriciler\çift karsilastirma\karsilastirici-2.lst
+    Debug/COFF:  D:\pic\karsilastiriciler\çift karsilastirma\karsilastirici-2.cof
+    Call Tree:   karsilastirici-2.tre
+    Statistics:  karsilastirici-2.sta

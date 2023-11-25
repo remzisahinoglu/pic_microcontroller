@@ -1,0 +1,53 @@
+
+ROM used: 303 (4%)
+          303 (4%) including unused fragments
+
+          0 Average locations per line
+          0 Average locations per statement
+
+RAM used: 17 (5%) at main() level
+          25 (7%) worst case
+
+Stack used: 1 worst case (out of 8 total available)
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+   64    27   4  get_long16f877a_verici.c
+  298     0   0  C:\Program Files\PICC\devices\16F877.h
+  408    72  12  C:\Program Files\PICC\drivers\lcd.c
+ 1273   359  58  C:\Program Files\PICC\drivers\stdlib.h
+   28     0   0  C:\Program Files\PICC\drivers\stddef.h
+  409   121  20  C:\Program Files\PICC\drivers\string.h
+   28     0   0  C:\Program Files\PICC\drivers\ctype.h
+  121    38   6  C:\Program Files\PICC\drivers\input.c
+----- -----
+ 2629   617 Total
+
+Page ROM  %  RAM   Vol Diff  Functions:
+---- --- --- ---   --- ----  ----------
+0     21   7   1             @delay_ms1
+0    160  53   1   722  4.3  MAIN
+0    118  39   9             @PRINTF_LD_9600_62_63
+
+Program metrics:
+    Functions               1
+    Statements              617
+    Comments                813
+    Volume (V)              727
+    Difficilty (D)          4.1
+    Effort to implement (E) 2999
+    Time to implement (T)   3 minutes
+    Est Delivered Bugs (B)  0
+    Cyclomatic Complexity   2
+    Maintainability (MI)    42
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00003     4  0  
+00004-007FF   299  1745  
+00800-00FFF     0  2048  
+01000-017FF     0  2048  
+01800-01FFF     0  2048  
+
+
+

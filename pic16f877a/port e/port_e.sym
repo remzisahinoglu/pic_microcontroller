@@ -1,0 +1,81 @@
+000     @SCRATCH
+001     @SCRATCH
+001     _RETURN_
+002     @SCRATCH
+003     @SCRATCH
+004     lcdline
+005     lcd_init.i
+005     MAIN.@SCRATCH1
+006     @delay_ms1.P1
+006     lcd_init.@SCRATCH1
+007     lcd_send_byte.address
+008     lcd_send_byte.n
+009     lcd_read_byte.low
+009     lcd_send_byte.@SCRATCH1
+00A     lcd_read_byte.high
+00A     lcd_send_nibble.n
+00B     lcd_read_byte.@SCRATCH1
+F7A.6   C2OUT
+F7B.6   C1OUT
+F81     lcd
+F83     PSP_DATA
+FBB     CCP_2
+FBB     CCP_2_LOW
+FBC     CCP_2_HIGH
+FBE     CCP_1_LOW
+FBE     CCP_1
+FBF     CCP_1_HIGH
+FE1-FE2 @WRITE_PACKED_MEMORY.P1
+FE1-FE2 @READ_PACKED_MEMORY.P2
+FE9-FEA @READ_PACKED_MEMORY.P1
+FE9-FEA @WRITE_PROGRAM_MEMORY.P2
+FE9-FEA @READ_PROGRAM_MEMORY.P3
+FE9-FEA @WRITE_PACKED_MEMORY.P4
+FF6-FF8 @WRITE_PROGRAM_MEMORY.P1
+FF6-FF8 @READ_PROGRAM_MEMORY.P2
+
+ROM Allocation:
+0018  @delay_ms1
+0004  LCD_INIT_STRING
+0058  lcd_read_byte
+0040  lcd_send_nibble
+0090  lcd_send_byte
+00C8  lcd_init
+0116  MAIN
+0116  @cinit
+
+
+User Memory space: 
+
+User Memory space: 
+
+Project Directory:
+    D:\ram\parellel robot\elektronik\kumandadan xyz kontrol\test\port e\
+
+Project Files:
+    port_e.c
+    C:\Program Files\PICC\devices\18F46K20.h
+    C:\Program Files\PICC\drivers\MATH.h
+    C:\Program Files\PICC\drivers\LCD416.c
+
+Units:
+    D:\ram\parellel robot\elektronik\kumandadan xyz kontrol\test\port e\port_e (main)
+
+Compiler Settings:
+    Processor:      PIC18F46K20
+    Pointer Size:   16
+    ADC Range:      0-255
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    Errors:      port_e.err
+    Ext Symbols: port_e.esym
+    INHX32:      port_e.hex
+    Symbols:     port_e.sym
+    List:        port_e.lst
+    Debug/COFF:  port_e.cof
+    Project:     port_e.PJT
+    Call Tree:   port_e.tre
+    Statistics:  port_e.sta

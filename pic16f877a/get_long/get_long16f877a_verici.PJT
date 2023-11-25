@@ -1,0 +1,41 @@
+[PROJECT]
+Target=get_long16f877a_verici.HEX
+Development_Mode=2
+Processor=0x877F
+Processor_Text=PIC16F877
+ToolSuite=CCS
+
+[Directories]
+Include=
+Library=
+LinkerScript=
+
+[Target Data]
+FileList=D:\ram\parellel robot\elektronik\kumandadan xyz kontrol\test\get_long\get_long16f877a_verici.c
+BuildTool=C-COMPILER
+OptionString=+FM
+AdditionalOptionString=
+BuildRequired=1
+
+[get_long16f877a_verici.c]
+Type=4
+Path=
+FileList=
+BuildTool=
+OptionString=
+AdditionalOptionString=
+
+[mru-list]
+1=GET_LO~2.C
+
+[Windows]
+0=0000 GET_LO~2.C 0 0 796 451 3 0
+
+[Opened Files]
+1=get_long16f877a_verici.c
+2=
+3=..\..\xyz_kontrol_18f46k20.c
+4=
+[Units]
+Count=1
+1=get_long16f877a_verici (main)

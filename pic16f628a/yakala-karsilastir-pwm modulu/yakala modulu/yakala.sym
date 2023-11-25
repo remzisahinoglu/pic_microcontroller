@@ -1,0 +1,54 @@
+004-005 @READ_PROGRAM_MEMORY.P1
+015     CCP_1_LOW
+015-016 CCP_1
+016     CCP_1_HIGH
+01F.6   C1OUT
+01F.7   C2OUT
+020     @INTERRUPT_AREA
+021     @INTERRUPT_AREA
+022     @INTERRUPT_AREA
+023     @INTERRUPT_AREA
+024     @INTERRUPT_AREA
+025     @INTERRUPT_AREA
+026     @INTERRUPT_AREA
+027     @INTERRUPT_AREA
+028     @INTERRUPT_AREA
+029-02A yuksek
+02B-02C alcak
+02D-02E pals_genisligi
+077     @SCRATCH
+078     @SCRATCH
+078     _RETURN_
+079     @SCRATCH
+07A     @SCRATCH
+07B     @SCRATCH
+10D     @READ_PROGRAM_MEMORY.P1
+10F     @READ_PROGRAM_MEMORY.P1
+
+0035  isr
+0047  MAIN
+0047  @cinit
+
+Project Files:
+    yakala.c
+    C:\Program Files\PICC\devices\16F628A.h
+
+Units:
+    D:\pic\pic16f628a\yakala-karsilastir-pwm modulu\karsilastir\yakala.c (main)
+
+Compiler Settings:
+    Processor:      PIC16F628A
+    Pointer Size:   16
+    Opt Level:      0
+    Short,Int,Long: 1,8,16
+
+Output Files:
+    Errors:      D:\pic\pic16f628a\yakala-karsilastir-pwm modulu\karsilastir\yakala.err
+    Ext Symbols: D:\pic\pic16f628a\yakala-karsilastir-pwm modulu\karsilastir\yakala.esym
+    INHX8:       D:\pic\pic16f628a\yakala-karsilastir-pwm modulu\karsilastir\yakala.hex
+    Symbols:     D:\pic\pic16f628a\yakala-karsilastir-pwm modulu\karsilastir\yakala.sym
+    List:        D:\pic\pic16f628a\yakala-karsilastir-pwm modulu\karsilastir\yakala.lst
+    Debug/COFF:  D:\pic\pic16f628a\yakala-karsilastir-pwm modulu\karsilastir\yakala.cof
+    Project:     D:\pic\pic16f628a\yakala-karsilastir-pwm modulu\karsilastir\yakala.PJT
+    Call Tree:   yakala.tre
+    Statistics:  yakala.sta

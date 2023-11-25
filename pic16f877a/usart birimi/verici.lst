@@ -1,0 +1,116 @@
+CCS PCM C Compiler, Version 4.018, 12203               27-Mar-07 12:08
+
+               Filename: D:\pic\pic16f877\usart birimi\verici.lst
+
+               ROM used: 70 words (1%)
+                         Largest free fragment is 2048
+               RAM used: 7 (2%) at main() level
+                         7 (2%) worst case
+               Stack:    1 locations
+
+*
+0000:  MOVLW  00
+0001:  MOVWF  0A
+0002:  GOTO   026
+0003:  NOP
+.................... //rs232 verici uygulamasý 
+.................... //27.03.2007 
+.................... //yazan = Remzi ÞAHÝNOÐLU 
+.................... #if defined (__PCM__) 
+.................... #include <16F877A.h> 
+.................... //////// Standard Header file for the PIC16F877A device //////////////// 
+.................... #device PIC16F877A 
+.................... #list 
+....................  
+.................... #use delay(clock=4000000) 
+.................... #fuses XT,NOWDT,NOPROTECT,NOLVP,NOBROWNOUT 
+.................... #use RS232(BAUD=9600, xmit=PIN_B2, rcv=PIN_B1) 
+0004:  BSF    03.5
+0005:  BCF    06.2
+0006:  BCF    03.5
+0007:  BCF    06.2
+0008:  MOVLW  08
+0009:  MOVWF  78
+000A:  GOTO   00B
+000B:  NOP
+000C:  BSF    78.7
+000D:  GOTO   01C
+000E:  BCF    78.7
+000F:  RRF    21,F
+0010:  BTFSC  03.0
+0011:  BSF    06.2
+0012:  BTFSS  03.0
+0013:  BCF    06.2
+0014:  BSF    78.6
+0015:  GOTO   01C
+0016:  BCF    78.6
+0017:  DECFSZ 78,F
+0018:  GOTO   00F
+0019:  GOTO   01A
+001A:  NOP
+001B:  BSF    06.2
+001C:  MOVLW  1C
+001D:  MOVWF  04
+001E:  DECFSZ 04,F
+001F:  GOTO   01E
+0020:  GOTO   021
+0021:  BTFSC  78.7
+0022:  GOTO   00E
+0023:  BTFSC  78.6
+0024:  GOTO   016
+0025:  RETLW  00
+.................... #endif 
+....................  
+.................... #byte PORTA = 0x05 
+....................  
+.................... void main() 
+.................... { 
+0026:  CLRF   04
+0027:  BCF    03.7
+0028:  MOVLW  1F
+0029:  ANDWF  03,F
+002A:  BSF    03.5
+002B:  BCF    06.2
+002C:  BCF    03.5
+002D:  BSF    06.2
+002E:  BSF    03.5
+002F:  BSF    1F.0
+0030:  BSF    1F.1
+0031:  BSF    1F.2
+0032:  BCF    1F.3
+0033:  MOVLW  07
+0034:  MOVWF  1C
+....................    set_tris_b(0b00000100); 
+0035:  MOVLW  04
+0036:  MOVWF  06
+....................    set_tris_a(0b00010011);      // mclr ve RA0-1 giriþ 
+0037:  MOVLW  13
+0038:  MOVWF  05
+....................    while(TRUE)                  // sonsuz döngü 
+....................    { 
+....................       if(bit_test(PORTA,0)==0)  // butonu kontrol et 
+0039:  BCF    03.5
+003A:  BTFSC  05.0
+003B:  GOTO   03F
+....................       {          
+....................          putc(10);              // 10 decimal deðerini seri olarak gönder      
+003C:  MOVLW  0A
+003D:  MOVWF  21
+003E:  CALL   004
+....................       }       
+....................       if(bit_test(PORTA,1)==0) 
+003F:  BTFSC  05.1
+0040:  GOTO   044
+....................       {          
+....................          putc(01);              // 01 decimal degerini seri olarak gönder          
+0041:  MOVLW  01
+0042:  MOVWF  21
+0043:  CALL   004
+....................       } 
+....................    } 
+0044:  GOTO   03A
+.................... } 
+0045:  SLEEP
+
+Configuration Fuses:
+   Word  1: 3F31   XT NOWDT PUT NODEBUG NOPROTECT NOBROWNOUT NOLVP NOCPD NOWRT

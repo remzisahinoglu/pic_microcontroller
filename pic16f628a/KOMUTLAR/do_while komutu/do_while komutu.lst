@@ -1,0 +1,94 @@
+CCS PCM C Compiler, Version 4.018, 12203               07-Þub-07 18:38
+
+               Filename: D:\pic\do_while komutu\do_while komutu.lst
+
+               ROM used: 56 words (3%)
+                         Largest free fragment is 1992
+               RAM used: 8 (4%) at main() level
+                         9 (4%) worst case
+               Stack:    1 locations
+
+*
+0000:  MOVLW  00
+0001:  MOVWF  0A
+0002:  GOTO   019
+0003:  NOP
+.................... //do while komutu uygulamasý 
+.................... //05.04.2007 
+.................... #if defined (__PCM__) 
+.................... #include <16F628A.h> 
+.................... //////// Standard Header file for the PIC16F628A device //////////////// 
+.................... #device PIC16F628A 
+.................... #list 
+....................  
+.................... #use delay(clock=4000000) 
+0004:  MOVLW  23
+0005:  MOVWF  04
+0006:  BCF    03.7
+0007:  MOVF   00,W
+0008:  BTFSC  03.2
+0009:  GOTO   018
+000A:  MOVLW  01
+000B:  MOVWF  78
+000C:  CLRF   77
+000D:  DECFSZ 77,F
+000E:  GOTO   00D
+000F:  DECFSZ 78,F
+0010:  GOTO   00C
+0011:  MOVLW  4A
+0012:  MOVWF  77
+0013:  DECFSZ 77,F
+0014:  GOTO   013
+0015:  GOTO   016
+0016:  DECFSZ 00,F
+0017:  GOTO   00A
+0018:  GOTO   02C (RETURN)
+.................... #fuses NOWDT,PUT,NOLVP,NOBROWNOUT,MCLR,INTRC_IO,NOPROTECT 
+.................... #endif 
+....................  
+.................... void main() 
+.................... { 
+0019:  CLRF   04
+001A:  BCF    03.7
+001B:  MOVLW  1F
+001C:  ANDWF  03,F
+001D:  MOVLW  07
+001E:  MOVWF  1F
+.................... char x=0; 
+001F:  CLRF   21
+....................     
+....................    do 
+....................    { 
+....................    x=x+1; 
+0020:  MOVLW  01
+0021:  ADDWF  21,F
+....................    output_b(x); 
+0022:  BSF    03.5
+0023:  CLRF   06
+0024:  BCF    03.5
+0025:  MOVF   21,W
+0026:  MOVWF  06
+....................    delay_ms(500); 
+0027:  MOVLW  02
+0028:  MOVWF  22
+0029:  MOVLW  FA
+002A:  MOVWF  23
+002B:  GOTO   004
+002C:  DECFSZ 22,F
+002D:  GOTO   029
+....................    }while(x!=5); 
+002E:  MOVF   21,W
+002F:  SUBLW  05
+0030:  BTFSS  03.2
+0031:  GOTO   020
+....................    output_b(255); 
+0032:  BSF    03.5
+0033:  CLRF   06
+0034:  MOVLW  FF
+0035:  BCF    03.5
+0036:  MOVWF  06
+.................... } 
+0037:  SLEEP
+
+Configuration Fuses:
+   Word  1: 3F30   NOWDT PUT NOPROTECT NOBROWNOUT MCLR NOLVP INTRC_IO NOCPD

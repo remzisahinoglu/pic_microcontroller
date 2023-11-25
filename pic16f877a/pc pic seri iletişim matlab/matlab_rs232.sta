@@ -1,0 +1,60 @@
+
+ROM used: 614 (7%)
+          614 (7%) including unused fragments
+
+          1 Average locations per line
+          7 Average locations per statement
+
+RAM used: 94 (26%) at main() level
+          119 (32%) worst case
+
+Stack used: 8 worst case (out of 8 total available)
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+   56    20  22  matlab_rs232.c
+  298     0   0  C:\Program Files\PICC\devices\16F877.h
+  408    72  78  C:\Program Files\PICC\drivers\lcd.c
+----- -----
+  762    92 Total
+
+Page ROM  %  RAM   Vol Diff  Functions:
+---- --- --- ---   --- ----  ----------
+0     21   3   1             @delay_ms1
+0      8   1   0             @const73
+ Inline        3   587  6.0  lcd_read_byte
+ Inline        0    59  4.2  lcd_read_nibble
+0     14   2   1   172  3.4  lcd_send_nibble
+0     90  15   3   447  4.6  lcd_send_byte
+0     98  16   2   629  6.0  lcd_init
+ Inline        4   191  5.8  lcd_gotoxy
+0     91  15   1   354  4.7  lcd_putc
+0     69  11   0   110  1.6  serihaberlesme_kesmesi
+ Inline        2   315  2.3  @PSTRINGR_90
+0     89  14   0   315  2.3  MAIN
+0      9   1   0   315  2.3  @const106
+0     76  12   3             @PSTRINGC7_90
+
+Program metrics:
+    Functions               11
+    Statements              92
+    Comments                166
+    Volume (V)              5693
+    Difficilty (D)          41.0
+    Effort to implement (E) 233576
+    Time to implement (T)   3 hours, 36 minutes
+    Est Delivered Bugs (B)  1
+    Cyclomatic Complexity   8
+    Maintainability (MI)    91
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00003     4  0  
+00004-00030    45  0  
+00031-007FF   565  1434  
+00800-00FFF     0  2048  
+01000-017FF     0  2048  
+01800-01FFF     0  2048  
+
+
+

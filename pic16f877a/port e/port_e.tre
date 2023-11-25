@@ -1,0 +1,13 @@
+ÀÄport_e
+   ÀÄMAIN  0/132  Ram=1
+      ÃÄ??0??
+      ÀÄlcd_init  0/78  Ram=2
+         ÃÄ@delay_ms1  0/40  Ram=1
+         ÃÄlcd_send_nibble  0/24  Ram=1
+         ÃÄ@delay_ms1  0/40  Ram=1
+         ÃÄlcd_send_nibble  0/24  Ram=1
+         ÃÄ@const208  0/20  Ram=0
+         ÀÄlcd_send_byte  0/56  Ram=3
+            ÃÄlcd_read_byte  0/56  Ram=3
+            ÃÄlcd_send_nibble  0/24  Ram=1
+            ÀÄlcd_send_nibble  0/24  Ram=1

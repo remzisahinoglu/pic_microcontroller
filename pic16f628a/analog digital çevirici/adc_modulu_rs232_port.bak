@@ -1,0 +1,65 @@
+// analog dijital dönüþtürücü ile data aquasion uygulamasý
+// 22.11.2011
+// yazan = Remzi ÞAHÝNOÐLU
+
+#if defined(__PCM__)
+#include <16F877A.h>
+#device ADC=8    // dahili adc 10 bit olarak ayarlanmýstýr
+#fuses XT, NOWDT, NOPROTECT, NOLVP, NOBROWNOUT, NOPUT, NOWRT, NODEBUG, NOCPD
+#use delay(clock=4000000)
+#use rs232 (baud=9600, xmit=PIN_C6, rcv=PIN_c7, parity=N, stop=1)
+#use fast_io(c)
+#use fast_io(d)
+#use fast_io(e)
+#endif
+
+/*
+#INT_AD
+void ADC_kesmesi()      // adc okumasý bittiginde kesme oluþtur
+{
+   output_high(PIN_C5);
+   delay_ms(200);          // uyarýyý burasý veriyor
+   output_low(PIN_C5);
+}
+*/
+
+int bilgi=0;
+
+void main()              
+{
+   setup_psp(PSP_DISABLED);
+   setup_spi(SPI_SS_DISABLED);
+   setup_timer_1(T1_DISABLED);
+   setup_timer_2(T2_DISABLED,0,1);
+   setup_CCP1(CCP_OFF);
+   setup_CCP2(CCP_OFF);
+   
+   set_tris_a(0x01);
+   set_tris_b(0x00);
+   set_tris_c(0x00);
+   set_tris_d(0x00);
+   set_tris_e(0x00);
+   
+   output_c(0x00);
+   output_d(0x00);
+   
+   setup_adc(adc_clock_div_32);     // adc clock frenkansý fosc/32
+   setup_adc_ports(ALL_ANALOG);
+   
+   //enable_interrupts(INT_AD);
+   enable_interrupts(GLOBAL);
+   
+   delay_ms(1000);
+      
+   while(TRUE)
+   {
+      set_adc_channel(0);
+      delay_us(10);
+      
+      bilgi = read_adc();
+      
+      putc(bilgi);
+
+      delay_ms(500);
+   }
+}

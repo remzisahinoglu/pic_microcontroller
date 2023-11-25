@@ -1,0 +1,43 @@
+
+ROM used: 48 (2%)
+          48 (2%) including unused fragments
+
+          0 Average locations per line
+          8 Average locations per statement
+
+RAM used: 6 (3%) at main() level
+          7 (3%) worst case
+
+Stack used: 1 worst case (out of 8 total available)
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+   19     6 100  port_yazma.c
+  208     0   0  C:\Program Files\PICC\devices\16F628A.h
+----- -----
+  227     6 Total
+
+Page ROM  %  RAM   Vol Diff  Functions:
+---- --- --- ---   --- ----  ----------
+0     21  44   1             @delay_ms1
+0     23  48   0    94  2.1  main
+
+Program metrics:
+    Functions               1
+    Statements              6
+    Comments                70
+    Volume (V)              96
+    Difficilty (D)          1.9
+    Effort to implement (E) 184
+    Time to implement (T)   0 minutes
+    Est Delivered Bugs (B)  0
+    Cyclomatic Complexity   1
+    Maintainability (MI)    137
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00003     4  0  
+00004-007FF    44  2000  
+
+
+

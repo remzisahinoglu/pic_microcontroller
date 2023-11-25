@@ -1,0 +1,34 @@
+//rs232 verici uygulamsý pic16f877 - atmproj
+//30.06.2009
+//yazan = Remzi ÞAHÝNOÐLU
+#if defined (__PCM__)
+#include <16F877.h>
+#fuses XT,NOWDT,NOPROTECT,NOLVP,NOBROWNOUT,NOPUT,NOWRT,NODEBUG,NOCPD
+#use delay(clock=4000000)
+
+#use rs232(baud=1200, xmit=pin_C6, rcv=pin_C7, parity=N, stop=1)
+#endif
+
+#byte porta = 0x05
+
+void main()
+{
+   
+   set_tris_a(0b00000001);
+   delay_ms(500);
+   output_d(0);
+   
+   while(TRUE)
+   {
+      if(bit_test(porta,0)==0)
+      {
+         putc('R');
+         putc('E');
+         putc('M');
+         putc('Z');
+         putc('I');        
+      }
+      delay_ms(100);
+   }
+}
+

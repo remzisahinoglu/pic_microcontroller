@@ -1,0 +1,44 @@
+
+ROM used: 101 (5%)
+          101 (5%) including unused fragments
+
+          0 Average locations per line
+          8 Average locations per statement
+
+RAM used: 14 (6%) at main() level
+          14 (6%) worst case
+
+Stack used: 1 worst case (out of 8 total available)
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+   55    12 100  tx_rx_16f628a_alici.c
+  222     0   0  C:\Program Files\PICC\devices\16F628A.h
+----- -----
+  277    12 Total
+
+Page ROM  %  RAM   Vol Diff  Functions:
+---- --- --- ---   --- ----  ----------
+0     16  16   0    72  1.6  serihaberlesme_kesmesi
+0     36  36   0   152  2.2  MAIN
+
+Program metrics:
+    Functions               2
+    Statements              12
+    Comments                87
+    Volume (V)              274
+    Difficilty (D)          3.8
+    Effort to implement (E) 1050
+    Time to implement (T)   1 minutes
+    Est Delivered Bugs (B)  0
+    Cyclomatic Complexity   1
+    Maintainability (MI)    81
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00003     4  0  
+00004-00030    45  0  
+00031-007FF    52  1947  
+
+
+

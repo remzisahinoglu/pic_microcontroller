@@ -1,0 +1,39 @@
+[PROJECT]
+Target=port_yazma.HEX
+Development_Mode=2
+Processor=0x628A
+ToolSuite=CCS
+Processor_Text=PIC16F628A
+
+[Directories]
+Include=
+Library=
+LinkerScript=
+
+[Target Data]
+FileList=E:\priv\picmicro\PIC C\pic uygulama\pic16f628a\KOMUTLAR\output (port yazma)\port_yazma.c
+BuildTool=C-COMPILER
+OptionString=+FM
+AdditionalOptionString=
+BuildRequired=1
+
+[port_yazma.c]
+Type=4
+Path=
+FileList=
+BuildTool=
+OptionString=
+AdditionalOptionString=
+
+[mru-list]
+1=PORT_Y~1.C
+
+[Windows]
+0=0000 PORT_Y~1.C 0 0 796 451 3 0
+
+[Opened Files]
+1=port_yazma.c
+2=
+[Units]
+Count=1
+1=port_yazma.c (main)

@@ -1,0 +1,48 @@
+
+ROM used: 72 (4%)
+          72 (4%) including unused fragments
+
+          0 Average locations per line
+          5 Average locations per statement
+
+RAM used: 8 (4%) at main() level
+          8 (4%) worst case
+
+Stack used: 1 worst case (out of 8 total available)
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+   34    15 100  usart_alici_baska.c
+  205     0   0  C:\Program Files\PICC\devices\16F628A.h
+----- -----
+  239    15 Total
+
+Page ROM  %  RAM   Vol Diff  Functions:
+---- --- --- ---   --- ----  ----------
+0     57  79   1   315  4.0  main
+0     11  15   0             @const54
+
+Program metrics:
+    Functions               1
+    Statements              15
+    Comments                67
+    Volume (V)              318
+    Difficilty (D)          3.9
+    Effort to implement (E) 1226
+    Time to implement (T)   1 minutes
+    Est Delivered Bugs (B)  0
+    Cyclomatic Complexity   3
+    Maintainability (MI)    102
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00003     4  0  
+00004-007FF    68  1976  
+
+
+
+THE FOLLOWING IS TEMPORARY FOR DIAGNOSTIC USE ONLY:
+
+    n1    n2    N1    N2   v(G)
+     9    27    37    24     3    main
+     0     1     0     0     0    @const54

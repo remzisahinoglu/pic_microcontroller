@@ -1,0 +1,39 @@
+[PROJECT]
+Target=long_eprom.HEX
+Development_Mode=2
+Processor=0xE620
+Processor_Text=PIC18F46K20
+ToolSuite=CCS
+
+[Directories]
+Include=
+Library=
+LinkerScript=
+
+[Target Data]
+FileList=long_eprom.c;
+BuildTool=C-COMPILER
+OptionString=+FH
+AdditionalOptionString=
+BuildRequired=1
+
+[long_eprom.c]
+Type=4
+Path=
+FileList=
+BuildTool=
+OptionString=
+AdditionalOptionString=
+
+[mru-list]
+1=LONG_E~1.C
+
+[Windows]
+0=0000 LONG_E~1.C 0 0 796 451 3 0
+
+[Units]
+Count=1
+1=long_eprom (main)
+[Opened Files]
+1=long_eprom.c
+2=

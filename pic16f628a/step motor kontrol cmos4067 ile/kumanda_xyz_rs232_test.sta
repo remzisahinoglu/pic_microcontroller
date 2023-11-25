@@ -1,0 +1,45 @@
+
+ROM used: 616 (1%)
+          616 (1%) including unused fragments
+
+          0 Average locations per line
+          2 Average locations per statement
+
+RAM used: 6 (0%) at main() level
+          7 (0%) worst case
+
+Stack used: 1 worst case (out of 31 total available)
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+  107    64  16  kumanda_xyz_rs232_test.c
+  489     0   0  C:\Program Files\PICC\devices\18F46K20.h
+ 2172   260  66  C:\Program Files\PICC\drivers\MATH.h
+  158    68  17  C:\Program Files\PICC\drivers\LCD416.c
+----- -----
+ 2926   392 Total
+
+Page ROM  %  RAM   Vol Diff  Functions:
+---- --- --- ---   --- ----  ----------
+0     40   3   1             @delay_ms1
+0    572  46   1  1823  2.5  MAIN
+
+Program metrics:
+    Functions               1
+    Statements              392
+    Comments                454
+    Volume (V)              1826
+    Difficilty (D)          2.4
+    Effort to implement (E) 4459
+    Time to implement (T)   4 minutes
+    Est Delivered Bugs (B)  0
+    Cyclomatic Complexity   1
+    Maintainability (MI)    85
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00002     4  0  
+00004-0FFFE   612  64920  
+
+
+

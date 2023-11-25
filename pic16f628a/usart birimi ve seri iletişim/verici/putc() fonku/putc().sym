@@ -1,0 +1,48 @@
+004-005 @READ_PROGRAM_MEMORY.P1
+005     PORTA
+015     CCP_1_LOW
+015-016 CCP_1
+016     CCP_1_HIGH
+01F.6   C1OUT
+01F.7   C2OUT
+021     main.@SCRATCH
+022     @delay_ms1.P1
+030     data
+030.0   data1
+030.1   data2
+077     @SCRATCH
+078     @SCRATCH
+078     _RETURN_
+079     @SCRATCH
+07A     @SCRATCH
+07B     @SCRATCH
+10D     @READ_PROGRAM_MEMORY.P1
+10F     @READ_PROGRAM_MEMORY.P1
+
+0004  @delay_ms1
+0019  main
+0019  @cinit
+
+Project Files:
+    putc().c
+    C:\Program Files\PICC\devices\16F628A.h
+
+Units:
+    F:\ramsi\private\picmicro\PIC C\pic uygulama\pic16f628a\usart birimi ve seri iletiþim\verici\putc() fonku\putc().c (main)
+
+Compiler Settings:
+    Processor:      PIC16F628A
+    Pointer Size:   16
+    Opt Level:      0
+    Short,Int,Long: 1,8,16
+
+Output Files:
+    Errors:      F:\ramsi\private\picmicro\PIC C\pic uygulama\pic16f628a\usart birimi ve seri iletiþim\verici\putc() fonku\putc().err
+    Ext Symbols: F:\ramsi\private\picmicro\PIC C\pic uygulama\pic16f628a\usart birimi ve seri iletiþim\verici\putc() fonku\putc().esym
+    INHX8:       F:\ramsi\private\picmicro\PIC C\pic uygulama\pic16f628a\usart birimi ve seri iletiþim\verici\putc() fonku\putc().hex
+    Symbols:     F:\ramsi\private\picmicro\PIC C\pic uygulama\pic16f628a\usart birimi ve seri iletiþim\verici\putc() fonku\putc().sym
+    List:        F:\ramsi\private\picmicro\PIC C\pic uygulama\pic16f628a\usart birimi ve seri iletiþim\verici\putc() fonku\putc().lst
+    Debug/COFF:  F:\ramsi\private\picmicro\PIC C\pic uygulama\pic16f628a\usart birimi ve seri iletiþim\verici\putc() fonku\putc().cof
+    Project:     F:\ramsi\private\picmicro\PIC C\pic uygulama\pic16f628a\usart birimi ve seri iletiþim\verici\putc() fonku\putc().PJT
+    Call Tree:   putc().tre
+    Statistics:  putc().sta

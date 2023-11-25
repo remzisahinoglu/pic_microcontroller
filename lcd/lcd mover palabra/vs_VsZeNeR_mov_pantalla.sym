@@ -1,0 +1,68 @@
+004-005 @READ_PROGRAM_MEMORY.P1
+006     lcd
+015     CCP_1_LOW
+015-016 CCP_1
+016     CCP_1_HIGH
+01F.6   C1OUT
+01F.7   C2OUT
+021     MAIN.y
+022     MAIN.x
+023     lcd_init.i
+023     MAIN.@SCRATCH
+024     lcd_putc.c
+024     lcd_init.@SCRATCH
+025     lcd_gotoxy.x
+025     @delay_ms1.P1
+026     lcd_gotoxy.y
+027     lcd_gotoxy.address
+028     lcd_gotoxy.@SCRATCH
+029     lcd_send_byte.address
+02A     lcd_send_byte.n
+02B     lcd_read_byte.low
+02B     lcd_send_byte.@SCRATCH
+02C     lcd_send_nibble.n
+02C     lcd_read_byte.high
+02D     lcd_read_byte.@SCRATCH
+077     @SCRATCH
+078     @SCRATCH
+078     _RETURN_
+079     @SCRATCH
+07A     @SCRATCH
+07B     @SCRATCH
+10D     @READ_PROGRAM_MEMORY.P1
+10F     @READ_PROGRAM_MEMORY.P1
+
+001D  @delay_ms1
+0004  LCD_INIT_STRING
+003F  lcd_read_byte
+0032  lcd_send_nibble
+003E  lcd_send_byte
+0074  lcd_init
+009D  lcd_gotoxy
+00AF  lcd_putc
+00D3  MAIN
+000C  @const82
+0017  @const83
+00D3  @cinit
+
+Project Files:
+    C:\3414\Ejemplitos en C para 16F648A\lcd mover palabra\vs_VsZeNeR_mov_pantalla.c
+    C:\ARQUIV~1\PICC\devices\16f648a.h
+    C:\ARQUIV~1\PICC\drivers\lcd.c
+
+Units:
+    vs_VsZeNeR_mov_pantalla.c (main)
+
+Compiler Settings:
+    Processor:      PIC16F648A
+    Pointer Size:   16
+    Opt Level:      0
+    Short,Int,Long: 1,8,16
+
+Output Files:
+    Errors:      C:\3414\Ejemplitos en C para 16F648A\lcd mover palabra\vs_VsZeNeR_mov_pantalla.err
+    Ext Symbols: C:\3414\Ejemplitos en C para 16F648A\lcd mover palabra\vs_VsZeNeR_mov_pantalla.esym
+    INHX8:\       vs_VsZeNeR_mov_pantalla.hex
+    Symbols:\     vs_VsZeNeR_mov_pantalla.sym
+    List:\        vs_VsZeNeR_mov_pantalla.lst
+    Debug/COFF:\  vs_VsZeNeR_mov_pantalla.cof

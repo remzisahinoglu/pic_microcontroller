@@ -1,0 +1,43 @@
+004-005 @READ_PROGRAM_MEMORY.P1
+015-016 CCP_1
+015     CCP_1_LOW
+016     CCP_1_HIGH
+01F.6   C1OUT
+01F.7   C2OUT
+021     main.i
+022     @delay_ms1.P1
+077     @SCRATCH
+078     @SCRATCH
+078     _RETURN_
+079     @SCRATCH
+07A     @SCRATCH
+07B     @SCRATCH
+10D     @READ_PROGRAM_MEMORY.P1
+10F     @READ_PROGRAM_MEMORY.P1
+
+0004  @delay_ms1
+0019  main
+0019  @cinit
+
+Project Files:
+    for_komutu.c
+    C:\Program Files\PICC\devices\16F628A.h
+
+Units:
+    D:\pic\KOMUTLAR\for komutu\for_komutu.c (main)
+
+Compiler Settings:
+    Processor:      PIC16F628A
+    Pointer Size:   16
+    Opt Level:      0
+    Short,Int,Long: 1,8,16
+
+Output Files:
+    Errors:      D:\pic\KOMUTLAR\for komutu\for_komutu.err
+    Ext Symbols: D:\pic\KOMUTLAR\for komutu\for_komutu.esym
+    INHX8:       D:\pic\KOMUTLAR\for komutu\for_komutu.hex
+    Symbols:     D:\pic\KOMUTLAR\for komutu\for_komutu.sym
+    List:        D:\pic\KOMUTLAR\for komutu\for_komutu.lst
+    Debug/COFF:  D:\pic\KOMUTLAR\for komutu\for_komutu.cof
+    Call Tree:   for_komutu.tre
+    Statistics:  for_komutu.sta

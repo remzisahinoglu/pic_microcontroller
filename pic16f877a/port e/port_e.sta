@@ -1,0 +1,50 @@
+
+ROM used: 410 (1%)
+          410 (1%) including unused fragments
+
+          0 Average locations per line
+          1 Average locations per statement
+
+RAM used: 6 (0%) at main() level
+          12 (0%) worst case
+
+Stack used: 3 worst case (out of 31 total available)
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+   46    17   5  port_e.c
+  489     0   0  C:\Program Files\PICC\devices\18F46K20.h
+ 2172   260  75  C:\Program Files\PICC\drivers\MATH.h
+  158    68  20  C:\Program Files\PICC\drivers\LCD416.c
+----- -----
+ 2865   345 Total
+
+Page ROM  %  RAM   Vol Diff  Functions:
+---- --- --- ---   --- ----  ----------
+0     40   5   1             @delay_ms1
+0     20   2   0             @const208
+0     56   7   3   463  4.3  lcd_read_byte
+0     24   3   1   134  2.2  lcd_send_nibble
+0     56   7   3   317  4.3  lcd_send_byte
+0     78  10   2   422  4.7  lcd_init
+0    132  16   1   365  3.3  MAIN
+
+Program metrics:
+    Functions               5
+    Statements              345
+    Comments                420
+    Volume (V)              2421
+    Difficilty (D)          18.6
+    Effort to implement (E) 45067
+    Time to implement (T)   42 minutes
+    Est Delivered Bugs (B)  0
+    Cyclomatic Complexity   4
+    Maintainability (MI)    120
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00002     4  0  
+00004-0FFFE   406  65126  
+
+
+

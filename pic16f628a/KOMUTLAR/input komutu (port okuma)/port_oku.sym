@@ -1,0 +1,42 @@
+004-005 @READ_PROGRAM_MEMORY.P1
+005     PORTA
+015-016 CCP_1
+015     CCP_1_LOW
+016     CCP_1_HIGH
+01F.6   C1OUT
+01F.7   C2OUT
+021     main.veri
+077     @SCRATCH
+078     @SCRATCH
+078     _RETURN_
+079     @SCRATCH
+07A     @SCRATCH
+07B     @SCRATCH
+10D     @READ_PROGRAM_MEMORY.P1
+10F     @READ_PROGRAM_MEMORY.P1
+
+0004  main
+0004  @cinit
+
+Project Files:
+    port_oku.c
+    F:\Program Files\PICC\devices\16F628A.h
+
+Units:
+    C:\pic\pic16f628a\KOMUTLAR\input komutu (port okuma)\port_oku.c (main)
+
+Compiler Settings:
+    Processor:      PIC16F628A
+    Pointer Size:   16
+    Opt Level:      0
+    Short,Int,Long: 1,8,16
+
+Output Files:
+    Errors:      C:\pic\pic16f628a\KOMUTLAR\input komutu (port okuma)\port_oku.err
+    Ext Symbols: C:\pic\pic16f628a\KOMUTLAR\input komutu (port okuma)\port_oku.esym
+    INHX8:       C:\pic\pic16f628a\KOMUTLAR\input komutu (port okuma)\port_oku.hex
+    Symbols:     C:\pic\pic16f628a\KOMUTLAR\input komutu (port okuma)\port_oku.sym
+    List:        C:\pic\pic16f628a\KOMUTLAR\input komutu (port okuma)\port_oku.lst
+    Debug/COFF:  C:\pic\pic16f628a\KOMUTLAR\input komutu (port okuma)\port_oku.cof
+    Call Tree:   port_oku.tre
+    Statistics:  port_oku.sta

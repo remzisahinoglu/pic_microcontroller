@@ -1,0 +1,48 @@
+
+ROM used: 53 (3%)
+          53 (3%) including unused fragments
+
+          0 Average locations per line
+          8 Average locations per statement
+
+RAM used: 8 (4%) at main() level
+          9 (4%) worst case
+
+Stack used: 1 worst case (out of 8 total available)
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+   21     7 100  while komutu.c
+  205     0   0  C:\Program Files\PICC\devices\16F628A.h
+----- -----
+  226     7 Total
+
+Page ROM  %  RAM   Vol Diff  Functions:
+---- --- --- ---   --- ----  ----------
+0     21  40   1             @delay_ms1
+0     28  53   2   149  3.9  main
+
+Program metrics:
+    Functions               1
+    Statements              7
+    Comments                65
+    Volume (V)              150
+    Difficilty (D)          3.7
+    Effort to implement (E) 557
+    Time to implement (T)   1 minutes
+    Est Delivered Bugs (B)  0
+    Cyclomatic Complexity   1
+    Maintainability (MI)    109
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00003     4  0  
+00004-007FF    49  1995  
+
+
+
+THE FOLLOWING IS TEMPORARY FOR DIAGNOSTIC USE ONLY:
+
+    n1    n2    N1    N2   v(G)
+     0     1     0     0     0    @delay_ms1
+     9    16    18    14     0    main

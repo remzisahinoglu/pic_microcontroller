@@ -1,0 +1,53 @@
+
+ROM used: 494 (1%)
+          494 (1%) including unused fragments
+
+          0 Average locations per line
+          1 Average locations per statement
+
+RAM used: 7 (0%) at main() level
+          13 (0%) worst case
+
+Stack used: 3 worst case (out of 31 total available)
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+   56    21   6  demux.c
+  489     0   0  C:\Program Files\PICC\devices\18F46K20.h
+ 2172   260  74  C:\Program Files\PICC\drivers\MATH.h
+  158    68  19  C:\Program Files\PICC\drivers\LCD416.c
+----- -----
+ 2875   349 Total
+
+Page ROM  %  RAM   Vol Diff  Functions:
+---- --- --- ---   --- ----  ----------
+0     40   4   1             @delay_ms1
+0     20   2   0             @const208
+0     56   6   3   463  4.3  lcd_read_byte
+0     24   2   1   134  2.2  lcd_send_nibble
+0     56   6   3   317  4.3  lcd_send_byte
+0     78   8   2   422  4.7  lcd_init
+0    158  16   1   475  3.2  MAIN
+0     12   1   0             @const243
+0     34   3   2             @PSTRINGC_9600_31766_31767
+0     12   1   0             @const245
+
+Program metrics:
+    Functions               5
+    Statements              349
+    Comments                422
+    Volume (V)              2571
+    Difficilty (D)          18.2
+    Effort to implement (E) 46912
+    Time to implement (T)   43 minutes
+    Est Delivered Bugs (B)  0
+    Cyclomatic Complexity   4
+    Maintainability (MI)    119
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00002     4  0  
+00004-0FFFE   490  65042  
+
+
+

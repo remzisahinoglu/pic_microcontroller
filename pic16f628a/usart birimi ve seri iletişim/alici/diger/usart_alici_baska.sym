@@ -1,0 +1,47 @@
+004-005 @READ_PROGRAM_MEMORY.P1
+005     porta
+006     portb
+006.1   led
+015     CCP_1_LOW
+015-016 CCP_1
+016     CCP_1_HIGH
+01F.6   C1OUT
+01F.7   C2OUT
+020     gelen
+021     main.@SCRATCH
+077     @SCRATCH
+078     @SCRATCH
+078     _RETURN_
+079     @SCRATCH
+07A     @SCRATCH
+07B     @SCRATCH
+10D     @READ_PROGRAM_MEMORY.P1
+10F     @READ_PROGRAM_MEMORY.P1
+
+000F  main
+0004  @const54
+000F  @cinit
+
+Project Files:
+    usart_alici_baska.c
+    C:\Program Files\PICC\devices\16F628A.h
+
+Units:
+    D:\pic\usart birimi ve seri iletiþim\alýcý\usart_alici_baska.c (main)
+
+Compiler Settings:
+    Processor:      PIC16F628A
+    Pointer Size:   16
+    Opt Level:      0
+    Short,Int,Long: 1,8,16
+
+Output Files:
+    Errors:      D:\pic\usart birimi ve seri iletiþim\alýcý\usart_alici_baska.err
+    Ext Symbols: D:\pic\usart birimi ve seri iletiþim\alýcý\usart_alici_baska.esym
+    INHX8:       D:\pic\usart birimi ve seri iletiþim\alýcý\usart_alici_baska.hex
+    Symbols:     D:\pic\usart birimi ve seri iletiþim\alýcý\usart_alici_baska.sym
+    List:        D:\pic\usart birimi ve seri iletiþim\alýcý\usart_alici_baska.lst
+    Debug/COFF:  D:\pic\usart birimi ve seri iletiþim\alýcý\usart_alici_baska.cof
+    Project:     D:\pic\usart birimi ve seri iletiþim\alýcý\usart_alici_baska.PJT
+    Call Tree:   usart_alici_baska.tre
+    Statistics:  usart_alici_baska.sta

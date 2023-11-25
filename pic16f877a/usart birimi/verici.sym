@@ -1,0 +1,53 @@
+004-005 @READ_PROGRAM_MEMORY.P1
+004-005 @WRITE_PROGRAM_MEMORY.P2
+005     PORTA
+008     PSP_DATA
+015     CCP_1_LOW
+015-016 CCP_1
+016     CCP_1_HIGH
+01B     CCP_2_LOW
+01B-01C CCP_2
+01C     CCP_2_HIGH
+021     @PUTCHAR_1_.P1
+021     main.@SCRATCH
+077     @SCRATCH
+078     @SCRATCH
+078     _RETURN_
+079     @SCRATCH
+07A     @SCRATCH
+07B     @SCRATCH
+09C.6   C1OUT
+09C.7   C2OUT
+10D     @READ_PROGRAM_MEMORY.P1
+10D     @WRITE_PROGRAM_MEMORY.P2
+10F     @WRITE_PROGRAM_MEMORY.P1
+10F     @READ_PROGRAM_MEMORY.P2
+
+0004  @PUTCHAR_1_
+0026  main
+0026  @cinit
+
+Project Files:
+    verici.c
+    C:\Program Files\PICC\devices\16F877A.h
+
+Units:
+    D:\pic\pic16f877\usart birimi\verici.c (main)
+
+Compiler Settings:
+    Processor:      PIC16F877A
+    Pointer Size:   16
+    ADC Range:      0-255
+    Opt Level:      0
+    Short,Int,Long: 1,8,16
+
+Output Files:
+    Errors:      D:\pic\pic16f877\usart birimi\verici.err
+    Ext Symbols: D:\pic\pic16f877\usart birimi\verici.esym
+    INHX8:       D:\pic\pic16f877\usart birimi\verici.hex
+    Symbols:     D:\pic\pic16f877\usart birimi\verici.sym
+    List:        D:\pic\pic16f877\usart birimi\verici.lst
+    Debug/COFF:  D:\pic\pic16f877\usart birimi\verici.cof
+    Project:     D:\pic\pic16f877\usart birimi\verici.PJT
+    Call Tree:   verici.tre
+    Statistics:  verici.sta

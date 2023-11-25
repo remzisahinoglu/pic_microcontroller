@@ -1,0 +1,6 @@
+>>> Warning 216 "matlab_rs232.c" Line 57(0,1): Interrupts disabled during call to prevent re-entrancy:  (@delay_ms1)
+>>> Warning 216 "matlab_rs232.c" Line 57(0,1): Interrupts disabled during call to prevent re-entrancy:  (lcd_send_nibble)
+>>> Warning 216 "matlab_rs232.c" Line 57(0,1): Interrupts disabled during call to prevent re-entrancy:  (lcd_send_byte)
+>>> Warning 216 "matlab_rs232.c" Line 57(0,1): Interrupts disabled during call to prevent re-entrancy:  (lcd_putc)
+      Memory usage:   ROM=7%      RAM=26% - 32%
+      0 Errors,  4 Warnings.

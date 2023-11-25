@@ -1,0 +1,133 @@
+004-005 @READ_PROGRAM_MEMORY8.P1
+004     @WRITE_PROGRAM_MEMORY8.P2
+006     lcd
+006     lcdlat
+008     PSP_DATA
+015     CCP_1_LOW
+015     CCP_1
+016     CCP_1_HIGH
+01B     CCP_2
+01B     CCP_2_LOW
+01C     CCP_2_HIGH
+020     @INTERRUPT_AREA
+021     @INTERRUPT_AREA
+022     @INTERRUPT_AREA
+023     @INTERRUPT_AREA
+024     @INTERRUPT_AREA
+025     @INTERRUPT_AREA
+026     @INTERRUPT_AREA
+027     @INTERRUPT_AREA
+028     @TRIS_C
+077     @SCRATCH
+078     @SCRATCH
+078     _RETURN_
+079     @SCRATCH
+07A     @SCRATCH
+07F     @INTERRUPT_AREA
+086     lcdtris
+0A0-0EF veri
+0FF     @INTERRUPT_AREA
+10D-10E @READ_PROGRAM_MEMORY8.P1
+10D-10E @WRITE_PROGRAM_MEMORY8.P2
+110     lcd_init.i
+110     @PSTRINGC7_90.@SCRATCH1
+111     lcd_init.@SCRATCH1
+111     @PSTRINGC7_90.@SCRATCH2
+112     @PSTRINGC7_90.@SCRATCH3
+11D     @PSTRINGR_90.@SCRATCH1
+11E     @PSTRINGR_90.@SCRATCH2
+11F     lcd_putc.c
+120     lcd_gotoxy.x
+120     @delay_ms1.P1
+121     lcd_gotoxy.y
+122     lcd_gotoxy.address
+123     lcd_gotoxy.@SCRATCH1
+124     lcd_send_byte.address
+125     lcd_send_byte.n
+126     lcd_read_byte.low
+126     lcd_send_byte.@SCRATCH1
+127     lcd_read_byte.high
+127     lcd_send_nibble.n
+128     lcd_read_byte.@SCRATCH1
+17F     @INTERRUPT_AREA
+1FF     @INTERRUPT_AREA
+27F     @INTERRUPT_AREA
+2FF     @INTERRUPT_AREA
+37F     @INTERRUPT_AREA
+3FF     @INTERRUPT_AREA
+47F     @INTERRUPT_AREA
+4FF     @INTERRUPT_AREA
+57F     @INTERRUPT_AREA
+5FF     @INTERRUPT_AREA
+67F     @INTERRUPT_AREA
+6FF     @INTERRUPT_AREA
+77F     @INTERRUPT_AREA
+7FF     @INTERRUPT_AREA
+87F     @INTERRUPT_AREA
+8FF     @INTERRUPT_AREA
+97F     @INTERRUPT_AREA
+9FF     @INTERRUPT_AREA
+A7F     @INTERRUPT_AREA
+AFF     @INTERRUPT_AREA
+B7F     @INTERRUPT_AREA
+BFF     @INTERRUPT_AREA
+C7F     @INTERRUPT_AREA
+CFF     @INTERRUPT_AREA
+D7F     @INTERRUPT_AREA
+DFF     @INTERRUPT_AREA
+E7F     @INTERRUPT_AREA
+EFF     @INTERRUPT_AREA
+F7F     @INTERRUPT_AREA
+FFF     @INTERRUPT_AREA
+
+ROM Allocation:
+00A1  @delay_ms1
+0031  LCD_INIT_STRING
+004D  lcd_read_byte
+0064  lcd_read_nibble
+0039  lcd_send_nibble
+0047  lcd_send_byte
+015F  lcd_init
+00EE  lcd_gotoxy
+00B6  lcd_putc
+0111  serihaberlesme_kesmesi
+0130  @PSTRINGR_90
+020D  MAIN
+0156  @const106
+01C1  @PSTRINGC7_90
+020D  @cinit
+
+
+User Memory space: 
+
+User Memory space: 
+
+Project Directory:
+    D:\ram\parellel robot\elektronik\pc pic seri iletiþim\
+
+Project Files:
+    matlab_rs232.c
+    C:\Program Files\PICC\devices\16F877.h
+    C:\Program Files\PICC\drivers\lcd.c
+
+Units:
+    D:\ram\parellel robot\elektronik\pc pic seri iletiþim\matlab_rs232 (main)
+
+Compiler Settings:
+    Processor:      PIC16F877
+    Pointer Size:   16
+    ADC Range:      0-255
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    Errors:      matlab_rs232.err
+    Ext Symbols: matlab_rs232.esym
+    INHX8:       matlab_rs232.hex
+    Symbols:     matlab_rs232.sym
+    List:        matlab_rs232.lst
+    Debug/COFF:  matlab_rs232.cof
+    Project:     matlab_rs232.PJT
+    Call Tree:   matlab_rs232.tre
+    Statistics:  matlab_rs232.sta

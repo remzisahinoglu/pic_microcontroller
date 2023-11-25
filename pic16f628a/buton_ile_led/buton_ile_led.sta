@@ -1,0 +1,43 @@
+
+ROM used: 64 (3%)
+          64 (3%) including unused fragments
+
+          0 Average locations per line
+          5 Average locations per statement
+
+RAM used: 7 (3%) at main() level
+          7 (3%) worst case
+
+Stack used: 1 worst case (out of 7 total available)
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+   29    12 100  buton_ile_led.c
+  222     0   0  C:\Program Files\PICC\devices\16F628A.h
+----- -----
+  251    12 Total
+
+Page ROM  %  RAM   Vol Diff  Functions:
+---- --- --- ---   --- ----  ----------
+0     21  33   1             @delay_ms1
+0     39  61   2   292  4.6  main
+
+Program metrics:
+    Functions               1
+    Statements              12
+    Comments                69
+    Volume (V)              294
+    Difficilty (D)          4.5
+    Effort to implement (E) 1312
+    Time to implement (T)   1 minutes
+    Est Delivered Bugs (B)  0
+    Cyclomatic Complexity   2
+    Maintainability (MI)    116
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00003     4  0  
+00004-007FF    60  1984  
+
+
+

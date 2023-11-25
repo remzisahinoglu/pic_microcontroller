@@ -1,0 +1,51 @@
+
+ROM used: 176 (9%)
+          176 (9%) including unused fragments
+
+          1 Average locations per line
+          8 Average locations per statement
+
+RAM used: 17 (8%) at main() level
+          19 (8%) worst case
+
+Stack used: 3 worst case (out of 6 total available)
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+   47    21 100  kesme_RB0.c
+  205     0   0  C:\Program Files\PICC\devices\16F628A.h
+----- -----
+  252    21 Total
+
+Page ROM  %  RAM   Vol Diff  Functions:
+---- --- --- ---   --- ----  ----------
+0     21  12   1             @delay_ms1
+0     18  10   1   129  3.4  RB_isr
+0     86  49   1   292  2.8  MAIN
+
+Program metrics:
+    Functions               2
+    Statements              21
+    Comments                84
+    Volume (V)              504
+    Difficilty (D)          6.2
+    Effort to implement (E) 3126
+    Time to implement (T)   3 minutes
+    Est Delivered Bugs (B)  0
+    Cyclomatic Complexity   1
+    Maintainability (MI)    75
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00003     4  0  
+00004-00032    47  0  
+00033-007FF   125  1872  
+
+
+
+THE FOLLOWING IS TEMPORARY FOR DIAGNOSTIC USE ONLY:
+
+    n1    n2    N1    N2   v(G)
+     0     1     0     0     0    @delay_ms1
+     8    14    17    12     1    RB_isr
+     6    29    30    27     0    MAIN

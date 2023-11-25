@@ -1,0 +1,32 @@
+[PROJECT]
+Target=GLCD02.HEX
+Development_Mode=2
+Processor=0x452F
+ToolSuite=CCS
+
+[Directories]
+Include=
+Library=
+LinkerScript=
+
+[Target Data]
+FileList=GLCD02.C;
+BuildTool=C-COMPILER
+OptionString=+FH
+AdditionalOptionString=
+BuildRequired=1
+
+[GLCD02.C]
+Type=4
+Path=
+FileList=
+BuildTool=
+OptionString=
+AdditionalOptionString=
+
+[mru-list]
+1=F:\Classes\CS910LCD\GLCD\EXAMPL~2\GLCD02.C
+
+[Windows]
+0=0000 F:\Classes\CS910LCD\GLCD\EXAMPL~2\GLCD02.C 0 0 796 451 3 0
+

@@ -1,0 +1,44 @@
+
+ROM used: 110 (5%)
+          110 (5%) including unused fragments
+
+          0 Average locations per line
+          4 Average locations per statement
+
+RAM used: 7 (3%) at main() level
+          8 (4%) worst case
+
+Stack used: 1 worst case (out of 8 total available)
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+   46    27 100  unipolar_step.c
+  222     0   0  C:\Program Files\PICC\devices\16F628A.h
+----- -----
+  268    27 Total
+
+Page ROM  %  RAM   Vol Diff  Functions:
+---- --- --- ---   --- ----  ----------
+0     21  19   1             @delay_ms1
+0     77  70   1   673  6.7  main
+0      8   7   0             @goto10065
+
+Program metrics:
+    Functions               1
+    Statements              27
+    Comments                87
+    Volume (V)              679
+    Difficilty (D)          6.4
+    Effort to implement (E) 4355
+    Time to implement (T)   4 minutes
+    Est Delivered Bugs (B)  0
+    Cyclomatic Complexity   8
+    Maintainability (MI)    129
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00003     4  0  
+00004-007FF   106  1938  
+
+
+

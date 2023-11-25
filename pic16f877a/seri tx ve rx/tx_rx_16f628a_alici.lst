@@ -1,0 +1,173 @@
+CCS PCM C Compiler, Version 4.106, 14749               07-May-11 13:12
+
+               Filename: D:\ram\parellel robot\elektronik\kumandadan xyz kontrol\test\seri tx ve rx\tx_rx_16f628a_alici.lst
+
+               ROM used: 101 words (5%)
+                         Largest free fragment is 1947
+               RAM used: 14 (6%) at main() level
+                         14 (6%) worst case
+               Stack:    1 worst case (0 in main + 1 for interrupts)
+
+*
+0000:  MOVLW  00
+0001:  MOVWF  0A
+0002:  GOTO   041
+0003:  NOP
+0004:  MOVWF  7F
+0005:  SWAPF  03,W
+0006:  CLRF   03
+0007:  MOVWF  21
+0008:  MOVF   7F,W
+0009:  MOVWF  20
+000A:  MOVF   0A,W
+000B:  MOVWF  27
+000C:  CLRF   0A
+000D:  SWAPF  20,F
+000E:  MOVF   04,W
+000F:  MOVWF  22
+0010:  MOVF   77,W
+0011:  MOVWF  23
+0012:  MOVF   78,W
+0013:  MOVWF  24
+0014:  MOVF   79,W
+0015:  MOVWF  25
+0016:  MOVF   7A,W
+0017:  MOVWF  26
+0018:  BCF    03.7
+0019:  BCF    03.5
+001A:  MOVLW  8C
+001B:  MOVWF  04
+001C:  BTFSS  00.5
+001D:  GOTO   020
+001E:  BTFSC  0C.5
+001F:  GOTO   031
+0020:  MOVF   22,W
+0021:  MOVWF  04
+0022:  MOVF   23,W
+0023:  MOVWF  77
+0024:  MOVF   24,W
+0025:  MOVWF  78
+0026:  MOVF   25,W
+0027:  MOVWF  79
+0028:  MOVF   26,W
+0029:  MOVWF  7A
+002A:  MOVF   27,W
+002B:  MOVWF  0A
+002C:  SWAPF  21,W
+002D:  MOVWF  03
+002E:  SWAPF  7F,F
+002F:  SWAPF  7F,W
+0030:  RETFIE
+.................... /////////////////////////////////////////////////////////////////////////////// 
+.................... ////                    rx_tx_kullanýmý.C                                  //// 
+.................... ////                                                                       //// 
+.................... ////  Bu porgram her iki pic den rx ve tx pinlerinin kullanýlmasýyla       //// 
+.................... ////  ilgilidir.                                                           //// 
+.................... ////                                                                       //// 
+....................  
+.................... /////////////////////////////////////////////////////////////////////////////// 
+.................... ////  YAZAN: Remzi ÞAHÝNOÐLU                                               //// 
+.................... ////  TARÝH: 07.05.2011                                                    //// 
+.................... ////                                                                       //// 
+.................... /////////////////////////////////////////////////////////////////////////////// 
+....................  
+.................... #if defined(__PCM__) 
+.................... #include <16F628A.h> 
+.................... //////// Standard Header file for the PIC16F628A device //////////////// 
+.................... #device PIC16F628A 
+.................... #list 
+....................  
+.................... #use delay(clock=4000000) 
+.................... #fuses XT, MCLR, PUT, NOWDT, NOLVP, NOBROWNOUT, NOPROTECT 
+.................... #use rs232 (baud=9600, xmit=PIN_B2, rcv=PIN_B1, parity=N, stop=1) 
+.................... #endif 
+....................  
+.................... //#device PIC16F628A 
+....................  
+.................... char a=0; 
+....................  
+....................  
+.................... #int_rda 
+.................... void serihaberlesme_kesmesi()          // \r=0D ENTER-SATIR BAÞI, \n=0A SATIR ATLA 
+.................... {   
+....................    disable_interrupts(int_rda); 
+0031:  BSF    03.5
+0032:  BCF    0C.5
+....................    output_high(PIN_B4); 
+0033:  BCF    06.4
+0034:  BCF    03.5
+0035:  BSF    06.4
+....................     
+....................    a = getc(); 
+0036:  BTFSS  0C.5
+0037:  GOTO   036
+0038:  MOVF   1A,W
+0039:  MOVWF  28
+....................     
+....................    output_low(PIN_B4); 
+003A:  BSF    03.5
+003B:  BCF    06.4
+003C:  BCF    03.5
+003D:  BCF    06.4
+.................... } 
+....................  
+003E:  BCF    0C.5
+003F:  BCF    0A.3
+0040:  GOTO   020
+.................... void main() 
+.................... { 
+0041:  CLRF   04
+0042:  BCF    03.7
+0043:  MOVLW  1F
+0044:  ANDWF  03,F
+0045:  MOVLW  19
+0046:  BSF    03.5
+0047:  MOVWF  19
+0048:  MOVLW  A6
+0049:  MOVWF  18
+004A:  MOVLW  90
+004B:  BCF    03.5
+004C:  MOVWF  18
+004D:  CLRF   28
+004E:  MOVLW  07
+004F:  MOVWF  1F
+....................  
+....................    setup_timer_1(T1_DISABLED); 
+0050:  CLRF   10
+....................    setup_timer_2(T2_DISABLED,0,1); 
+0051:  MOVLW  00
+0052:  MOVWF  78
+0053:  MOVWF  12
+0054:  MOVLW  00
+0055:  BSF    03.5
+0056:  MOVWF  12
+....................    setup_CCP1(CCP_OFF); 
+0057:  BSF    06.3
+0058:  BCF    03.5
+0059:  CLRF   17
+....................     
+....................  
+....................    
+....................    enable_interrupts(GLOBAL); 
+005A:  MOVLW  C0
+005B:  IORWF  0B,F
+....................     
+....................    while(TRUE) 
+....................    { 
+....................       enable_interrupts(GLOBAL); 
+005C:  MOVLW  C0
+005D:  IORWF  0B,F
+....................        
+....................       output_b(a); 
+005E:  BSF    03.5
+005F:  CLRF   06
+0060:  BCF    03.5
+0061:  MOVF   28,W
+0062:  MOVWF  06
+....................    } 
+0063:  GOTO   05C
+.................... } 
+0064:  SLEEP
+
+Configuration Fuses:
+   Word  1: 3F21   XT NOWDT PUT NOPROTECT NOBROWNOUT MCLR NOLVP NOCPD

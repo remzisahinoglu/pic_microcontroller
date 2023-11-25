@@ -1,0 +1,199 @@
+000     @SCRATCH
+001     @SCRATCH
+001     _RETURN_
+002     @SCRATCH
+003     @SCRATCH
+004     @INTERRUPT_AREA
+005     @INTERRUPT_AREA
+006     @INTERRUPT_AREA
+007     @INTERRUPT_AREA
+008     @INTERRUPT_AREA
+009     @INTERRUPT_AREA
+00A     @INTERRUPT_AREA
+00B     @INTERRUPT_AREA
+00C     @INTERRUPT_AREA
+00D     @INTERRUPT_AREA
+00E     @INTERRUPT_AREA
+00F     @INTERRUPT_AREA
+010     @INTERRUPT_AREA
+011     @INTERRUPT_AREA
+012     @INTERRUPT_AREA
+013     @INTERRUPT_AREA
+014     @INTERRUPT_AREA
+015     @INTERRUPT_AREA
+016     @INTERRUPT_AREA
+017     @INTERRUPT_AREA
+018     @INTERRUPT_AREA
+019     @INTERRUPT_AREA
+01A     lcdline
+01B-01C strtok.save
+01D-020 _Randseed
+021     degisim
+022-025 m
+026-029 @PRINTF_L32D_95FPFPF.P1
+026     lcd_init.i
+026     @PSTRINGC_95.@SCRATCH1
+027     lcd_init.@SCRATCH1
+027     @PSTRINGC_95.@SCRATCH2
+02A     @PRINTF_L32D_95FPFPF.P1
+02B     @PRINTF_L32D_95FPFPF.@SCRATCH1
+02C     @PRINTF_L32D_95FPFPF.@SCRATCH2
+02D     @PRINTF_L32D_95FPFPF.@SCRATCH3
+02E     @PRINTF_L32D_95FPFPF.@SCRATCH4
+02F     @PRINTF_L32D_95FPFPF.@SCRATCH5
+030     @PRINTF_L32D_95FPFPF.@SCRATCH6
+031     @PRINTF_L32D_95FPFPF.@SCRATCH7
+032     @PRINTF_L32D_95FPFPF.@SCRATCH8
+033     lcd_putc.c
+033-036 @FTOSD.P1
+033-036 @DIV3232.P2
+034     @delay_ms1.P1
+034     lcd_gotoxy.x
+035     lcd_gotoxy.y
+036     lcd_gotoxy.address
+037-03A @DIV3232.P1
+037     lcd_send_byte.address
+037     @FTOSD.@SCRATCH1
+038     lcd_send_byte.n
+039     lcd_read_byte.low
+039     lcd_send_byte.@SCRATCH1
+03A     lcd_read_byte.high
+03A     lcd_send_nibble.n
+03B     lcd_read_byte.@SCRATCH1
+03B     @DIV3232.@SCRATCH1
+03C     @DIV3232.@SCRATCH2
+03D     @DIV3232.@SCRATCH3
+03E     @DIV3232.@SCRATCH4
+03F     @DIV3232.@SCRATCH5
+040-053 get_float.s
+054-057 get_float.f
+058-059 get_string.s
+058-059 strtof.s
+05A     get_string.max
+05A-05B strtof.endptr
+05B     get_string.len
+05C-05F strtof.pow10
+05C     get_string.c
+05D     get_string.@SCRATCH1
+05E     get_string.@SCRATCH2
+060-063 strtof.result
+064.0   strtof.skip
+064.1   strtof.sign
+064.2   strtof.point
+065     strtof.c
+066     strtof.ptr
+067-06A @MULFF.P1
+067     strtof.@SCRATCH1
+068     strtof.@SCRATCH2
+069     strtof.@SCRATCH3
+06A     strtof.@SCRATCH4
+06B-06C @ITOF.P1
+06B-06E @DIVFF.P2
+06B-06E @ADDFF.P3
+06B-06E @MULFF.P4
+06F-072 @ADDFF.P1
+06F-072 @DIVFF.P2
+06F     @MULFF.@SCRATCH1
+070     @MULFF.@SCRATCH2
+071     @MULFF.@SCRATCH3
+073     @ADDFF.@SCRATCH1
+073     @DIVFF.@SCRATCH1
+074     @ADDFF.@SCRATCH2
+074     @DIVFF.@SCRATCH2
+075     @ADDFF.@SCRATCH3
+075     @DIVFF.@SCRATCH3
+076     @ADDFF.@SCRATCH4
+076     @DIVFF.@SCRATCH4
+077     @ADDFF.@SCRATCH5
+077     @DIVFF.@SCRATCH5
+078     @ADDFF.@SCRATCH6
+078     @DIVFF.@SCRATCH6
+079     @ADDFF.@SCRATCH7
+07A     @ADDFF.@SCRATCH8
+F81     lcd
+F83     PSP_DATA
+FB4.6   C1OUT
+FB4.7   C2OUT
+FBB     CCP_2
+FBB     CCP_2_LOW
+FBC     CCP_2_HIGH
+FBE     CCP_1
+FBE     CCP_1_LOW
+FBF     CCP_1_HIGH
+FE1-FE2 @READ_PACKED_MEMORY.P1
+FE1-FE2 @WRITE_PACKED_MEMORY.P2
+FE9-FEA @READ_PACKED_MEMORY.P1
+FE9-FEA @WRITE_PACKED_MEMORY.P2
+FE9-FEA @READ_PROGRAM_MEMORY.P3
+FE9-FEA @WRITE_PROGRAM_MEMORY.P4
+FF6-FF8 @WRITE_PROGRAM_MEMORY.P1
+FF6-FF8 @READ_PROGRAM_MEMORY.P2
+
+ROM Allocation:
+08C8  @delay_ms1
+00AE  LCD_INIT_STRING
+0908  lcd_read_byte
+08F0  lcd_send_nibble
+0940  lcd_send_byte
+0976  lcd_init
+09C6  lcd_gotoxy
+09FC  @goto10088
+0A1E  lcd_putc
+00C2  @PUTCHARI_BIU_1
+0134  @MULFF
+0226  @ITOF
+03B8  @ADDFF
+025C  @DIVFF
+0622  strtof
+00CA  get_string
+0856  get_float
+0892  serihaberlesme_kesmesi
+0CD2  MAIN
+08B8  @const396
+0A68  @PSTRINGC_95
+0A8A  @FTOSD
+0ACA  @DIV3232
+0B44  @PRINTF_L32D_95FPFPF
+0CD2  @cinit
+0136  StrtoulGO
+0136  StrtolGO
+
+
+User Memory space: 
+
+User Memory space: 
+
+Project Directory:
+    D:\ram\projeler\parellel robot - lisans bitirme tezi\elektronik\test\pc pic max232 get float\
+
+Project Files:
+    pc_pic_max232_get_float.c
+    C:\Program Files\PICC\devices\18F4620.h
+    C:\Program Files\PICC\drivers\lcd416.c
+    C:\Program Files\PICC\drivers\stdlib.h
+    C:\Program Files\PICC\drivers\stddef.h
+    C:\Program Files\PICC\drivers\string.h
+    C:\Program Files\PICC\drivers\ctype.h
+    C:\Program Files\PICC\drivers\input.c
+
+Units:
+    D:\ram\projeler\parellel robot - lisans bitirme tezi\elektronik\test\pc pic max232 get float\pc_pic_max232_get_float (main)
+
+Compiler Settings:
+    Processor:      PIC18F4620
+    Pointer Size:   16
+    ADC Range:      0-255
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    Errors:      pc_pic_max232_get_float.err
+    Ext Symbols: pc_pic_max232_get_float.esym
+    INHX32:      pc_pic_max232_get_float.hex
+    Symbols:     pc_pic_max232_get_float.sym
+    List:        pc_pic_max232_get_float.lst
+    Debug/COFF:  pc_pic_max232_get_float.cof
+    Project:     pc_pic_max232_get_float.PJT
+    Call Tree:   pc_pic_max232_get_float.tre
+    Statistics:  pc_pic_max232_get_float.sta

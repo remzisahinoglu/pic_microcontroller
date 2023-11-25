@@ -1,0 +1,74 @@
+008     PSP_DATA
+008     lcd
+015     CCP_1_LOW
+015-016 CCP_1
+016     CCP_1_HIGH
+01B     CCP_2_LOW
+01B-01C CCP_2
+01C     CCP_2_HIGH
+021     main.x
+022     main.y
+023     main.z
+024     main.ret_z
+025     lcd_init.i
+025     lcd_getc.x
+025     main.@SCRATCH
+026     lcd_putc.c
+026     lcd_getc.y
+026     lcd_init.@SCRATCH
+027     @delay_ms1.P1
+027     lcd_getc.value
+028     lcd_gotoxy.x
+028     lcd_getc.@SCRATCH
+029     lcd_gotoxy.y
+02A     lcd_gotoxy.address
+02B     lcd_gotoxy.@SCRATCH
+02C     lcd_send_byte.address
+02D     lcd_send_byte.n
+02E     lcd_read_byte.low
+02E     lcd_send_byte.@SCRATCH
+02F     lcd_send_nibble.n
+02F     lcd_read_byte.high
+030     lcd_read_byte.@SCRATCH
+077     @SCRATCH
+078     @SCRATCH
+078     _RETURN_
+079     @SCRATCH
+07A     @SCRATCH
+07B     @SCRATCH
+
+000C  @delay_ms1
+0004  @const46
+002E  lcd_read_byte
+0021  lcd_send_nibble
+004F  lcd_send_byte
+006A  lcd_init
+0096  lcd_gotoxy
+00A8  lcd_putc
+00CD  lcd_getc
+00E1  main
+00E1  @cinit
+
+Project Files:
+    F:\Classes\CS910LCD\LCD\PICC\LcdRd\Lcdrd.c
+    C:\PROGRA~1\PICC\devices\16F877.h
+    F:\Classes\CS910LCD\LCD\PICC\LcdRd\lcd.c
+
+Units:
+    Lcdrd.c (main)
+
+Compiler Settings:
+    Processor:      PIC16F877
+    Pointer Size:   8
+    ADC Range:      0-255
+    Opt Level:      9
+    Short,Int,Long: 1,8,16
+
+Output Files:
+    Errors:      F:\Classes\CS910LCD\LCD\PICC\LcdRd\Lcdrd.err
+    INHX8:       Lcdrd.hex
+    Symbols:     Lcdrd.sym
+    List:        Lcdrd.lst
+    Debug/COFF:  Lcdrd.cof
+    Project:     Lcdrd.PJT
+    Call Tree:   F:\Classes\CS910LCD\LCD\PICC\LcdRd\Lcdrd.tre

@@ -1,0 +1,47 @@
+
+ROM used: 162 (2%)
+          162 (2%) including unused fragments
+
+          0 Average locations per line
+          9 Average locations per statement
+
+RAM used: 15 (4%) at main() level
+          15 (4%) worst case
+
+Stack used: 1 worst case (out of 7 total available)
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+   52    18 100  rs_role_yak_sondur.c
+  285     0   0  ..\..\..\..\..\Program Files\PICC\devices\16F877.h
+----- -----
+  337    18 Total
+
+Page ROM  %  RAM   Vol Diff  Functions:
+---- --- --- ---   --- ----  ----------
+0     28  17   0    92  1.7  serihaberlesme_kesmesi
+0     81  50   0   270  2.3  MAIN
+
+Program metrics:
+    Functions               2
+    Statements              18
+    Comments                78
+    Volume (V)              430
+    Difficilty (D)          4.0
+    Effort to implement (E) 1737
+    Time to implement (T)   2 minutes
+    Est Delivered Bugs (B)  0
+    Cyclomatic Complexity   1
+    Maintainability (MI)    95
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00003     4  0  
+00004-00034    49  0  
+00035-007FF   109  1886  
+00800-00FFF     0  2048  
+01000-017FF     0  2048  
+01800-01FFF     0  2048  
+
+
+

@@ -1,0 +1,621 @@
+///////////////////////////////////////////////////////////////////////////////
+////                    xyz_kontrol_18F4620.C                             ////
+////                                                                       ////
+////  Bu program 3-dof delata robotu, x,y,z eksenleri doðrultusunda        ////
+////  kullanýcý tarafýndan 10 micron ile 10 cm hassasiyetle kumandadan     ////
+////  kontrol edilmesini saðlar.                                           ////
+////                                                                       ////
+////  Sisteme enerji verildiðinde lcd ekranda ilk olarak 3sn boyunca       ////
+////  giriþ ekraný görüntülenir. Ardýndan "Position" ekranýnda robotun     ////
+////  o anki pozisonu görüntülenir. lcd butonuna ardarda basýlarak         ////
+////  "Angle", "Step Count" ve diðer ekranlar görüntülenebilir.            ////
+////                                                                       ////
+////  Robotun ilk kurulumdan sonra kalibrasyonundan ayarý yapýlabilmesi    ////
+////  için "Kalibre" butonu bir kez kontrol edilir. Ardýndan eksen         ////
+////  butonlarý için tarama kýsýr döngüye girer. Bu esnada eksen           ////
+////  butonlarýndan girilen koordinat bilgisinin açý deðerleri robotun     ////
+////  sýfýr posizyonuna göre hesaplanýr. Bu deðerlere göre step motorun    ////
+////  hareketi için adým deðerleri hesaplanýr. Adým deðerleri baz alýnarak ////
+////  üç motorunda ayný zamanda çalýþmaya baþlayýp sonlanmasý için adýmlar ////
+////  arasý zaman deðiþkenleri hesaplanýp motor adým bilgisi ile motor     ////
+////  sürücü microdenetleyicilerine (PIC16F628A, xyz_kontrol_16F628A.C)    ////
+////  gönderilir.                                                          ////
+////                                                                       ////
+////  Motor sürücü microdenetleyicileri tarafýndan alýnan bu deðerler      ////
+////  pozitif ise motoru o deðer kadar ve hesaplanan gecikme süreleri      ////
+////  ile motora hareket verir. Deðer negatif ise ayný þekilde ters        ////  
+////  yönde hereket verir. Eðer kumandadan girilen koordinat bilgisi       ////
+////  robotun çalýþma uzayý dýþýnda ise lcd ekranda hata mesajý görütü-    ////
+////  lenir ve kullanýcýdan çalýþma uzayý içinde bir nokta girilmesi       ////
+////  beklenir.                                                            ////
+////                                                                       ////
+////  Robot geometry:                                                      ////
+////     e = 109.12;     // end effector                                   ////
+////     f = 346.41;     // base                                           ////
+////     re = 323.59;    // rod                                            ////
+////     rf = 133.09;    // arm                                            ////
+////                                                                       ////
+////  Kullanýlan kontrolor 18F46K20 (32Kb, 4MHz), 16F628A(2Kb, 4MHz)       ////
+////  LCD ekran HD44780 tabalý 4x16 HY-1604A06 alphanumeric numeric        ////
+////                                                                       ////
+////  LCD ekran pinleri: PORTB                                             ////
+////     Vss 1: GND                  Data baðlantýlarý                     ////
+////     Vdd 2: +5V                                                        ////
+////     Vee 3: 10k POT                                                    ////
+////     RS  4: RB1                                                        ////
+////     RW  5: RB2                                                        ////
+////     E   6: RB0                                                        ////
+////     D0-D3 7-10: No connection                                         ////
+////     D4 11: RB4                                                        ////
+////     D5 12: RB5                                                        ////
+////     D6 13: RB6                                                        ////
+////     D7 14: RB7                                                        ////
+////                                                                       ////
+////  XYZ eksen butonlarý: PORTD                                           ////
+////     +X: RD0                                                           ////
+////     -X: RD1                                                           ////
+////     +Y: RD2                                                           ////
+////     -Y: RD3                                                           ////
+////     +Z: RD4                                                           ////
+////     -Z: RD5                                                           ////
+////                                                                       ////
+////  Diðer butonlar: PORTD                                                ////
+////     LCD         : RD6                                                 ////
+////     Hassasiyet  : RD7                                                 ////
+////        : RC2                                                          ////
+////        : RC3                                                          ////
+////        : RC4                                                          ////
+////        : RC5                                                          ////
+////                                                                       ////
+///////////////////////////////////////////////////////////////////////////////
+////  YAZAN: Remzi ÞAHÝNOÐLU                                               ////
+////  TARÝH: 05.05.2011                                                    ////
+////                                                                       ////
+///////////////////////////////////////////////////////////////////////////////
+
+//******************** yapýlacak iþlemler
+// motorlar adým iþlemlerini tamamladýktan sonra geri bildirim yapýlmalý
+// tx ucundan pc ye veri gönderilmeli
+// 3 pic için a deðiþkenini eproma yüklenmeli - eproma veri yazma iþlemi 10ms gecikme ile oldugundan devre yapýldýktan sonra denemeli
+
+#if defined(__PCH__)
+#include <18F4620.h>
+#include <MATH.h> 
+#use delay(clock=4000000)
+#fuses XT, NOWDT, NOPROTECT, NOLVP, NOBROWNOUT, NOPUT, NOWRT, NODEBUG, NOCPD
+#use rs232 (baud=9600, xmit=PIN_C6, rcv=PIN_c7, parity=N, stop=1)
+#include <stdlib.h>                    // bu sýralama dogru rs232 den altta olmalý
+#include <input.c>
+#define use_portb_lcd TRUE             // lcd bilgisi için port b’yi kullanýyoruz
+#include <LCD416.c>                    // lcd için gerekecek fonksiyonlarýn bulunduðu dosya lcd416.c
+#endif
+
+//#device PIC18F4620
+
+int degisim=1, degisim_motor=0, lcd_ekran=1, i=1;
+// motor adým ve zaman deðiþkenler
+signed long long mA_step=0, mB_step=0, mC_step=0, mA_step_old=0, mB_step_old=0, mC_step_old=0;
+signed long long ma=0, mb=0, mc=0;
+long long ta=0,tb=0,tc=0;
+// inverse kinematic deðiþkenleri
+float e,f,re,rf,x0,y0,z0,x02,x03,y1,y01,y02,y03,z02,z03,theta1,theta2,theta3,a,b,d,yj,zj;
+float hassasiyet=1,tahvil_orani=0;
+
+//********** write eeprom - float ********************************************//
+void ee_write_float(unsigned int addr , float *floatptr)
+{
+unsigned char edata;
+unsigned char I;
+    for(I=0;I<4;I++){
+      edata = *((unsigned char *)floatptr+I);
+      write_eeprom(addr+I,edata);
+   }
+}
+//********** read eeprom - float *********************************************//
+void ee_read_float(unsigned int addr , float *floatptr)
+{
+unsigned char edata;
+unsigned char I;
+   for(I=0;I<4;I++){
+      edata=read_eeprom(I+addr);   
+        *((unsigned char *)floatptr+I) = edata;
+   }
+}
+//********** çalýþma uzayý dýþýnda bir nokta girildiðinde ********************//
+void no_point()
+{
+   lcd_send_byte(0,0x01);     // lcd ekraný temzile
+   lcd_gotoxy(1,1);
+   printf(lcd_putc, "hata: calisma");
+   lcd_gotoxy(1,2);
+   printf(lcd_putc, "uzayi icinde bir");
+   lcd_gotoxy(1,3);
+   printf(lcd_putc, "nokta giriniz");
+   delay_ms(2000);
+}
+//******* kollarýn açý deðerlerini hesaplama: theta1, theta2, theta3 *********//
+void hesapla_aci()
+{
+   //********** theta 1 ******************************************************//
+   y1 = -0.5 * 0.57735 * f;                  // f/2 * tg 30
+   y01 = y0 -0.5 * 0.57735 * e;              // shift center to edge
+
+   // z = a + b*y
+   a = (x0*x0 + y01*y01 + z0*z0 +rf*rf - re*re - y1*y1)/(2*z0);
+   b = (y1-y01)/z0;
+
+   // discriminant
+   d = -(a+b*y1)*(a+b*y1)+rf*(b*b*rf+rf);
+   if (d > 0)
+   {
+      yj = (y1 - a*b - sqrt(d))/(b*b + 1);  // choosing outer point
+      zj = a + b*yj;
+      theta1 = 180.0*atan(-zj/(y1 - yj))/pi + ((yj>y1)?180.0:0.0);   // yj, y1 den küçükse 180; degilse 0 deðerini çýkarýr
+   }
+   else{no_point();}
+
+   //********** theta 2 ******************************************************//
+   x02 = x0*cos(120*pi/180) + y0*sin(120*pi/180);
+   y02 = y0*cos(120*pi/180) - x0*sin(120*pi/180);
+   z02 = z0;
+
+   //y1 = cos(120)*(-0.5 * 0.57735 * f);
+   y1 = -0.5 * 0.57735 * f;     // f/2 * tg 30
+   y02 = y02 -0.5 * 0.57735 * e;    // shift center to edge
+   
+   // z = a + b*y
+   a = (x02*x02 + y02*y02 + z02*z02 +rf*rf - re*re - y1*y1)/(2*z02);
+   b = (y1-y02)/z02;
+   
+   // discriminant
+   d = -(a+b*y1)*(a+b*y1)+rf*(b*b*rf+rf);
+   if (d > 0)
+   {
+       yj = (y1 - a*b - sqrt(d))/(b*b + 1);  // choosing outer point
+       zj = a + b*yj;
+       theta2 = 180.0*atan(-zj/(y1 - yj))/pi + ((yj>y1)?180.0:0.0);    //yj, y1 den küçükse 180; degilse 0 deðerini çýkarýr
+   }
+   else{no_point();}
+                 
+   //********** theta 3 ******************************************************//
+   
+   x03 = x0*cos(120*pi/180) - y0*sin(120*pi/180);
+   y03 = y0*cos(120*pi/180) + x0*sin(120*pi/180);
+   z03 = z0;
+   
+   y1 = -0.5 * 0.57735 * f;     // f/2 * tg 30
+   y03 = y03 -0.5 * 0.57735 * e;    // shift center to edge
+   
+   // z = a + b*y
+   a = (x03*x03 + y03*y03 + z03*z03 +rf*rf - re*re - y1*y1)/(2*z03);
+   b = (y1-y03)/z03;
+   
+   // discriminant
+   d = -(a+b*y1)*(a+b*y1)+rf*(b*b*rf+rf);
+   if (d > 0)
+   {
+       yj = (y1 - a*b - sqrt(d))/(b*b + 1);  // choosing outer point
+       zj = a + b*yj;
+       theta3 = 180.0*atan(-zj/(y1 - yj))/pi + ((yj>y1)?180.0:0.0);    //yj, y1 den küçükse 180; degilse 0 deðerini çýkarýr
+   }
+   else{no_point();}
+}
+//********** Motor adým ve zaman bilgilerinin hesaplanýp eproma kaydý ********//
+void motor_hareket()
+{
+   mA_step = theta1 / tahvil_orani;         // adým deðerleri tam sayý cýkmýyor.
+   mB_step = theta2 / tahvil_orani;         // cýkmasý için int olarak tanýmlanmasý gerekiyor.
+   mC_step = theta3 / tahvil_orani;         // eðer tanýmlanýrsa 10.85 cýkan adým deðeri 10 olarak alýnýyor
+              
+   //********** motora gönderilecek adým deðerlerinin hesaplanmasý ***********//
+   
+   // motor A
+   if(mA_step >= 0)
+   {
+      if(mA_step > mA_step_old)           // motor ileri
+      {
+         ma = mA_step - mA_step_old;         // ma positive
+         mA_step_old = mA_step;
+      }
+      else                                // motor geri
+      {
+         ma = mA_step - mA_step_old;         // ma negative
+         mA_step_old = mA_step;  
+      }
+   }
+   else  // mA_step < 0
+   {
+      if(mA_step < mA_step_old)           // motor geri
+      {
+         ma = mA_step - mA_step_old;
+         mA_step_old = mA_step;              // ma negative
+      }
+      else                                // motor ileri
+      {
+         ma = mA_step - mA_step_old;         // ma positive
+         mA_step_old = mA_step;
+      }
+   }
+   
+   // motor B
+   if(mB_step >= 0)
+   {
+      if(mB_step > mB_step_old)           // motor ileri
+      {
+         mb = mB_step - mB_step_old;         // mb positive
+         mB_step_old = mB_step;
+      }
+      else                                // motor geri
+      {
+         mb = mB_step - mB_step_old;         // mb negative
+         mB_step_old = mB_step;  
+      }
+   }
+   else  // mB_step < 0
+   {
+      if(mB_step < mB_step_old)           // motor geri
+      {
+         mb = mB_step - mB_step_old;
+         mB_step_old = mB_step;              // mb negative
+      }
+      else                                // motor ileri
+      {
+         mb = mB_step - mB_step_old;         // mb positive
+         mB_step_old = mB_step;
+      }
+   }
+   
+   // motor C
+   if(mC_step >= 0)
+   {
+      if(mC_step > mC_step_old)           // motor ileri
+      {
+         mc = mC_step - mC_step_old;         // mc positive
+         mC_step_old = mC_step;
+      }
+      else                                // motor geri
+      {
+         mc = mC_step - mC_step_old;         // mc negative
+         mC_step_old = mC_step;  
+      }
+   }
+   else  // mC_step < 0
+   {
+      if(mC_step < mC_step_old)           // motor geri
+      {
+         mc = mC_step - mC_step_old;
+         mC_step_old = mC_step;              // mc negative
+      }
+      else                                // motor ileri
+      {
+         mc = mC_step - mC_step_old;         // mc positive
+         mC_step_old = mC_step;
+      }
+   }
+
+   // en büyük adýmý bulma ve ona göre zaman deðiþkenlerini hesaplama//
+   if(labs(mb) > labs(mc))        // labs(): long türünden bir sayýsýnýn mutlak deðerini al
+   {
+      if(labs(mb) > labs(ma))      
+      {
+         // b en büyük
+         tb = 15;                                     // tb = 15ms
+         ta = (labs(mb)/labs(ma))*tb;
+         tc = (labs(mb)/labs(mc))*tb;                                            
+      }
+      else
+      {
+         // a en büyük
+         ta = 15;                                     // ta = 15ms
+         tb = (labs(ma)/labs(mb))*ta;
+         tc = (labs(ma)/labs(mc))*ta;
+      }
+   }
+   else
+   {
+      if(labs(mc) > labs(ma))
+      {
+         // c en büyük
+         tc = 15;                                     // tc = 15ms
+         ta = (labs(mc)/labs(ma))*tc;
+         tb = (labs(mc)/labs(mb))*tc;
+      }
+      else
+      {
+         // a en büyük
+         ta = 15;                                     // ta = 15ms
+         tb = (labs(ma)/labs(mb))*ta;
+         tc = (labs(ma)/labs(mc))*ta;
+      }           
+   }
+   
+   //****** eeroma adým bilgilerini ve açý deðerlerini kaydet *******//
+   
+   ee_write_float(0x00, &x0); delay_ms(10);           // konum degerlerini eproma yaz
+   ee_write_float(0x04, &y0); delay_ms(10);  
+   ee_write_float(0x08, &z0); delay_ms(10);
+   
+   //***** adým bilgileri ve zaman deðiþkenlerini sýrayla gönder ****//
+   
+   // A motoruna gönder
+   output_low(PIN_C0);     // S0=0
+   output_low(PIN_C1);     // S1=0
+   delay_us(100);
+   printf("%ld\r",ma);
+   printf("%ld\r",ta);
+   delay_ms(5);
+   
+   // B motoruna gönder
+   output_low(PIN_C0);     // S0=0
+   output_high(PIN_C1);    // S1=1
+   delay_us(100);
+   printf("%ld\r",mb);
+   printf("%ld\r",tb);
+   delay_ms(5);
+   
+   // C motoruna gönder
+   output_high(PIN_C0);    // S0=1
+   output_low(PIN_C1);     // S1=0
+   delay_us(100);
+   printf("%ld\r",mc);
+   printf("%ld\r",tc);
+   delay_ms(5);
+   
+   
+   // PC ye gönder
+   output_high(PIN_C0);    // S0=1
+   output_high(PIN_C1);    // S1=0
+   delay_us(100);
+   printf("data gonderildi: mA:%ld, ta:%ld, mB:%ld, tb:%ld, mC:%ld, tc:%ld\n\r", ma, ta, mb, tb, mc, tc);
+   delay_ms(5);
+}
+
+
+//************************* ANA PROGRAM **************************************//
+void main()
+{
+   setup_PSP(PSP_DISABLED);
+   setup_spi(SPI_SS_DISABLED);
+   setup_timer_1(T1_DISABLED);
+   setup_timer_2(T2_DISABLED,0,1);
+   setup_adc_ports(NO_ANALOGS);
+   setup_adc(ADC_OFF);
+   setup_CCP1(CCP_OFF);
+   setup_CCP2(CCP_OFF);
+   
+   set_tris_a(0b00001111);       // port a giriþ
+   set_tris_c(0b10000000);       // port c çýkýþ RC7-RX giriþ
+   set_tris_d(0b11111111);       // port d giriþ
+   set_tris_e(0b00001000);       // port d çýkýþ mclr giriþ
+   
+   output_c(0);
+   output_d(0);
+   output_e(0);
+   
+   lcd_init();    // lcdyi hazýrla
+   
+//**************** proje bilgilerini ekranda yazdýr***************************//
+   lcd_gotoxy(1,1);                                      // 1.sutun 1.satýr
+   printf(lcd_putc, "MARMARA UNI");
+   delay_ms(500);
+   lcd_gotoxy(1,2);                                      // 1.sutun 2.satýr
+   printf(lcd_putc, "MAKINE MUH");   
+   delay_ms(500);
+   lcd_gotoxy(1,3);                                      // 1.sutun 3.satýr
+   printf(lcd_putc, "DELTA ROBOT PROJ");
+   delay_ms(500);
+   lcd_gotoxy(1,4);                                      // 1.sutun 4.satýr
+   printf(lcd_putc, "04.05.2011");
+   delay_ms(1500);
+   
+   lcd_send_byte(0,0x01);                                // lcd ekraný temzile
+   
+//************************** robot geometri **********************************//
+   e = 109.12;     // end effector
+   f = 346.41;     // base
+   re = 323.59;    // rod
+   rf = 133.09;    // arm
+   
+   tahvil_orani = 0.008948849;
+
+//***************** robotu kalibre et ****************************************//
+
+   if(input(PIN_A2)==0)                         // kalibre butonu RA2 basýlýmý
+   {
+      theta1=theta2=theta3=0;
+      ma=mb=mc=0;
+      ta=tb=tc=0;
+      x0=0;
+      y0=0;
+      z0=-253.1246;
+      
+      ee_write_float(0x00, &x0); delay_ms(10);           // rototun sýfýr pozisyonunda 
+      ee_write_float(0x04, &y0); delay_ms(10);  
+      ee_write_float(0x08, &z0); delay_ms(10);
+      
+      lcd_gotoxy(1,1);
+      printf(lcd_putc, "Kalibre edildi.");
+      delay_ms(200);
+      lcd_gotoxy(1,2);
+      printf(lcd_putc, "Robot suanda");
+      lcd_gotoxy(1,3);
+      printf(lcd_putc, "sifir pozisyo-");
+      lcd_gotoxy(1,4);
+      printf(lcd_putc, "nunda olmali.");
+      delay_ms(3000);
+      
+      lcd_send_byte(0, 0x01);
+   }
+
+//***************** robotun konumunu eepromdan oku ***************************//
+   
+   ee_read_float(0x00, &x0);
+   delay_ms(5);
+   ee_read_float(0x04, &y0);
+   delay_ms(5);
+   ee_read_float(0x08, &z0);
+   delay_ms(5);
+   
+   hesapla_aci();
+   degisim=1;
+
+//******************************* Ana Döngü **********************************//
+   while(TRUE)
+   {
+   //************************* buton taramasý ********************************//     
+      if(input(PIN_A3)==1)
+      {
+      
+         if(input(PIN_D0)==0)                         // +x doðrultusunda 1mm git
+         {
+            delay_ms(100);         
+            x0+=hassasiyet; 
+            degisim=1;
+            degisim_motor=1;
+            hesapla_aci();
+         }                   
+         if(input(PIN_D1)==0)                         // -x doðrultusunda 1mm git
+         {
+            delay_ms(100);
+            x0-=hassasiyet;
+            degisim=1;
+            degisim_motor=1;
+            hesapla_aci();         
+         }
+         if(input(PIN_D2)==0)                         // +y doðrultusunda 1mm git
+         {
+            delay_ms(100);
+            y0+=hassasiyet;
+            degisim=1;
+            degisim_motor=1;
+            hesapla_aci();
+         }
+         if(input(PIN_D3)==0)                         // -y doðrultusunda 1mm git
+         {
+            delay_ms(100);
+            y0-=hassasiyet;
+            degisim=1;
+            degisim_motor=1;
+            hesapla_aci();    
+         }
+         if(input(PIN_D4)==0)                         // +z doðrultusunda 1mm git
+         {
+            delay_ms(100);
+            z0+=hassasiyet;
+            degisim=1;
+            degisim_motor=1;
+            hesapla_aci();      
+         }
+         if(input(PIN_D5)==0)                         // -z doðrultusunda 1mm git
+         {
+            delay_ms(100);
+            z0-=hassasiyet;
+            degisim=1;
+            degisim_motor=1;
+            hesapla_aci(); 
+         }
+      }
+      
+      if(input(PIN_D6)==0)                         // ekraný deðiþtir
+      {
+         delay_ms(500);                            // butondaki arký söndür
+         lcd_ekran = lcd_ekran + 1;
+         degisim=1;
+         if(lcd_ekran == 5){lcd_ekran=1;}         
+      }
+      
+      if(input(PIN_D7)==0)                         // hassasiyet arttýr butonu
+      {
+         delay_ms(500);                            // butondaki arký söndür aksi halde artýs muazzam boyutta olur
+         i+=1;                                     // 4 kademeli hassasiyet artýmý
+         if(i >= 6){i=1;}                          
+         switch(i)
+         {
+            case 1: hassasiyet = 0.01; break;   // 10 micron
+            case 2: hassasiyet = 0.1;  break;
+            case 3: hassasiyet = 1;    break;
+            case 4: hassasiyet = 10;   break;
+            case 5: hassasiyet = 100;  break;   // 10 cm
+         }
+         degisim=1;
+         lcd_ekran=4;
+      }
+
+      //***** deðiþim oldugunda ekraný yenile ve bilgileri eproma kaydet *****//
+      if(degisim == 1)
+      {
+         degisim = 0;                                         
+         //******** step motor kontrol ***************************************//
+         if(degisim_motor == 1)     // sadece motor verileri deðiþtiginde
+         {
+            degisim_motor = 0;
+            motor_hareket();        // motoru hareket ettir
+         }           
+         //******************** Ekran Görünümü *******************************//         
+         switch(lcd_ekran)                            // istenilen ekranlarý göster 
+         {
+            case 1:  // posiyon bilgilerini göster
+                     degisim = 0;
+                     lcd_send_byte(0,0x01);                    // ekraný temizle
+                     lcd_gotoxy(1,1);                          // SUTUN , SATIR
+                     printf(lcd_putc, "POSITION (mm)");     
+            
+                     lcd_gotoxy(1,2);
+                     printf(lcd_putc, "X: %4.4f", x0);         // %4.4f= float türünden bir sayýyý xxxx.xxxx þeklinde ekrana yansýtýr
+                     
+                     lcd_gotoxy(1,3);
+                     printf(lcd_putc, "Y: %4.4f", y0);
+                     
+                     lcd_gotoxy(1,4);
+                     printf(lcd_putc, "Z: %4.4f", z0);  break;
+                     
+            case 2:  // acý bilgilerini göster
+                     degisim=0;
+                     lcd_send_byte(0,0x01);                    // ekraný temizle
+                     lcd_gotoxy(1,1);                          // SUTUN , SATIR
+                     printf(lcd_putc, "ANGLE (derece)");
+                     
+                     lcd_gotoxy(1,2);
+                     printf(lcd_putc, "A: %4.6f", theta1);        // %f : float türünden
+                     
+                     lcd_gotoxy(1,3);
+                     printf(lcd_putc, "B: %4.6f", theta2);        // %E : virgülden sonra 6 hane ve E00 seklinde gösterimi
+                     
+                     lcd_gotoxy(1,4);
+                     printf(lcd_putc, "B: %4.6f", theta3);  break;
+                     
+            case 3:  // step motor adým bilgilerini göster
+                     degisim=0;
+                     lcd_send_byte(0,0x01);
+                     lcd_gotoxy(1,1);
+                     printf(lcd_putc, "STEP COUNT(step)");
+            
+                     lcd_gotoxy(1,2);
+                     printf(lcd_putc, "MA: %ld", mA_step);      // %ld long ifade decimal türünden
+                     
+                     lcd_gotoxy(1,3);
+                     printf(lcd_putc, "MB: %ld", mB_step);
+                     
+                     lcd_gotoxy(1,4);
+                     printf(lcd_putc, "MC: %ld", mC_step);  break;
+                     
+            case 4:  // hassasiyet bilgisini göster
+                     degisim=0;
+                     lcd_send_byte(0,0x01);
+                     lcd_gotoxy(1,1);
+                     printf(lcd_putc, "HASSASIYET");
+                     
+                     lcd_gotoxy(1,2);
+                     printf(lcd_putc, "0.01 < H < 100");
+                     
+                     lcd_gotoxy(1,3);
+                     printf(lcd_putc, "arasinda olmali");
+                     
+                     lcd_gotoxy(1,4);
+                     printf(lcd_putc, "H: %f mm", hassasiyet); break;
+         
+         }
+      }
+   }
+}
+

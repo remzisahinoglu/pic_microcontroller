@@ -1,0 +1,216 @@
+004-005 @READ_PROGRAM_MEMORY8.P1
+004     @WRITE_PROGRAM_MEMORY8.P2
+006     lcd
+008     PSP_DATA
+015     CCP_1_LOW
+015     CCP_1
+016     CCP_1_HIGH
+01B     CCP_2_LOW
+01B     CCP_2
+01C     CCP_2_HIGH
+020     @INTERRUPT_AREA
+021     @INTERRUPT_AREA
+022     @INTERRUPT_AREA
+023     @INTERRUPT_AREA
+024     @INTERRUPT_AREA
+025     @INTERRUPT_AREA
+026     @INTERRUPT_AREA
+027     @INTERRUPT_AREA
+028     lcdline
+029-02A strtok.save
+02B-02E _Randseed
+02F     degisim
+030-033 m
+034     @TRIS_C
+035     lcd_init.i
+035-038 @PRINTF_L32D_95FPFPF.P1
+035     @PSTRINGC7_95.@SCRATCH1
+036     lcd_init.@SCRATCH1
+036     @PSTRINGC7_95.@SCRATCH2
+037     @PSTRINGC7_95.@SCRATCH3
+039     @PRINTF_L32D_95FPFPF.P1
+03A     @PRINTF_L32D_95FPFPF.@SCRATCH1
+03B     @PRINTF_L32D_95FPFPF.@SCRATCH2
+03C     @PRINTF_L32D_95FPFPF.@SCRATCH3
+03D     @PRINTF_L32D_95FPFPF.@SCRATCH4
+03E     @PRINTF_L32D_95FPFPF.@SCRATCH5
+03F     @PRINTF_L32D_95FPFPF.@SCRATCH6
+040     @PRINTF_L32D_95FPFPF.@SCRATCH7
+041     @PRINTF_L32D_95FPFPF.@SCRATCH8
+042-045 @DIV3232.P1
+042-045 @FTOSD.P2
+042     lcd_putc.c
+043     lcd_gotoxy.x
+043     @delay_ms1.P1
+044     lcd_gotoxy.y
+045     lcd_gotoxy.address
+046     lcd_send_byte.address
+046-049 @DIV3232.P1
+046     @FTOSD.@SCRATCH1
+047     lcd_send_byte.n
+048     lcd_read_byte.low
+048     lcd_send_byte.@SCRATCH1
+049     lcd_send_nibble.n
+049     lcd_read_byte.high
+04A     lcd_read_byte.@SCRATCH1
+04A     @DIV3232.@SCRATCH1
+04B     @DIV3232.@SCRATCH2
+04C     @DIV3232.@SCRATCH3
+04D     @DIV3232.@SCRATCH4
+04E     @DIV3232.@SCRATCH5
+050-063 get_float.s
+064-067 get_float.f
+068-069 strtof.s
+068-069 get_string.s
+06A-06B strtof.endptr
+06A     get_string.max
+06B     get_string.len
+06C-06F strtof.pow10
+06C     get_string.c
+06D     get_string.@SCRATCH1
+06E     get_string.@SCRATCH2
+070-073 strtof.result
+074.0   strtof.skip
+074.1   strtof.sign
+074.2   strtof.point
+075     strtof.c
+076     strtof.ptr
+077     @SCRATCH
+078     @SCRATCH
+078     _RETURN_
+079     @SCRATCH
+07A     @SCRATCH
+07B     strtof.@SCRATCH1
+07C     strtof.@SCRATCH2
+07D     strtof.@SCRATCH3
+07E     strtof.@SCRATCH4
+07F     @INTERRUPT_AREA
+09C.6   C1OUT
+09C.7   C2OUT
+0A0-0A3 @MULFF.P1
+0A0-0A3 @ADDFF.P2
+0A0-0A1 @ITOF.P3
+0A0-0A3 @DIVFF.P4
+0A4-0A7 @MULFF.P1
+0A4-0A7 @ADDFF.P2
+0A4-0A7 @DIVFF.P3
+0A8     @MULFF.@SCRATCH1
+0A8     @ADDFF.@SCRATCH1
+0A8     @DIVFF.@SCRATCH1
+0A9     @MULFF.@SCRATCH2
+0A9     @ADDFF.@SCRATCH2
+0A9     @DIVFF.@SCRATCH2
+0AA     @MULFF.@SCRATCH3
+0AA     @ADDFF.@SCRATCH3
+0AA     @DIVFF.@SCRATCH3
+0AB     @MULFF.@SCRATCH4
+0AB     @ADDFF.@SCRATCH4
+0AB     @DIVFF.@SCRATCH4
+0AC     @MULFF.@SCRATCH5
+0AC     @ADDFF.@SCRATCH5
+0AC     @DIVFF.@SCRATCH5
+0AD     @ADDFF.@SCRATCH6
+0AD     @DIVFF.@SCRATCH6
+0AE     @ADDFF.@SCRATCH7
+0AF     @ADDFF.@SCRATCH8
+0FF     @INTERRUPT_AREA
+10D-10E @READ_PROGRAM_MEMORY8.P1
+10D-10E @WRITE_PROGRAM_MEMORY8.P2
+17F     @INTERRUPT_AREA
+1FF     @INTERRUPT_AREA
+27F     @INTERRUPT_AREA
+2FF     @INTERRUPT_AREA
+37F     @INTERRUPT_AREA
+3FF     @INTERRUPT_AREA
+47F     @INTERRUPT_AREA
+4FF     @INTERRUPT_AREA
+57F     @INTERRUPT_AREA
+5FF     @INTERRUPT_AREA
+67F     @INTERRUPT_AREA
+6FF     @INTERRUPT_AREA
+77F     @INTERRUPT_AREA
+7FF     @INTERRUPT_AREA
+87F     @INTERRUPT_AREA
+8FF     @INTERRUPT_AREA
+97F     @INTERRUPT_AREA
+9FF     @INTERRUPT_AREA
+A7F     @INTERRUPT_AREA
+AFF     @INTERRUPT_AREA
+B7F     @INTERRUPT_AREA
+BFF     @INTERRUPT_AREA
+C7F     @INTERRUPT_AREA
+CFF     @INTERRUPT_AREA
+D7F     @INTERRUPT_AREA
+DFF     @INTERRUPT_AREA
+E7F     @INTERRUPT_AREA
+EFF     @INTERRUPT_AREA
+F7F     @INTERRUPT_AREA
+FFF     @INTERRUPT_AREA
+
+ROM Allocation:
+0498  @delay_ms1
+0031  LCD_INIT_STRING
+04BA  lcd_read_byte
+04AD  lcd_send_nibble
+04B9  lcd_send_byte
+04F3  lcd_init
+051F  lcd_gotoxy
+053A  @goto10095
+0542  lcd_putc
+0039  @MULFF
+00B0  @ITOF
+00CF  @ADDFF
+02FD  @DIVFF
+0269  strtof
+0225  get_string
+0220  get_float
+0215  serihaberlesme_kesmesi
+06EB  MAIN
+0490  @const396
+056A  @PSTRINGC7_95
+0629  @FTOSD
+05B2  @DIV3232
+05F4  @PRINTF_L32D_95FPFPF
+06EB  @cinit
+0136  StrtoulGO
+0136  StrtolGO
+
+
+User Memory space: 
+
+User Memory space: 
+
+Project Directory:
+    D:\ram\projeler\parellel robot - lisans bitirme tezi\elektronik\test\get_float\
+
+Project Files:
+    get_float_16f877a_alici.c
+    C:\Program Files\PICC\devices\16F877A.h
+    C:\Program Files\PICC\drivers\lcd416.c
+    C:\Program Files\PICC\drivers\stdlib.h
+    C:\Program Files\PICC\drivers\stddef.h
+    C:\Program Files\PICC\drivers\string.h
+    C:\Program Files\PICC\drivers\ctype.h
+    C:\Program Files\PICC\drivers\input.c
+
+Units:
+    D:\ram\projeler\parellel robot - lisans bitirme tezi\elektronik\test\get_float\get_float_16f877a_alici (main)
+
+Compiler Settings:
+    Processor:      PIC16F877A
+    Pointer Size:   16
+    ADC Range:      0-255
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    Errors:      get_float_16f877a_alici.err
+    Ext Symbols: get_float_16f877a_alici.esym
+    INHX8:       get_float_16f877a_alici.hex
+    Symbols:     get_float_16f877a_alici.sym
+    List:        get_float_16f877a_alici.lst
+    Debug/COFF:  get_float_16f877a_alici.cof
+    Project:     get_float_16f877a_alici.PJT
+    Call Tree:   get_float_16f877a_alici.tre
+    Statistics:  get_float_16f877a_alici.sta

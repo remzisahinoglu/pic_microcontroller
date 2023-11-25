@@ -1,0 +1,169 @@
+
+	NOLIST
+; PICBASIC PRO(TM) Compiler 2.50b, (c) 1998, 2008 microEngineering Labs, Inc. All Rights Reserved.  
+
+LABEL?L macro Label
+        RST?RP
+    ifdef PM_USED
+        LALL
+Label
+        XALL
+    else
+Label
+    endif
+    endm
+
+ADD?CBW macro Cin, Bin, Wout
+    if ((Cin) == 1)
+	CHK?RP	Bin
+	incf	Bin, W
+    else
+        movlw   low (Cin)
+        CHK?RP  Bin
+        addwf   Bin, W
+    endif
+        MOVE?AW Wout
+    if (((Cin) >> 8) == 0)
+        rlcf    (Wout) + 1, F
+    else
+        movlw   (Cin) >> 8
+        addwfc  (Wout) + 1, F
+    endif
+    endm
+
+SUB?WBW macro Win, Bin, Wout
+    if ((Wout) == (Win))
+        MOVE?BA Bin
+        CHK?RP  Wout
+        subwf   Wout, F
+        btfss   STATUS, C
+        decf    (Wout) + 1, F
+    else
+        MOVE?BA Bin
+        CHK?RP  Win
+        subwf   Win, W
+        MOVE?AB Wout
+        clrf	WREG
+        CHK?RP	Win
+        subwfb	(Win) + 1, W
+        MOVE?AB (Wout) + 1
+    endif
+    endm
+
+CMPGT?BCL macro Bin, Cin, Label
+    if ((Cin) < 0)
+        L?GOTO  Label
+    else
+      if ((Cin) < 0ffh)
+        CLRWDT?
+        MOVE?CA (Cin) + 1
+        CHK?RP  Bin
+        subwf   Bin, W
+        BIT?GOTO 1, STATUS, C, Label
+      endif
+    endif
+    endm
+
+CLEAR? macro
+    local loop
+      ifdef USE_LFSR
+        lfsr    0, RAM_END
+      else
+	MOVE?CW	RAM_END, FSR0L
+      endif
+loop    clrf    POSTDEC0
+        movf    FSR0L, W
+        iorwf   FSR0H, W
+        bnz     loop
+        clrf    INDF0
+    endm
+CLEAR_USED = 1
+
+END? macro
+    local loop
+loop    sleep
+        bra     loop
+    endm
+
+GOTO?L macro Label
+        L?GOTO  Label
+    endm
+
+HIGH?T macro Regin, Bitin
+        MOVE?CT 1, Regin, Bitin
+        MOVE?CT 0, ((Regin) + 12h), Bitin
+    endm
+
+LCDOUT?B macro Bin
+        MOVE?BA Bin
+        L?CALL  LCDOUT
+    endm
+LCDOUT_USED = 1
+
+LCDOUT?C macro Cin
+        movlw   Cin
+        L?CALL  LCDOUT
+    endm
+LCDOUT_USED = 1
+
+LCDOUT?W macro Win
+        MOVE?WA Win
+        L?CALL  LCDOUT
+    endm
+LCDOUT_USED = 1
+
+LOOKUP?BCLB macro Bin, Cin, Label, Bout
+    local valtbl
+	MOVE?BA	Bin
+	movwf	TBLPTRL
+	sublw	(Cin) - 1
+	BIT?GOTO 0, STATUS, C, Label
+	clrf	TBLPTRH
+	clrf	TBLPTRU
+	bcf	STATUS, C
+	rlcf	TBLPTRL, F
+	rlcf	TBLPTRH, F
+	movlw	low (valtbl)
+	addwf	TBLPTRL, F
+	movlw	high (valtbl)
+	addwfc	TBLPTRH, F
+	movlw	upper (valtbl)
+	addwfc	TBLPTRU, F
+        tblrd   *
+        MOVE?BB TABLAT, Bout
+        L?GOTO  Label
+valtbl
+    endm
+
+LURET?C macro Cin
+        retlw   Cin
+    endm
+
+NEXT?BCL macro Bin, Cin, Label
+    if ((Cin) == 1)
+        CHK?RP  Bin
+        incf    Bin, F
+    else
+        movlw	Cin
+        CHK?RP  Bin
+        addwf   Bin, F
+    endif
+    if ((Cin) <= 255)
+        BIT?GOTO 0, STATUS, C, Label
+    endif
+    endm
+
+PAUSE?C macro Cin
+    if (((Cin) >> 8) == 0)
+        MOVE?CA Cin
+        L?CALL  PAUSE
+    else
+        MOVE?CB (Cin) >> 8, R1 + 1
+        MOVE?CA low (Cin)
+        L?CALL  PAUSEL
+    endif
+    endm
+PAUSE_USED = 1
+
+
+	LIST

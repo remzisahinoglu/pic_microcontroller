@@ -1,0 +1,117 @@
+//matlabdan alýnan veriyi 877A kullanarak B portuna aktaran program
+//4 byte veriyi aldýktan sonra hepsini ayrý ayrý b portuna akýtan program
+//25.07.2011
+//yazan = Remzi ÞAHÝNOÐLU
+
+#if defined(__PCM__)
+#include <16F877A.h>
+#device ADC=8    // dahili adc 8 bit olarak ayarlanmýstýr
+#fuses XT, NOWDT, NOPROTECT, NOLVP, NOBROWNOUT, NOPUT, NOWRT, NODEBUG, NOCPD
+#use delay(clock=4000000)
+#use rs232 (baud=9600, xmit=PIN_C6, rcv=PIN_c7, parity=N, stop=1)
+#use fast_io(a)
+#use fast_io(b)
+#use fast_io(c)
+#use fast_io(d)
+#endif
+
+char i=0, degisim=1;
+int servo_1=150, servo_2=150, servo_3=150, servo_4=150;
+
+#int_rda
+void serihaberlesme_kesmesi()                         // kesme geldiðinde buraya dallanýlýr
+{
+   disable_interrupts(int_rda);                       // rs232 kesmesi pasif
+   output_high(PIN_D3);
+
+   i += 1;                                            // sýrasýyla servolar için pwm deðerlerini al
+   if(i==5){i=1;}
+   if(i==1){servo_1 = getc();}  
+   if(i==2){servo_2 = getc();}
+   if(i==3){servo_3 = getc();}
+   if(i==4)
+   {
+      servo_4 = getc();
+      degisim = 1;                                    // rs kesmesi olmasý demek verinin degismesi demek
+   }
+   
+   output_low(PIN_D3);
+   enable_interrupts(int_rda);                        // rs232 kesmesi aktif
+}
+
+void main()
+{
+   setup_psp(PSP_DISABLED);
+   setup_spi(SPI_SS_DISABLED);
+   setup_timer_1(T1_DISABLED);
+   setup_timer_2(T2_DISABLED,0,1);
+   setup_CCP1(CCP_OFF);
+   setup_CCP2(CCP_OFF);
+   
+   enable_interrupts(GLOBAL);                         // tüm kesmeler aktif
+   enable_interrupts(int_rda);                        // rs232 kesmesi pasif
+   disable_interrupts(int_rb);                        // rb0 kesmesi pasif
+   
+   setup_adc_ports(ALL_ANALOG);                       // tüm analog pinleri açýk
+   setup_adc(ADC_CLOCK_DIV_8);                        // analog okuma frekansý fosc/8
+   
+   set_tris_a(0b00001111);                            // ilk 4 bit giriþ diðerleri çýkýþ
+   set_tris_b(0b00000000);                            // b portu çýkýþ
+   set_tris_c(0b10000000);                            // RX giriþ diðerleri çýkýþ
+   set_tris_d(0b11110000);                            // SON 4 bit giriþ diðerleri çýkýþ
+   set_tris_e(0b00000000);                            // e portu çýkýþ
+    
+   output_a(0x00);   
+   output_b(0x00);
+   output_c(0x00);
+   output_d(0x00);
+      
+   output_high(PIN_B1);                               // enerji ledi aktif
+   delay_ms(500);
+   output_low(PIN_B1);
+   delay_ms(500);
+   output_high(PIN_B1);
+   delay_ms(500);
+   output_low(PIN_B1);
+   delay_ms(500);
+   output_high(PIN_B1);
+   
+   while(TRUE)
+   {
+      enable_interrupts(int_rda);
+      
+      if(degisim == 1)                          // deisim oldugunda datalarý gönder
+      {
+         output_high(PIN_B2);                      // busy led aktif
+         degisim = 0;
+         output_low(PIN_C3);                       // Manual ledi pasif
+         
+         output_high(PIN_C4);                      // U1 nolu pice göndermek için demuþu ayarla - 01
+         output_low(PIN_C5);
+         delay_us(100);
+         putc(servo_1);                            // AN5 deb okunan deðeri gönder
+         delay_us(5);
+         
+         output_low(PIN_C4);                       // U2 nolu pice göndermek için demuþu ayarla - 10
+         output_high(PIN_C5);
+         delay_us(100);
+         putc(servo_2);                            // AN5 deb okunan deðeri gönder
+         delay_us(5);
+         
+         output_high(PIN_C4);                      // U3 nolu pice göndermek için demuþu ayarla - 11
+         output_high(PIN_C5);
+         delay_us(100);
+         putc(servo_3);                            // AN5 deb okunan deðeri gönder
+         delay_us(5);
+         
+         if(servo_4 == 150)                        // deðer 0X96 ise 
+         {output_low(PIN_C3);}                     // kýskacý ac         
+         else
+         {output_high(PIN_C3);}                    // kýskacý kapat
+                
+         output_low(PIN_B2);                       // busy led pasif
+      }
+   
+   }
+}
+

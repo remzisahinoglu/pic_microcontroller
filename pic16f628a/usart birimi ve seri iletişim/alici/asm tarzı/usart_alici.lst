@@ -1,0 +1,95 @@
+CCS PCM C Compiler, Version 4.018, 44048               11-Eki-07 12:20
+
+               Filename: F:\ramsi\private\picmicro\PIC C\pic uygulama\pic16f628a\usart birimi ve seri iletiþim\alici\asm tarzý\usart_alici.lst
+
+               ROM used: 39 words (2%)
+                         Largest free fragment is 2009
+               RAM used: 8 (4%) at main() level
+                         8 (4%) worst case
+               Stack:    0 locations
+
+*
+0000:  MOVLW  00
+0001:  MOVWF  0A
+0002:  GOTO   004
+0003:  NOP
+.................... //usart birimi seri iletiþim alýcý uygulamasý 
+.................... //21.02.2007 
+.................... //yazan = Remzi ÞAHÝNOÐLU 
+.................... #if defined (__PCM__) 
+.................... #include <16F628A.h> 
+.................... //////// Standard Header file for the PIC16F628A device //////////////// 
+.................... #device PIC16F628A 
+.................... #list 
+....................  
+.................... #use delay(clock=4000000) 
+.................... #fuses NOWDT,PUT,NOLVP,NOBROWNOUT,MCLR,INTRC_IO,NOPROTECT 
+.................... #endif 
+....................  
+.................... #byte PORTA = 0x05 
+.................... #byte SPRG = 0x99 
+.................... #byte TXSTA = 0x98 
+.................... #byte RCSTA = 0x18 
+.................... #byte TXREG = 0x19 
+.................... #byte RCREG = 0x1A 
+.................... #byte PIR1 = 0x0C 
+....................  
+.................... void main() 
+.................... { 
+0004:  CLRF   04
+0005:  BCF    03.7
+0006:  MOVLW  1F
+0007:  ANDWF  03,F
+0008:  MOVLW  07
+0009:  MOVWF  1F
+....................    char veri=0; 
+000A:  CLRF   21
+....................     
+....................    set_tris_a(0b11110000);           // Porta nýn ilk4 biti ve portb nin son4 biti çýkýþ  
+000B:  MOVLW  F0
+000C:  TRIS   5
+....................    set_tris_b(0b00000010);           // RB1/RX=giriþ, RB2/TX=çýkýþ 
+000D:  MOVLW  02
+000E:  TRIS   6
+....................    SPRG = 25;                        // bound hýzý 9600 olara kayarlandý  
+000F:  MOVLW  19
+0010:  BSF    03.5
+0011:  MOVWF  19
+....................    TXSTA = 0b00000100;               // BRGH=1 (yüksek hýz aktif) 
+0012:  MOVLW  04
+0013:  MOVWF  18
+....................    RCSTA = 0b10010000;               // SPEN=1 (seri port aktif) 
+0014:  MOVLW  90
+0015:  BCF    03.5
+0016:  MOVWF  18
+....................                                      // CREN=1 (sürekli veri alýmý aktif)                                      
+.................... // veri okuma rutinleri 
+.................... tekrar: 
+....................    if (bit_test(PIR1,5)==1)          // RCIF alýcý tampon boþ mu? 
+0017:  BTFSS  0C.5
+0018:  GOTO   025
+....................    {                                 // gelen veri tamponda, veriyi porta ya yaz 
+....................       veri = RCREG;                  // 
+0019:  MOVF   1A,W
+001A:  MOVWF  21
+....................       output_a(veri);                // gelen veriyi portlara yaz 
+001B:  BSF    03.5
+001C:  CLRF   05
+001D:  BCF    03.5
+001E:  MOVF   21,W
+001F:  MOVWF  05
+....................       output_b(veri);                //   
+0020:  BSF    03.5
+0021:  CLRF   06
+0022:  BCF    03.5
+0023:  MOVF   21,W
+0024:  MOVWF  06
+....................    }                                 // gelen veri daha tampona aktarýlmadý, tekrar kontrol et 
+....................    goto tekrar; 
+0025:  GOTO   017
+.................... } 
+....................  
+0026:  SLEEP
+
+Configuration Fuses:
+   Word  1: 3F30   NOWDT PUT NOPROTECT NOBROWNOUT MCLR NOLVP INTRC_IO NOCPD

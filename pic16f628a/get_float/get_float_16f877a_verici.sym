@@ -1,0 +1,102 @@
+004-005 @READ_PROGRAM_MEMORY8.P1
+004     @WRITE_PROGRAM_MEMORY8.P2
+006     lcdlat
+006     lcd
+008     PSP_DATA
+015     CCP_1
+015     CCP_1_LOW
+016     CCP_1_HIGH
+01B     CCP_2_LOW
+01B     CCP_2
+01C     CCP_2_HIGH
+020-021 strtok.save
+022-025 _Randseed
+026-029 m
+02A     @TRIS_C
+02B-02E @PRINTF_L32D_9600_62_63FPFPF.P1
+02B     MAIN.@SCRATCH1
+02C     @delay_ms1.P1
+02F     @PRINTF_L32D_9600_62_63FPFPF.P1
+030     @PRINTF_L32D_9600_62_63FPFPF.@SCRATCH1
+031     @PRINTF_L32D_9600_62_63FPFPF.@SCRATCH2
+032     @PRINTF_L32D_9600_62_63FPFPF.@SCRATCH3
+033     @PRINTF_L32D_9600_62_63FPFPF.@SCRATCH4
+034     @PRINTF_L32D_9600_62_63FPFPF.@SCRATCH5
+035     @PRINTF_L32D_9600_62_63FPFPF.@SCRATCH6
+036     @PRINTF_L32D_9600_62_63FPFPF.@SCRATCH7
+037     @PRINTF_L32D_9600_62_63FPFPF.@SCRATCH8
+038-03B @DIV3232.P1
+038-03B @MULFF.P2
+038-03B @FTOSD.P3
+03C-03F @MULFF.P1
+03C-03F @DIV3232.P2
+03C     @FTOSD.@SCRATCH1
+040     @MULFF.@SCRATCH1
+040     @DIV3232.@SCRATCH1
+041     @MULFF.@SCRATCH2
+041     @DIV3232.@SCRATCH2
+042     @MULFF.@SCRATCH3
+042     @DIV3232.@SCRATCH3
+043     @MULFF.@SCRATCH4
+043     @DIV3232.@SCRATCH4
+044     @MULFF.@SCRATCH5
+044     @DIV3232.@SCRATCH5
+077     @SCRATCH
+078     @SCRATCH
+078     _RETURN_
+079     @SCRATCH
+07A     @SCRATCH
+086     lcdtris
+10D-10E @WRITE_PROGRAM_MEMORY8.P1
+10D-10E @READ_PROGRAM_MEMORY8.P2
+
+ROM Allocation:
+0004  @delay_ms1
+006F  @MULFF
+01B9  MAIN
+00F5  @FTOSD
+0019  @DIV3232
+005B  @PRINTF_L32D_9600_62_63FPFPF
+01B9  @cinit
+0136  StrtoulGO
+0136  StrtolGO
+
+
+User Memory space: 
+
+User Memory space: 
+
+Project Directory:
+    D:\ram\projeler\parellel robot - lisans bitirme tezi\elektronik\test\get_float\
+
+Project Files:
+    get_float_16f877a_verici.c
+    C:\Program Files\PICC\devices\16F877.h
+    C:\Program Files\PICC\drivers\lcd.c
+    C:\Program Files\PICC\drivers\stdlib.h
+    C:\Program Files\PICC\drivers\stddef.h
+    C:\Program Files\PICC\drivers\string.h
+    C:\Program Files\PICC\drivers\ctype.h
+    C:\Program Files\PICC\drivers\input.c
+
+Units:
+    D:\ram\projeler\parellel robot - lisans bitirme tezi\elektronik\test\get_float\get_float_16f877a_verici (main)
+
+Compiler Settings:
+    Processor:      PIC16F877
+    Pointer Size:   16
+    ADC Range:      0-255
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    Errors:      get_float_16f877a_verici.err
+    Ext Symbols: get_float_16f877a_verici.esym
+    INHX8:       get_float_16f877a_verici.hex
+    Symbols:     get_float_16f877a_verici.sym
+    List:        get_float_16f877a_verici.lst
+    Debug/COFF:  get_float_16f877a_verici.cof
+    Project:     get_float_16f877a_verici.PJT
+    Call Tree:   get_float_16f877a_verici.tre
+    Statistics:  get_float_16f877a_verici.sta

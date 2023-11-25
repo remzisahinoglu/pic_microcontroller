@@ -1,0 +1,9 @@
+읕get_long16f877a_verici
+   읕MAIN  0/160  Ram=1
+      쳐??0??
+      쳐@delay_ms1  0/21  Ram=1
+      쳐@PRINTF_LD_9600_62_63  0/118  Ram=9
+      쳐@PRINTF_LD_9600_62_63  0/118  Ram=9
+      쳐@delay_ms1  0/21  Ram=1
+      쳐@PRINTF_LD_9600_62_63  0/118  Ram=9
+      읕@PRINTF_LD_9600_62_63  0/118  Ram=9

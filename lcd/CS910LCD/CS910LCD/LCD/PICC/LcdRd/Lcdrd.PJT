@@ -1,0 +1,32 @@
+[PROJECT]
+Target=Lcdrd.HEX
+Development_Mode=2
+Processor=0x877F
+ToolSuite=CCS
+
+[Directories]
+Include=
+Library=
+LinkerScript=
+
+[Target Data]
+FileList=Lcdrd.c;
+BuildTool=C-COMPILER
+OptionString=+FM
+AdditionalOptionString=
+BuildRequired=1
+
+[Lcdrd.c]
+Type=4
+Path=
+FileList=
+BuildTool=
+OptionString=
+AdditionalOptionString=
+
+[mru-list]
+1=F:\Classes\CS910LCD\LCD\PICC\LcdRd\Lcdrd.c
+
+[Windows]
+0=0000 F:\Classes\CS910LCD\LCD\PICC\LcdRd\Lcdrd.c 0 0 796 451 3 0
+

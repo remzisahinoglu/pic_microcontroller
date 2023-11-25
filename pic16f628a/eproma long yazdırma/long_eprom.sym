@@ -1,0 +1,130 @@
+000     @SCRATCH
+001     @SCRATCH
+001     _RETURN_
+002     @SCRATCH
+003     @SCRATCH
+004-005 strtok.save
+006-009 _Randseed
+00A     lcdline
+00B-00E x
+00F-012 y
+013     ee_write_long.addr
+013     lcd_init.i
+013     ee_read_long.addr
+013-016 @PRINTF_L32D_509.P1
+013     MAIN.@SCRATCH1
+014-015 ee_read_long.longptr
+014-015 ee_write_long.longptr
+014     lcd_init.@SCRATCH1
+016     ee_read_long.edata
+016     ee_write_long.edata
+017     ee_write_long.i
+017     ee_read_long.i
+017     @PRINTF_L32D_509.@SCRATCH1
+018     ee_write_long.@SCRATCH1
+018     ee_read_long.@SCRATCH1
+018     @PRINTF_L32D_509.@SCRATCH2
+019     ee_read_long.@SCRATCH2
+019     @PRINTF_L32D_509.@SCRATCH3
+01A     @PRINTF_L32D_509.@SCRATCH4
+01B     @PRINTF_L32D_509.@SCRATCH5
+01C     @PRINTF_L32D_509.@SCRATCH6
+01D     @PRINTF_L32D_509.@SCRATCH7
+01E     @PRINTF_L32D_509.@SCRATCH8
+01F     lcd_putc.c
+01F-022 @DIV3232.P1
+020     @delay_ms1.P1
+020     lcd_gotoxy.x
+021     lcd_gotoxy.y
+022     lcd_gotoxy.address
+023     lcd_send_byte.address
+023-026 @DIV3232.P1
+024     lcd_send_byte.n
+025     lcd_read_byte.low
+025     lcd_send_byte.@SCRATCH1
+026     lcd_read_byte.high
+026     lcd_send_nibble.n
+027     lcd_read_byte.@SCRATCH1
+027     @DIV3232.@SCRATCH1
+028     @DIV3232.@SCRATCH2
+029     @DIV3232.@SCRATCH3
+02A     @DIV3232.@SCRATCH4
+02B     @DIV3232.@SCRATCH5
+F7A.6   C2OUT
+F7B.6   C1OUT
+F81     lcd
+F83     PSP_DATA
+FBB     CCP_2
+FBB     CCP_2_LOW
+FBC     CCP_2_HIGH
+FBE     CCP_1_LOW
+FBE     CCP_1
+FBF     CCP_1_HIGH
+FE1-FE2 @READ_PACKED_MEMORY.P1
+FE1-FE2 @WRITE_PACKED_MEMORY.P2
+FE9-FEA @READ_PROGRAM_MEMORY.P1
+FE9-FEA @WRITE_PACKED_MEMORY.P2
+FE9-FEA @WRITE_PROGRAM_MEMORY.P3
+FE9-FEA @READ_PACKED_MEMORY.P4
+FF6-FF8 @WRITE_PROGRAM_MEMORY.P1
+FF6-FF8 @READ_PROGRAM_MEMORY.P2
+
+ROM Allocation:
+0018  @delay_ms1
+0004  LCD_INIT_STRING
+0058  lcd_read_byte
+0040  lcd_send_nibble
+0090  lcd_send_byte
+00C6  lcd_init
+016A  lcd_gotoxy
+01A0  @goto11727
+027E  lcd_putc
+0114  ee_write_long
+01C2  ee_read_long
+03C0  MAIN
+0204  @DIV3232
+02C8  @PRINTF_L32D_509
+03C0  @cinit
+0136  StrtoulGO
+0136  StrtolGO
+
+
+User Memory space: 
+
+User Memory space: 
+
+Project Directory:
+    D:\ram\parellel robot\elektronik\kumandadan xyz kontrol\test\eproma long yazdýrma\
+
+Project Files:
+    long_eprom.c
+    C:\Program Files\PICC\devices\18F46K20.h
+    C:\Program Files\PICC\drivers\MATH.h
+    C:\Program Files\PICC\drivers\stdlib.h
+    C:\Program Files\PICC\drivers\stddef.h
+    C:\Program Files\PICC\drivers\string.h
+    C:\Program Files\PICC\drivers\ctype.h
+    C:\Program Files\PICC\drivers\input.c
+    C:\Program Files\PICC\drivers\LCD416.c
+
+Units:
+    D:\ram\parellel robot\elektronik\kumandadan xyz kontrol\test\eproma long yazdýrma\long_eprom (main)
+
+Compiler Settings:
+    Processor:      PIC18F46K20
+    Pointer Size:   16
+    ADC Range:      0-255
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    Errors:      long_eprom.err
+    Ext Symbols: long_eprom.esym
+    INHX32:      long_eprom.hex
+    Symbols:     long_eprom.sym
+    List:        long_eprom.lst
+    Debug/COFF:  long_eprom.cof
+    Project:     long_eprom.PJT
+    Call Tree:   long_eprom.tre
+    Statistics:  long_eprom.sta

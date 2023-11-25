@@ -1,0 +1,65 @@
+//pot ile servo motor kontrol programý 
+//22.06.2011
+//yazan = Remzi ÞAHÝNOÐLU
+
+/*
+periyod 20ms, duty 600us ile 2000us arasýnda deðiþebilir.
+
+duty    konum (derece)
+----    -----
+600us   -90
+1500us  0
+2000us  +90
+*/
+
+#if defined(__PCM__)
+#include <16F628A.h>
+#use delay(clock=20000000)
+#fuses HS, MCLR, PUT, NOWDT, NOLVP, NOBROWNOUT, NOPROTECT
+#use rs232 (baud=19200, xmit=PIN_B2, rcv=PIN_B1, parity=N, stop=1)
+#endif
+
+//#device PIC16F877
+
+long long bilgi=0, eski_bilgi=0;
+long long doluluk, periyod, bosluk;
+
+void main()
+{
+   setup_timer_1(T1_DISABLED);                        // T1 zamanlayýcýný kapat
+   setup_timer_2(T2_DISABLED,0,1);                    // T2 zamanlayýcýný kapat
+   setup_CCP1(CCP_OFF);                               // compare modu devre dýþý
+   
+   set_tris_c(0x80);
+   set_tris_b(0x00);
+      
+   setup_adc_ports(ALL_ANALOG);
+   setup_adc(ADC_CLOCK_DIV_8);
+   set_adc_channel(0);
+   delay_us(30);
+   
+   disable_interrupts(GLOBAL);
+   
+   periyod = 20000;                      // pwm periyodu = 20ms   olarak ayarladýk
+   doluluk = 1500;                       // doluluk oranýný ilk olarak motoru orta konuma getirmek için 1.5ms olarak ayarlandý
+   bosluk = periyod - doluluk;           // boþluðu hesapla ilk enerji verildiðinde sorun çýkmasýn
+   
+   while(TRUE)
+   {
+      bilgi = read_adc();
+      
+      if(bilgi != eski_bilgi)
+      {
+         eski_bilgi = bilgi;
+         // adc bilgisini servo için duty cycle süresini cevir
+         doluluk = (1400*bilgi)/255 + 600;
+         bosluk = periyod - doluluk;
+      }
+      
+      output_high(PIN_B7);                          // PWM çýkýþ PORTB nin 3. bitinden (RB3)
+      delay_us(doluluk);                                           
+      output_low(PIN_B7);
+      delay_us(bosluk);
+   }
+}
+

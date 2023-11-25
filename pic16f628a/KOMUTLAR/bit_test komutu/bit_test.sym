@@ -1,0 +1,42 @@
+004-005 @READ_PROGRAM_MEMORY.P1
+015-016 CCP_1
+015     CCP_1_LOW
+016     CCP_1_HIGH
+01F.6   C1OUT
+01F.7   C2OUT
+021     main.x
+077     @SCRATCH
+078     @SCRATCH
+078     _RETURN_
+079     @SCRATCH
+07A     @SCRATCH
+07B     @SCRATCH
+10D     @READ_PROGRAM_MEMORY.P1
+10F     @READ_PROGRAM_MEMORY.P1
+
+0004  main
+0004  @cinit
+000B  tekrar
+
+Project Files:
+    bit_test.c
+    C:\Program Files\PICC\devices\16F628A.h
+
+Units:
+    D:\pic\KOMUTLAR\bit_test komutu\bit_test.c (main)
+
+Compiler Settings:
+    Processor:      PIC16F628A
+    Pointer Size:   16
+    Opt Level:      0
+    Short,Int,Long: 1,8,16
+
+Output Files:
+    Errors:      D:\pic\KOMUTLAR\bit_test komutu\bit_test.err
+    Ext Symbols: D:\pic\KOMUTLAR\bit_test komutu\bit_test.esym
+    INHX8:       D:\pic\KOMUTLAR\bit_test komutu\bit_test.hex
+    Symbols:     D:\pic\KOMUTLAR\bit_test komutu\bit_test.sym
+    List:        D:\pic\KOMUTLAR\bit_test komutu\bit_test.lst
+    Debug/COFF:  D:\pic\KOMUTLAR\bit_test komutu\bit_test.cof
+    Call Tree:   bit_test.tre
+    Statistics:  bit_test.sta

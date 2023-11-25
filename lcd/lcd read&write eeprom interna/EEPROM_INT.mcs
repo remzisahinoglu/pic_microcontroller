@@ -1,0 +1,27 @@
+[Header]
+MagicCookie={0b13fe8c-dfe0-40eb-8900-6712719559a7}
+Version=1.0
+[File000]
+Location=vs_escribir&leer_eeprom_interna.ERR
+Folder=Intermediary
+[File001]
+Location=C:\3414\Ejemplitos en C para 16F648A\lcd read&write eeprom interna\vs_escribir&leer_eeprom_interna.o
+Folder=Intermediary
+[File002]
+Location=vs_escribir&leer_eeprom_interna.HEX
+Folder=Output
+[File003]
+Location=vs_escribir&leer_eeprom_interna.SYM
+Folder=Output
+[File004]
+Location=vs_escribir&leer_eeprom_interna.LST
+Folder=Output
+[File005]
+Location=vs_escribir&leer_eeprom_interna.PJT
+Folder=Output
+[File006]
+Location=vs_escribir&leer_eeprom_interna.TRE
+Folder=Output
+[File007]
+Location=vs_escribir&leer_eeprom_interna.COF
+Folder=Output

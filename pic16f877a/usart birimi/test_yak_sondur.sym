@@ -1,0 +1,53 @@
+004-005 @READ_PROGRAM_MEMORY8.P1
+004     @WRITE_PROGRAM_MEMORY8.P2
+008     PSP_DATA
+015-016 CCP_1
+015     CCP_1_LOW
+016     CCP_1_HIGH
+01B-01C CCP_2
+01B     CCP_2_LOW
+01C     CCP_2_HIGH
+021     main.@SCRATCH1
+022     @delay_ms1.P1
+077     @SCRATCH
+078     @SCRATCH
+078     _RETURN_
+079     @SCRATCH
+07A     @SCRATCH
+07B     @SCRATCH
+10D-10E @WRITE_PROGRAM_MEMORY8.P1
+10D-10E @READ_PROGRAM_MEMORY8.P2
+
+ROM Allocation:
+0004  @delay_ms1
+0019  main
+0019  @cinit
+
+Project Directory:
+    C:\Documents and Settings\raj x\Desktop\atmproj\pic prog\
+
+Project Files:
+    test_yak_sondur.c
+    ..\..\..\..\..\Program Files\PICC\devices\16F877.h
+
+Units:
+    C:\Documents and Settings\raj x\Desktop\atmproj\pic prog\test_yak_sondur.c (main)
+
+Compiler Settings:
+    Processor:      PIC16F877
+    Pointer Size:   16
+    ADC Range:      0-255
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    Errors:      test_yak_sondur.err
+    Ext Symbols: test_yak_sondur.esym
+    INHX8:       test_yak_sondur.hex
+    Symbols:     test_yak_sondur.sym
+    List:        test_yak_sondur.lst
+    Debug/COFF:  test_yak_sondur.cof
+    Project:     test_yak_sondur.PJT
+    Call Tree:   test_yak_sondur.tre
+    Statistics:  test_yak_sondur.sta

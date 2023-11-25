@@ -1,0 +1,39 @@
+[PROJECT]
+Target=xyz_kontrol_18f4620.HEX
+Development_Mode=2
+Processor=0x4620
+Processor_Text=PIC18F4620
+ToolSuite=CCS
+
+[Directories]
+Include=
+Library=
+LinkerScript=
+
+[Target Data]
+FileList=xyz_kontrol_18f4620.c;
+BuildTool=C-COMPILER
+OptionString=+FH
+AdditionalOptionString=
+BuildRequired=1
+
+[xyz_kontrol_18f4620.c]
+Type=4
+Path=
+FileList=
+BuildTool=
+OptionString=
+AdditionalOptionString=
+
+[mru-list]
+1=XYZ_KO~2.C
+
+[Windows]
+0=0000 XYZ_KO~2.C 0 0 796 451 3 0
+
+[Units]
+Count=1
+1=xyz_kontrol_18f4620 (main)
+[Opened Files]
+1=xyz_kontrol_18f4620.c
+2=

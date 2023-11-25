@@ -1,0 +1,40 @@
+[PROJECT]
+Target=kesme_RB0.HEX
+Development_Mode=2
+Processor=0x628A
+ToolSuite=CCS
+Processor_Text=PIC16F628A
+
+[Directories]
+Include=
+Library=
+LinkerScript=
+
+[Target Data]
+FileList=D:\pic\pic16f628a\interrupt (kesmeler)\RB0 harici kesmesi\kesme_RB0.c
+BuildTool=C-COMPILER
+OptionString=+FM
+AdditionalOptionString=
+BuildRequired=1
+
+[kesme_RB0.c]
+Type=4
+Path=
+FileList=
+BuildTool=
+OptionString=
+AdditionalOptionString=
+
+[mru-list]
+1=KESME_~2.C
+
+[Windows]
+0=0000 KESME_~2.C 0 0 796 451 3 0
+
+[Opened Files]
+1=D:\pic\pic16f628a\interrupt (kesmeler)\RB0 harici kesmesi\kesme_RB0.c
+2=
+[Units]
+Count=1
+1=kesme_RB0.c (main)
+Link=0

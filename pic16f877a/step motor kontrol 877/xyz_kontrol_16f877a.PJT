@@ -1,0 +1,40 @@
+[PROJECT]
+Target=xyz_kontrol_16f877a.HEX
+Development_Mode=2
+Processor=0x877A
+Processor_Text=PIC16F877A
+ToolSuite=CCS
+
+[Directories]
+Include=
+Library=
+LinkerScript=
+
+[Target Data]
+FileList=D:\ram\parellel robot\elektronik\kumandadan xyz kontrol\test\step motor kontrol 877\xyz_kontrol_16f877a.c
+BuildTool=C-COMPILER
+OptionString=+FM
+AdditionalOptionString=
+BuildRequired=1
+
+[xyz_kontrol_16f877a.c]
+Type=4
+Path=
+FileList=
+BuildTool=
+OptionString=
+AdditionalOptionString=
+
+[mru-list]
+1=XYZ_KO~2.C
+
+[Windows]
+0=0000 XYZ_KO~2.C 0 0 796 451 3 0
+
+[Opened Files]
+1=xyz_kontrol_16f877a.c
+2=
+3=
+[Units]
+Count=1
+1=xyz_kontrol_16f877a (main)

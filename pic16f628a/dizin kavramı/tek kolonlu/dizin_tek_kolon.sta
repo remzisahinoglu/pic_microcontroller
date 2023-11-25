@@ -1,0 +1,48 @@
+
+ROM used: 65 (3%)
+          65 (3%) including unused fragments
+
+          0 Average locations per line
+          8 Average locations per statement
+
+RAM used: 12 (5%) at main() level
+          13 (6%) worst case
+
+Stack used: 1 worst case (out of 8 total available)
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+   35     8 100  dizin_tek_kolon.c
+  205     0   0  C:\Program Files\PICC\devices\16F628A.h
+----- -----
+  240     8 Total
+
+Page ROM  %  RAM   Vol Diff  Functions:
+---- --- --- ---   --- ----  ----------
+0     21  32   1             @delay_ms1
+0     40  62   2   249  4.8  main
+
+Program metrics:
+    Functions               1
+    Statements              8
+    Comments                78
+    Volume (V)              251
+    Difficilty (D)          4.6
+    Effort to implement (E) 1156
+    Time to implement (T)   1 minutes
+    Est Delivered Bugs (B)  0
+    Cyclomatic Complexity   1
+    Maintainability (MI)    153
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00003     4  0  
+00004-007FF    61  1983  
+
+
+
+THE FOLLOWING IS TEMPORARY FOR DIAGNOSTIC USE ONLY:
+
+    n1    n2    N1    N2   v(G)
+     0     1     0     0     0    @delay_ms1
+    10    24    26    23     1    main

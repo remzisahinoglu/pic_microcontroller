@@ -1,0 +1,51 @@
+'****************************************************************
+'*  ÝSÝM    : KAYAN_YAZI.BAS                                    *
+'*  YAZAR   : HASAN ÜZÜLMEZ                                     *
+'*  NOT     : 18F4550 ÝLE USB BOOTLOADER KULLANIMI              *                               *
+'*  TARÝH   : 17.07.2010                                        *
+'****************************************************************
+clear
+DEFINE RESET_ORG 1000h        ' Kullanýcý programý için Reset vektörü
+DEFINE OSC 48                 ' Kristal tanýmý
+PORTA=0:PORTB=0:PORTC=0:PORTD=0:PORTE=0
+TRISA=%00111111    'PortA giriþ
+TRISB=%00000000    'PortB tamamen çýkýþ 
+TRISC=%11111000    'PortC tamamne giriþ
+TRISD=%00000000    'PortD tamamen çýkýþ
+TRISE=%00000111    'PortE tamamen çýkýþ
+DEFINE LCD_DREG		PORTB	'LCD data bacaklarý hangi porta baðlý?
+DEFINE LCD_DBIT		0		'LCD data bacaklarý hangi bitten baþlýyor?
+DEFINE LCD_EREG		PORTB	'LCD Enable Bacaðý Hangi Porta baðlý?
+DEFINE LCD_EBIT		4		'LCD Enable Bacaðý Hangi bite baðlý ?
+DEFINE LCD_RSREG	PORTB	'LCD RS Bacaðý Hangi Porta baðlý ?
+DEFINE LCD_RSBIT	5		'LCD RS bacaðý Hangi Bite baðlý  ?
+DEFINE LCD_BITS		4		'LCD 4 bit mi yoksa 8 bit olarak baðlý?
+DEFINE LCD_LINES	2		'LCD Kaç sýra yazabiliyor
+
+SYMBOL  LED_1=PORTC.0
+SYMBOL  LED_2=PORTC.1
+SYMBOL  LED_3=PORTC.2
+SYMBOL  LED_4=PORTD.0
+SYMBOL  LED_5=PORTD.1
+SYMBOL  LED_6=PORTD.2
+SYMBOL  LED_7=PORTD.3
+SYMBOL  LCD_BACKLIGHT=PORTD.7
+
+A var byte   
+C var byte 
+D var byte
+
+BASLA:
+HIGH LCD_BACKLIGHT
+for a=0 to 38 'Karakter sayýsýna onaltý eklenecek (22+16) 
+pause 200 'Yazýnýn kayma hýzý 
+lcdout $fe,1 
+for c=0 to 21 'Kayacak yazýnýn karakter sayýsýnýn bir eksiði (22-1) 
+lookup c, ["18F4550 USB BOOTLOADER"],d 
+lcdout $fe,143+c-a,d 
+next c 
+c=0 
+next a 
+a=0 
+goto BASLA 
+end

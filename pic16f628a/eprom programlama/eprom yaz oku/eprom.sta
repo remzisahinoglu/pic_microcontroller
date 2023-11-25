@@ -1,0 +1,46 @@
+
+ROM used: 89 (4%)
+          89 (4%) including unused fragments
+
+          0 Average locations per line
+          6 Average locations per statement
+
+RAM used: 8 (4%) at main() level
+          8 (4%) worst case
+
+Stack used: 0 worst case (out of 8 total available)
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+   39    16 100  eprom.c
+  205     0   0  C:\Program Files\PICC\devices\16F628A.h
+----- -----
+  244    16 Total
+
+Page ROM  %  RAM   Vol Diff  Functions:
+---- --- --- ---   --- ----  ----------
+0     85  96   2   472  4.3  main
+
+Program metrics:
+    Functions               1
+    Statements              16
+    Comments                81
+    Volume (V)              472
+    Difficilty (D)          4.3
+    Effort to implement (E) 2013
+    Time to implement (T)   2 minutes
+    Est Delivered Bugs (B)  0
+    Cyclomatic Complexity   5
+    Maintainability (MI)    142
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00003     4  0  
+00004-007FF    85  1959  
+
+
+
+THE FOLLOWING IS TEMPORARY FOR DIAGNOSTIC USE ONLY:
+
+    n1    n2    N1    N2   v(G)
+     9    38    49    36     5    main

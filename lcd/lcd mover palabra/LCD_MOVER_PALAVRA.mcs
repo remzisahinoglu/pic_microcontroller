@@ -1,0 +1,27 @@
+[Header]
+MagicCookie={0b13fe8c-dfe0-40eb-8900-6712719559a7}
+Version=1.0
+[File000]
+Location=vs_VsZeNeR_mov_pantalla.ERR
+Folder=Intermediary
+[File001]
+Location=C:\3414\Ejemplitos en C para 16F648A\lcd mover palabra\vs_VsZeNeR_mov_pantalla.o
+Folder=Intermediary
+[File002]
+Location=vs_VsZeNeR_mov_pantalla.HEX
+Folder=Output
+[File003]
+Location=vs_VsZeNeR_mov_pantalla.SYM
+Folder=Output
+[File004]
+Location=vs_VsZeNeR_mov_pantalla.LST
+Folder=Output
+[File005]
+Location=vs_VsZeNeR_mov_pantalla.PJT
+Folder=Output
+[File006]
+Location=vs_VsZeNeR_mov_pantalla.TRE
+Folder=Output
+[File007]
+Location=vs_VsZeNeR_mov_pantalla.COF
+Folder=Output

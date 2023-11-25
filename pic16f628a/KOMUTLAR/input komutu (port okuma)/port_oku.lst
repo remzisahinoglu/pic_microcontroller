@@ -1,0 +1,65 @@
+CCS PCM C Compiler, Version 4.018, 19894               26-Nis-07 19:14
+
+               Filename: C:\pic\pic16f628a\KOMUTLAR\input komutu (port okuma)\port_oku.lst
+
+               ROM used: 24 words (1%)
+                         Largest free fragment is 2024
+               RAM used: 7 (3%) at main() level
+                         7 (3%) worst case
+               Stack:    0 locations
+
+*
+0000:  MOVLW  00
+0001:  MOVWF  0A
+0002:  GOTO   004
+0003:  NOP
+.................... //port a okuma uygulamasý 
+.................... //04.02.2007 
+.................... //yazan = Remzi ÞAHÝNOÐLU 
+.................... #if defined (__PCM__) 
+.................... #include <16F628A.h> 
+.................... //////// Standard Header file for the PIC16F628A device //////////////// 
+.................... #device PIC16F628A 
+.................... #list 
+....................  
+.................... #use delay(clock=4000000) 
+.................... #fuses NOWDT,PUT,NOLVP,NOBROWNOUT,MCLR,INTRC_IO,NOPROTECT 
+.................... #endif 
+....................  
+.................... #byte PORTA = 0x05 
+....................   
+....................  
+.................... void main() 
+.................... { 
+0004:  CLRF   04
+0005:  BCF    03.7
+0006:  MOVLW  1F
+0007:  ANDWF  03,F
+0008:  MOVLW  07
+0009:  MOVWF  1F
+....................    char veri=0;  
+000A:  CLRF   21
+....................     
+....................     
+....................    while(TRUE) 
+....................    { 
+....................       veri = input_a(); 
+000B:  MOVLW  FF
+000C:  BSF    03.5
+000D:  MOVWF  05
+000E:  BCF    03.5
+000F:  MOVF   05,W
+0010:  MOVWF  21
+....................       output_b(veri); 
+0011:  BSF    03.5
+0012:  CLRF   06
+0013:  BCF    03.5
+0014:  MOVF   21,W
+0015:  MOVWF  06
+....................    }      
+0016:  GOTO   00B
+.................... } 
+0017:  SLEEP
+
+Configuration Fuses:
+   Word  1: 3F30   NOWDT PUT NOPROTECT NOBROWNOUT MCLR NOLVP INTRC_IO NOCPD

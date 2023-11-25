@@ -1,0 +1,41 @@
+[PROJECT]
+Target=rs_role_yak_sondur.HEX
+Development_Mode=2
+Processor=0x877F
+Processor_Text=PIC16F877
+ToolSuite=CCS
+
+[Directories]
+Include=
+Library=
+LinkerScript=
+
+[Target Data]
+FileList=C:\Documents and Settings\raj x\Desktop\atmproj\pic prog\rs_role_yak_sondur.c
+BuildTool=C-COMPILER
+OptionString=+FM
+AdditionalOptionString=
+BuildRequired=1
+
+[rs_role_yak_sondur.c]
+Type=4
+Path=
+FileList=
+BuildTool=
+OptionString=
+AdditionalOptionString=
+
+[mru-list]
+1=RS_ROL~1.C
+
+[Windows]
+0=0000 RS_ROL~1.C 0 0 796 451 3 0
+
+[Opened Files]
+1=rs_role_yak_sondur.c
+2=
+3=..\kaynak\pic uygulama\pic16f628a\usart birimi ve seri iletiþim\alici\getc() fonku\getc()_fonk.c
+4=
+[Units]
+Count=1
+1=rs_role_yak_sondur.c (main)

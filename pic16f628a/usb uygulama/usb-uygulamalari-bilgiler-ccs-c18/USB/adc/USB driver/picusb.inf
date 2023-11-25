@@ -1,0 +1,96 @@
+[Version]
+Signature="$WINDOWS NT$"
+Class=%ClassName%
+ClassGuid={4D36E911-E325-11CE-BFC1-08002BE10318}
+Provider=%MFGNAME%
+DriverVer=01/08/2009,1.1.1.1
+CatalogFile=picusb.cat
+
+[DestinationDirs]
+DefaultDestDir = 12
+PicUSB.ClassCopyFiles = 11
+
+;------------------------------------------------------------------------------
+;  Class installation sections
+;------------------------------------------------------------------------------
+
+[ClassInstall32]
+AddReg=PicUSB.ClassReg
+CopyFiles=PicUSB.ClassCopyFiles
+
+[PicUSB.ClassReg]
+HKR,,,0,%ClassName%
+HKR,,Class,,%ClassDesc%
+HKR,,Icon,,11
+HKR,,Installer32,,"picusbci.dll,PicUSBClassInstaller"
+
+
+[PicUSB.ClassCopyFiles]
+picusbci.dll
+
+;------------------------------------------------------------------------------
+;  Device  Install Section
+;------------------------------------------------------------------------------
+
+[Manufacturer]
+%MFGNAME%=Standard
+
+[Standard]
+%DESCRIPTION%=DriverInstall, USB\VID_04D8&PID_0C00
+
+[SourceDisksNames]
+1 = %INSTDISK%,,,""
+
+[SourceDisksFiles]
+mchpusb.sys  = 1,,
+wdmstub.sys  = 1,,
+picusbci.dll = 1,,
+
+;------------------------------------------------------------------------------
+;  Windows 2000/XP Sections
+;------------------------------------------------------------------------------
+
+[DriverInstall.NT]
+CopyFiles=DriverCopyFiles
+
+[DriverCopyFiles]
+mchpusb.sys
+
+[DriverInstall.NT.Services]
+AddService = PicUSB, 2, DriverService
+
+[DriverService]
+DisplayName    = %SVCDESC%
+ServiceType    = 1               ; SERVICE_KERNEL_DRIVER
+StartType      = 3               ; SERVICE_DEMAND_START 
+ErrorControl   = 1               ; SERVICE_ERROR_NORMAL
+ServiceBinary  = %12%\mchpusb.sys
+LoadOrderGroup = Extended Base
+
+;------------------------------------------------------------------------------
+;  Windows 98/Me Sections
+;------------------------------------------------------------------------------
+
+[DriverInstall]
+AddReg=DriverAddReg
+CopyFiles=DriverCopyFiles,StubCopyFiles
+DriverVer=01/08/2009,1.1.1.1
+
+[DriverAddReg]
+HKR,,DevLoader,,*ntkern
+HKR,,NTMPDriver,,"wdmstub.sys,mchpusb.sys"
+
+[StubCopyFiles]
+wdmstub.sys
+
+;------------------------------------------------------------------------------
+;  String Definitions
+;------------------------------------------------------------------------------
+
+[Strings]
+MFGNAME="tmcone (C) 2009."
+INSTDISK="PicUSB Surucu Disc"
+DESCRIPTION="tmcone (C) Usb Uygulamalari" 
+SVCDESC="PicUSB Surucu"
+ClassName="PIC 18F2550 USB "
+ClassDesc="PicUSB Uygulamasi"

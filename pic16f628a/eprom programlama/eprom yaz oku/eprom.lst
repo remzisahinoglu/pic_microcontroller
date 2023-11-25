@@ -1,0 +1,145 @@
+CCS PCM C Compiler, Version 4.018, 44854               06-May-07 19:03
+
+               Filename: D:\pic\pic16f628a\eprom programlama\eprom yaz oku\eprom.lst
+
+               ROM used: 89 words (4%)
+                         Largest free fragment is 1959
+               RAM used: 8 (4%) at main() level
+                         8 (4%) worst case
+               Stack:    0 locations
+
+*
+0000:  MOVLW  00
+0001:  MOVWF  0A
+0002:  GOTO   004
+0003:  NOP
+.................... //eeprom veri yazma ve okuma uygulamsý 
+.................... //22.04.2007 
+.................... //yazan = Remzi ÞAHÝNOÐLU 
+.................... // pic 16f628a' nýn 128byte lýk eeprým veri belleði vardýr 
+.................... #if defined (__PCM__) 
+.................... #include <16F628A.h> 
+.................... //////// Standard Header file for the PIC16F628A device //////////////// 
+.................... #device PIC16F628A 
+.................... #list 
+....................  
+.................... #use delay(clock=4000000) 
+.................... #fuses NOWDT,PUT,NOLVP,NOBROWNOUT,MCLR,INTRC_IO,NOPROTECT 
+.................... #endif 
+....................  
+.................... #byte PORTA = 0x05 
+.................... #byte PORTB = 0x06 
+....................  
+.................... void main() 
+.................... { 
+0004:  CLRF   04
+0005:  BCF    03.7
+0006:  MOVLW  1F
+0007:  ANDWF  03,F
+0008:  MOVLW  07
+0009:  MOVWF  1F
+....................    char veri=0;    
+000A:  CLRF   21
+....................  
+....................    do                                  // // enerjiyi kesseniz dahi bilgi silme komutu gelemdiði taktirde adreste kalacaktýr 
+....................    { 
+....................       if(bit_test(PORTA,0)==0)         // veriyi yaz 
+000B:  BTFSC  05.0
+000C:  GOTO   022
+....................       {write_eeprom(0x00, 0x0F);}      // 0x00 adresine 0x0F bilgisini yaz 
+000D:  BSF    03.5
+000E:  CLRF   1B
+000F:  MOVLW  0F
+0010:  MOVWF  1A
+0011:  BSF    1C.2
+0012:  BCF    03.5
+0013:  MOVF   0B,W
+0014:  MOVWF  77
+0015:  BCF    0B.7
+0016:  BSF    03.5
+0017:  MOVLW  55
+0018:  MOVWF  1D
+0019:  MOVLW  AA
+001A:  MOVWF  1D
+001B:  BSF    1C.1
+001C:  BTFSC  1C.1
+001D:  GOTO   01C
+001E:  BCF    1C.2
+001F:  MOVF   77,W
+0020:  BCF    03.5
+0021:  IORWF  0B,F
+....................                                                        
+....................       if(bit_test(PORTA,1)==0)         // veriyi yaz 
+0022:  BTFSC  05.1
+0023:  GOTO   03A
+....................       {write_eeprom(0x7F, 0x01);}      // 0x7F adresine 0x01 bilgisini yaz 
+0024:  MOVLW  7F
+0025:  BSF    03.5
+0026:  MOVWF  1B
+0027:  MOVLW  01
+0028:  MOVWF  1A
+0029:  BSF    1C.2
+002A:  BCF    03.5
+002B:  MOVF   0B,W
+002C:  MOVWF  77
+002D:  BCF    0B.7
+002E:  BSF    03.5
+002F:  MOVLW  55
+0030:  MOVWF  1D
+0031:  MOVLW  AA
+0032:  MOVWF  1D
+0033:  BSF    1C.1
+0034:  BTFSC  1C.1
+0035:  GOTO   034
+0036:  BCF    1C.2
+0037:  MOVF   77,W
+0038:  BCF    03.5
+0039:  IORWF  0B,F
+....................        
+....................       if(bit_test(PORTA,2)==0)         // veriyi oku 
+003A:  BTFSC  05.2
+003B:  GOTO   048
+....................       { 
+....................          veri = read_eeprom (0x00);    // 0x00 adresini oku      ilk adres 0.byte 
+003C:  BSF    03.5
+003D:  CLRF   1B
+003E:  BCF    1C.7
+003F:  BSF    1C.0
+0040:  MOVF   1A,W
+0041:  BCF    03.5
+0042:  MOVWF  21
+....................          output_b(veri);               // ve portb ye gönder 
+0043:  BSF    03.5
+0044:  CLRF   06
+0045:  BCF    03.5
+0046:  MOVF   21,W
+0047:  MOVWF  06
+....................       } 
+....................       if(bit_test(PORTA,3)==0)         // veriyi oku 
+0048:  BTFSC  05.3
+0049:  GOTO   057
+....................       { 
+....................          veri = read_eeprom (0x7F);    // 0x7F adresini oku      son adres 128.byte 
+004A:  MOVLW  7F
+004B:  BSF    03.5
+004C:  MOVWF  1B
+004D:  BCF    1C.7
+004E:  BSF    1C.0
+004F:  MOVF   1A,W
+0050:  BCF    03.5
+0051:  MOVWF  21
+....................          output_b(veri);               // ve portb ye gönder 
+0052:  BSF    03.5
+0053:  CLRF   06
+0054:  BCF    03.5
+0055:  MOVF   21,W
+0056:  MOVWF  06
+....................       } 
+....................    }while(TRUE);                       // sonsuz dögü 
+.................... } 
+0057:  GOTO   00B
+....................  
+0058:  SLEEP
+
+Configuration Fuses:
+   Word  1: 3F30   NOWDT PUT NOPROTECT NOBROWNOUT MCLR NOLVP INTRC_IO NOCPD

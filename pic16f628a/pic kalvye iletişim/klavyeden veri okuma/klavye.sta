@@ -1,0 +1,50 @@
+
+ROM used: 133 (6%)
+          133 (6%) including unused fragments
+
+          0 Average locations per line
+          2 Average locations per statement
+
+RAM used: 9 (4%) at main() level
+          9 (4%) worst case
+
+Stack used: 1 worst case (out of 8 total available)
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+   67    74 100  klavye.c
+  205     0   0  F:\Program Files\PICC\devices\16F628A.h
+----- -----
+  272    74 Total
+
+Page ROM  %  RAM   Vol Diff  Functions:
+---- --- --- ---   --- ----  ----------
+0     21  16   1             @delay_ms1
+0     96  72   1  2079  7.4  main
+0     12   9   0             @goto10124
+
+Program metrics:
+    Functions               1
+    Statements              74
+    Comments                86
+    Volume (V)              2086
+    Difficilty (D)          7.2
+    Effort to implement (E) 15098
+    Time to implement (T)   14 minutes
+    Est Delivered Bugs (B)  0
+    Cyclomatic Complexity   20
+    Maintainability (MI)    106
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00003     4  0  
+00004-007FF   129  1915  
+
+
+
+THE FOLLOWING IS TEMPORARY FOR DIAGNOSTIC USE ONLY:
+
+    n1    n2    N1    N2   v(G)
+     0     1     0     0     0    @delay_ms1
+    15   113   186   111    20    main
+     0     1     0     0     0    @goto10124

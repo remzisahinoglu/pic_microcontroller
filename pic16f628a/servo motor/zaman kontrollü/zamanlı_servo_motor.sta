@@ -1,0 +1,44 @@
+
+ROM used: 291 (14%)
+          291 (14%) including unused fragments
+
+          1 Average locations per line
+          5 Average locations per statement
+
+RAM used: 7 (3%) at main() level
+          8 (4%) worst case
+
+Stack used: 1 worst case (out of 8 total available)
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+  104    61 100  zamanlý_servo_motor.c
+  222     0   0  C:\Program Files\PICC\devices\16F628A.h
+----- -----
+  326    61 Total
+
+Page ROM  %  RAM   Vol Diff  Functions:
+---- --- --- ---   --- ----  ----------
+0     21   7   1             @delay_ms1
+0     20   7   1             @delay_us1
+0    246  85   1  1490  3.4  main
+
+Program metrics:
+    Functions               1
+    Statements              61
+    Comments                102
+    Volume (V)              1496
+    Difficilty (D)          3.4
+    Effort to implement (E) 5030
+    Time to implement (T)   5 minutes
+    Est Delivered Bugs (B)  0
+    Cyclomatic Complexity   1
+    Maintainability (MI)    69
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00003     4  0  
+00004-007FF   287  1757  
+
+
+

@@ -1,0 +1,45 @@
+[PROJECT]
+Target=rs_pic_to_pc.HEX
+Development_Mode=2
+Processor=0x877F
+Processor_Text=PIC16F877
+ToolSuite=CCS
+
+[Directories]
+Include=
+Library=
+LinkerScript=
+
+[Target Data]
+FileList=C:\Documents and Settings\raj x\Desktop\atmproj\pic prog\rs_pic_to_pc.c
+BuildTool=C-COMPILER
+OptionString=+FM
+AdditionalOptionString=
+BuildRequired=1
+
+[rs_pic_to_pc.c]
+Type=4
+Path=
+FileList=
+BuildTool=
+OptionString=
+AdditionalOptionString=
+
+[mru-list]
+1=RS_PIC~1.C
+
+[Windows]
+0=0000 RS_PIC~1.C 0 0 796 451 3 0
+
+[Opened Files]
+1=rs_pic_to_pc.c
+2=rs_role_yak_sondur.c
+3=pic_pc_pc_pic.c
+4=
+5=rs_pic_to_pc.lst
+6=..\..\PPT-877-Prog\Prog_6_7.lst
+7=..\..\PPT-877-Prog\Prog_6_8_1.lst
+8=
+[Units]
+Count=1
+1=rs_pic_to_pc.c (main)

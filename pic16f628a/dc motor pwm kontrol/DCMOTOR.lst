@@ -1,0 +1,602 @@
+MPASM  5.34                       DCMOTOR.ASM   12-28-2010  18:24:45         PAGE  1
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00001 ;***********MOTOR PWM KONTROL**************************
+                      00002         LIST            P=16F876A
+                      00003         INCLUDE         "P16F876A.INC"
+                      00001         LIST
+                      00002 ; P16F876A.INC  Standard Header File, Version 1.00    Microchip Technology, Inc.
+                      00380         LIST
+2007   3F3A           00004         __CONFIG(_CP_OFF & _PWRTE_OFF & _HS_OSC & _WDT_OFF & _BODEN_OFF & _LVP_OFF)
+                      00005 
+                      00006                 ERRORLEVEL      -302
+                      00007                 ERRORLEVEL      -306
+                      00008 
+                      00009                 CBLOCK  H'20'
+  00000020            00010                 W_SAVE,S_SAVE,P_SAVE
+  00000023            00011                 PWMX1A,PWMX1DEGER,PWMREG,PWMSTATUS
+  00000027            00012                 REG1,REG2,REG1X,REG2X,REG3X,REG4X,POT1,FLAG
+                      00013                 ENDC
+                      00014 
+                      00015 
+                      00016 
+                      00017 
+                      00018 
+                      00019 #DEFINE         INTPERYOD       PORTC,4
+                      00020 #DEFINE         PWMKEY1         PWMREG,0
+                      00021 #DEFINE         PWM1            PWMSTATUS,0
+                      00022 #DEFINE         PWMOUT1         PORTB,7
+                      00023 
+                      00024 #DEFINE         MOTORON         PORTC,5
+                      00025 #DEFINE         MOTORYON        PORTC,6
+                      00026 #DEFINE         YONA            PORTB,5
+                      00027 #DEFINE         YONB            PORTB,6
+                      00028 #DEFINE         YONLEDSAG       PORTB,2
+                      00029 #DEFINE         YONLEDSOL       PORTC,7
+                      00030 
+                      00031 
+  000000A0            00032 TIMERX          EQU             .160
+  0000001E            00033 CUTOFF          EQU             .30
+  00000019            00034 POT_OFFSET      EQU             .25
+  000000FA            00035 SAYIMZAMAN      EQU             .250    
+                      00036 
+                      00037 
+0000                  00038                 ORG             0X000
+0000   2882           00039                 GOTO            SETUP
+0004                  00040                 ORG             0X004
+0004   2806           00041                 GOTO            INTER
+0005   0009           00042                 RETFIE
+                      00043 
+0006                  00044 INTER
+0006   00A0           00045                 MOVWF           W_SAVE  
+0007   0803           00046                 MOVF            STATUS,W
+0008   00A1           00047                 MOVWF           S_SAVE
+0009   080A           00048                 MOVF            PCLATH,W
+000A   00A2           00049                 MOVWF           P_SAVE
+000B   190B           00050                 BTFSC           INTCON,T0IF
+MPASM  5.34                       DCMOTOR.ASM   12-28-2010  18:24:45         PAGE  2
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+000C   2036           00051                 CALL            PWMLOAD
+000D                  00052 INTEROF
+000D   0822           00053                 MOVF            P_SAVE,W
+000E   008A           00054                 MOVWF           PCLATH
+000F   0821           00055                 MOVF            S_SAVE,W
+0010   0083           00056                 MOVWF           STATUS
+0011   0EA0           00057                 SWAPF           W_SAVE,F
+0012   0E20           00058                 SWAPF           W_SAVE,W
+0013   0009           00059                 RETFIE 
+                      00060 
+                      00061 
+0014                  00062 START
+0014   30A0           00063                 MOVLW           B'10100000'
+0015   008B           00064                 MOVWF           INTCON          
+0016   30A0           00065                 MOVLW           TIMERX
+0017   0081           00066                 MOVWF           TMR0
+                      00067 
+                      00068 
+                      00069 
+0018                  00070 MAIN
+0018   1410           00071                 BSF                     T1CON,TMR1ON
+0019   201B           00072                 CALL            YON
+001A   2818           00073                 GOTO            MAIN
+                      00074 
+001B                  00075 YON
+001B   1E87           00076                 BTFSS           MOTORON
+001C   1025           00077                 BCF                     PWMKEY1
+001D   1A87           00078                 BTFSC           MOTORON
+001E   1425           00079                 BSF                     PWMKEY1
+                      00080 
+001F   1C25           00081                 BTFSS           PWMKEY1
+0020   1207           00082                 BCF                     INTPERYOD
+0021   1825           00083                 BTFSC           PWMKEY1
+0022   1607           00084                 BSF                     INTPERYOD
+                      00085 
+0023   1F07           00086                 BTFSS           MOTORYON
+0024   1686           00087                 BSF                     YONA
+0025   1F07           00088                 BTFSS           MOTORYON
+0026   1306           00089                 BCF                     YONB
+0027   1B07           00090                 BTFSC           MOTORYON
+0028   1286           00091                 BCF                     YONA
+0029   1B07           00092                 BTFSC           MOTORYON
+002A   1706           00093                 BSF                     YONB
+                      00094 
+                      00095 
+002B   1F07           00096                 BTFSS           MOTORYON
+002C   1506           00097                 BSF                     YONLEDSAG
+002D   1F07           00098                 BTFSS           MOTORYON
+002E   1387           00099                 BCF                     YONLEDSOL
+002F   1B07           00100                 BTFSC           MOTORYON
+0030   1106           00101                 BCF                     YONLEDSAG
+0031   1B07           00102                 BTFSC           MOTORYON
+0032   1787           00103                 BSF                     YONLEDSOL
+MPASM  5.34                       DCMOTOR.ASM   12-28-2010  18:24:45         PAGE  3
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00104 
+0033   1C25           00105                 BTFSS           PWMKEY1
+0034   2049           00106                 CALL            AC10
+0035   0008           00107                 RETURN
+0036                  00108 PWMLOAD
+0036   2067           00109                 CALL            ANALOG1
+0037   110B           00110                 BCF                     INTCON,T0IF
+0038   30A0           00111                 MOVLW           TIMERX
+0039   0081           00112                 MOVWF           TMR0
+003A   1825           00113                 BTFSC           PWMKEY1
+003B   203D           00114                 CALL            PWMM1
+003C   0008           00115                 RETURN
+003D                  00116 PWMM1
+003D   0BA4           00117                 DECFSZ          PWMX1DEGER,F
+003E   0008           00118                 RETURN
+003F   1C26           00119                 BTFSS           PWM1
+0040   2844           00120                 GOTO            AC11
+0041   1826           00121                 BTFSC           PWM1
+0042   2849           00122                 GOTO            AC10
+0043   0008           00123                 RETURN
+0044                  00124 AC11
+0044   1786           00125                 BSF                     PWMOUT1
+0045   0823           00126                 MOVF            PWMX1A,W
+0046   00A4           00127                 MOVWF           PWMX1DEGER
+0047   1426           00128                 BSF                     PWMSTATUS,0
+0048   0008           00129                 RETURN
+0049                  00130 AC10
+0049   1386           00131                 BCF                     PWMOUT1
+004A   0823           00132                 MOVF            PWMX1A,W
+004B   3CFF           00133                 SUBLW           .255
+004C   00A4           00134                 MOVWF           PWMX1DEGER
+004D   1026           00135                 BCF                     PWMSTATUS,0
+004E   0008           00136                 RETURN  
+004F                  00137 WAIT
+004F   3032           00138                 MOVLW           .50
+0050   00A7           00139                 MOVWF           REG1
+0051   0BA7           00140                 DECFSZ          REG1,F
+0052   2851           00141                 GOTO            $ - 1
+0053   0008           00142                 RETURN
+0054                  00143 BEKLE
+0054   3009           00144                 MOVLW           .9
+0055   00AC           00145                 MOVWF           REG4X
+0056   205A           00146                 CALL            MS_100
+0057   0BAC           00147                 DECFSZ          REG4X,F
+0058   2856           00148                 GOTO            $ - 2
+0059   0008           00149                 RETURN
+005A                  00150 MS_100
+005A   3003           00151                 MOVLW           0X03
+005B   00AB           00152                 MOVWF           REG3X
+005C                  00153 MMS
+005C   30A3           00154                 MOVLW           0XA3
+005D   00A9           00155                 MOVWF           REG1X
+005E   303D           00156 MM              MOVLW           0X3D
+MPASM  5.34                       DCMOTOR.ASM   12-28-2010  18:24:45         PAGE  4
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+005F   00AA           00157                 MOVWF           REG2X
+0060   0BA8           00158                 DECFSZ          REG2,F
+0061   2860           00159                 GOTO            $ - 1
+0062   0BA9           00160                 DECFSZ          REG1X,F         
+0063   285E           00161                 GOTO            MM
+0064   0BAB           00162                 DECFSZ          REG3X,F         
+0065   285C           00163                 GOTO            MMS
+0066   0008           00164                 RETURN
+0067                  00165 ANALOG1
+0067   30C1           00166                 MOVLW           B'11000001'             ;RA0
+0068   009F           00167                 MOVWF           ADCON0
+0069   204F           00168                 CALL            WAIT
+006A   151F           00169                 BSF                     ADCON0,GO 
+006B   130C           00170                 BCF                     PIR1,ADIF 
+006C   1F0C           00171                 BTFSS           PIR1,ADIF 
+006D   286C           00172                 GOTO            $-1 
+006E   3019           00173                 MOVLW           POT_OFFSET
+006F   079E           00174                 ADDWF           ADRESH,F
+0070   081E           00175                 MOVF            ADRESH,W
+                      00176 
+0071   00AD           00177                 MOVWF           POT1
+0072   00A3           00178                 MOVWF           PWMX1A
+                      00179 
+0073   3C1E           00180                 SUBLW           CUTOFF
+0074   1C03           00181                 BTFSS           STATUS,C
+0075   287A           00182                 GOTO            SEC2
+                      00183 
+0076   3001           00184                 MOVLW           .1
+0077   00AD           00185                 MOVWF           POT1
+0078   00A3           00186                 MOVWF           PWMX1A
+0079   0008           00187                 RETURN
+007A                  00188 SEC2
+007A   30FA           00189                 MOVLW           .250
+007B   021E           00190                 SUBWF           ADRESH,W
+007C   1C03           00191                 BTFSS           STATUS,C
+007D   0008           00192                 RETURN
+007E   30FA           00193                 MOVLW           .250
+007F   00AD           00194                 MOVWF           POT1
+0080   00A3           00195                 MOVWF           PWMX1A
+0081   0008           00196                 RETURN
+                      00197 
+                      00198 
+0082                  00199 SETUP
+0082   30FF           00200                 MOVLW           H'FF'
+0083   00A6           00201                 MOVWF           PWMSTATUS
+0084   0185           00202                 CLRF            PORTA
+0085   0186           00203                 CLRF            PORTB
+                      00204 
+0086   1683           00205                 BSF                     STATUS,5
+                      00206 
+0087   301B           00207                 MOVLW           B'00011011'
+0088   0086           00208                 MOVWF           TRISB
+0089   306F           00209                 MOVLW           B'01101111'
+MPASM  5.34                       DCMOTOR.ASM   12-28-2010  18:24:45         PAGE  5
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+008A   0087           00210                 MOVWF           TRISC
+008B   3034           00211                 MOVLW           B'00110100'
+008C   009F           00212                 MOVWF           ADCON1
+008D   3002           00213                 MOVLW           B'00000010'
+008E   0081           00214                 MOVWF           OPTION_REG
+                      00215 
+008F   1283           00216                 BCF                     STATUS,5
+0090   1490           00217                 BSF                     T1CON,TMR1CS
+0091   30FA           00218                 MOVLW           SAYIMZAMAN
+0092   2814           00219                 GOTO            START
+                      00220 
+                      00221                 END
+MPASM  5.34                       DCMOTOR.ASM   12-28-2010  18:24:45         PAGE  6
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+AC10                              00000049
+AC11                              00000044
+ACKDT                             00000005
+ACKEN                             00000004
+ACKSTAT                           00000006
+ADCON0                            0000001F
+ADCON1                            0000009F
+ADCS0                             00000006
+ADCS1                             00000007
+ADDEN                             00000003
+ADFM                              00000007
+ADIE                              00000006
+ADIF                              00000006
+ADON                              00000000
+ADRESH                            0000001E
+ADRESL                            0000009E
+ANALOG1                           00000067
+BCLIE                             00000003
+BCLIF                             00000003
+BEKLE                             00000054
+BF                                00000000
+BRGH                              00000002
+C                                 00000000
+C1INV                             00000004
+C1OUT                             00000006
+C2INV                             00000005
+C2OUT                             00000007
+CCP1CON                           00000017
+CCP1IE                            00000002
+CCP1IF                            00000002
+CCP1M0                            00000000
+CCP1M1                            00000001
+CCP1M2                            00000002
+CCP1M3                            00000003
+CCP1X                             00000005
+CCP1Y                             00000004
+CCP2CON                           0000001D
+CCP2IE                            00000000
+CCP2IF                            00000000
+CCP2M0                            00000000
+CCP2M1                            00000001
+CCP2M2                            00000002
+CCP2M3                            00000003
+CCP2X                             00000005
+CCP2Y                             00000004
+CCPR1H                            00000016
+CCPR1L                            00000015
+CCPR2H                            0000001C
+CCPR2L                            0000001B
+CHS0                              00000003
+CHS1                              00000004
+CHS2                              00000005
+CIS                               00000003
+MPASM  5.34                       DCMOTOR.ASM   12-28-2010  18:24:45         PAGE  7
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+CKE                               00000006
+CKP                               00000004
+CM0                               00000000
+CM1                               00000001
+CM2                               00000002
+CMCON                             0000009C
+CMIE                              00000006
+CMIF                              00000006
+CREN                              00000004
+CSRC                              00000007
+CUTOFF                            0000001E
+CVR0                              00000000
+CVR1                              00000001
+CVR2                              00000002
+CVR3                              00000003
+CVRCON                            0000009D
+CVREN                             00000007
+CVROE                             00000006
+CVRR                              00000005
+D                                 00000005
+DATA_ADDRESS                      00000005
+DC                                00000001
+D_A                               00000005
+EEADR                             0000010D
+EEADRH                            0000010F
+EECON1                            0000018C
+EECON2                            0000018D
+EEDATA                            0000010C
+EEDATH                            0000010E
+EEIE                              00000004
+EEIF                              00000004
+EEPGD                             00000007
+F                                 00000001
+FERR                              00000002
+FLAG                              0000002E
+FSR                               00000004
+GCEN                              00000007
+GIE                               00000007
+GO                                00000002
+GO_DONE                           00000002
+I2C_DATA                          00000005
+I2C_READ                          00000002
+I2C_START                         00000003
+I2C_STOP                          00000004
+INDF                              00000000
+INTCON                            0000000B
+INTE                              00000004
+INTEDG                            00000006
+INTER                             00000006
+INTEROF                           0000000D
+INTF                              00000001
+INTPERYOD                         PORTC,4
+IRP                               00000007
+MPASM  5.34                       DCMOTOR.ASM   12-28-2010  18:24:45         PAGE  8
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+MAIN                              00000018
+MM                                0000005E
+MMS                               0000005C
+MOTORON                           PORTC,5
+MOTORYON                          PORTC,6
+MS_100                            0000005A
+NOT_A                             00000005
+NOT_ADDRESS                       00000005
+NOT_BO                            00000000
+NOT_BOR                           00000000
+NOT_DONE                          00000002
+NOT_PD                            00000003
+NOT_POR                           00000001
+NOT_RBPU                          00000007
+NOT_RC8                           00000006
+NOT_T1SYNC                        00000002
+NOT_TO                            00000004
+NOT_TX8                           00000006
+NOT_W                             00000002
+NOT_WRITE                         00000002
+OERR                              00000001
+OPTION_REG                        00000081
+P                                 00000004
+PCFG0                             00000000
+PCFG1                             00000001
+PCFG2                             00000002
+PCFG3                             00000003
+PCL                               00000002
+PCLATH                            0000000A
+PCON                              0000008E
+PEIE                              00000006
+PEN                               00000002
+PIE1                              0000008C
+PIE2                              0000008D
+PIR1                              0000000C
+PIR2                              0000000D
+PORTA                             00000005
+PORTB                             00000006
+PORTC                             00000007
+POT1                              0000002D
+POT_OFFSET                        00000019
+PR2                               00000092
+PS0                               00000000
+PS1                               00000001
+PS2                               00000002
+PSA                               00000003
+PWM1                              PWMSTATUS,0
+PWMKEY1                           PWMREG,0
+PWMLOAD                           00000036
+PWMM1                             0000003D
+PWMOUT1                           PORTB,7
+PWMREG                            00000025
+PWMSTATUS                         00000026
+MPASM  5.34                       DCMOTOR.ASM   12-28-2010  18:24:45         PAGE  9
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+PWMX1A                            00000023
+PWMX1DEGER                        00000024
+P_SAVE                            00000022
+R                                 00000002
+RBIE                              00000003
+RBIF                              00000000
+RC8_9                             00000006
+RC9                               00000006
+RCD8                              00000000
+RCEN                              00000003
+RCIE                              00000005
+RCIF                              00000005
+RCREG                             0000001A
+RCSTA                             00000018
+RD                                00000000
+READ_WRITE                        00000002
+REG1                              00000027
+REG1X                             00000029
+REG2                              00000028
+REG2X                             0000002A
+REG3X                             0000002B
+REG4X                             0000002C
+RP0                               00000005
+RP1                               00000006
+RSEN                              00000001
+RX9                               00000006
+RX9D                              00000000
+R_W                               00000002
+S                                 00000003
+SAYIMZAMAN                        000000FA
+SEC2                              0000007A
+SEN                               00000000
+SETUP                             00000082
+SMP                               00000007
+SPBRG                             00000099
+SPEN                              00000007
+SREN                              00000005
+SSPADD                            00000093
+SSPBUF                            00000013
+SSPCON                            00000014
+SSPCON2                           00000091
+SSPEN                             00000005
+SSPIE                             00000003
+SSPIF                             00000003
+SSPM0                             00000000
+SSPM1                             00000001
+SSPM2                             00000002
+SSPM3                             00000003
+SSPOV                             00000006
+SSPSTAT                           00000094
+START                             00000014
+STATUS                            00000003
+SYNC                              00000004
+MPASM  5.34                       DCMOTOR.ASM   12-28-2010  18:24:45         PAGE 10
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+S_SAVE                            00000021
+T0CS                              00000005
+T0IE                              00000005
+T0IF                              00000002
+T0SE                              00000004
+T1CKPS0                           00000004
+T1CKPS1                           00000005
+T1CON                             00000010
+T1INSYNC                          00000002
+T1OSCEN                           00000003
+T1SYNC                            00000002
+T2CKPS0                           00000000
+T2CKPS1                           00000001
+T2CON                             00000012
+TIMERX                            000000A0
+TMR0                              00000001
+TMR1CS                            00000001
+TMR1H                             0000000F
+TMR1IE                            00000000
+TMR1IF                            00000000
+TMR1L                             0000000E
+TMR1ON                            00000000
+TMR2                              00000011
+TMR2IE                            00000001
+TMR2IF                            00000001
+TMR2ON                            00000002
+TOUTPS0                           00000003
+TOUTPS1                           00000004
+TOUTPS2                           00000005
+TOUTPS3                           00000006
+TRISA                             00000085
+TRISB                             00000086
+TRISC                             00000087
+TRMT                              00000001
+TX8_9                             00000006
+TX9                               00000006
+TX9D                              00000000
+TXD8                              00000000
+TXEN                              00000005
+TXIE                              00000004
+TXIF                              00000004
+TXREG                             00000019
+TXSTA                             00000098
+UA                                00000001
+W                                 00000000
+WAIT                              0000004F
+WCOL                              00000007
+WR                                00000001
+WREN                              00000002
+WRERR                             00000003
+W_SAVE                            00000020
+YON                               0000001B
+YONA                              PORTB,5
+MPASM  5.34                       DCMOTOR.ASM   12-28-2010  18:24:45         PAGE 11
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+YONB                              PORTB,6
+YONLEDSAG                         PORTB,2
+YONLEDSOL                         PORTC,7
+Z                                 00000002
+_BODEN_OFF                        00003FBF
+_BODEN_ON                         00003FFF
+_CPD_OFF                          00003FFF
+_CPD_ON                           00003EFF
+_CP_ALL                           00001FFF
+_CP_OFF                           00003FFF
+_DEBUG_OFF                        00003FFF
+_DEBUG_ON                         000037FF
+_HS_OSC                           00003FFE
+_LP_OSC                           00003FFC
+_LVP_OFF                          00003F7F
+_LVP_ON                           00003FFF
+_PWRTE_OFF                        00003FFF
+_PWRTE_ON                         00003FF7
+_RC_OSC                           00003FFF
+_WDT_OFF                          00003FFB
+_WDT_ON                           00003FFF
+_WRT_1FOURTH                      00003BFF
+_WRT_256                          00003DFF
+_WRT_HALF                         000039FF
+_WRT_OFF                          00003FFF
+_XT_OSC                           00003FFD
+__16F876A                         00000001
+
+
+MEMORY USAGE MAP ('X' = Used,  '-' = Unused)
+
+0000 : X---XXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX
+0040 : XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX
+0080 : XXXXXXXXXXXXXXXX XXX------------- ---------------- ----------------
+2000 : -------X-------- ---------------- ---------------- ----------------
+
+All other memory blocks unused.
+
+Program Memory Words Used:   144
+Program Memory Words Free:  8048
+
+
+Errors   :     0
+Warnings :     0 reported,     0 suppressed
+Messages :     0 reported,     4 suppressed
+
+

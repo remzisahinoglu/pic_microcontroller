@@ -1,0 +1,4 @@
+>>> Warning 203 "F:\Classes\CS910LCD\LCD\PICC\ExrLcd1\EXRLcd1.c" Line 59(1,1): Condition always TRUE
+>>> Warning 203 "F:\Classes\CS910LCD\LCD\PICC\ExrLcd1\EXRLcd1.c" Line 70(1,1): Condition always TRUE
+      Memory usage:   ROM=16%      RAM=22% - 36%
+      0 Errors,  2 Warnings.

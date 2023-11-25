@@ -1,0 +1,298 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.5.4	//
+!_TAG_REVISION_NAME	MCHPTags	//
+!_TAG_REVISION_VERSION	6.0.1	//
+ADC_CLOCK_DIV_16::0x4040	C:\PROGRA~1\PICC\devices\18F452.h	254;"	d	line:254
+ADC_CLOCK_DIV_2::0x10000	C:\PROGRA~1\PICC\devices\18F452.h	251;"	d	line:251
+ADC_CLOCK_DIV_32::0x0080	C:\PROGRA~1\PICC\devices\18F452.h	255;"	d	line:255
+ADC_CLOCK_DIV_4::0x4000	C:\PROGRA~1\PICC\devices\18F452.h	252;"	d	line:252
+ADC_CLOCK_DIV_64::0x4080	C:\PROGRA~1\PICC\devices\18F452.h	256;"	d	line:256
+ADC_CLOCK_DIV_8::0x0040	C:\PROGRA~1\PICC\devices\18F452.h	253;"	d	line:253
+ADC_CLOCK_INTERNAL::0x00c0	C:\PROGRA~1\PICC\devices\18F452.h	257;"	d	line:257
+ADC_OFF::0	C:\PROGRA~1\PICC\devices\18F452.h	250;"	d	line:250
+ADC_READ_ONLY::6	C:\PROGRA~1\PICC\devices\18F452.h	293;"	d	line:293
+ADC_START_AND_READ::7	C:\PROGRA~1\PICC\devices\18F452.h	291;"	d	line:291
+ADC_START_ONLY::1	C:\PROGRA~1\PICC\devices\18F452.h	292;"	d	line:292
+ALL_ANALOG::0	C:\PROGRA~1\PICC\devices\18F452.h	261;"	d	line:261
+AN0::0x0E	C:\PROGRA~1\PICC\devices\18F452.h	273;"	d	line:273
+AN0_AN1_AN2_AN3_AN4::2	C:\PROGRA~1\PICC\devices\18F452.h	263;"	d	line:263
+AN0_AN1_AN2_AN3_AN4_AN5::0x09	C:\PROGRA~1\PICC\devices\18F452.h	268;"	d	line:268
+AN0_AN1_AN2_AN4_AN5_AN6_AN7_VSS_VREF::1	C:\PROGRA~1\PICC\devices\18F452.h	262;"	d	line:262
+AN0_AN1_AN2_AN4_AN5_VSS_VREF::0x0A	C:\PROGRA~1\PICC\devices\18F452.h	269;"	d	line:269
+AN0_AN1_AN2_AN4_VSS_VREF::3	C:\PROGRA~1\PICC\devices\18F452.h	264;"	d	line:264
+AN0_AN1_AN3::4	C:\PROGRA~1\PICC\devices\18F452.h	265;"	d	line:265
+AN0_AN1_AN4_AN5_AN6_AN7_VREF_VREF::0x08	C:\PROGRA~1\PICC\devices\18F452.h	267;"	d	line:267
+AN0_AN1_AN4_AN5_VREF_VREF::0x0B	C:\PROGRA~1\PICC\devices\18F452.h	270;"	d	line:270
+AN0_AN1_AN4_VREF_VREF::0x0C	C:\PROGRA~1\PICC\devices\18F452.h	271;"	d	line:271
+AN0_AN1_VREF_VREF::0x0D	C:\PROGRA~1\PICC\devices\18F452.h	272;"	d	line:272
+AN0_AN1_VSS_VREF::5	C:\PROGRA~1\PICC\devices\18F452.h	266;"	d	line:266
+AN0_VREF_VREF::0x0F	C:\PROGRA~1\PICC\devices\18F452.h	274;"	d	line:274
+ANALOG_NOT_RE1_RE2::0x9	C:\PROGRA~1\PICC\devices\18F452.h	281;"	d	line:281
+ANALOG_NOT_RE1_RE2_REF_RA3::0xA	C:\PROGRA~1\PICC\devices\18F452.h	282;"	d	line:282
+ANALOG_NOT_RE1_RE2_REF_RA3_RA2::0xB	C:\PROGRA~1\PICC\devices\18F452.h	283;"	d	line:283
+ANALOG_RA3_RA2_REF::0x8	C:\PROGRA~1\PICC\devices\18F452.h	280;"	d	line:280
+ANALOG_RA3_REF::0x1	C:\PROGRA~1\PICC\devices\18F452.h	275;"	d	line:275
+ASIN_COS	C:\PROGRA~1\PICC\drivers\math.h	446;"	f	line:446	signature:(float x, int n)
+A_ANALOG::0x2	C:\PROGRA~1\PICC\devices\18F452.h	276;"	d	line:276
+A_ANALOG_RA3_RA2_REF::0xC	C:\PROGRA~1\PICC\devices\18F452.h	284;"	d	line:284
+A_ANALOG_RA3_REF::0x3	C:\PROGRA~1\PICC\devices\18F452.h	277;"	d	line:277
+BOOLEAN::shortint	C:\PROGRA~1\PICC\devices\18F452.h	66;"	d	line:66
+BROWNOUT_RESTART::14	C:\PROGRA~1\PICC\devices\18F452.h	84;"	d	line:84
+BYTE::int	C:\PROGRA~1\PICC\devices\18F452.h	65;"	d	line:65
+CCP_1	C:\PROGRA~1\PICC\devices\18F452.h	179;"	v	line:179
+CCP_2	C:\PROGRA~1\PICC\devices\18F452.h	183;"	v	line:183
+CCP_CAPTURE_DIV_16::7	C:\PROGRA~1\PICC\devices\18F452.h	168;"	d	line:168
+CCP_CAPTURE_DIV_4::6	C:\PROGRA~1\PICC\devices\18F452.h	167;"	d	line:167
+CCP_CAPTURE_FE::4	C:\PROGRA~1\PICC\devices\18F452.h	165;"	d	line:165
+CCP_CAPTURE_RE::5	C:\PROGRA~1\PICC\devices\18F452.h	166;"	d	line:166
+CCP_COMPARE_CLR_ON_MATCH::9	C:\PROGRA~1\PICC\devices\18F452.h	170;"	d	line:170
+CCP_COMPARE_INT::0xA	C:\PROGRA~1\PICC\devices\18F452.h	171;"	d	line:171
+CCP_COMPARE_INT_AND_TOGGLE::0x2	C:\PROGRA~1\PICC\devices\18F452.h	172;"	d	line:172
+CCP_COMPARE_RESET_TIMER::0xB	C:\PROGRA~1\PICC\devices\18F452.h	173;"	d	line:173
+CCP_COMPARE_SET_ON_MATCH::8	C:\PROGRA~1\PICC\devices\18F452.h	169;"	d	line:169
+CCP_OFF::0	C:\PROGRA~1\PICC\devices\18F452.h	164;"	d	line:164
+CCP_PWM::0xC	C:\PROGRA~1\PICC\devices\18F452.h	174;"	d	line:174
+CCP_PWM_PLUS_1::0x1c	C:\PROGRA~1\PICC\devices\18F452.h	175;"	d	line:175
+CCP_PWM_PLUS_2::0x2c	C:\PROGRA~1\PICC\devices\18F452.h	176;"	d	line:176
+CCP_PWM_PLUS_3::0x3c	C:\PROGRA~1\PICC\devices\18F452.h	177;"	d	line:177
+CCP_USE_TIMER3::0x100	C:\PROGRA~1\PICC\devices\18F452.h	178;"	d	line:178
+CEIL_FLOOR	C:\PROGRA~1\PICC\drivers\math.h	34;"	f	line:34	signature:(float x, int n)
+FALSE::0	C:\PROGRA~1\PICC\devices\18F452.h	62;"	d	line:62
+GLCD_WIDTH::128	F:\Classes\CS910LCD\GLCD\Example01\GLCD01.C	6;"	d	line:6	file:
+GLOBAL::0xF2C0	C:\PROGRA~1\PICC\devices\18F452.h	305;"	d	line:305
+H_TO_L::0	C:\PROGRA~1\PICC\devices\18F452.h	303;"	d	line:303
+INT_AD::0x9D40	C:\PROGRA~1\PICC\devices\18F452.h	316;"	d	line:316
+INT_BUSCOL::0xA008	C:\PROGRA~1\PICC\devices\18F452.h	322;"	d	line:322
+INT_CCP1::0x9D04	C:\PROGRA~1\PICC\devices\18F452.h	320;"	d	line:320
+INT_CCP2::0xA001	C:\PROGRA~1\PICC\devices\18F452.h	321;"	d	line:321
+INT_EEPROM::0xA010	C:\PROGRA~1\PICC\devices\18F452.h	324;"	d	line:324
+INT_EXT1::0xF008	C:\PROGRA~1\PICC\devices\18F452.h	312;"	d	line:312
+INT_EXT2::0xF010	C:\PROGRA~1\PICC\devices\18F452.h	313;"	d	line:313
+INT_EXT::0xF210	C:\PROGRA~1\PICC\devices\18F452.h	311;"	d	line:311
+INT_LOWVOLT::0xA004	C:\PROGRA~1\PICC\devices\18F452.h	323;"	d	line:323
+INT_PSP::0x9D80	C:\PROGRA~1\PICC\devices\18F452.h	315;"	d	line:315
+INT_RB::0xF208	C:\PROGRA~1\PICC\devices\18F452.h	314;"	d	line:314
+INT_RDA::0x9D20	C:\PROGRA~1\PICC\devices\18F452.h	317;"	d	line:317
+INT_RTCC::0xF220	C:\PROGRA~1\PICC\devices\18F452.h	306;"	d	line:306
+INT_SSP::0x9D08	C:\PROGRA~1\PICC\devices\18F452.h	319;"	d	line:319
+INT_TBE::0x9D10	C:\PROGRA~1\PICC\devices\18F452.h	318;"	d	line:318
+INT_TIMER0::0xF220	C:\PROGRA~1\PICC\devices\18F452.h	307;"	d	line:307
+INT_TIMER1::0x9D01	C:\PROGRA~1\PICC\devices\18F452.h	308;"	d	line:308
+INT_TIMER2::0x9D02	C:\PROGRA~1\PICC\devices\18F452.h	309;"	d	line:309
+INT_TIMER3::0xA002	C:\PROGRA~1\PICC\devices\18F452.h	310;"	d	line:310
+LN10::2.30258509	C:\PROGRA~1\PICC\drivers\math.h	257;"	d	line:257
+LN2::0.6931471806	C:\PROGRA~1\PICC\drivers\math.h	143;"	d	line:143
+LOG2::.30102999566398119521	C:\PROGRA~1\PICC\drivers\math.h	704;"	d	line:704
+LVD_21::0x11	C:\PROGRA~1\PICC\devices\18F452.h	236;"	d	line:236
+LVD_23::0x12	C:\PROGRA~1\PICC\devices\18F452.h	235;"	d	line:235
+LVD_25::0x13	C:\PROGRA~1\PICC\devices\18F452.h	234;"	d	line:234
+LVD_26::0x14	C:\PROGRA~1\PICC\devices\18F452.h	233;"	d	line:233
+LVD_28::0x15	C:\PROGRA~1\PICC\devices\18F452.h	232;"	d	line:232
+LVD_29::0x16	C:\PROGRA~1\PICC\devices\18F452.h	231;"	d	line:231
+LVD_31::0x17	C:\PROGRA~1\PICC\devices\18F452.h	230;"	d	line:230
+LVD_34::0x18	C:\PROGRA~1\PICC\devices\18F452.h	229;"	d	line:229
+LVD_36::0x19	C:\PROGRA~1\PICC\devices\18F452.h	228;"	d	line:228
+LVD_37::0x1A	C:\PROGRA~1\PICC\devices\18F452.h	227;"	d	line:227
+LVD_40::0x1B	C:\PROGRA~1\PICC\devices\18F452.h	226;"	d	line:226
+LVD_41::0x1C	C:\PROGRA~1\PICC\devices\18F452.h	225;"	d	line:225
+LVD_43::0x1D	C:\PROGRA~1\PICC\devices\18F452.h	224;"	d	line:224
+LVD_46::0x1E	C:\PROGRA~1\PICC\devices\18F452.h	223;"	d	line:223
+LVD_LVDIN::0x1F	C:\PROGRA~1\PICC\devices\18F452.h	222;"	d	line:222
+L_TO_H::0x40	C:\PROGRA~1\PICC\devices\18F452.h	302;"	d	line:302
+MATH_H	C:\PROGRA~1\PICC\drivers\math.h	19;"	d	line:19
+MCLR_FROM_RUN::15	C:\PROGRA~1\PICC\devices\18F452.h	82;"	d	line:82
+MCLR_FROM_SLEEP::11	C:\PROGRA~1\PICC\devices\18F452.h	81;"	d	line:81
+NORMAL_POWER_UP::12	C:\PROGRA~1\PICC\devices\18F452.h	83;"	d	line:83
+NO_ANALOGS::7	C:\PROGRA~1\PICC\devices\18F452.h	260;"	d	line:260
+OSC_NORMAL::0	C:\PROGRA~1\PICC\devices\18F452.h	243;"	d	line:243
+OSC_TIMER1::1	C:\PROGRA~1\PICC\devices\18F452.h	242;"	d	line:242
+PI	C:\PROGRA~1\PICC\drivers\math.h	22;"	d	line:22
+PI::3.141592654	C:\PROGRA~1\PICC\drivers\math.h	24;"	d	line:24
+PIN_A0::31744	C:\PROGRA~1\PICC\devices\18F452.h	22;"	d	line:22
+PIN_A1::31745	C:\PROGRA~1\PICC\devices\18F452.h	23;"	d	line:23
+PIN_A2::31746	C:\PROGRA~1\PICC\devices\18F452.h	24;"	d	line:24
+PIN_A3::31747	C:\PROGRA~1\PICC\devices\18F452.h	25;"	d	line:25
+PIN_A4::31748	C:\PROGRA~1\PICC\devices\18F452.h	26;"	d	line:26
+PIN_A5::31749	C:\PROGRA~1\PICC\devices\18F452.h	27;"	d	line:27
+PIN_A6::31750	C:\PROGRA~1\PICC\devices\18F452.h	28;"	d	line:28
+PIN_B0::31752	C:\PROGRA~1\PICC\devices\18F452.h	30;"	d	line:30
+PIN_B1::31753	C:\PROGRA~1\PICC\devices\18F452.h	31;"	d	line:31
+PIN_B2::31754	C:\PROGRA~1\PICC\devices\18F452.h	32;"	d	line:32
+PIN_B3::31755	C:\PROGRA~1\PICC\devices\18F452.h	33;"	d	line:33
+PIN_B4::31756	C:\PROGRA~1\PICC\devices\18F452.h	34;"	d	line:34
+PIN_B5::31757	C:\PROGRA~1\PICC\devices\18F452.h	35;"	d	line:35
+PIN_B6::31758	C:\PROGRA~1\PICC\devices\18F452.h	36;"	d	line:36
+PIN_B7::31759	C:\PROGRA~1\PICC\devices\18F452.h	37;"	d	line:37
+PIN_C0::31760	C:\PROGRA~1\PICC\devices\18F452.h	39;"	d	line:39
+PIN_C1::31761	C:\PROGRA~1\PICC\devices\18F452.h	40;"	d	line:40
+PIN_C2::31762	C:\PROGRA~1\PICC\devices\18F452.h	41;"	d	line:41
+PIN_C3::31763	C:\PROGRA~1\PICC\devices\18F452.h	42;"	d	line:42
+PIN_C4::31764	C:\PROGRA~1\PICC\devices\18F452.h	43;"	d	line:43
+PIN_C5::31765	C:\PROGRA~1\PICC\devices\18F452.h	44;"	d	line:44
+PIN_C6::31766	C:\PROGRA~1\PICC\devices\18F452.h	45;"	d	line:45
+PIN_C7::31767	C:\PROGRA~1\PICC\devices\18F452.h	46;"	d	line:46
+PIN_D0::31768	C:\PROGRA~1\PICC\devices\18F452.h	48;"	d	line:48
+PIN_D1::31769	C:\PROGRA~1\PICC\devices\18F452.h	49;"	d	line:49
+PIN_D2::31770	C:\PROGRA~1\PICC\devices\18F452.h	50;"	d	line:50
+PIN_D3::31771	C:\PROGRA~1\PICC\devices\18F452.h	51;"	d	line:51
+PIN_D4::31772	C:\PROGRA~1\PICC\devices\18F452.h	52;"	d	line:52
+PIN_D5::31773	C:\PROGRA~1\PICC\devices\18F452.h	53;"	d	line:53
+PIN_D6::31774	C:\PROGRA~1\PICC\devices\18F452.h	54;"	d	line:54
+PIN_D7::31775	C:\PROGRA~1\PICC\devices\18F452.h	55;"	d	line:55
+PIN_E0::31776	C:\PROGRA~1\PICC\devices\18F452.h	57;"	d	line:57
+PIN_E1::31777	C:\PROGRA~1\PICC\devices\18F452.h	58;"	d	line:58
+PIN_E2::31778	C:\PROGRA~1\PICC\devices\18F452.h	59;"	d	line:59
+PI_DIV_BY_TWO	C:\PROGRA~1\PICC\drivers\math.h	360;"	d	line:360
+PI_DIV_BY_TWO::1.570796326794896	C:\PROGRA~1\PICC\drivers\math.h	362;"	d	line:362
+PSP_DISABLED::0	C:\PROGRA~1\PICC\devices\18F452.h	193;"	d	line:193
+PSP_ENABLED::0x10	C:\PROGRA~1\PICC\devices\18F452.h	192;"	d	line:192
+RA0_ANALOG::0xE	C:\PROGRA~1\PICC\devices\18F452.h	286;"	d	line:286
+RA0_ANALOG_RA3_RA2_REF::0xF	C:\PROGRA~1\PICC\devices\18F452.h	287;"	d	line:287
+RA0_RA1_ANALOG_RA3_RA2_REF::0xD	C:\PROGRA~1\PICC\devices\18F452.h	285;"	d	line:285
+RA0_RA1_ANALOG_RA3_REF::0x5	C:\PROGRA~1\PICC\devices\18F452.h	279;"	d	line:279
+RA0_RA1_RA3_ANALOG::0x4	C:\PROGRA~1\PICC\devices\18F452.h	278;"	d	line:278
+RESET_INSTRUCTION::0	C:\PROGRA~1\PICC\devices\18F452.h	86;"	d	line:86
+RTCC_8_BIT::0x40	C:\PROGRA~1\PICC\devices\18F452.h	109;"	d	line:109
+RTCC_DIV_128::6	C:\PROGRA~1\PICC\devices\18F452.h	104;"	d	line:104
+RTCC_DIV_16::3	C:\PROGRA~1\PICC\devices\18F452.h	101;"	d	line:101
+RTCC_DIV_1::8	C:\PROGRA~1\PICC\devices\18F452.h	97;"	d	line:97
+RTCC_DIV_256::7	C:\PROGRA~1\PICC\devices\18F452.h	105;"	d	line:105
+RTCC_DIV_2::0	C:\PROGRA~1\PICC\devices\18F452.h	98;"	d	line:98
+RTCC_DIV_32::4	C:\PROGRA~1\PICC\devices\18F452.h	102;"	d	line:102
+RTCC_DIV_4::1	C:\PROGRA~1\PICC\devices\18F452.h	99;"	d	line:99
+RTCC_DIV_64::5	C:\PROGRA~1\PICC\devices\18F452.h	103;"	d	line:103
+RTCC_DIV_8::2	C:\PROGRA~1\PICC\devices\18F452.h	100;"	d	line:100
+RTCC_EXT_H_TO_L::48	C:\PROGRA~1\PICC\devices\18F452.h	95;"	d	line:95
+RTCC_EXT_L_TO_H::32	C:\PROGRA~1\PICC\devices\18F452.h	94;"	d	line:94
+RTCC_INTERNAL::0	C:\PROGRA~1\PICC\devices\18F452.h	93;"	d	line:93
+RTCC_OFF::0x80	C:\PROGRA~1\PICC\devices\18F452.h	107;"	d	line:107
+SPI_CLK_DIV_16::1	C:\PROGRA~1\PICC\devices\18F452.h	205;"	d	line:205
+SPI_CLK_DIV_4::0	C:\PROGRA~1\PICC\devices\18F452.h	204;"	d	line:204
+SPI_CLK_DIV_64::2	C:\PROGRA~1\PICC\devices\18F452.h	206;"	d	line:206
+SPI_CLK_T2::3	C:\PROGRA~1\PICC\devices\18F452.h	207;"	d	line:207
+SPI_H_TO_L::0x10	C:\PROGRA~1\PICC\devices\18F452.h	203;"	d	line:203
+SPI_L_TO_H::0	C:\PROGRA~1\PICC\devices\18F452.h	202;"	d	line:202
+SPI_MASTER::0x20	C:\PROGRA~1\PICC\devices\18F452.h	200;"	d	line:200
+SPI_SAMPLE_AT_END::0x8000	C:\PROGRA~1\PICC\devices\18F452.h	210;"	d	line:210
+SPI_SLAVE::0x24	C:\PROGRA~1\PICC\devices\18F452.h	201;"	d	line:201
+SPI_SS_DISABLED::1	C:\PROGRA~1\PICC\devices\18F452.h	208;"	d	line:208
+SPI_XMIT_L_TO_H::0x4000	C:\PROGRA~1\PICC\devices\18F452.h	211;"	d	line:211
+SQRT2::1.41421356	C:\PROGRA~1\PICC\drivers\math.h	27;"	d	line:27
+T1_CLK_OUT::8	C:\PROGRA~1\PICC\devices\18F452.h	131;"	d	line:131
+T1_DISABLED::0	C:\PROGRA~1\PICC\devices\18F452.h	126;"	d	line:126
+T1_DIV_BY_1::0	C:\PROGRA~1\PICC\devices\18F452.h	133;"	d	line:133
+T1_DIV_BY_2::0x10	C:\PROGRA~1\PICC\devices\18F452.h	134;"	d	line:134
+T1_DIV_BY_4::0x20	C:\PROGRA~1\PICC\devices\18F452.h	135;"	d	line:135
+T1_DIV_BY_8::0x30	C:\PROGRA~1\PICC\devices\18F452.h	136;"	d	line:136
+T1_EXTERNAL::0x87	C:\PROGRA~1\PICC\devices\18F452.h	128;"	d	line:128
+T1_EXTERNAL_SYNC::0x83	C:\PROGRA~1\PICC\devices\18F452.h	129;"	d	line:129
+T1_INTERNAL::0x85	C:\PROGRA~1\PICC\devices\18F452.h	127;"	d	line:127
+T2_DISABLED::0	C:\PROGRA~1\PICC\devices\18F452.h	141;"	d	line:141
+T2_DIV_BY_16::6	C:\PROGRA~1\PICC\devices\18F452.h	144;"	d	line:144
+T2_DIV_BY_1::4	C:\PROGRA~1\PICC\devices\18F452.h	142;"	d	line:142
+T2_DIV_BY_4::5	C:\PROGRA~1\PICC\devices\18F452.h	143;"	d	line:143
+T3_DISABLED::0	C:\PROGRA~1\PICC\devices\18F452.h	150;"	d	line:150
+T3_DIV_BY_1::0	C:\PROGRA~1\PICC\devices\18F452.h	155;"	d	line:155
+T3_DIV_BY_2::0x10	C:\PROGRA~1\PICC\devices\18F452.h	156;"	d	line:156
+T3_DIV_BY_4::0x20	C:\PROGRA~1\PICC\devices\18F452.h	157;"	d	line:157
+T3_DIV_BY_8::0x30	C:\PROGRA~1\PICC\devices\18F452.h	158;"	d	line:158
+T3_EXTERNAL::0x87	C:\PROGRA~1\PICC\devices\18F452.h	152;"	d	line:152
+T3_EXTERNAL_SYNC::0x83	C:\PROGRA~1\PICC\devices\18F452.h	153;"	d	line:153
+T3_INTERNAL::0x85	C:\PROGRA~1\PICC\devices\18F452.h	151;"	d	line:151
+TRUE::1	C:\PROGRA~1\PICC\devices\18F452.h	63;"	d	line:63
+TWOBYPI	C:\PROGRA~1\PICC\drivers\math.h	364;"	d	line:364
+TWOBYPI::0.6366197724	C:\PROGRA~1\PICC\drivers\math.h	365;"	d	line:365
+UART_ADDRESS::2	C:\PROGRA~1\PICC\devices\18F452.h	217;"	d	line:217
+UART_DATA::4	C:\PROGRA~1\PICC\devices\18F452.h	218;"	d	line:218
+WDT_FROM_SLEEP::3	C:\PROGRA~1\PICC\devices\18F452.h	85;"	d	line:85
+WDT_OFF::0	C:\PROGRA~1\PICC\devices\18F452.h	120;"	d	line:120
+WDT_ON::0x100	C:\PROGRA~1\PICC\devices\18F452.h	119;"	d	line:119
+WDT_TIMEOUT::7	C:\PROGRA~1\PICC\devices\18F452.h	80;"	d	line:80
+acos	C:\PROGRA~1\PICC\drivers\math.h	513;"	f	line:513	signature:(float x)
+asin	C:\PROGRA~1\PICC\drivers\math.h	498;"	f	line:498	signature:(float x)
+atan	C:\PROGRA~1\PICC\drivers\math.h	530;"	f	line:530	signature:(float x)
+atan2	C:\PROGRA~1\PICC\drivers\math.h	580;"	f	line:580	signature:(float y,float x)
+c	C:\PROGRA~1\PICC\drivers\math.h	431;"	l	line:431
+ceil	C:\PROGRA~1\PICC\drivers\math.h	99;"	f	line:99	signature:(float x)
+cos	C:\PROGRA~1\PICC\drivers\math.h	373;"	f	line:373	signature:(float x)
+cosh	C:\PROGRA~1\PICC\drivers\math.h	659;"	f	line:659	signature:(float x)
+exp	C:\PROGRA~1\PICC\drivers\math.h	154;"	f	line:154	signature:(float x)
+fabs::abs	C:\PROGRA~1\PICC\drivers\math.h	111;"	d	line:111
+fgetc::getch	C:\PROGRA~1\PICC\devices\18F452.h	69;"	d	line:69
+fgets::gets	C:\PROGRA~1\PICC\devices\18F452.h	73;"	d	line:73
+flag	C:\PROGRA~1\PICC\drivers\math.h	533;"	l	line:533
+floor	C:\PROGRA~1\PICC\drivers\math.h	88;"	f	line:88	signature:(float x)
+fmod	C:\PROGRA~1\PICC\drivers\math.h	123;"	f	line:123	signature:(float x,float y)
+fputc::putchar	C:\PROGRA~1\PICC\devices\18F452.h	72;"	d	line:72
+fputs::puts	C:\PROGRA~1\PICC\devices\18F452.h	74;"	d	line:74
+frac	C:\PROGRA~1\PICC\drivers\math.h	377;"	l	line:377
+frexp	C:\PROGRA~1\PICC\drivers\math.h	705;"	f	line:705	signature:(float x, signed int *exp)
+getc::getch	C:\PROGRA~1\PICC\devices\18F452.h	68;"	d	line:68
+getchar::getch	C:\PROGRA~1\PICC\devices\18F452.h	70;"	d	line:70
+i	C:\PROGRA~1\PICC\drivers\math.h	125;"	l	line:125
+i	C:\PROGRA~1\PICC\drivers\math.h	376;"	l	line:376
+l	C:\PROGRA~1\PICC\drivers\math.h	37;"	l	line:37
+ldexp	C:\PROGRA~1\PICC\drivers\math.h	757;"	f	line:757	signature:(float value, signed int exp)
+log	C:\PROGRA~1\PICC\drivers\math.h	206;"	f	line:206	signature:(float x)
+log10	C:\PROGRA~1\PICC\drivers\math.h	265;"	f	line:265	signature:(float x)
+main	F:\Classes\CS910LCD\GLCD\Example01\GLCD01.C	12;"	f	line:12
+modf	C:\PROGRA~1\PICC\drivers\math.h	284;"	f	line:284	signature:(float value,float *iptr)
+n	C:\PROGRA~1\PICC\drivers\math.h	157;"	l	line:157
+n	C:\PROGRA~1\PICC\drivers\math.h	209;"	l	line:209
+p	C:\PROGRA~1\PICC\drivers\math.h	331;"	l	line:331
+p	C:\PROGRA~1\PICC\drivers\math.h	378;"	l	line:378
+pas	C:\PROGRA~1\PICC\drivers\math.h	443;"	v	line:443
+pat	C:\PROGRA~1\PICC\drivers\math.h	521;"	v	line:521
+pe	C:\PROGRA~1\PICC\drivers\math.h	145;"	v	line:145
+pl	C:\PROGRA~1\PICC\drivers\math.h	197;"	v	line:197
+pow	C:\PROGRA~1\PICC\drivers\math.h	314;"	f	line:314	signature:(float x,float y)
+putc::putchar	C:\PROGRA~1\PICC\devices\18F452.h	71;"	d	line:71
+pwr	C:\PROGRA~1\PICC\drivers\math.h	297;"	f	line:297	signature:(float x,float y)
+qas	C:\PROGRA~1\PICC\drivers\math.h	444;"	v	line:444
+qat	C:\PROGRA~1\PICC\drivers\math.h	522;"	v	line:522
+ql	C:\PROGRA~1\PICC\drivers\math.h	198;"	v	line:198
+quad	C:\PROGRA~1\PICC\drivers\math.h	376;"	l	line:376
+quad	C:\PROGRA~1\PICC\drivers\math.h	584;"	l	line:584
+r	C:\PROGRA~1\PICC\drivers\math.h	156;"	l	line:156
+r	C:\PROGRA~1\PICC\drivers\math.h	208;"	l	line:208
+r	C:\PROGRA~1\PICC\drivers\math.h	267;"	l	line:267
+r	C:\PROGRA~1\PICC\drivers\math.h	448;"	l	line:448
+r	C:\PROGRA~1\PICC\drivers\math.h	500;"	l	line:500
+r	C:\PROGRA~1\PICC\drivers\math.h	515;"	l	line:515
+r	C:\PROGRA~1\PICC\drivers\math.h	532;"	l	line:532
+res	C:\PROGRA~1\PICC\drivers\math.h	156;"	l	line:156
+res	C:\PROGRA~1\PICC\drivers\math.h	208;"	l	line:208
+res	C:\PROGRA~1\PICC\drivers\math.h	330;"	l	line:330
+res	C:\PROGRA~1\PICC\drivers\math.h	36;"	l	line:36
+res	C:\PROGRA~1\PICC\drivers\math.h	448;"	l	line:448
+res	C:\PROGRA~1\PICC\drivers\math.h	532;"	l	line:532
+res	C:\PROGRA~1\PICC\drivers\math.h	707;"	l	line:707
+s	C:\PROGRA~1\PICC\drivers\math.h	158;"	l	line:158
+s	C:\PROGRA~1\PICC\drivers\math.h	38;"	l	line:38
+s	C:\PROGRA~1\PICC\drivers\math.h	431;"	l	line:431
+s	C:\PROGRA~1\PICC\drivers\math.h	449;"	l	line:449
+s	C:\PROGRA~1\PICC\drivers\math.h	533;"	l	line:533
+sign	C:\PROGRA~1\PICC\drivers\math.h	583;"	l	line:583
+sign	C:\PROGRA~1\PICC\drivers\math.h	708;"	l	line:708
+sin	C:\PROGRA~1\PICC\drivers\math.h	418;"	f	line:418	signature:(float x)
+sinh	C:\PROGRA~1\PICC\drivers\math.h	672;"	f	line:672	signature:(float x)
+sqrt	C:\PROGRA~1\PICC\drivers\math.h	328;"	f	line:328	signature:(float x)
+str	F:\Classes\CS910LCD\GLCD\Example01\GLCD01.C	11;"	v	line:11
+t	C:\PROGRA~1\PICC\drivers\math.h	375;"	l	line:375
+t2	C:\PROGRA~1\PICC\drivers\math.h	375;"	l	line:375
+tan	C:\PROGRA~1\PICC\drivers\math.h	429;"	f	line:429	signature:(float x)
+tanh	C:\PROGRA~1\PICC\drivers\math.h	686;"	f	line:686	signature:(float x)
+y	C:\PROGRA~1\PICC\drivers\math.h	156;"	l	line:156
+y	C:\PROGRA~1\PICC\drivers\math.h	208;"	l	line:208
+y	C:\PROGRA~1\PICC\drivers\math.h	330;"	l	line:330
+y	C:\PROGRA~1\PICC\drivers\math.h	36;"	l	line:36
+y	C:\PROGRA~1\PICC\drivers\math.h	375;"	l	line:375
+y	C:\PROGRA~1\PICC\drivers\math.h	448;"	l	line:448
+y	C:\PROGRA~1\PICC\drivers\math.h	532;"	l	line:532
+y2	C:\PROGRA~1\PICC\drivers\math.h	208;"	l	line:208
+y2	C:\PROGRA~1\PICC\drivers\math.h	448;"	l	line:448
+z	C:\PROGRA~1\PICC\drivers\math.h	582;"	l	line:582

@@ -1,0 +1,84 @@
+004-005 @READ_PROGRAM_MEMORY8.P1
+006     lcdlat
+006     lcd
+015     CCP_1_LOW
+015     CCP_1
+016     CCP_1_HIGH
+01F.6   C1OUT
+01F.7   C2OUT
+021     lcd_init.i
+021     MAIN.@SCRATCH1
+022     lcd_putc.c
+022     lcd_init.@SCRATCH1
+023     @delay_ms1.P1
+023     lcd_gotoxy.x
+024     lcd_gotoxy.y
+025     lcd_gotoxy.address
+026     lcd_gotoxy.@SCRATCH1
+027     lcd_send_byte.address
+028     lcd_send_byte.n
+029     lcd_read_byte.low
+029     lcd_send_byte.@SCRATCH1
+02A     lcd_send_nibble.n
+02A     lcd_read_byte.high
+02B     lcd_read_byte.@SCRATCH1
+077     @SCRATCH
+078     @SCRATCH
+078     _RETURN_
+079     @SCRATCH
+07A     @SCRATCH
+086     lcdtris
+09B-09C @READ_PROGRAM_MEMORY8.P1
+
+ROM Allocation:
+004B  @delay_ms1
+0004  LCD_INIT_STRING
+0078  lcd_read_byte
+006C  lcd_read_nibble
+0060  lcd_send_nibble
+0072  lcd_send_byte
+00B2  lcd_init
+00E0  lcd_gotoxy
+00F2  lcd_putc
+011F  MAIN
+000C  @const97
+0027  @const98
+002D  @const99
+0037  @const100
+003D  @const101
+011F  @cinit
+0129  bas
+
+
+User Memory space: 
+
+User Memory space: 
+
+Project Directory:
+    E:\ram\microcontrol\picmicro\pic c\pic uygulama\pic16f628a\lcd uygulamalarý\
+
+Project Files:
+    lcd_f_n_b komutlarý.c
+    C:\Program Files\PICC\devices\16F628A.h
+    C:\Program Files\PICC\drivers\lcd.c
+
+Units:
+    E:\ram\microcontrol\picmicro\pic c\pic uygulama\pic16f628a\lcd uygulamalarý\lcd_f_n_b komutlarý (main)
+
+Compiler Settings:
+    Processor:      PIC16F628A
+    Pointer Size:   16
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    Errors:      lcd_f_n_b komutlarý.err
+    Ext Symbols: lcd_f_n_b komutlarý.esym
+    INHX8:       lcd_f_n_b komutlarý.hex
+    Symbols:     lcd_f_n_b komutlarý.sym
+    List:        lcd_f_n_b komutlarý.lst
+    Debug/COFF:  lcd_f_n_b komutlarý.cof
+    Project:     lcd_f_n_b komutlarý.PJT
+    Call Tree:   lcd_f_n_b komutlarý.tre
+    Statistics:  lcd_f_n_b komutlarý.sta

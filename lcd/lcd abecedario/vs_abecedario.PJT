@@ -1,0 +1,39 @@
+[PROJECT]
+Target=vs_abecedario.HEX
+Development_Mode=2
+Processor=0x648A
+ToolSuite=CCS
+Processor_Text=PIC16F648A
+
+[Directories]
+Include=
+Library=
+LinkerScript=
+
+[Target Data]
+FileList=C:\Documents and Settings\ugur\Desktop\lcd\lcd abecedario\vs_abecedario.c
+BuildTool=C-COMPILER
+OptionString=+FM
+AdditionalOptionString=
+BuildRequired=1
+
+[vs_abecedario.c]
+Type=4
+Path=
+FileList=
+BuildTool=
+OptionString=
+AdditionalOptionString=
+
+[mru-list]
+1=C:\3414\EJEMPL~1\LCDABE~1\VS_ABE~1.C
+
+[Windows]
+0=0000 C:\3414\EJEMPL~1\LCDABE~1\VS_ABE~1.C 0 0 796 451 3 0
+
+[Opened Files]
+1=C:\Documents and Settings\ugur\Desktop\lcd\lcd abecedario\vs_abecedario.c
+2=
+[Units]
+Count=1
+1=vs_abecedario.c (main)

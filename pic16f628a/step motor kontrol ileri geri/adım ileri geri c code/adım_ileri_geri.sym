@@ -1,0 +1,58 @@
+004-005 @READ_PROGRAM_MEMORY8.P1
+005     PORTA
+015     CCP_1
+015     CCP_1_LOW
+016     CCP_1_HIGH
+01F.6   C1OUT
+01F.7   C2OUT
+020     i
+021-022 a
+023     main.@SCRATCH1
+024     @delay_ms1.P1
+077     @SCRATCH
+078     @SCRATCH
+078     _RETURN_
+079     @SCRATCH
+07A     @SCRATCH
+09B-09C @READ_PROGRAM_MEMORY8.P1
+
+ROM Allocation:
+0004  @delay_ms1
+0019  main
+00C3  @goto10059
+00CB  @goto10084
+0019  @cinit
+002E  dur
+
+
+User Memory space: 
+
+User Memory space: 
+
+Project Directory:
+    D:\ram\parellel robot\elektronik\step motor kontrol\adým ileri geri\
+
+Project Files:
+    adým_ileri_geri.c
+    C:\Program Files\PICC\devices\16F628A.h
+
+Units:
+    D:\ram\parellel robot\elektronik\step motor kontrol\adým ileri geri\adým_ileri_geri (main)
+
+Compiler Settings:
+    Processor:      PIC16F628A
+    Pointer Size:   16
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    Errors:      adým_ileri_geri.err
+    Ext Symbols: adým_ileri_geri.esym
+    INHX8:       adým_ileri_geri.hex
+    Symbols:     adým_ileri_geri.sym
+    List:        adým_ileri_geri.lst
+    Debug/COFF:  adým_ileri_geri.cof
+    Project:     adým_ileri_geri.PJT
+    Call Tree:   adým_ileri_geri.tre
+    Statistics:  adým_ileri_geri.sta

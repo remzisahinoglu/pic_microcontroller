@@ -1,0 +1,162 @@
+004-005 @READ_PROGRAM_MEMORY.P1
+006     lcd
+015-016 CCP_1
+015     CCP_1_LOW
+016     CCP_1_HIGH
+01F.6   C1OUT
+01F.7   C2OUT
+020     @INTERRUPT_AREA
+021     @INTERRUPT_AREA
+022     @INTERRUPT_AREA
+023     @INTERRUPT_AREA
+024     @INTERRUPT_AREA
+025     @INTERRUPT_AREA
+026     @INTERRUPT_AREA
+027     @INTERRUPT_AREA
+028     @INTERRUPT_AREA
+029     @INTERRUPT_AREA
+02A     day
+02B     mth
+02C     year
+02D     dow
+02E     hour
+02F     min
+030     sec
+031     menu
+032     flag
+033     var
+034     lcd_init.i
+034     rtc_set_datetime.day
+034     rtc_init.x
+034     MAIN.@SCRATCH
+034     configurar.@SCRATCH
+034     horas.@SCRATCH
+034     minutos.@SCRATCH
+034     dia.@SCRATCH
+034     mes.@SCRATCH
+034     anio.@SCRATCH
+035     rtc_set_datetime.mth
+035     rtc_init.@SCRATCH
+035     lcd_init.@SCRATCH
+036     rtc_set_datetime.year
+037     rtc_set_datetime.dow
+038     rtc_set_datetime.hr
+039     rtc_set_datetime.min
+03A     get_bcd.data
+03A     rtc_set_datetime.@SCRATCH
+03B     get_bcd.nibh
+03B     write_ds1302.cmd
+03C     write_ds1302.data
+03C     get_bcd.nibl
+03D     @DIV88.P1
+03D     get_bcd.@SCRATCH
+03E     @DIV88.P1
+03F     @DIV88.@SCRATCH
+041     rtc_get_date.@SCRATCH
+041     rtc_get_time.@SCRATCH
+041     interrupcion.@SCRATCH
+042     interrupcion.@SCRATCH
+043     @PRINTF_X_118.P1
+044     @PRINTF_X_118.P1
+045     read_ds1302.cmd
+045     lcd_putc.c
+046     read_ds1302.i
+046     rm_bcd.data
+046     lcd_gotoxy.x
+046     @delay_ms1.P1
+047     lcd_gotoxy.y
+047     read_ds1302.data
+047     rm_bcd.i
+048     lcd_gotoxy.address
+048     write_ds1302_byte.cmd
+048     rm_bcd.@SCRATCH
+049     write_ds1302_byte.i
+049     rm_bcd.@SCRATCH
+049     lcd_gotoxy.@SCRATCH
+04A     @MUL88.P1
+04A     lcd_send_byte.address
+04B     lcd_send_byte.n
+04B     @MUL88.P1
+04C     lcd_read_byte.low
+04C     lcd_send_byte.@SCRATCH
+04D     lcd_send_nibble.n
+04D     lcd_read_byte.high
+04E     lcd_read_byte.@SCRATCH
+077     @SCRATCH
+078     @SCRATCH
+078     _RETURN_
+079     @SCRATCH
+07A     @SCRATCH
+07B     @SCRATCH
+10D     @READ_PROGRAM_MEMORY.P1
+10F     @READ_PROGRAM_MEMORY.P1
+
+02A0  @delay_ms1
+01DC  write_ds1302_byte
+039A  write_ds1302
+01F4  read_ds1302
+045F  rtc_init
+03DD  get_bcd
+03C7  @DIV88
+021C  @MUL88
+0241  rm_bcd
+0D46  rtc_set_datetime
+0315  rtc_get_date
+0339  rtc_get_time
+0035  LCD_INIT_STRING
+025C  lcd_read_byte
+0279  lcd_send_nibble
+0285  lcd_send_byte
+041A  lcd_init
+02B5  lcd_gotoxy
+02C7  lcd_putc
+030C  interrupcion
+003D  @const142
+02EB  @PRINTF_X_118
+03FA  MAIN
+0067  @const148
+0800  configurar
+008A  @const149
+00A1  @const150
+00BA  @const151
+00CF  @const152
+00E4  @const153
+00FA  @const154
+0DAB  @goto10322
+082B  horas
+0115  @const156
+0138  @const157
+091C  minutos
+014F  @const158
+0A1F  dia
+0174  @const160
+0B17  mes
+0197  @const162
+0C03  anio
+01B9  @const164
+03B5  beep
+03FA  @cinit
+
+Project Files:
+    C:\3414\Ejemplitos en C para 16F648A\lcd ds1302\vs_ds1302.c
+    C:\ARQUIV~1\PICC\devices\16f648a.h
+    C:\ARQUIV~1\PICC\drivers\ds1302.c
+    C:\ARQUIV~1\PICC\drivers\lcd.c
+
+Units:
+    vs_ds1302.c (main)
+
+Compiler Settings:
+    Processor:      PIC16F648A
+    Pointer Size:   16
+    Opt Level:      0
+    Short,Int,Long: 1,8,16
+
+Output Files:
+    Errors:      C:\3414\Ejemplitos en C para 16F648A\lcd ds1302\vs_ds1302.err
+    Ext Symbols: C:\3414\Ejemplitos en C para 16F648A\lcd ds1302\vs_ds1302.esym
+    INHX8:\       vs_ds1302.hex
+    Symbols:\     vs_ds1302.sym
+    List:\        vs_ds1302.lst
+    Debug/COFF:\  vs_ds1302.cof
+    Call Tree:   C:\3414\Ejemplitos en C para 16F648A\lcd ds1302\vs_ds1302.tre

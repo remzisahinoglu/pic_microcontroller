@@ -1,0 +1,48 @@
+004-005 @WRITE_PROGRAM_MEMORY.P1
+004-005 @READ_PROGRAM_MEMORY.P2
+008     PSP_DATA
+015-016 CCP_1
+015     CCP_1_LOW
+016     CCP_1_HIGH
+01B-01C CCP_2
+01B     CCP_2_LOW
+01C     CCP_2_HIGH
+021     @delay_ms1.P1
+077     @SCRATCH
+078     @SCRATCH
+078     _RETURN_
+079     @SCRATCH
+07A     @SCRATCH
+07B     @SCRATCH
+10D     @READ_PROGRAM_MEMORY.P1
+10D     @WRITE_PROGRAM_MEMORY.P2
+10F     @WRITE_PROGRAM_MEMORY.P1
+10F     @READ_PROGRAM_MEMORY.P2
+
+0004  @delay_ms1
+0019  main
+0019  @cinit
+
+Project Files:
+    yak_son.c
+    C:\Program Files\PICC\devices\16F877.h
+
+Units:
+    D:\pic\pic16f877\yak_son.c (main)
+
+Compiler Settings:
+    Processor:      PIC16F877
+    Pointer Size:   16
+    ADC Range:      0-255
+    Opt Level:      0
+    Short,Int,Long: 1,8,16
+
+Output Files:
+    Errors:      D:\pic\pic16f877\yak_son.err
+    Ext Symbols: D:\pic\pic16f877\yak_son.esym
+    INHX8:       D:\pic\pic16f877\yak_son.hex
+    Symbols:     D:\pic\pic16f877\yak_son.sym
+    List:        D:\pic\pic16f877\yak_son.lst
+    Debug/COFF:  D:\pic\pic16f877\yak_son.cof
+    Call Tree:   yak_son.tre
+    Statistics:  yak_son.sta

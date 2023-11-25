@@ -1,0 +1,508 @@
+CCS PCM C Compiler, Version 4.018, 44854               22-May-07 19:05
+
+               Filename: D:\ramsi\private\pic programlama\Uygulamalar\adc ile step kontrol (877)\analog_dijital_ile_step_kontrol.lst
+
+               ROM used: 347 words (4%)
+                         Largest free fragment is 2048
+               RAM used: 11 (3%) at main() level
+                         11 (3%) worst case
+               Stack:    2 locations
+
+*
+0000:  MOVLW  00
+0001:  MOVWF  0A
+0002:  GOTO   09B
+0003:  NOP
+.................... // analog dijital dönüþtürücü ile step motoru ileri geri kontrol uygulamasý 
+.................... // 22.04.2007 
+.................... // yazan = Remzi ÞAHÝNOÐLU 
+.................... #if defined (__PCM__) 
+.................... #include <16F877A.h> 
+.................... //////// Standard Header file for the PIC16F877A device //////////////// 
+.................... #device PIC16F877A 
+.................... #list 
+....................  
+.................... #use delay(clock=4000000) 
+0004:  MOVLW  24
+0005:  MOVWF  04
+0006:  BCF    03.7
+0007:  MOVF   00,W
+0008:  BTFSC  03.2
+0009:  GOTO   018
+000A:  MOVLW  01
+000B:  MOVWF  78
+000C:  CLRF   77
+000D:  DECFSZ 77,F
+000E:  GOTO   00D
+000F:  DECFSZ 78,F
+0010:  GOTO   00C
+0011:  MOVLW  4A
+0012:  MOVWF  77
+0013:  DECFSZ 77,F
+0014:  GOTO   013
+0015:  GOTO   016
+0016:  DECFSZ 00,F
+0017:  GOTO   00A
+0018:  RETLW  00
+.................... #fuses XT,NOWDT,NOPROTECT,NOLVP,NOBROWNOUT 
+.................... #endif 
+....................  
+.................... #byte PORTC = 0x07 
+....................  
+.................... // analog verisi için son 4 biti tanýmla 
+.................... #bit d_1 = 0x20.4 
+.................... #bit d_2 = 0x20.5 
+.................... #bit d_3 = 0x20.6 
+.................... #bit d_4 = 0x20.7 
+.................... char deger=0, veri = 0, sol=0, sag=0; 
+*
+00A6:  BCF    03.5
+00A7:  CLRF   20
+00A8:  CLRF   21
+00A9:  CLRF   22
+00AA:  CLRF   23
+....................  
+.................... void motor_sola() 
+.................... { 
+....................    output_b(1);  delay_ms(15); 
+*
+0019:  BSF    03.5
+001A:  CLRF   06
+001B:  MOVLW  01
+001C:  BCF    03.5
+001D:  MOVWF  06
+001E:  MOVLW  0F
+001F:  MOVWF  24
+0020:  CALL   004
+....................    output_b(2);  delay_ms(15); 
+0021:  BSF    03.5
+0022:  CLRF   06
+0023:  MOVLW  02
+0024:  BCF    03.5
+0025:  MOVWF  06
+0026:  MOVLW  0F
+0027:  MOVWF  24
+0028:  CALL   004
+....................    output_b(4);  delay_ms(15); 
+0029:  BSF    03.5
+002A:  CLRF   06
+002B:  MOVLW  04
+002C:  BCF    03.5
+002D:  MOVWF  06
+002E:  MOVLW  0F
+002F:  MOVWF  24
+0030:  CALL   004
+....................    output_b(8);  delay_ms(15); 
+0031:  BSF    03.5
+0032:  CLRF   06
+0033:  MOVLW  08
+0034:  BCF    03.5
+0035:  MOVWF  06
+0036:  MOVLW  0F
+0037:  MOVWF  24
+0038:  CALL   004
+....................    output_b(1);  delay_ms(15); 
+0039:  BSF    03.5
+003A:  CLRF   06
+003B:  MOVLW  01
+003C:  BCF    03.5
+003D:  MOVWF  06
+003E:  MOVLW  0F
+003F:  MOVWF  24
+0040:  CALL   004
+....................    output_b(2);  delay_ms(15); 
+0041:  BSF    03.5
+0042:  CLRF   06
+0043:  MOVLW  02
+0044:  BCF    03.5
+0045:  MOVWF  06
+0046:  MOVLW  0F
+0047:  MOVWF  24
+0048:  CALL   004
+....................    output_b(4);  delay_ms(15); 
+0049:  BSF    03.5
+004A:  CLRF   06
+004B:  MOVLW  04
+004C:  BCF    03.5
+004D:  MOVWF  06
+004E:  MOVLW  0F
+004F:  MOVWF  24
+0050:  CALL   004
+....................    output_b(8);  delay_ms(15); 
+0051:  BSF    03.5
+0052:  CLRF   06
+0053:  MOVLW  08
+0054:  BCF    03.5
+0055:  MOVWF  06
+0056:  MOVLW  0F
+0057:  MOVWF  24
+0058:  CALL   004
+.................... } 
+0059:  RETLW  00
+.................... void motor_saga() 
+.................... { 
+....................    output_b(8);  delay_ms(15); 
+005A:  BSF    03.5
+005B:  CLRF   06
+005C:  MOVLW  08
+005D:  BCF    03.5
+005E:  MOVWF  06
+005F:  MOVLW  0F
+0060:  MOVWF  24
+0061:  CALL   004
+....................    output_b(4);  delay_ms(15); 
+0062:  BSF    03.5
+0063:  CLRF   06
+0064:  MOVLW  04
+0065:  BCF    03.5
+0066:  MOVWF  06
+0067:  MOVLW  0F
+0068:  MOVWF  24
+0069:  CALL   004
+....................    output_b(2);  delay_ms(15); 
+006A:  BSF    03.5
+006B:  CLRF   06
+006C:  MOVLW  02
+006D:  BCF    03.5
+006E:  MOVWF  06
+006F:  MOVLW  0F
+0070:  MOVWF  24
+0071:  CALL   004
+....................    output_b(1);  delay_ms(15); 
+0072:  BSF    03.5
+0073:  CLRF   06
+0074:  MOVLW  01
+0075:  BCF    03.5
+0076:  MOVWF  06
+0077:  MOVLW  0F
+0078:  MOVWF  24
+0079:  CALL   004
+....................    output_b(8);  delay_ms(15); 
+007A:  BSF    03.5
+007B:  CLRF   06
+007C:  MOVLW  08
+007D:  BCF    03.5
+007E:  MOVWF  06
+007F:  MOVLW  0F
+0080:  MOVWF  24
+0081:  CALL   004
+....................    output_b(4);  delay_ms(15); 
+0082:  BSF    03.5
+0083:  CLRF   06
+0084:  MOVLW  04
+0085:  BCF    03.5
+0086:  MOVWF  06
+0087:  MOVLW  0F
+0088:  MOVWF  24
+0089:  CALL   004
+....................    output_b(2);  delay_ms(15); 
+008A:  BSF    03.5
+008B:  CLRF   06
+008C:  MOVLW  02
+008D:  BCF    03.5
+008E:  MOVWF  06
+008F:  MOVLW  0F
+0090:  MOVWF  24
+0091:  CALL   004
+....................    output_b(1);  delay_ms(15); 
+0092:  BSF    03.5
+0093:  CLRF   06
+0094:  MOVLW  01
+0095:  BCF    03.5
+0096:  MOVWF  06
+0097:  MOVLW  0F
+0098:  MOVWF  24
+0099:  CALL   004
+.................... } 
+009A:  RETLW  00
+....................  
+.................... void main() 
+.................... { 
+009B:  CLRF   04
+009C:  BCF    03.7
+009D:  MOVLW  1F
+009E:  ANDWF  03,F
+009F:  BSF    03.5
+00A0:  BSF    1F.0
+00A1:  BSF    1F.1
+00A2:  BSF    1F.2
+00A3:  BCF    1F.3
+00A4:  MOVLW  07
+00A5:  MOVWF  1C
+....................    setup_adc(ADC_CLOCK_INTERNAL);   // Sets up the a/d mode like off, the adc clock etc. 
+*
+00AB:  BSF    03.5
+00AC:  BCF    1F.6
+00AD:  BCF    03.5
+00AE:  BSF    1F.6
+00AF:  BSF    1F.7
+00B0:  BSF    03.5
+00B1:  BCF    1F.7
+00B2:  BCF    03.5
+00B3:  BSF    1F.0
+....................    setup_adc_ports(AN0);            // Sets the available adc pins to be analog or digital. 
+00B4:  BSF    03.5
+00B5:  BCF    1F.0
+00B6:  BSF    1F.1
+00B7:  BSF    1F.2
+00B8:  BSF    1F.3
+....................    set_adc_channel(0);              // Specifies the channel to be use for the a/d call. 
+00B9:  MOVLW  00
+00BA:  MOVWF  78
+00BB:  BCF    03.5
+00BC:  MOVF   1F,W
+00BD:  ANDLW  C7
+00BE:  IORWF  78,W
+00BF:  MOVWF  1F
+....................    delay_us(10);                    // a small delay is required after setting the channel  
+00C0:  MOVLW  03
+00C1:  MOVWF  77
+00C2:  DECFSZ 77,F
+00C3:  GOTO   0C2
+....................         
+....................    while(TRUE) 
+....................    {   
+....................       veri = read_adc();                                  // analog bilgiyi veriye yaz                                                          // deger i sýfýrla 
+00C4:  BSF    1F.2
+00C5:  BTFSC  1F.2
+00C6:  GOTO   0C5
+00C7:  MOVF   1E,W
+00C8:  MOVWF  21
+....................       if(bit_test(veri,4) == 1){d_1=1;} else{d_1=0;}      // son 4 bitini oku ve degere yaz 
+00C9:  BTFSS  21.4
+00CA:  GOTO   0CD
+00CB:  BSF    20.4
+00CC:  GOTO   0CE
+00CD:  BCF    20.4
+....................       if(bit_test(veri,5) == 1){d_2=1;} else{d_2=0;} 
+00CE:  BTFSS  21.5
+00CF:  GOTO   0D2
+00D0:  BSF    20.5
+00D1:  GOTO   0D3
+00D2:  BCF    20.5
+....................       if(bit_test(veri,6) == 1){d_3=1;} else{d_3=0;} 
+00D3:  BTFSS  21.6
+00D4:  GOTO   0D7
+00D5:  BSF    20.6
+00D6:  GOTO   0D8
+00D7:  BCF    20.6
+....................       if(bit_test(veri,7) == 1){d_4=1;} else{d_4=0;} 
+00D8:  BTFSS  21.7
+00D9:  GOTO   0DC
+00DA:  BSF    20.7
+00DB:  GOTO   0DD
+00DC:  BCF    20.7
+....................     
+....................       switch(deger)       // **** DÝREKSÝYONUN KONUMU **** 
+....................       { 
+00DD:  MOVF   20,W
+00DE:  BTFSC  03.2
+00DF:  GOTO   0F3
+00E0:  XORLW  20
+00E1:  BTFSC  03.2
+00E2:  GOTO   0FD
+00E3:  XORLW  70
+00E4:  BTFSC  03.2
+00E5:  GOTO   10E
+00E6:  XORLW  20
+00E7:  BTFSC  03.2
+00E8:  GOTO   11E
+00E9:  XORLW  E0
+00EA:  BTFSC  03.2
+00EB:  GOTO   12B
+00EC:  XORLW  50
+00ED:  BTFSC  03.2
+00EE:  GOTO   13D
+00EF:  XORLW  20
+00F0:  BTFSC  03.2
+00F1:  GOTO   150
+00F2:  GOTO   159
+....................          case 0   :       // direksiyon "3.SAÐ" konumda 
+....................             if(sol == 2) 
+00F3:  MOVF   22,W
+00F4:  SUBLW  02
+00F5:  BTFSS  03.2
+00F6:  GOTO   0FC
+....................             { 
+....................                motor_sola(); 
+00F7:  CALL   019
+....................                sag=2; 
+00F8:  MOVLW  02
+00F9:  MOVWF  23
+....................                sol=6; 
+00FA:  MOVLW  06
+00FB:  MOVWF  22
+....................             }break;            
+00FC:  GOTO   159
+....................          case 32  :       // direksiyon "2.SAÐ" konumda 
+....................             if(sol == 1) 
+00FD:  DECFSZ 22,W
+00FE:  GOTO   104
+....................             { 
+....................                motor_sola(); 
+00FF:  CALL   019
+....................                sol=2; 
+0100:  MOVLW  02
+0101:  MOVWF  22
+....................                sag=3; 
+0102:  MOVLW  03
+0103:  MOVWF  23
+....................             } 
+....................                      if(sag ==2) 
+0104:  MOVF   23,W
+0105:  SUBLW  02
+0106:  BTFSS  03.2
+0107:  GOTO   10D
+....................                      { 
+....................                         motor_saga(); 
+0108:  CALL   05A
+....................                         sol=2; 
+0109:  MOVLW  02
+010A:  MOVWF  22
+....................                         sag=3; 
+010B:  MOVLW  03
+010C:  MOVWF  23
+....................                      }break; 
+010D:  GOTO   159
+....................          case 80  :       // direksiyon "1.SAÐ" konumda 
+....................             if(sol == 0) 
+010E:  MOVF   22,F
+010F:  BTFSS  03.2
+0110:  GOTO   115
+....................             { 
+....................                motor_sola(); 
+0111:  CALL   019
+....................                sol=1; 
+0112:  MOVLW  01
+0113:  MOVWF  22
+....................                sag=1; 
+0114:  MOVWF  23
+....................             } 
+....................                      if(sag == 3) 
+0115:  MOVF   23,W
+0116:  SUBLW  03
+0117:  BTFSS  03.2
+0118:  GOTO   11D
+....................                      { 
+....................                         motor_saga(); 
+0119:  CALL   05A
+....................                         sol=1; 
+011A:  MOVLW  01
+011B:  MOVWF  22
+....................                         sag=1; 
+011C:  MOVWF  23
+....................                      }break; 
+011D:  GOTO   159
+....................          case 112 :       // direksiyon "DÜZ" konumda 
+....................             if(sag ==1) 
+011E:  DECFSZ 23,W
+011F:  GOTO   123
+....................             { 
+....................                motor_saga(); 
+0120:  CALL   05A
+....................                sol=0; 
+0121:  CLRF   22
+....................                sag=0; 
+0122:  CLRF   23
+....................             } 
+....................                      if(sol ==4) 
+0123:  MOVF   22,W
+0124:  SUBLW  04
+0125:  BTFSS  03.2
+0126:  GOTO   12A
+....................                      { 
+....................                         motor_sola(); 
+0127:  CALL   019
+....................                         sol=0; 
+0128:  CLRF   22
+....................                         sag=0; 
+0129:  CLRF   23
+....................                      }break;            
+012A:  GOTO   159
+....................          case 144 :       // direksiyon "1.SOL" konumda  
+....................             if(sag ==0) 
+012B:  MOVF   23,F
+012C:  BTFSS  03.2
+012D:  GOTO   133
+....................             { 
+....................                motor_saga(); 
+012E:  CALL   05A
+....................                sol=4; 
+012F:  MOVLW  04
+0130:  MOVWF  22
+....................                sag=2; 
+0131:  MOVLW  02
+0132:  MOVWF  23
+....................             } 
+....................                      if(sol ==5) 
+0133:  MOVF   22,W
+0134:  SUBLW  05
+0135:  BTFSS  03.2
+0136:  GOTO   13C
+....................                      { 
+....................                         motor_sola(); 
+0137:  CALL   019
+....................                         sol=4; 
+0138:  MOVLW  04
+0139:  MOVWF  22
+....................                         sag=2; 
+013A:  MOVLW  02
+013B:  MOVWF  23
+....................                      }break;                              
+013C:  GOTO   159
+....................          case 192 :       // direksiyon "2.SOL" konumda  
+....................             if(sag ==2) 
+013D:  MOVF   23,W
+013E:  SUBLW  02
+013F:  BTFSS  03.2
+0140:  GOTO   146
+....................             { 
+....................                motor_saga(); 
+0141:  CALL   05A
+....................                sol=5; 
+0142:  MOVLW  05
+0143:  MOVWF  22
+....................                sag=3; 
+0144:  MOVLW  03
+0145:  MOVWF  23
+....................             } 
+....................                      if(sol ==6) 
+0146:  MOVF   22,W
+0147:  SUBLW  06
+0148:  BTFSS  03.2
+0149:  GOTO   14F
+....................                      { 
+....................                         motor_sola(); 
+014A:  CALL   019
+....................                         sol=5; 
+014B:  MOVLW  05
+014C:  MOVWF  22
+....................                         sag=3; 
+014D:  MOVLW  03
+014E:  MOVWF  23
+....................                      }break;                          
+014F:  GOTO   159
+....................          case 224 :       // direksiyon "3.SOL" konumda  
+....................             if(sag ==3) 
+0150:  MOVF   23,W
+0151:  SUBLW  03
+0152:  BTFSS  03.2
+0153:  GOTO   158
+....................             { 
+....................                motor_saga(); 
+0154:  CALL   05A
+....................                sol=6; 
+0155:  MOVLW  06
+0156:  MOVWF  22
+....................                sag=6; 
+0157:  MOVWF  23
+....................             }break;                           
+0158:  GOTO   159
+....................       } 
+....................    } 
+0159:  GOTO   0C4
+.................... } 
+015A:  SLEEP
+
+Configuration Fuses:
+   Word  1: 3F31   XT NOWDT PUT NODEBUG NOPROTECT NOBROWNOUT NOLVP NOCPD NOWRT

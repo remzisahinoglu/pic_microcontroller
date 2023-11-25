@@ -1,0 +1,46 @@
+004-005 @READ_PROGRAM_MEMORY.P1
+015     CCP_1_LOW
+015-016 CCP_1
+016     CCP_1_HIGH
+01F.6   C1OUT
+01F.7   C2OUT
+020-023 a
+024     main.dizi
+025     main.x
+026     @delay_ms1.P1
+077     @SCRATCH
+078     @SCRATCH
+078     _RETURN_
+079     @SCRATCH
+07A     @SCRATCH
+07B     @SCRATCH
+10D     @READ_PROGRAM_MEMORY.P1
+10F     @READ_PROGRAM_MEMORY.P1
+
+0004  @delay_ms1
+0019  main
+0019  @cinit
+0028  tekrar
+
+Project Files:
+    dizin_tek_kolon.c
+    C:\Program Files\PICC\devices\16F628A.h
+
+Units:
+    D:\pic\dizin kavramý\tek kolonlu\dizin_tek_kolon.c (main)
+
+Compiler Settings:
+    Processor:      PIC16F628A
+    Pointer Size:   16
+    Opt Level:      0
+    Short,Int,Long: 1,8,16
+
+Output Files:
+    Errors:      D:\pic\dizin kavramý\tek kolonlu\dizin_tek_kolon.err
+    Ext Symbols: D:\pic\dizin kavramý\tek kolonlu\dizin_tek_kolon.esym
+    INHX8:       D:\pic\dizin kavramý\tek kolonlu\dizin_tek_kolon.hex
+    Symbols:     D:\pic\dizin kavramý\tek kolonlu\dizin_tek_kolon.sym
+    List:        D:\pic\dizin kavramý\tek kolonlu\dizin_tek_kolon.lst
+    Debug/COFF:  D:\pic\dizin kavramý\tek kolonlu\dizin_tek_kolon.cof
+    Call Tree:   dizin_tek_kolon.tre
+    Statistics:  dizin_tek_kolon.sta

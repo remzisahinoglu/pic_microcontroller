@@ -1,0 +1,62 @@
+004-005 @READ_PROGRAM_MEMORY8.P1
+005     PORTA
+015     CCP_1_LOW
+015     CCP_1
+016     CCP_1_HIGH
+01F.6   C1OUT
+01F.7   C2OUT
+020     i
+021-022 a
+023     main.@SCRATCH1
+024     @delay_ms1.P1
+077     @SCRATCH
+078     @SCRATCH
+078     _RETURN_
+079     @SCRATCH
+07A     @SCRATCH
+09B-09C @READ_PROGRAM_MEMORY8.P1
+
+ROM Allocation:
+0004  @delay_ms1
+0019  main
+01D7  @goto10059
+01DF  @goto10084
+01E7  @goto10109
+01EF  @goto10134
+01F7  @goto10158
+01FF  @goto10183
+0019  @cinit
+002E  dur
+
+
+User Memory space: 
+
+User Memory space: 
+
+Project Directory:
+    C:\Documents and Settings\raj x\Desktop\step\
+
+Project Files:
+    unipolar_step.c
+    ..\..\..\..\Program Files\PICC\devices\16F628A.h
+
+Units:
+    C:\Documents and Settings\raj x\Desktop\step\unipolar_step (main)
+
+Compiler Settings:
+    Processor:      PIC16F628A
+    Pointer Size:   16
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    Errors:      unipolar_step.err
+    Ext Symbols: unipolar_step.esym
+    INHX8:       unipolar_step.hex
+    Symbols:     unipolar_step.sym
+    List:        unipolar_step.lst
+    Debug/COFF:  unipolar_step.cof
+    Project:     unipolar_step.PJT
+    Call Tree:   unipolar_step.tre
+    Statistics:  unipolar_step.sta

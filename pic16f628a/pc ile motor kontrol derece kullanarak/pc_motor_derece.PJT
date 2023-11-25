@@ -1,0 +1,41 @@
+[PROJECT]
+Target=pc_motor_derece.HEX
+Development_Mode=2
+Processor=0x877A
+Processor_Text=PIC16F877A
+ToolSuite=CCS
+
+[Directories]
+Include=
+Library=
+LinkerScript=
+
+[Target Data]
+FileList=D:\ram\projeler\parellel robot - lisans bitirme tezi\elektronik\test\pc ile motor kontrol derece kullanarak\pc_motor_derece.c
+BuildTool=C-COMPILER
+OptionString=+FM
+AdditionalOptionString=
+BuildRequired=1
+
+[pc_motor_derece.c]
+Type=4
+Path=
+FileList=
+BuildTool=
+OptionString=
+AdditionalOptionString=
+
+[mru-list]
+1=PC_MOT~1.C
+
+[Windows]
+0=0000 PC_MOT~1.C 0 0 796 451 3 0
+
+[Opened Files]
+1=pc_motor_derece.c
+2=16f628a_verici.c
+3=
+4=
+[Units]
+Count=1
+1=pc_motor_derece (main)

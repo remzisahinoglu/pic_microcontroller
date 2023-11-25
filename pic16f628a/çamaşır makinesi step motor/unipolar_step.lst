@@ -1,0 +1,629 @@
+CCS PCM C Compiler, Version 4.106, 14749               02-Mar-11 23:53
+
+               Filename: C:\Documents and Settings\raj x\Desktop\step\unipolar_step.lst
+
+               ROM used: 519 words (25%)
+                         Largest free fragment is 1529
+               RAM used: 9 (4%) at main() level
+                         10 (4%) worst case
+               Stack:    1 locations
+
+*
+0000:  MOVLW  00
+0001:  MOVWF  0A
+0002:  GOTO   019
+0003:  NOP
+.................... //unipolar step motor çamaþýr makinesi tam adým kontrol uygulamasý 
+.................... //02.02.2011 
+.................... //yazan = Remzi ÞAHÝNOÐLU 
+....................  
+.................... #if defined (__PCM__) 
+.................... #include <16F628A.h> 
+.................... //////// Standard Header file for the PIC16F628A device //////////////// 
+.................... #device PIC16F628A 
+.................... #list 
+....................  
+.................... #use delay(clock=4000000) 
+*
+0004:  MOVLW  24
+0005:  MOVWF  04
+0006:  BCF    03.7
+0007:  MOVF   00,W
+0008:  BTFSC  03.2
+0009:  GOTO   018
+000A:  MOVLW  01
+000B:  MOVWF  78
+000C:  CLRF   77
+000D:  DECFSZ 77,F
+000E:  GOTO   00D
+000F:  DECFSZ 78,F
+0010:  GOTO   00C
+0011:  MOVLW  4A
+0012:  MOVWF  77
+0013:  DECFSZ 77,F
+0014:  GOTO   013
+0015:  GOTO   016
+0016:  DECFSZ 00,F
+0017:  GOTO   00A
+0018:  RETURN
+.................... #fuses NOWDT,PUT,NOLVP,NOBROWNOUT,NOMCLR,INTRC_IO,NOPROTECT 
+.................... #endif 
+....................  
+.................... #byte PORTA = 0x05 
+.................... char i=0; 
+.................... int16 a=0; 
+....................  
+....................  
+.................... void main() 
+.................... {   
+0019:  CLRF   04
+001A:  BCF    03.7
+001B:  MOVLW  1F
+001C:  ANDWF  03,F
+001D:  CLRF   20
+001E:  CLRF   22
+001F:  CLRF   21
+0020:  MOVLW  07
+0021:  MOVWF  1F
+....................    delay_ms(2000); 
+0022:  MOVLW  08
+0023:  MOVWF  23
+0024:  MOVLW  FA
+0025:  MOVWF  24
+0026:  CALL   004
+0027:  DECFSZ 23,F
+0028:  GOTO   024
+....................    while(TRUE)  
+....................    { 
+....................       output_b(0b00010000); 
+0029:  BSF    03.5
+002A:  CLRF   06
+002B:  MOVLW  10
+002C:  BCF    03.5
+002D:  MOVWF  06
+....................        
+....................       dur: 
+....................       if(bit_test(PORTA,0)==0)   // Start 
+002E:  BTFSC  05.0
+002F:  GOTO   1D5
+....................       { 
+....................              
+....................          //************  2 tur ileri 20ms          
+....................          a=0; 
+0030:  CLRF   22
+0031:  CLRF   21
+....................          while(a<400) 
+....................          { 
+0032:  MOVF   22,W
+0033:  SUBLW  01
+0034:  BTFSS  03.0
+0035:  GOTO   072
+0036:  BTFSS  03.2
+0037:  GOTO   03C
+0038:  MOVF   21,W
+0039:  SUBLW  8F
+003A:  BTFSS  03.0
+003B:  GOTO   072
+....................             i=i+1;                  // adým sayacý 
+003C:  MOVLW  01
+003D:  ADDWF  20,F
+....................             if(i==5){i=1;} 
+003E:  MOVF   20,W
+003F:  SUBLW  05
+0040:  BTFSS  03.2
+0041:  GOTO   044
+0042:  MOVLW  01
+0043:  MOVWF  20
+....................             switch (i)                  
+....................             {                           
+0044:  MOVLW  01
+0045:  SUBWF  20,W
+0046:  ADDLW  FC
+0047:  BTFSC  03.0
+0048:  GOTO   063
+0049:  ADDLW  04
+004A:  GOTO   1D7
+....................                case 1: output_b(1);   break;   // aþama 1 
+004B:  BSF    03.5
+004C:  CLRF   06
+004D:  MOVLW  01
+004E:  BCF    03.5
+004F:  MOVWF  06
+0050:  GOTO   063
+....................                case 2: output_b(2);   break;   // aþama 2 
+0051:  BSF    03.5
+0052:  CLRF   06
+0053:  MOVLW  02
+0054:  BCF    03.5
+0055:  MOVWF  06
+0056:  GOTO   063
+....................                case 3: output_b(4);   break;   // aþama 3 
+0057:  BSF    03.5
+0058:  CLRF   06
+0059:  MOVLW  04
+005A:  BCF    03.5
+005B:  MOVWF  06
+005C:  GOTO   063
+....................                case 4: output_b(8);   break;   // aþama 4 
+005D:  BSF    03.5
+005E:  CLRF   06
+005F:  MOVLW  08
+0060:  BCF    03.5
+0061:  MOVWF  06
+0062:  GOTO   063
+....................             } 
+....................             delay_ms(30); 
+0063:  MOVLW  1E
+0064:  MOVWF  24
+0065:  CALL   004
+....................             a=a+1; 
+0066:  MOVLW  01
+0067:  ADDWF  21,F
+0068:  BTFSC  03.0
+0069:  INCF   22,F
+....................             if(bit_test(PORTA,1)==0){goto dur; output_b(0);} 
+006A:  BTFSC  05.1
+006B:  GOTO   071
+006C:  GOTO   02E
+006D:  BSF    03.5
+006E:  CLRF   06
+006F:  BCF    03.5
+0070:  CLRF   06
+....................          } 
+0071:  GOTO   032
+....................          delay_ms(1000); 
+0072:  MOVLW  04
+0073:  MOVWF  23
+0074:  MOVLW  FA
+0075:  MOVWF  24
+0076:  CALL   004
+0077:  DECFSZ 23,F
+0078:  GOTO   074
+....................          //************  2 tur geri 20ms 
+....................          a=0; 
+0079:  CLRF   22
+007A:  CLRF   21
+....................          while(a<400) 
+....................          { 
+007B:  MOVF   22,W
+007C:  SUBLW  01
+007D:  BTFSS  03.0
+007E:  GOTO   0BA
+007F:  BTFSS  03.2
+0080:  GOTO   085
+0081:  MOVF   21,W
+0082:  SUBLW  8F
+0083:  BTFSS  03.0
+0084:  GOTO   0BA
+....................             i=i-1;                  // adým sayacý 
+0085:  MOVLW  01
+0086:  SUBWF  20,F
+....................             if(i==0){i=4;} 
+0087:  MOVF   20,F
+0088:  BTFSS  03.2
+0089:  GOTO   08C
+008A:  MOVLW  04
+008B:  MOVWF  20
+....................             switch (i)                  
+....................             {                           
+008C:  MOVLW  01
+008D:  SUBWF  20,W
+008E:  ADDLW  FC
+008F:  BTFSC  03.0
+0090:  GOTO   0AB
+0091:  ADDLW  04
+0092:  GOTO   1DF
+....................                case 1: output_b(1);   break;   // aþama 1 
+0093:  BSF    03.5
+0094:  CLRF   06
+0095:  MOVLW  01
+0096:  BCF    03.5
+0097:  MOVWF  06
+0098:  GOTO   0AB
+....................                case 2: output_b(2);   break;   // aþama 2 
+0099:  BSF    03.5
+009A:  CLRF   06
+009B:  MOVLW  02
+009C:  BCF    03.5
+009D:  MOVWF  06
+009E:  GOTO   0AB
+....................                case 3: output_b(4);   break;   // aþama 3 
+009F:  BSF    03.5
+00A0:  CLRF   06
+00A1:  MOVLW  04
+00A2:  BCF    03.5
+00A3:  MOVWF  06
+00A4:  GOTO   0AB
+....................                case 4: output_b(8);   break;   // aþama 4 
+00A5:  BSF    03.5
+00A6:  CLRF   06
+00A7:  MOVLW  08
+00A8:  BCF    03.5
+00A9:  MOVWF  06
+00AA:  GOTO   0AB
+....................             } 
+....................             delay_ms(30); 
+00AB:  MOVLW  1E
+00AC:  MOVWF  24
+00AD:  CALL   004
+....................             a=a+1; 
+00AE:  MOVLW  01
+00AF:  ADDWF  21,F
+00B0:  BTFSC  03.0
+00B1:  INCF   22,F
+....................             if(bit_test(PORTA,1)==0){goto dur; output_b(0);} 
+00B2:  BTFSC  05.1
+00B3:  GOTO   0B9
+00B4:  GOTO   02E
+00B5:  BSF    03.5
+00B6:  CLRF   06
+00B7:  BCF    03.5
+00B8:  CLRF   06
+....................          } 
+00B9:  GOTO   07B
+....................          delay_ms(1000); 
+00BA:  MOVLW  04
+00BB:  MOVWF  23
+00BC:  MOVLW  FA
+00BD:  MOVWF  24
+00BE:  CALL   004
+00BF:  DECFSZ 23,F
+00C0:  GOTO   0BC
+....................           
+....................                    
+....................          //************  2 tur ileri 10ms sýkma 
+....................          a=0; 
+00C1:  CLRF   22
+00C2:  CLRF   21
+....................          while(a<800) 
+....................          { 
+00C3:  MOVF   22,W
+00C4:  SUBLW  03
+00C5:  BTFSS  03.0
+00C6:  GOTO   103
+00C7:  BTFSS  03.2
+00C8:  GOTO   0CD
+00C9:  MOVF   21,W
+00CA:  SUBLW  1F
+00CB:  BTFSS  03.0
+00CC:  GOTO   103
+....................             i=i+1;                  // adým sayacý 
+00CD:  MOVLW  01
+00CE:  ADDWF  20,F
+....................             if(i==5){i=1;} 
+00CF:  MOVF   20,W
+00D0:  SUBLW  05
+00D1:  BTFSS  03.2
+00D2:  GOTO   0D5
+00D3:  MOVLW  01
+00D4:  MOVWF  20
+....................             switch (i)                  
+....................             {                           
+00D5:  MOVLW  01
+00D6:  SUBWF  20,W
+00D7:  ADDLW  FC
+00D8:  BTFSC  03.0
+00D9:  GOTO   0F4
+00DA:  ADDLW  04
+00DB:  GOTO   1E7
+....................                case 1: output_b(1);   break;   // aþama 1 
+00DC:  BSF    03.5
+00DD:  CLRF   06
+00DE:  MOVLW  01
+00DF:  BCF    03.5
+00E0:  MOVWF  06
+00E1:  GOTO   0F4
+....................                case 2: output_b(2);   break;   // aþama 2 
+00E2:  BSF    03.5
+00E3:  CLRF   06
+00E4:  MOVLW  02
+00E5:  BCF    03.5
+00E6:  MOVWF  06
+00E7:  GOTO   0F4
+....................                case 3: output_b(4);   break;   // aþama 3 
+00E8:  BSF    03.5
+00E9:  CLRF   06
+00EA:  MOVLW  04
+00EB:  BCF    03.5
+00EC:  MOVWF  06
+00ED:  GOTO   0F4
+....................                case 4: output_b(8);   break;   // aþama 4 
+00EE:  BSF    03.5
+00EF:  CLRF   06
+00F0:  MOVLW  08
+00F1:  BCF    03.5
+00F2:  MOVWF  06
+00F3:  GOTO   0F4
+....................             } 
+....................             delay_ms(20); 
+00F4:  MOVLW  14
+00F5:  MOVWF  24
+00F6:  CALL   004
+....................             a=a+1; 
+00F7:  MOVLW  01
+00F8:  ADDWF  21,F
+00F9:  BTFSC  03.0
+00FA:  INCF   22,F
+....................             if(bit_test(PORTA,1)==0){goto dur; output_b(0);} 
+00FB:  BTFSC  05.1
+00FC:  GOTO   102
+00FD:  GOTO   02E
+00FE:  BSF    03.5
+00FF:  CLRF   06
+0100:  BCF    03.5
+0101:  CLRF   06
+....................          } 
+0102:  GOTO   0C3
+....................           
+....................          //************  2 tur geri 20ms 
+....................          a=0; 
+0103:  CLRF   22
+0104:  CLRF   21
+....................          delay_ms(1000); 
+0105:  MOVLW  04
+0106:  MOVWF  23
+0107:  MOVLW  FA
+0108:  MOVWF  24
+0109:  CALL   004
+010A:  DECFSZ 23,F
+010B:  GOTO   107
+....................          while(a<800) 
+....................          { 
+010C:  MOVF   22,W
+010D:  SUBLW  03
+010E:  BTFSS  03.0
+010F:  GOTO   14B
+0110:  BTFSS  03.2
+0111:  GOTO   116
+0112:  MOVF   21,W
+0113:  SUBLW  1F
+0114:  BTFSS  03.0
+0115:  GOTO   14B
+....................             i=i-1;                  // adým sayacý 
+0116:  MOVLW  01
+0117:  SUBWF  20,F
+....................             if(i==0){i=4;} 
+0118:  MOVF   20,F
+0119:  BTFSS  03.2
+011A:  GOTO   11D
+011B:  MOVLW  04
+011C:  MOVWF  20
+....................             switch (i)                  
+....................             {                           
+011D:  MOVLW  01
+011E:  SUBWF  20,W
+011F:  ADDLW  FC
+0120:  BTFSC  03.0
+0121:  GOTO   13C
+0122:  ADDLW  04
+0123:  GOTO   1EF
+....................                case 1: output_b(1);   break;   // aþama 1 
+0124:  BSF    03.5
+0125:  CLRF   06
+0126:  MOVLW  01
+0127:  BCF    03.5
+0128:  MOVWF  06
+0129:  GOTO   13C
+....................                case 2: output_b(2);   break;   // aþama 2 
+012A:  BSF    03.5
+012B:  CLRF   06
+012C:  MOVLW  02
+012D:  BCF    03.5
+012E:  MOVWF  06
+012F:  GOTO   13C
+....................                case 3: output_b(4);   break;   // aþama 3 
+0130:  BSF    03.5
+0131:  CLRF   06
+0132:  MOVLW  04
+0133:  BCF    03.5
+0134:  MOVWF  06
+0135:  GOTO   13C
+....................                case 4: output_b(8);   break;   // aþama 4 
+0136:  BSF    03.5
+0137:  CLRF   06
+0138:  MOVLW  08
+0139:  BCF    03.5
+013A:  MOVWF  06
+013B:  GOTO   13C
+....................             } 
+....................             delay_ms(20); 
+013C:  MOVLW  14
+013D:  MOVWF  24
+013E:  CALL   004
+....................             a=a+1; 
+013F:  MOVLW  01
+0140:  ADDWF  21,F
+0141:  BTFSC  03.0
+0142:  INCF   22,F
+....................             if(bit_test(PORTA,1)==0){goto dur; output_b(0);} 
+0143:  BTFSC  05.1
+0144:  GOTO   14A
+0145:  GOTO   02E
+0146:  BSF    03.5
+0147:  CLRF   06
+0148:  BCF    03.5
+0149:  CLRF   06
+....................          } 
+014A:  GOTO   10C
+....................          //************  2 tur ileri 10ms sýkma 
+....................          a=0; 
+014B:  CLRF   22
+014C:  CLRF   21
+....................          while(a<800) 
+....................          { 
+014D:  MOVF   22,W
+014E:  SUBLW  03
+014F:  BTFSS  03.0
+0150:  GOTO   18D
+0151:  BTFSS  03.2
+0152:  GOTO   157
+0153:  MOVF   21,W
+0154:  SUBLW  1F
+0155:  BTFSS  03.0
+0156:  GOTO   18D
+....................             i=i+1;                  // adým sayacý 
+0157:  MOVLW  01
+0158:  ADDWF  20,F
+....................             if(i==5){i=1;} 
+0159:  MOVF   20,W
+015A:  SUBLW  05
+015B:  BTFSS  03.2
+015C:  GOTO   15F
+015D:  MOVLW  01
+015E:  MOVWF  20
+....................             switch (i)                  
+....................             {                           
+015F:  MOVLW  01
+0160:  SUBWF  20,W
+0161:  ADDLW  FC
+0162:  BTFSC  03.0
+0163:  GOTO   17E
+0164:  ADDLW  04
+0165:  GOTO   1F7
+....................                case 1: output_b(1);   break;   // aþama 1 
+0166:  BSF    03.5
+0167:  CLRF   06
+0168:  MOVLW  01
+0169:  BCF    03.5
+016A:  MOVWF  06
+016B:  GOTO   17E
+....................                case 2: output_b(2);   break;   // aþama 2 
+016C:  BSF    03.5
+016D:  CLRF   06
+016E:  MOVLW  02
+016F:  BCF    03.5
+0170:  MOVWF  06
+0171:  GOTO   17E
+....................                case 3: output_b(4);   break;   // aþama 3 
+0172:  BSF    03.5
+0173:  CLRF   06
+0174:  MOVLW  04
+0175:  BCF    03.5
+0176:  MOVWF  06
+0177:  GOTO   17E
+....................                case 4: output_b(8);   break;   // aþama 4 
+0178:  BSF    03.5
+0179:  CLRF   06
+017A:  MOVLW  08
+017B:  BCF    03.5
+017C:  MOVWF  06
+017D:  GOTO   17E
+....................             } 
+....................             delay_ms(10); 
+017E:  MOVLW  0A
+017F:  MOVWF  24
+0180:  CALL   004
+....................             a=a+1; 
+0181:  MOVLW  01
+0182:  ADDWF  21,F
+0183:  BTFSC  03.0
+0184:  INCF   22,F
+....................             if(bit_test(PORTA,1)==0){goto dur; output_b(0);} 
+0185:  BTFSC  05.1
+0186:  GOTO   18C
+0187:  GOTO   02E
+0188:  BSF    03.5
+0189:  CLRF   06
+018A:  BCF    03.5
+018B:  CLRF   06
+....................          } 
+018C:  GOTO   14D
+....................           
+....................          //************  2 tur geri 10ms 
+....................          a=0; 
+018D:  CLRF   22
+018E:  CLRF   21
+....................          delay_ms(1000); 
+018F:  MOVLW  04
+0190:  MOVWF  23
+0191:  MOVLW  FA
+0192:  MOVWF  24
+0193:  CALL   004
+0194:  DECFSZ 23,F
+0195:  GOTO   191
+....................          while(a<800) 
+....................          { 
+0196:  MOVF   22,W
+0197:  SUBLW  03
+0198:  BTFSS  03.0
+0199:  GOTO   1D5
+019A:  BTFSS  03.2
+019B:  GOTO   1A0
+019C:  MOVF   21,W
+019D:  SUBLW  1F
+019E:  BTFSS  03.0
+019F:  GOTO   1D5
+....................             i=i-1;                  // adým sayacý 
+01A0:  MOVLW  01
+01A1:  SUBWF  20,F
+....................             if(i==0){i=4;} 
+01A2:  MOVF   20,F
+01A3:  BTFSS  03.2
+01A4:  GOTO   1A7
+01A5:  MOVLW  04
+01A6:  MOVWF  20
+....................             switch (i)                  
+....................             {                           
+01A7:  MOVLW  01
+01A8:  SUBWF  20,W
+01A9:  ADDLW  FC
+01AA:  BTFSC  03.0
+01AB:  GOTO   1C6
+01AC:  ADDLW  04
+01AD:  GOTO   1FF
+....................                case 1: output_b(1);   break;   // aþama 1 
+01AE:  BSF    03.5
+01AF:  CLRF   06
+01B0:  MOVLW  01
+01B1:  BCF    03.5
+01B2:  MOVWF  06
+01B3:  GOTO   1C6
+....................                case 2: output_b(2);   break;   // aþama 2 
+01B4:  BSF    03.5
+01B5:  CLRF   06
+01B6:  MOVLW  02
+01B7:  BCF    03.5
+01B8:  MOVWF  06
+01B9:  GOTO   1C6
+....................                case 3: output_b(4);   break;   // aþama 3 
+01BA:  BSF    03.5
+01BB:  CLRF   06
+01BC:  MOVLW  04
+01BD:  BCF    03.5
+01BE:  MOVWF  06
+01BF:  GOTO   1C6
+....................                case 4: output_b(8);   break;   // aþama 4 
+01C0:  BSF    03.5
+01C1:  CLRF   06
+01C2:  MOVLW  08
+01C3:  BCF    03.5
+01C4:  MOVWF  06
+01C5:  GOTO   1C6
+....................             } 
+....................             delay_ms(10); 
+01C6:  MOVLW  0A
+01C7:  MOVWF  24
+01C8:  CALL   004
+....................             a=a+1; 
+01C9:  MOVLW  01
+01CA:  ADDWF  21,F
+01CB:  BTFSC  03.0
+01CC:  INCF   22,F
+....................             if(bit_test(PORTA,1)==0){goto dur; output_b(0);} 
+01CD:  BTFSC  05.1
+01CE:  GOTO   1D4
+01CF:  GOTO   02E
+01D0:  BSF    03.5
+01D1:  CLRF   06
+01D2:  BCF    03.5
+01D3:  CLRF   06
+....................          } 
+01D4:  GOTO   196
+....................       } 
+....................    } 
+01D5:  GOTO   029
+.................... } 
+01D6:  SLEEP
+
+Configuration Fuses:
+   Word  1: 3F10   NOWDT PUT NOPROTECT NOBROWNOUT NOMCLR NOLVP INTRC_IO NOCPD

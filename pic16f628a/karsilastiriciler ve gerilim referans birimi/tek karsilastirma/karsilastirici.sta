@@ -1,0 +1,51 @@
+
+ROM used: 114 (6%)
+          114 (6%) including unused fragments
+
+          0 Average locations per line
+          14 Average locations per statement
+
+RAM used: 15 (7%) at main() level
+          16 (7%) worst case
+
+Stack used: 2 worst case (out of 7 total available)
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+   30     8 100  karsilastirici.c
+  205     0   0  C:\Program Files\PICC\devices\16F628A.h
+----- -----
+  235     8 Total
+
+Page ROM  %  RAM   Vol Diff  Functions:
+---- --- --- ---   --- ----  ----------
+0     21  18   1             @delay_ms1
+0      7   6   0    17  0.8  comp_isr
+0     33  29   0   106  1.7  MAIN
+
+Program metrics:
+    Functions               2
+    Statements              8
+    Comments                72
+    Volume (V)              149
+    Difficilty (D)          2.5
+    Effort to implement (E) 376
+    Time to implement (T)   0 minutes
+    Est Delivered Bugs (B)  0
+    Cyclomatic Complexity   1
+    Maintainability (MI)    132
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00003     4  0  
+00004-00034    49  0  
+00035-007FF    61  1934  
+
+
+
+THE FOLLOWING IS TEMPORARY FOR DIAGNOSTIC USE ONLY:
+
+    n1    n2    N1    N2   v(G)
+     0     1     0     0     0    @delay_ms1
+     3     4     4     2     0    comp_isr
+     4    13    15    11     0    MAIN

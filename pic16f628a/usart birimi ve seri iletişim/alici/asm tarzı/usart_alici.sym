@@ -1,0 +1,51 @@
+004-005 @READ_PROGRAM_MEMORY.P1
+005     PORTA
+00C     PIR1
+015-016 CCP_1
+015     CCP_1_LOW
+016     CCP_1_HIGH
+018     RCSTA
+019     TXREG
+01A     RCREG
+01F.6   C1OUT
+01F.7   C2OUT
+021     main.veri
+022     main.@SCRATCH
+077     @SCRATCH
+078     @SCRATCH
+078     _RETURN_
+079     @SCRATCH
+07A     @SCRATCH
+07B     @SCRATCH
+098     TXSTA
+099     SPRG
+10D     @READ_PROGRAM_MEMORY.P1
+10F     @READ_PROGRAM_MEMORY.P1
+
+0004  main
+0004  @cinit
+0017  tekrar
+
+Project Files:
+    usart_alici.c
+    C:\Program Files\PICC\devices\16F628A.h
+
+Units:
+    F:\ramsi\private\picmicro\PIC C\pic uygulama\pic16f628a\usart birimi ve seri iletiþim\alici\asm tarzý\usart_alici.c (main)
+
+Compiler Settings:
+    Processor:      PIC16F628A
+    Pointer Size:   16
+    Opt Level:      0
+    Short,Int,Long: 1,8,16
+
+Output Files:
+    Errors:      F:\ramsi\private\picmicro\PIC C\pic uygulama\pic16f628a\usart birimi ve seri iletiþim\alici\asm tarzý\usart_alici.err
+    Ext Symbols: F:\ramsi\private\picmicro\PIC C\pic uygulama\pic16f628a\usart birimi ve seri iletiþim\alici\asm tarzý\usart_alici.esym
+    INHX8:       F:\ramsi\private\picmicro\PIC C\pic uygulama\pic16f628a\usart birimi ve seri iletiþim\alici\asm tarzý\usart_alici.hex
+    Symbols:     F:\ramsi\private\picmicro\PIC C\pic uygulama\pic16f628a\usart birimi ve seri iletiþim\alici\asm tarzý\usart_alici.sym
+    List:        F:\ramsi\private\picmicro\PIC C\pic uygulama\pic16f628a\usart birimi ve seri iletiþim\alici\asm tarzý\usart_alici.lst
+    Debug/COFF:  F:\ramsi\private\picmicro\PIC C\pic uygulama\pic16f628a\usart birimi ve seri iletiþim\alici\asm tarzý\usart_alici.cof
+    Project:     F:\ramsi\private\picmicro\PIC C\pic uygulama\pic16f628a\usart birimi ve seri iletiþim\alici\asm tarzý\usart_alici.PJT
+    Call Tree:   usart_alici.tre
+    Statistics:  usart_alici.sta

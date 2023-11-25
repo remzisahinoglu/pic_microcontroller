@@ -1,0 +1,160 @@
+000     @SCRATCH
+001     @SCRATCH
+001     _RETURN_
+002     @SCRATCH
+003     @SCRATCH
+004     lcdline
+005-008 x
+009-00C sin.x
+009-00C @PRINTF_L32D_230FPFPF.P1
+00D     @PRINTF_L32D_230FPFPF.P1
+00D     sin.@SCRATCH1
+00E     sin.@SCRATCH2
+00E     @PRINTF_L32D_230FPFPF.@SCRATCH1
+00F     sin.@SCRATCH3
+00F     @PRINTF_L32D_230FPFPF.@SCRATCH2
+010     sin.@SCRATCH4
+010     @PRINTF_L32D_230FPFPF.@SCRATCH3
+011-014 cos.x
+011     @PRINTF_L32D_230FPFPF.@SCRATCH4
+012     @PRINTF_L32D_230FPFPF.@SCRATCH5
+013     @PRINTF_L32D_230FPFPF.@SCRATCH6
+014     @PRINTF_L32D_230FPFPF.@SCRATCH7
+015-018 cos.y
+015     @PRINTF_L32D_230FPFPF.@SCRATCH8
+016     lcd_putc.c
+016-019 @DIV3232.P1
+016-019 @FTOSD.P2
+017     lcd_gotoxy.x
+017     @delay_ms1.P1
+018     lcd_gotoxy.y
+019     lcd_gotoxy.address
+019-01C cos.t
+01A     lcd_send_byte.address
+01A-01D @DIV3232.P1
+01A     @FTOSD.@SCRATCH1
+01B     lcd_send_byte.n
+01C     lcd_read_byte.low
+01C     lcd_send_byte.@SCRATCH1
+01D-020 cos.t2
+01D     lcd_send_nibble.n
+01D     lcd_read_byte.high
+01E     lcd_read_byte.@SCRATCH1
+01E     @DIV3232.@SCRATCH1
+01F     @DIV3232.@SCRATCH2
+020     @DIV3232.@SCRATCH3
+021     cos.quad
+021     @DIV3232.@SCRATCH4
+022     cos.i
+022     @DIV3232.@SCRATCH5
+023-026 cos.frac
+027-03E cos.p
+03F-042 @DIVFF.P1
+03F-042 @FLT.P2
+03F-042 @SFTOI.P3
+03F     cos.@SCRATCH1
+040     cos.@SCRATCH2
+041     cos.@SCRATCH3
+042     cos.@SCRATCH4
+043-046 @FLT.P1
+043-046 @ADDFF.P2
+043-044 @ITOF.P3
+043-046 @MULFF.P4
+043-046 @DIVFF.P5
+047-04A @MULFF.P1
+047-04A @ADDFF.P2
+047     @FLT.@SCRATCH1
+047     @DIVFF.@SCRATCH1
+048     @FLT.@SCRATCH2
+048     @DIVFF.@SCRATCH2
+049     @DIVFF.@SCRATCH3
+04A     @DIVFF.@SCRATCH4
+04B     @DIVFF.@SCRATCH5
+04B     @ADDFF.@SCRATCH1
+04B     @MULFF.@SCRATCH1
+04C     @DIVFF.@SCRATCH6
+04C     @ADDFF.@SCRATCH2
+04C     @MULFF.@SCRATCH2
+04D     @ADDFF.@SCRATCH3
+04D     @MULFF.@SCRATCH3
+04E     @ADDFF.@SCRATCH4
+04F     @ADDFF.@SCRATCH5
+050     @ADDFF.@SCRATCH6
+051     @ADDFF.@SCRATCH7
+052     @ADDFF.@SCRATCH8
+F7A.6   C2OUT
+F7B.6   C1OUT
+F81     lcd
+F83     PSP_DATA
+FBB     CCP_2
+FBB     CCP_2_LOW
+FBC     CCP_2_HIGH
+FBE     CCP_1_LOW
+FBE     CCP_1
+FBF     CCP_1_HIGH
+FE1-FE2 @WRITE_PACKED_MEMORY.P1
+FE1-FE2 @READ_PACKED_MEMORY.P2
+FE9-FEA @WRITE_PROGRAM_MEMORY.P1
+FE9-FEA @READ_PACKED_MEMORY.P2
+FE9-FEA @WRITE_PACKED_MEMORY.P3
+FE9-FEA @READ_PROGRAM_MEMORY.P4
+FF6-FF8 @READ_PROGRAM_MEMORY.P1
+FF6-FF8 @WRITE_PROGRAM_MEMORY.P2
+
+ROM Allocation:
+026E  @FLT
+0440  @SFTOI
+047A  @ITOF
+02E6  @DIVFF
+0004  @ADDFF
+04B2  @MULFF
+05A4  cos
+0902  sin
+0A8E  @delay_ms1
+0A08  lcd_read_byte
+0A40  lcd_send_nibble
+0A58  lcd_send_byte
+0AB8  lcd_gotoxy
+0AF0  @goto10569
+0B12  lcd_putc
+0CDC  MAIN
+094E  @FTOSD
+098E  @DIV3232
+0B5C  @PRINTF_L32D_230FPFPF
+0CDC  @cinit
+
+
+User Memory space: 
+
+User Memory space: 
+
+Project Directory:
+    D:\ram\parellel robot\elektronik\kumandadan xyz kontrol\test\
+
+Project Files:
+    hassasiyeti_arttirma.c
+    C:\Program Files\PICC\devices\18F46K20.h
+    C:\Program Files\PICC\drivers\MATH.h
+    C:\Program Files\PICC\drivers\LCD416.c
+
+Units:
+    D:\ram\parellel robot\elektronik\kumandadan xyz kontrol\test\hassasiyeti_arttirma (main)
+
+Compiler Settings:
+    Processor:      PIC18F46K20
+    Pointer Size:   16
+    ADC Range:      0-255
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    Errors:      hassasiyeti_arttirma.err
+    Ext Symbols: hassasiyeti_arttirma.esym
+    INHX32:      hassasiyeti_arttirma.hex
+    Symbols:     hassasiyeti_arttirma.sym
+    List:        hassasiyeti_arttirma.lst
+    Debug/COFF:  hassasiyeti_arttirma.cof
+    Project:     hassasiyeti_arttirma.PJT
+    Call Tree:   hassasiyeti_arttirma.tre
+    Statistics:  hassasiyeti_arttirma.sta

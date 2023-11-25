@@ -1,0 +1,56 @@
+
+ROM used: 310 (15%)
+          310 (15%) including unused fragments
+
+          1 Average locations per line
+          4 Average locations per statement
+
+RAM used: 7 (3%) at main() level
+          8 (4%) worst case
+
+Stack used: 1 worst case (out of 8 total available)
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+   94    88 100  unipolar_step_baska.c
+  205     0   0  C:\Program Files\PICC\devices\16F628A.h
+----- -----
+  299    88 Total
+
+Page ROM  %  RAM   Vol Diff  Functions:
+---- --- --- ---   --- ----  ----------
+0     21   7   1             @delay_ms1
+0    245  79   1  2765  7.4  main
+0     12   4   0             @goto10051
+0     12   4   0             @goto10074
+0      8   3   0             @goto10097
+0      8   3   0             @goto10116
+
+Program metrics:
+    Functions               1
+    Statements              88
+    Comments                73
+    Volume (V)              2782
+    Difficilty (D)          7.1
+    Effort to implement (E) 19860
+    Time to implement (T)   18 minutes
+    Est Delivered Bugs (B)  0
+    Cyclomatic Complexity   34
+    Maintainability (MI)    80
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00003     4  0  
+00004-007FF   306  1738  
+
+
+
+THE FOLLOWING IS TEMPORARY FOR DIAGNOSTIC USE ONLY:
+
+    n1    n2    N1    N2   v(G)
+     0     1     0     0     0    @delay_ms1
+    15   140   242   138    34    main
+     0     1     0     0     0    @goto10051
+     0     1     0     0     0    @goto10074
+     0     1     0     0     0    @goto10097
+     0     1     0     0     0    @goto10116

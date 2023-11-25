@@ -1,0 +1,28 @@
+[PROJECT]
+Target=buton_ile_led.hex
+Development_Mode=
+Processor_Text=PIC16F628A
+ToolSuite=CCS
+Processor=0x628A
+[buton_ile_led]
+Type=4
+Path=
+FileList=
+BuildTool=
+OptionString=
+AdditionalOptionString=
+[mru-list]
+1=buton_ile_led
+[Windows]
+0=0000 %S 0 0 796 451 3 0
+[Opened Files]
+1=buton_ile_led.c
+2=
+3=D:\pic\KOMUTLAR\if komutu\elsli.c
+4=
+[Target Data]
+OptionString=-p +FM
+FileList=E:\ram\microcontrol\picmicro\pic c\pic uygulama\pic16f628a\buton_ile_led\buton_ile_led.c
+[Units]
+Count=1
+1=buton_ile_led (main)

@@ -1,0 +1,442 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.5.4	//
+!_TAG_REVISION_NAME	MCHPTags	//
+!_TAG_REVISION_VERSION	6.0.1	//
+ADAPTIV::0x02<<2	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	133;"	d	line:133
+ADDR	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\mem_alloc.h	79;"	m	line:79	struct:_BUFF_DESC_TAB::<anonymous>
+ADDRESS::5	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	47;"	d	line:47
+ADR_PENDIG::4	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	46;"	d	line:46
+ASYNCHRONOUS::0x01<<2	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	132;"	d	line:132
+ATTACHED::1	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	43;"	d	line:43
+BC8	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\mem_alloc.h	48;"	m	line:48	struct:_BUFF_DESC_STAT::<anonymous>
+BC9	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\mem_alloc.h	49;"	m	line:49	struct:_BUFF_DESC_STAT::<anonymous>
+BDnADRH	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\mem_alloc.h	73;"	m	line:73	struct:_BUFF_DESC_TAB::<anonymous>
+BDnADRL	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\mem_alloc.h	72;"	m	line:72	struct:_BUFF_DESC_TAB::<anonymous>
+BDnCNT	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\mem_alloc.h	71;"	m	line:71	struct:_BUFF_DESC_TAB::<anonymous>
+BDnSTAT	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\mem_alloc.h	70;"	m	line:70	struct:_BUFF_DESC_TAB::<anonymous>
+BOOT_INTERFACE_SUBCLASS::0x01	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	216;"	d	line:216
+BSTALL	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\mem_alloc.h	50;"	m	line:50	struct:_BUFF_DESC_STAT::<anonymous>
+BUFF_DESC_STAT	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\mem_alloc.h	63;"	t	line:63
+BUFF_DESC_TAB	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\mem_alloc.h	81;"	t	line:81
+BULK::0x02	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	128;"	d	line:128
+BUS_ATTACHED::1	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	35;"	d	line:35
+BUS_DETACHED::0	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	36;"	d	line:36
+BdsArea	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\mem_alloc.h	45;"	m	line:45	union:_BUFF_DESC_STAT
+Boolean	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	19;"	g	line:19
+CLASS::1	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	155;"	d	line:155
+CLEAR::0	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	25;"	d	line:25
+CLOSE_MOTOR::26	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\devProc.h	30;"	d	line:30
+CLR_FEATURE::1	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	179;"	d	line:179
+CMD_OPEN_CLOSE::0	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\devProc.h	31;"	d	line:31
+CONFIGURATION::2	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	113;"	d	line:113
+CONFIGURATION_DESCRIPTOR	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\DSC.h	54;"	t	line:54
+CONFIGURED::6	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	48;"	d	line:48
+CONFIG_1	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\DSC.h	107;"	t	line:107
+CONTROL::0x00	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	126;"	d	line:126
+CTRL_REC::1	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	142;"	d	line:142
+CTRL_SEND::2	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	143;"	d	line:143
+CheckHidRequest	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\pubfunc.h	23;"	p	line:23	signature:( void )
+CheckHidRequest	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbhid.c	118;"	f	line:118	signature:( void )
+CheckStandartRequest	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\pubfunc.h	26;"	p	line:26	signature:( void )
+CheckStandartRequest	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\stdRequest.c	41;"	f	line:41	signature:( void )
+CntrlDataPacket	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\mem_alloc.c	43;"	v	line:43
+ConfigDescriptor	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\DSC.h	102;"	m	line:102	struct:_CONFIG_1
+ConfigurationDescriptor	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\dsc.c	39;"	v	line:39
+ControlTransferComplateService	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\pubfunc.h	30;"	p	line:30	signature:( void )
+ControlTransferComplateService	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbcontrol.c	273;"	f	line:273	signature:( void )
+ControlTransferReadService	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\pubfunc.h	27;"	p	line:27	signature:( void )
+ControlTransferReadService	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbcontrol.c	231;"	f	line:231	signature:( void )
+ControlTransferWriteService	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\pubfunc.h	29;"	p	line:29	signature:( void )
+ControlTransferWriteService	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbcontrol.c	172;"	f	line:172	signature:( void )
+DATA_ENDPOINT::0x00<<4	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	136;"	d	line:136
+DATA_PACKET	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\ep0_alloc.h	125;"	u	line:125
+DATA_PACKET	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\ep0_alloc.h	142;"	t	line:142
+DEFAULT::3	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	45;"	d	line:45
+DETACHED::0	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	42;"	d	line:42
+DEVICE::1	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	112;"	d	line:112
+DEVICE_DESCRIPTOR	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\DSC.h	41;"	t	line:41
+DEVICE_REMOTE_WAKEUP::0x01	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	191;"	d	line:191
+DEVICE_STATUS	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\mem_alloc.h	34;"	t	line:34
+DEVICE_TO_HOST::1	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	152;"	d	line:152
+DEVPROC_H	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\devProc.h	15;"	d	line:15
+DSC_H	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\DSC.h	19;"	d	line:19
+DTS	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\mem_alloc.h	54;"	m	line:54	struct:_BUFF_DESC_STAT::<anonymous>
+DTSEN	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\mem_alloc.h	51;"	m	line:51	struct:_BUFF_DESC_STAT::<anonymous>
+Data0	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\ep0_alloc.h	133;"	m	line:133	struct:DATA_PACKET::<anonymous>
+Data1	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\ep0_alloc.h	134;"	m	line:134	struct:DATA_PACKET::<anonymous>
+Data2	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\ep0_alloc.h	135;"	m	line:135	struct:DATA_PACKET::<anonymous>
+Data3	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\ep0_alloc.h	136;"	m	line:136	struct:DATA_PACKET::<anonymous>
+Data4	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\ep0_alloc.h	137;"	m	line:137	struct:DATA_PACKET::<anonymous>
+Data5	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\ep0_alloc.h	138;"	m	line:138	struct:DATA_PACKET::<anonymous>
+Data6	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\ep0_alloc.h	139;"	m	line:139	struct:DATA_PACKET::<anonymous>
+Data7	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\ep0_alloc.h	140;"	m	line:140	struct:DATA_PACKET::<anonymous>
+DataPacket	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\ep0_alloc.h	129;"	m	line:129	struct:DATA_PACKET::<anonymous>
+DevStat	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\mem_alloc.h	28;"	m	line:28	union:_DEVICE_STATUS
+DeviceDescriptor	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\dsc.c	20;"	v	line:20
+Direction	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\ep0_alloc.h	46;"	m	line:46	struct:_SETUP_PACKET::<anonymous>
+ENDPOINT0_BUFFER_SIZE::0x08	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\ep0_alloc.h	25;"	d	line:25
+ENDPOINT::5	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	116;"	d	line:116
+ENDPOINT_DESCRIPTOR	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\DSC.h	79;"	t	line:79
+ENDPOINT_HALT::0x00	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	192;"	d	line:192
+EP0_ALLOC_H	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\ep0_alloc.h	21;"	d	line:21
+EP0_IN::(0x00<<3)|(IN<<2)	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	102;"	d	line:102
+EP0_OUT::(0x00<<3)|(OUT<<2)	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	101;"	d	line:101
+EP1_IN::(0x01<<3)|(IN<<2)	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	104;"	d	line:104
+EP1_OUT::(0x01<<3)|(OUT<<2)	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	103;"	d	line:103
+EP_CTRL::0x06	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	74;"	d	line:74
+EP_IN::0x0A	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	76;"	d	line:76
+EP_OUT::0x0C	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	75;"	d	line:75
+EP_OUT_IN::0x0E	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	77;"	d	line:77
+EndPoint0BdtIn	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\mem_alloc.c	37;"	v	line:37
+EndPoint0BdtOut	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\mem_alloc.c	36;"	v	line:36
+EndPoint1BdtIn	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\mem_alloc.c	39;"	v	line:39
+EndPoint1BdtOut	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\mem_alloc.c	38;"	v	line:38
+EndPointDescriptor	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\DSC.h	105;"	m	line:105	struct:_CONFIG_1
+EndPointDir	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\ep0_alloc.h	117;"	m	line:117	struct:_SETUP_PACKET::<anonymous>
+EndPointNum	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\ep0_alloc.h	115;"	m	line:115	struct:_SETUP_PACKET::<anonymous>
+EndPointService	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\pubfunc.h	22;"	p	line:22	signature:( void )
+EndPointService	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbcontrol.c	136;"	f	line:136	signature:( void )
+ErrorEventHandler	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbevents.c	221;"	f	line:221	signature:( void )
+ErrorEventHandler	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbevents.c	24;"	p	line:24	file:	signature:( void )
+FALSE	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	19;"	e	line:19	enum:Boolean
+FEATURE_REPORT::3	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	213;"	d	line:213
+FEEDBACK_ENDPOINT::0x01<<4	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	137;"	d	line:137
+FlushBuffer	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\pubfunc.h	31;"	p	line:31	signature:(unsigned char *buffer, unsigned char length)
+FlushBuffer	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbevents.c	324;"	f	line:324	signature:(unsigned char *buffer, unsigned char length)
+GET_CONFIGURATION::8	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	184;"	d	line:184
+GET_DESCRIPTOR::6	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	182;"	d	line:182
+GET_IDLE::0x02	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	196;"	d	line:196
+GET_INTERFACE::10	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	186;"	d	line:186
+GET_PROTOCOL::0x03	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	197;"	d	line:197
+GET_REPORT::0x01	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	195;"	d	line:195
+GET_STATUS::0	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	178;"	d	line:178
+GetDescriptorRequestHandler	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\stdRequest.c	101;"	f	line:101	signature:( void )
+GetDescriptorRequestHandler	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\stdRequest.c	24;"	p	line:24	file:	signature:( void )
+GetStatusRequestHandler	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\stdRequest.c	187;"	f	line:187	signature:( void )
+GetStatusRequestHandler	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\stdRequest.c	26;"	p	line:26	file:	signature:( void )
+HANDLE	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\mem_alloc.h	91;"	t	line:91
+HID_DESC::0x21	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	203;"	d	line:203
+HID_DESCRIPTOR	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\DSC.h	97;"	t	line:97
+HID_DESCRIPTOR_HEADER	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\DSC.h	87;"	t	line:87
+HID_DESC_NUM::1	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	174;"	d	line:174
+HID_INTERFACE_CODE::0x03	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	208;"	d	line:208
+HID_INTERFACE_ID::0	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	173;"	d	line:173
+HID_IN_ENDPT_SIZE::4	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\ep0_alloc.h	23;"	d	line:23
+HID_OUT_ENDPT_SIZE::4	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\ep0_alloc.h	24;"	d	line:24
+HID_REPORT_SIZE::37	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	175;"	d	line:175
+HOST_TO_DEVICE::0	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	151;"	d	line:151
+HSHK_EN::0x10	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	78;"	d	line:78
+HandleType	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\mem_alloc.h	32;"	m	line:32	struct:_DEVICE_STATUS::<anonymous>
+HidDescriptor	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\DSC.h	104;"	m	line:104	struct:_CONFIG_1
+HidDscHeader	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\DSC.h	96;"	m	line:96	struct:_HID_DESCRIPTOR
+HidEndPointDescriptor	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\DSC.h	106;"	m	line:106	struct:_CONFIG_1
+HidFeatureReport	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\mem_alloc.c	48;"	v	line:48
+HidGetReportHandler	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbhid.c	186;"	f	line:186	signature:( void )
+HidGetReportHandler	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbhid.c	28;"	p	line:28	file:	signature:( void )
+HidInitEndpoint	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\pubfunc.h	24;"	p	line:24	signature:( void )
+HidInitEndpoint	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbhid.c	41;"	f	line:41	signature:( void )
+HidReport	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\dsc.c	123;"	v	line:123
+HidReportIn	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\mem_alloc.c	47;"	v	line:47
+HidReportOut	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\mem_alloc.c	46;"	v	line:46
+HidSetReportHandler	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbhid.c	227;"	f	line:227	signature:( void )
+HidSetReportHandler	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbhid.c	29;"	p	line:29	file:	signature:( void )
+HidTransferReadService	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\pubfunc.h	33;"	p	line:33	signature:(char *buffer, unsigned char Length)
+HidTransferReadService	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbhid.c	90;"	f	line:90	signature:(char *buffer, unsigned char Length)
+HidTransferWriteService	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\pubfunc.h	32;"	p	line:32	signature:(char *buffer, unsigned char Length)
+HidTransferWriteService	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbhid.c	68;"	f	line:68	signature:(char *buffer, unsigned char Length)
+HighPriorityInterrupts	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\interrupt.c	32;"	f	line:32	signature:( void )
+HighPriorityInterrupts	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\interrupt.h	25;"	p	line:25	signature:( void )
+IMPLICIT_FEEDBACK_ENDPOINT::0x02<<4	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	138;"	d	line:138
+IN::1	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	97;"	d	line:97
+INCDIS	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\mem_alloc.h	52;"	m	line:52	struct:_BUFF_DESC_STAT::<anonymous>
+INPUT_REPORT::1	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	211;"	d	line:211
+INTERFACE::4	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	115;"	d	line:115
+INTERFACE_DESCRIPTOR	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\DSC.h	68;"	t	line:68
+INTERRUPT::0x03	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	129;"	d	line:129
+INTERRUPT_H	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\interrupt.h	16;"	d	line:16
+INTERRUPT_IN::1	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	222;"	d	line:222
+INTERRUPT_OUT::0	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	223;"	d	line:223
+IN_TOKEN::0b1001	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	148;"	d	line:148
+ISOCHRONOUS::0x01	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	127;"	d	line:127
+InitMCUSystem	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\main.c	19;"	p	line:19	file:	signature:( void )
+InitMCUSystem	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\main.c	31;"	f	line:31	signature:( void )
+InterfaceDescriptor	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\DSC.h	103;"	m	line:103	struct:_CONFIG_1
+KEN	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\mem_alloc.h	53;"	m	line:53	struct:_BUFF_DESC_STAT::<anonymous>
+LowPriorityInterrupts	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\interrupt.c	47;"	f	line:47	signature:( void )
+LowPriorityInterrupts	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\interrupt.h	24;"	p	line:24	signature:( void )
+MAX_INTERFACE_NUM::1	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	164;"	d	line:164
+MEM_ALLOC_H	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\mem_alloc.h	19;"	d	line:19
+MaxPower	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\DSC.h	53;"	m	line:53	struct:_CONFIGURATION_DESCRIPTOR
+NO_SYNC::0x00<<2	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	131;"	d	line:131
+OPEN_MOTOR::25	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\devProc.h	29;"	d	line:29
+OUT::0	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	98;"	d	line:98
+OUTPUT_REPORT::2	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	212;"	d	line:212
+OUT_TOKEN::0b0001	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	147;"	d	line:147
+PBUFF_DESC_STAT	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\mem_alloc.h	63;"	t	line:63
+PBUFF_DESC_TAB	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\mem_alloc.h	81;"	t	line:81
+PCONFIGURATION_DESCRIPTOR	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\DSC.h	54;"	t	line:54
+PCONFIG_1	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\DSC.h	107;"	t	line:107
+PDATA_PACKET	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\ep0_alloc.h	142;"	t	line:142
+PDEVICE_DESCRIPTOR	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\DSC.h	41;"	t	line:41
+PDEVICE_STATUS	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\mem_alloc.h	34;"	t	line:34
+PENDPOINT_DESCRIPTOR	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\DSC.h	79;"	t	line:79
+PHID_DESCRIPTOR	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\DSC.h	97;"	t	line:97
+PHYSCAL_DESC::0x23	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	205;"	d	line:205
+PID	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\mem_alloc.h	60;"	m	line:60	struct:_BUFF_DESC_STAT::<anonymous>
+PINTERFACE_DESCRIPTOR	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\DSC.h	68;"	t	line:68
+POWERED::2	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	44;"	d	line:44
+PRM_UCFG::_PUEN|_TRINT|_FS|_PPBM0	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	165;"	d	line:165
+PSETUP_PACKET	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\ep0_alloc.h	122;"	t	line:122
+PUCFUNC_H	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\pubfunc.h	17;"	d	line:17
+PWM_MODE::0x0C	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\devProc.h	28;"	d	line:28
+PWM_PIN::PORTCbits.RC2	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\devProc.h	26;"	d	line:26
+PWM_TRIS::TRISCbits.TRISC2	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\devProc.h	27;"	d	line:27
+Packet	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\ep0_alloc.h	32;"	m	line:32	struct:_SETUP_PACKET::<anonymous>
+PwmBuffer	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\devProc.c	19;"	v	line:19
+RAM_TYPE::1	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	220;"	d	line:220
+RCPT_DEVICE::0	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	158;"	d	line:158
+RCPT_ENDPOINT::2	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	160;"	d	line:160
+RCPT_INTERFACE::1	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	159;"	d	line:159
+RCPT_OTHER::3	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	161;"	d	line:161
+REPORT_DESC::0x22	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	204;"	d	line:204
+ROM_TYPE::0	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	219;"	d	line:219
+Recipient	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\ep0_alloc.h	44;"	m	line:44	struct:_SETUP_PACKET::<anonymous>
+RemoteWakeup	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\mem_alloc.h	31;"	m	line:31	struct:_DEVICE_STATUS::<anonymous>
+Report	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\DSC.h	114;"	m	line:114
+Report	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\dsc.c	123;"	m	line:123	file:
+RequestType	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\ep0_alloc.h	45;"	m	line:45	struct:_SETUP_PACKET::<anonymous>
+ResetEventHandler	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbevents.c	162;"	f	line:162	signature:( void )
+ResetEventHandler	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbevents.c	22;"	p	line:22	file:	signature:( void )
+ResolveHighInterruptSource	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\interrupt.c	62;"	f	line:62	signature:( void )
+ResolveHighInterruptSource	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\interrupt.h	27;"	p	line:27	signature:( void )
+ResolveLowInterruptSource	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\interrupt.c	76;"	f	line:76	signature:( void )
+ResolveLowInterruptSource	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\interrupt.h	26;"	p	line:26	signature:( void )
+SESSION_CNTRL::1	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	169;"	d	line:169
+SESSION_HID::2	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	170;"	d	line:170
+SESSION_NULL::0	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	168;"	d	line:168
+SET::1	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	24;"	d	line:24
+SETUP_PACKET	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\ep0_alloc.h	122;"	t	line:122
+SETUP_TOKEN::0b1101	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	146;"	d	line:146
+SET_ADDRESS::5	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	181;"	d	line:181
+SET_CONFIGURATION::9	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	185;"	d	line:185
+SET_DESCRIPTOR::7	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	183;"	d	line:183
+SET_FEATURE::3	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	180;"	d	line:180
+SET_IDLE::0x0A	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	199;"	d	line:199
+SET_INTERFACE::11	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	187;"	d	line:187
+SET_PROTOCOL::0x0B	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	200;"	d	line:200
+SET_REPORT::0x09	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	198;"	d	line:198
+STANDART::0	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	154;"	d	line:154
+STRING::3	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	114;"	d	line:114
+SYNCHRONOUS::0x03<<2	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	134;"	d	line:134
+SYNCH_FRAME::12	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	188;"	d	line:188
+SetConfigurationRequestHandler	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\stdRequest.c	155;"	f	line:155	signature:( void )
+SetConfigurationRequestHandler	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\stdRequest.c	25;"	p	line:25	file:	signature:( void )
+SetFeatureRequestHandler	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\stdRequest.c	234;"	f	line:234	signature:( void )
+SetFeatureRequestHandler	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\stdRequest.c	27;"	p	line:27	file:	signature:( void )
+SetupPacket	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\mem_alloc.c	42;"	v	line:42
+StallEventHandler	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbevents.c	201;"	f	line:201	signature:( void )
+StallEventHandler	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbevents.c	23;"	p	line:23	file:	signature:( void )
+StartOfFrameEventHandler	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbevents.c	277;"	f	line:277	signature:( void )
+StartOfFrameEventHandler	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbevents.c	28;"	p	line:28	file:	signature:( void )
+String	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\dsc.c	107;"	m	line:107	file:
+String	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\dsc.c	115;"	m	line:115	file:
+String	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\dsc.c	91;"	m	line:91	file:
+String	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\dsc.c	99;"	m	line:99	file:
+StringDescriptor_0	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\dsc.c	91;"	v	line:91
+StringDescriptor_1	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\dsc.c	99;"	v	line:99
+StringDescriptor_2	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\dsc.c	107;"	v	line:107
+StringDescriptor_3	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\dsc.c	115;"	v	line:115
+SuspendEventHandler	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbevents.c	259;"	f	line:259	signature:( void )
+SuspendEventHandler	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbevents.c	25;"	p	line:25	file:	signature:( void )
+TEST_LED::PORTCbits.RC1	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	32;"	d	line:32
+TEST_LED_TRIS::TRISCbits.TRISC1	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	33;"	d	line:33
+TRUE	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	19;"	e	line:19	enum:Boolean
+UOWN	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\mem_alloc.h	55;"	m	line:55	struct:_BUFF_DESC_STAT::<anonymous>
+USBCheckBus	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\pubfunc.h	21;"	p	line:21	signature:( void )
+USBCheckBus	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbevents.c	42;"	f	line:42	signature:( void )
+USBConfigDescPtr	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\dsc.c	150;"	v	line:150
+USBControlInHandler	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbcontrol.c	23;"	p	line:23	file:	signature:( void )
+USBControlInHandler	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbcontrol.c	45;"	f	line:45	signature:( void )
+USBControlOutHandler	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbcontrol.c	24;"	p	line:24	file:	signature:( void )
+USBControlOutHandler	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbcontrol.c	73;"	f	line:73	signature:( void )
+USBControlSetupHandler	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbcontrol.c	108;"	f	line:108	signature:( void )
+USBControlSetupHandler	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbcontrol.c	25;"	p	line:25	file:	signature:( void )
+USBInitNextSetupTrf	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\pubfunc.h	25;"	p	line:25	signature:( void )
+USBInitNextSetupTrf	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbcontrol.c	334;"	f	line:334	signature:( void )
+USBMCR_H	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbmcr.h	16;"	d	line:16
+USBModuleControl	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbevents.c	129;"	f	line:129	signature:(bool enable)
+USBModuleControl	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbevents.c	26;"	p	line:26	file:	signature:(bool enable)
+USBProcess	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\main.c	18;"	p	line:18	file:	signature:( void )
+USBProcess	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\main.c	51;"	f	line:51	signature:( void )
+USBService	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\pubfunc.h	20;"	p	line:20	signature:( void )
+USBService	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbevents.c	80;"	f	line:80	signature:( void )
+USBStringDescPtr	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\dsc.c	151;"	v	line:151
+USB_ATTACH_REMOVE_PIN::PORTCbits.RC0	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	28;"	d	line:28
+USB_ATTACH_REMOVE_TRIS::TRISCbits.TRISC0	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	29;"	d	line:29
+USB_DEFS_H	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	16;"	d	line:16
+UsbDeviceStatus	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\mem_alloc.c	30;"	v	line:30
+UserInit	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\devProc.c	34;"	f	line:34	signature:( void )
+UserInit	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\pubfunc.h	19;"	p	line:19	signature:( void )
+UserProc	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\devProc.c	52;"	f	line:52	signature:( unsigned char Direction )
+UserProc	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\pubfunc.h	28;"	p	line:28	signature:( unsigned char Direction )
+VENDOR::2	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	156;"	d	line:156
+WAIT::0	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	141;"	d	line:141
+WakeUpRemoteEventHandler	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbevents.c	27;"	p	line:27	file:	signature:( void )
+WakeUpRemoteEventHandler	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbevents.c	297;"	f	line:297	signature:( void )
+WakeUpSuspendEventHandler	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbevents.c	236;"	f	line:236	signature:( void )
+WakeUpSuspendEventHandler	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbevents.c	29;"	p	line:29	file:	signature:( void )
+_ACTVIE::0x04	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	83;"	d	line:83
+_BSTALL::0x04	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	51;"	d	line:51
+_BTOEE::0x10	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	94;"	d	line:94
+_BTSEE::0x80	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	95;"	d	line:95
+_BUFF_DESC_STAT	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\mem_alloc.h	43;"	u	line:43
+_BUFF_DESC_TAB	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\mem_alloc.h	66;"	u	line:66
+_CONFIGURATION_DESCRIPTOR	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\DSC.h	44;"	s	line:44
+_CONFIG_1	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\DSC.h	100;"	s	line:100
+_CRC16EE::0x03	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	92;"	d	line:92
+_CRC5EE::0x02	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	91;"	d	line:91
+_DAT0::0x00	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	55;"	d	line:55
+_DAT1::0x40	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	56;"	d	line:56
+_DEFAULT::0x01<<7	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	122;"	d	line:122
+_DEVICE_DESCRIPTOR	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\DSC.h	25;"	s	line:25
+_DEVICE_STATUS	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\mem_alloc.h	26;"	u	line:26
+_DFN8EE::0x04	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	93;"	d	line:93
+_DTSEN::0x08	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	52;"	d	line:52
+_DTSMASK::0x40	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	57;"	d	line:57
+_ENDPOINT_DESCRIPTOR	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\DSC.h	71;"	s	line:71
+_EP01_IN::0x81	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	107;"	d	line:107
+_EP01_OUT::0x01	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	106;"	d	line:106
+_EP02_IN::0x82	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	109;"	d	line:109
+_EP02_OUT::0x02	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	108;"	d	line:108
+_FS::0x04	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	66;"	d	line:66
+_HANDLE	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\mem_alloc.h	84;"	u	line:84
+_HID_DESCRIPTOR	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\DSC.h	89;"	s	line:89
+_HID_DESCRIPTOR_HEADER	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\DSC.h	83;"	s	line:83
+_IDLEIE::0x10	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	85;"	d	line:85
+_INCDIS::0x10	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	53;"	d	line:53
+_INTERFACE_DESCRIPTOR	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\DSC.h	57;"	s	line:57
+_KEN::0x20	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	54;"	d	line:54
+_LS::0x00	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	65;"	d	line:65
+_OEMON::0x40	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	70;"	d	line:70
+_PIDEE::0x01	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	90;"	d	line:90
+_PPBM0::0x00	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	62;"	d	line:62
+_PPBM1::0x01	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	63;"	d	line:63
+_PPBM2::0x02	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	64;"	d	line:64
+_PUEN::0x10	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	69;"	d	line:69
+_RWU::0x01<<5	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	124;"	d	line:124
+_SELF::0x01<<6	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	123;"	d	line:123
+_SETUP_PACKET	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\ep0_alloc.h	28;"	u	line:28
+_SOFIE::0x40	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	87;"	d	line:87
+_STALLIE::0x20	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	86;"	d	line:86
+_TREXT::0x08	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	68;"	d	line:68
+_TRINT::0x00	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	67;"	d	line:67
+_TRNIE::0x08	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	84;"	d	line:84
+_UCPU::0x00	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	59;"	d	line:59
+_UERRIE::0x02	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	82;"	d	line:82
+_URSTIE::0x01	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	81;"	d	line:81
+_USIE::0x80	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	58;"	d	line:58
+_UTEYE::0x80	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	71;"	d	line:71
+bActiveConfiguration	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\mem_alloc.c	23;"	v	line:23
+bActiveProtocol	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbhid.c	25;"	v	line:25
+bAlternateIdHigh	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\ep0_alloc.h	92;"	m	line:92	struct:_SETUP_PACKET::<anonymous>
+bAlternateIdLow	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\ep0_alloc.h	91;"	m	line:91	struct:_SETUP_PACKET::<anonymous>
+bAlternateInterface	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\mem_alloc.c	24;"	v	line:24
+bAlternateSetting	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\DSC.h	62;"	m	line:62	struct:_INTERFACE_DESCRIPTOR
+bConfigReserved	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\ep0_alloc.h	81;"	m	line:81	struct:_SETUP_PACKET::<anonymous>
+bConfigValue	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\ep0_alloc.h	80;"	m	line:80	struct:_SETUP_PACKET::<anonymous>
+bConfigurationValue	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\DSC.h	50;"	m	line:50	struct:_CONFIGURATION_DESCRIPTOR
+bCountryCode	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\DSC.h	94;"	m	line:94	struct:_HID_DESCRIPTOR
+bDataCount	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbhid.c	189;"	l	line:189
+bDescriptorIndex	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\ep0_alloc.h	59;"	m	line:59	struct:_SETUP_PACKET::<anonymous>
+bDescriptorType	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\DSC.h	28;"	m	line:28	struct:_DEVICE_DESCRIPTOR
+bDescriptorType	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\DSC.h	47;"	m	line:47	struct:_CONFIGURATION_DESCRIPTOR
+bDescriptorType	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\DSC.h	60;"	m	line:60	struct:_INTERFACE_DESCRIPTOR
+bDescriptorType	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\DSC.h	74;"	m	line:74	struct:_ENDPOINT_DESCRIPTOR
+bDescriptorType	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\DSC.h	85;"	m	line:85	struct:_HID_DESCRIPTOR_HEADER
+bDescriptorType	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\DSC.h	92;"	m	line:92	struct:_HID_DESCRIPTOR
+bDescriptorType	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\dsc.c	107;"	m	line:107	file:
+bDescriptorType	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\dsc.c	115;"	m	line:115	file:
+bDescriptorType	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\dsc.c	91;"	m	line:91	file:
+bDescriptorType	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\dsc.c	99;"	m	line:99	file:
+bDescriptorType	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\ep0_alloc.h	60;"	m	line:60	struct:_SETUP_PACKET::<anonymous>
+bDevAddrHigh	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\ep0_alloc.h	70;"	m	line:70	struct:_SETUP_PACKET::<anonymous>
+bDevAddrLow	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\ep0_alloc.h	69;"	m	line:69	struct:_SETUP_PACKET::<anonymous>
+bDeviceClass	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\DSC.h	30;"	m	line:30	struct:_DEVICE_DESCRIPTOR
+bDeviceProtocol	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\DSC.h	32;"	m	line:32	struct:_DEVICE_DESCRIPTOR
+bDeviceState	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\mem_alloc.c	22;"	v	line:22
+bDeviceSubClass	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\DSC.h	31;"	m	line:31	struct:_DEVICE_DESCRIPTOR
+bEndPointAddress	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\DSC.h	75;"	m	line:75	struct:_ENDPOINT_DESCRIPTOR
+bEndPointIdHigh	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\ep0_alloc.h	105;"	m	line:105	struct:_SETUP_PACKET::<anonymous>
+bEndPointIdLow	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\ep0_alloc.h	104;"	m	line:104	struct:_SETUP_PACKET::<anonymous>
+bFeature	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\ep0_alloc.h	48;"	m	line:48	struct:_SETUP_PACKET::<anonymous>
+bHandle	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\mem_alloc.h	86;"	m	line:86	union:_HANDLE
+bHidReportLength	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\mem_alloc.c	21;"	v	line:21
+bIdleRate	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbhid.c	24;"	v	line:24
+bInterfaceClass	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\DSC.h	64;"	m	line:64	struct:_INTERFACE_DESCRIPTOR
+bInterfaceIdHigh	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\ep0_alloc.h	94;"	m	line:94	struct:_SETUP_PACKET::<anonymous>
+bInterfaceIdLow	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\ep0_alloc.h	93;"	m	line:93	struct:_SETUP_PACKET::<anonymous>
+bInterfaceNumber	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\DSC.h	61;"	m	line:61	struct:_INTERFACE_DESCRIPTOR
+bInterfaceProtocol	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\DSC.h	66;"	m	line:66	struct:_INTERFACE_DESCRIPTOR
+bInterfaceSubClass	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\DSC.h	65;"	m	line:65	struct:_INTERFACE_DESCRIPTOR
+bInterval	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\DSC.h	78;"	m	line:78	struct:_ENDPOINT_DESCRIPTOR
+bLength	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\DSC.h	27;"	m	line:27	struct:_DEVICE_DESCRIPTOR
+bLength	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\DSC.h	46;"	m	line:46	struct:_CONFIGURATION_DESCRIPTOR
+bLength	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\DSC.h	59;"	m	line:59	struct:_INTERFACE_DESCRIPTOR
+bLength	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\DSC.h	73;"	m	line:73	struct:_ENDPOINT_DESCRIPTOR
+bLength	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\DSC.h	91;"	m	line:91	struct:_HID_DESCRIPTOR
+bLength	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\dsc.c	107;"	m	line:107	file:
+bLength	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\dsc.c	115;"	m	line:115	file:
+bLength	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\dsc.c	91;"	m	line:91	file:
+bLength	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\dsc.c	99;"	m	line:99	file:
+bMaxPacketSize	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\DSC.h	33;"	m	line:33	struct:_DEVICE_DESCRIPTOR
+bNumConfigurations	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\DSC.h	40;"	m	line:40	struct:_DEVICE_DESCRIPTOR
+bNumDescriptor	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\DSC.h	95;"	m	line:95	struct:_HID_DESCRIPTOR
+bNumEndpoints	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\DSC.h	63;"	m	line:63	struct:_INTERFACE_DESCRIPTOR
+bNumInterfaces	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\DSC.h	49;"	m	line:49	struct:_CONFIGURATION_DESCRIPTOR
+bRequest	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\ep0_alloc.h	37;"	m	line:37	struct:_SETUP_PACKET::<anonymous>
+bSessionOwner	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\mem_alloc.c	25;"	v	line:25
+bTransferState	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\mem_alloc.c	20;"	v	line:20
+bcdDevice	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\DSC.h	36;"	m	line:36	struct:_DEVICE_DESCRIPTOR
+bcdHID	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\DSC.h	93;"	m	line:93	struct:_HID_DESCRIPTOR
+bcdUSB	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\DSC.h	29;"	m	line:29	struct:_DEVICE_DESCRIPTOR
+bmAttributes	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\DSC.h	52;"	m	line:52	struct:_CONFIGURATION_DESCRIPTOR
+bmAttributes	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\DSC.h	76;"	m	line:76	struct:_ENDPOINT_DESCRIPTOR
+bmRequestType	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\ep0_alloc.h	36;"	m	line:36	struct:_SETUP_PACKET::<anonymous>
+bool	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	19;"	t	line:19
+brHandle	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\mem_alloc.h	89;"	m	line:89	union:_HANDLE
+false::0	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	22;"	d	line:22
+hDestination	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\mem_alloc.c	29;"	v	line:29
+hSource	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\mem_alloc.c	28;"	v	line:28
+i	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbhid.c	70;"	l	line:70
+iConfiguration	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\DSC.h	51;"	m	line:51	struct:_CONFIGURATION_DESCRIPTOR
+iDataCount	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\mem_alloc.c	26;"	v	line:26
+iInterface	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\DSC.h	67;"	m	line:67	struct:_INTERFACE_DESCRIPTOR
+iManufacturer	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\DSC.h	37;"	m	line:37	struct:_DEVICE_DESCRIPTOR
+iProduct	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\DSC.h	38;"	m	line:38	struct:_DEVICE_DESCRIPTOR
+iRecCount	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbcontrol.c	236;"	l	line:236
+iResCount	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbevents.c	299;"	l	line:299	file:
+iSendCount	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbcontrol.c	177;"	l	line:177
+iSerialNumber	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\DSC.h	39;"	m	line:39	struct:_DEVICE_DESCRIPTOR
+idProduct	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\DSC.h	35;"	m	line:35	struct:_DEVICE_DESCRIPTOR
+idVendor	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\DSC.h	34;"	m	line:34	struct:_DEVICE_DESCRIPTOR
+mInitPwm::{\	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\devProc.h	33;"	d	line:33
+mInitUSB::{\	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbmcr.h	37;"	d	line:37
+main	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\main.c	61;"	f	line:61	signature:( void )
+true::1	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbdefs.h	21;"	d	line:21
+wDescriptorLength	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\DSC.h	86;"	m	line:86	struct:_HID_DESCRIPTOR_HEADER
+wHandle	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\mem_alloc.h	87;"	m	line:87	union:_HANDLE
+wIndex	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\ep0_alloc.h	39;"	m	line:39	struct:_SETUP_PACKET::<anonymous>
+wLanguageId	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\ep0_alloc.h	61;"	m	line:61	struct:_SETUP_PACKET::<anonymous>
+wLength	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\ep0_alloc.h	40;"	m	line:40	struct:_SETUP_PACKET::<anonymous>
+wMaxPacketSize	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\DSC.h	77;"	m	line:77	struct:_ENDPOINT_DESCRIPTOR
+wTotalLength	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\DSC.h	48;"	m	line:48	struct:_CONFIGURATION_DESCRIPTOR
+wValue	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\ep0_alloc.h	38;"	m	line:38	struct:_SETUP_PACKET::<anonymous>
+wValueLsb	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbhid.c	188;"	l	line:188
+wValueLsb	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbhid.c	229;"	l	line:229
+wValueMsb	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbhid.c	188;"	l	line:188
+wValueMsb	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\usbhid.c	229;"	l	line:229
+wrHandle	D:\JABBA\USB TOOLS\JABBA USB\PIC USB Firmware\NameSpace\mem_alloc.h	90;"	m	line:90	union:_HANDLE

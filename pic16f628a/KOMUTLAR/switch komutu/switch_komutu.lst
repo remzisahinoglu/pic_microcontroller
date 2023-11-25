@@ -1,0 +1,126 @@
+CCS PCM C Compiler, Version 4.018, 12203               07-Þub-07 20:43
+
+               Filename: D:\pic\switch komutu\switch_komutu.lst
+
+               ROM used: 86 words (4%)
+                         Largest free fragment is 1962
+               RAM used: 8 (4%) at main() level
+                         9 (4%) worst case
+               Stack:    1 locations
+
+*
+0000:  MOVLW  00
+0001:  MOVWF  0A
+0002:  GOTO   019
+0003:  NOP
+.................... // switch uygulamasý uygulamsý 
+.................... //08.04.2007 
+.................... #if defined (__PCM__) 
+.................... #include <16F628A.h> 
+.................... //////// Standard Header file for the PIC16F628A device //////////////// 
+.................... #device PIC16F628A 
+.................... #list 
+....................  
+.................... #use delay(clock=4000000) 
+*
+0004:  MOVLW  23
+0005:  MOVWF  04
+0006:  BCF    03.7
+0007:  MOVF   00,W
+0008:  BTFSC  03.2
+0009:  GOTO   018
+000A:  MOVLW  01
+000B:  MOVWF  78
+000C:  CLRF   77
+000D:  DECFSZ 77,F
+000E:  GOTO   00D
+000F:  DECFSZ 78,F
+0010:  GOTO   00C
+0011:  MOVLW  4A
+0012:  MOVWF  77
+0013:  DECFSZ 77,F
+0014:  GOTO   013
+0015:  GOTO   016
+0016:  DECFSZ 00,F
+0017:  GOTO   00A
+0018:  GOTO   046 (RETURN)
+.................... #fuses NOWDT,PUT,NOLVP,NOBROWNOUT,MCLR,INTRC_IO,NOPROTECT 
+.................... #endif 
+....................  
+.................... void main() 
+.................... { 
+0019:  CLRF   04
+001A:  BCF    03.7
+001B:  MOVLW  1F
+001C:  ANDWF  03,F
+001D:  MOVLW  07
+001E:  MOVWF  1F
+....................    char i=0; 
+001F:  CLRF   21
+.................... tekrar: 
+....................    switch(i)                          // i nin aldýðý deðere göre  
+....................    {                                  // case komtlarý gerçekleþtirilir. 
+0020:  MOVLW  01
+0021:  SUBWF  21,W
+0022:  ADDLW  FC
+0023:  BTFSC  03.0
+0024:  GOTO   03F
+0025:  ADDLW  04
+0026:  GOTO   04E
+....................       case 1:output_b(240); break;    // i=1 ise case 1: iþlenir ve break 
+0027:  BSF    03.5
+0028:  CLRF   06
+0029:  MOVLW  F0
+002A:  BCF    03.5
+002B:  MOVWF  06
+002C:  GOTO   03F
+....................       case 2:output_b(15); break;     // komutu ile döngü kýrlýr. 
+002D:  BSF    03.5
+002E:  CLRF   06
+002F:  MOVLW  0F
+0030:  BCF    03.5
+0031:  MOVWF  06
+0032:  GOTO   03F
+....................       case 3:output_b(85); break; 
+0033:  BSF    03.5
+0034:  CLRF   06
+0035:  MOVLW  55
+0036:  BCF    03.5
+0037:  MOVWF  06
+0038:  GOTO   03F
+....................       case 4:output_b(170); break; 
+0039:  BSF    03.5
+003A:  CLRF   06
+003B:  MOVLW  AA
+003C:  BCF    03.5
+003D:  MOVWF  06
+003E:  GOTO   03F
+....................    } 
+....................    i=i+1;                             // break komutu ile program akýþý 
+003F:  MOVLW  01
+0040:  ADDWF  21,F
+....................    delay_ms(500);                     // buradan devam eder. 
+0041:  MOVLW  02
+0042:  MOVWF  22
+0043:  MOVLW  FA
+0044:  MOVWF  23
+0045:  GOTO   004
+0046:  DECFSZ 22,F
+0047:  GOTO   043
+....................     
+....................    if(bit_test(i,3)) 
+0048:  BTFSS  21.3
+0049:  GOTO   04C
+....................    { 
+....................       i=0; 
+004A:  CLRF   21
+....................       goto tekrar; 
+004B:  GOTO   020
+....................    } 
+....................    goto tekrar; 
+004C:  GOTO   020
+.................... } 
+004D:  SLEEP
+
+Configuration Fuses:
+   Word  1: 3F30   NOWDT PUT NOPROTECT NOBROWNOUT MCLR NOLVP INTRC_IO NOCPD

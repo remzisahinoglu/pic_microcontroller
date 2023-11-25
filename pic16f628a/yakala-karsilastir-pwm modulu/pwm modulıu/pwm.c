@@ -1,0 +1,50 @@
+// CCP birimini kullnamadan pwm kontrol uygulmasý 
+// 12.03.2011
+// yazan = Remzi ÞAHÝNOÐLU
+
+// 20 ms periyod ve 1.5 ms duty cycle için pwm modu uygulamsý
+//
+// pwm periyodu hesaplama formulü
+// Tpwm = Tosc x 4 x (PR2 + 1) x (TMR2 bölme oraný)
+// PR2 periyod süresini belirleyen deðer
+// TMR2 bölme oraný ise T2_DIV_BY_16 ifadesindeki 16 deðeri
+//
+// pwm frekansý hesaplama formülü
+// fpwm = 1 / Tpwm
+//
+// 20 ms periyod için PR2 ye girilmesi gereken deðer 1249
+//
+//
+
+#if defined (__PCM__)
+#include <16F628A.h>
+#use delay(clock=4000000)
+#fuses NOWDT,PUT,NOLVP,NOBROWNOUT,NOMCLR,INTRC_IO,NOPROTECT
+#endif
+
+#byte PORTA = 0x05
+int16 i=10;
+
+void main()
+{  
+   setup_timer_1(T1_DISABLED);            // timer1 i kapat
+   
+   set_tris_a(0x03);                      // a0 ve a1 giriþ digerleri cýkýþ
+   set_tris_b(0x00);                      // b nin hepsi cýkýs
+   
+   setup_ccp1(CCP_PWM);                   // ccp birimini pwm moduna al
+   
+   setup_timer_2(T2_DIV_BY_16,1249,1);    // timer2 yi kur
+   
+   //set_pwm1_duty(i);                    // duty cycle süresi 10
+   
+   while(TRUE)
+   {
+      i = 10;
+      set_pwm1_duty(i);
+      
+   
+   }
+
+}
+

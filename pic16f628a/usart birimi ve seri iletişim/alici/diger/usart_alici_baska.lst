@@ -1,0 +1,112 @@
+CCS PCM C Compiler, Version 4.018, 12203               21-Þub-07 15:46
+
+               Filename: D:\pic\usart birimi ve seri iletiþim\alýcý\usart_alici_baska.lst
+
+               ROM used: 72 words (4%)
+                         Largest free fragment is 1976
+               RAM used: 8 (4%) at main() level
+                         8 (4%) worst case
+               Stack:    1 locations
+
+*
+0000:  MOVLW  00
+0001:  MOVWF  0A
+0002:  GOTO   00F
+0003:  NOP
+.................... //usart birimi seri iletiþim alýcý uygulamasý 
+.................... //20.02.2007 
+.................... //yazan = Remzi ÞAHÝNOÐLU 
+.................... #if defined (__PCM__) 
+.................... #include <16F628A.h> 
+.................... //////// Standard Header file for the PIC16F628A device //////////////// 
+.................... #device PIC16F628A 
+.................... #list 
+....................  
+.................... #fuses NOWDT,PUT,NOLVP,NOBROWNOUT,MCLR,INTRC_IO,NOPROTECT  
+.................... #use delay(clock=4000000)  
+.................... #use rs232(baud=9600, rcv=PIN_B1, xmit=PIN_B2)  
+.................... #endif 
+....................  
+.................... #byte porta = 5  
+.................... #byte portb = 6  
+.................... #bit  led = portb.1  
+....................  
+.................... char gelen;  
+....................  
+.................... void main() {  
+000F:  CLRF   04
+0010:  BCF    03.7
+0011:  MOVLW  1F
+0012:  ANDWF  03,F
+0013:  BSF    03.5
+0014:  BSF    0E.3
+0015:  MOVLW  19
+0016:  MOVWF  19
+0017:  MOVLW  A6
+0018:  MOVWF  18
+0019:  MOVLW  90
+001A:  BCF    03.5
+001B:  MOVWF  18
+001C:  MOVLW  07
+001D:  MOVWF  1F
+....................      SET_TRIS_A(0x01);  
+001E:  MOVLW  01
+001F:  TRIS   5
+....................      SET_TRIS_B(0x02);  
+0020:  MOVLW  02
+0021:  TRIS   6
+....................      porta=portb=0;  
+0022:  CLRF   06
+0023:  MOVF   06,W
+0024:  MOVWF  05
+....................      led=1;  
+0025:  BSF    06.1
+....................      printf("Start\n");  
+0026:  CLRF   21
+0027:  MOVF   21,W
+0028:  CALL   004
+0029:  INCF   21,F
+002A:  MOVWF  77
+002B:  MOVF   77,W
+002C:  BTFSS  0C.4
+002D:  GOTO   02C
+002E:  MOVWF  19
+002F:  MOVLW  06
+0030:  SUBWF  21,W
+0031:  BTFSS  03.2
+0032:  GOTO   027
+....................      for(;;) {  
+....................         gelen=getc();  
+0033:  BTFSS  0C.5
+0034:  GOTO   033
+0035:  MOVF   1A,W
+0036:  MOVWF  20
+....................         printf("%c",gelen);  
+0037:  MOVF   20,W
+0038:  BTFSS  0C.4
+0039:  GOTO   038
+003A:  MOVWF  19
+....................         if (gelen=='1') {  
+003B:  MOVF   20,W
+003C:  SUBLW  31
+003D:  BTFSS  03.2
+003E:  GOTO   041
+....................            led=0;  
+003F:  BCF    06.1
+....................         }  
+....................         else if (gelen=='2') {  
+0040:  GOTO   046
+0041:  MOVF   20,W
+0042:  SUBLW  32
+0043:  BTFSS  03.2
+0044:  GOTO   046
+....................            led=1;  
+0045:  BSF    06.1
+....................         }  
+....................      }  
+0046:  GOTO   033
+.................... }  
+0047:  SLEEP
+
+Configuration Fuses:
+   Word  1: 3F30   NOWDT PUT NOPROTECT NOBROWNOUT MCLR NOLVP INTRC_IO NOCPD

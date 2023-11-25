@@ -1,0 +1,44 @@
+[PROJECT]
+Target=usart_verici.HEX
+Development_Mode=2
+Processor=0x628A
+ToolSuite=CCS
+Processor_Text=PIC16F628A
+
+[Directories]
+Include=
+Library=
+LinkerScript=
+
+[Target Data]
+FileList=D:\pic\usart birimi ve seri iletiþim\verici\usart_verici.c
+BuildTool=C-COMPILER
+OptionString=+FM
+AdditionalOptionString=
+BuildRequired=1
+
+[usart_verici.c]
+Type=4
+Path=
+FileList=
+BuildTool=
+OptionString=
+AdditionalOptionString=
+
+[mru-list]
+1=USART_~1.C
+
+[Windows]
+0=0000 USART_~1.C 0 0 796 451 3 0
+
+[Opened Files]
+1=D:\pic\usart birimi ve seri iletiþim\verici\usart_verici.c
+2=
+3=
+4=D:\pic\usart birimi ve seri iletiþim\verici\usart_verici.lst
+5=D:\pic\KOMUTLAR\for komutu\for_komutu.c
+6=
+[Units]
+Count=1
+1=usart_verici.c (main)
+Link=0

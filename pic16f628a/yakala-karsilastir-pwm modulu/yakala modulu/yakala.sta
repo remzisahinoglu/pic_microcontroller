@@ -1,0 +1,49 @@
+
+ROM used: 91 (4%)
+          91 (4%) including unused fragments
+
+          0 Average locations per line
+          10 Average locations per statement
+
+RAM used: 21 (9%) at main() level
+          21 (9%) worst case
+
+Stack used: 1 worst case (out of 7 total available)
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+   35     9 100  yakala.c
+  205     0   0  C:\Program Files\PICC\devices\16F628A.h
+----- -----
+  240     9 Total
+
+Page ROM  %  RAM   Vol Diff  Functions:
+---- --- --- ---   --- ----  ----------
+0     18  20   0    59  2.2  isr
+0     20  22   0    86  1.6  MAIN
+
+Program metrics:
+    Functions               2
+    Statements              9
+    Comments                74
+    Volume (V)              183
+    Difficilty (D)          3.8
+    Effort to implement (E) 692
+    Time to implement (T)   1 minutes
+    Est Delivered Bugs (B)  0
+    Cyclomatic Complexity   1
+    Maintainability (MI)    123
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00003     4  0  
+00004-00034    49  0  
+00035-007FF    38  1957  
+
+
+
+THE FOLLOWING IS TEMPORARY FOR DIAGNOSTIC USE ONLY:
+
+    n1    n2    N1    N2   v(G)
+     5     8     9     7     0    isr
+     4    11    13     9     0    MAIN
